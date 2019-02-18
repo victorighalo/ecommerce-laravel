@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->app->concord->registerModel(\Konekt\User\Contracts\User::class, \App\User::class);
     }
 
     /**

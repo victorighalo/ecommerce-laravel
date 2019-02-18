@@ -1,0 +1,420 @@
+@font-face {
+  font-family: 'furniture-icon';
+  src:  url('fonts/furniture-icon.eot?l6k7qx');
+  src:  url('fonts/furniture-icon.eot?l6k7qx#iefix') format('embedded-opentype'),
+    url('fonts/furniture-icon.ttf?l6k7qx') format('truetype'),
+    url('fonts/furniture-icon.woff?l6k7qx') format('woff'),
+    url('fonts/furniture-icon.svg?l6k7qx#furniture-icon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="furniture-"], [class*=" furniture-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'furniture-icon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.furniture-market .path1:before {
+  content: "\e900";
+  color: rgb(255, 158, 36);
+}
+.furniture-market .path2:before {
+  content: "\e901";
+  margin-left: -1em;
+  color: rgb(255, 140, 0);
+}
+.furniture-market .path3:before {
+  content: "\e902";
+  margin-left: -1em;
+  color: rgb(255, 177, 77);
+}
+.furniture-market .path4:before {
+  content: "\e903";
+  margin-left: -1em;
+  color: rgb(17, 17, 63);
+}
+.furniture-shelf-6:before {
+  content: "\e904";
+}
+.furniture-window-1:before {
+  content: "\e905";
+}
+.furniture-desk-lamp:before {
+  content: "\e906";
+}
+.furniture-shopping-bag:before {
+  content: "\e907";
+}
+.furniture-table-8:before {
+  content: "\e908";
+}
+.furniture-lamp:before {
+  content: "\e909";
+}
+.furniture-shelf-5:before {
+  content: "\e90a";
+}
+.furniture-bench-1:before {
+  content: "\e90b";
+}
+.furniture-television:before {
+  content: "\e90c";
+}
+.furniture-bookcase-1:before {
+  content: "\e90d";
+}
+.furniture-washing-machine:before {
+  content: "\e90e";
+}
+.furniture-cabinet-3:before {
+  content: "\e90f";
+}
+.furniture-trees:before {
+  content: "\e910";
+}
+.furniture-bathtub:before {
+  content: "\e911";
+}
+.furniture-cabinet-2:before {
+  content: "\e912";
+}
+.furniture-chest:before {
+  content: "\e913";
+}
+.furniture-table-7:before {
+  content: "\e914";
+}
+.furniture-door:before {
+  content: "\e915";
+}
+.furniture-locker:before {
+  content: "\e916";
+}
+.furniture-desk:before {
+  content: "\e917";
+}
+.furniture-stand-1:before {
+  content: "\e918";
+}
+.furniture-shelf-4:before {
+  content: "\e919";
+}
+.furniture-vacuum:before {
+  content: "\e91a";
+}
+.furniture-crib:before {
+  content: "\e91b";
+}
+.furniture-window:before {
+  content: "\e91c";
+}
+.furniture-desk-3:before {
+  content: "\e91d";
+}
+.furniture-painter-roller:before {
+  content: "\e91e";
+}
+.furniture-clock:before {
+  content: "\e91f";
+}
+.furniture-table-6:before {
+  content: "\e920";
+}
+.furniture-shelf-3:before {
+  content: "\e921";
+}
+.furniture-sofa:before {
+  content: "\e922";
+}
+.furniture-dresser:before {
+  content: "\e923";
+}
+.furniture-picture:before {
+  content: "\e924";
+}
+.furniture-desk-2:before {
+  content: "\e925";
+}
+.furniture-chair-2:before {
+  content: "\e926";
+}
+.furniture-table-5:before {
+  content: "\e927";
+}
+.furniture-pouf:before {
+  content: "\e928";
+}
+.furniture-table-4:before {
+  content: "\e929";
+}
+.furniture-office-chair:before {
+  content: "\e92a";
+}
+.furniture-chair-1:before {
+  content: "\e92b";
+}
+.furniture-armchair-1:before {
+  content: "\e92c";
+}
+.furniture-hours:before {
+  content: "\e92d";
+}
+.furniture-picnic-table:before {
+  content: "\e92e";
+}
+.furniture-bench:before {
+  content: "\e92f";
+}
+.furniture-table-3:before {
+  content: "\e930";
+}
+.furniture-shower:before {
+  content: "\e931";
+}
+.furniture-toilet:before {
+  content: "\e932";
+}
+.furniture-bathtub2:before {
+  content: "\e933";
+}
+.furniture-sink:before {
+  content: "\e934";
+}
+.furniture-cabinet-1:before {
+  content: "\e935";
+}
+.furniture-shelf-2:before {
+  content: "\e936";
+}
+.furniture-sofa-2:before {
+  content: "\e937";
+}
+.furniture-noticeboard:before {
+  content: "\e938";
+}
+.furniture-drawers-3:before {
+  content: "\e939";
+}
+.furniture-desk-1:before {
+  content: "\e93a";
+}
+.furniture-table-2:before {
+  content: "\e93b";
+}
+.furniture-drawers-2:before {
+  content: "\e93c";
+}
+.furniture-chair:before {
+  content: "\e93d";
+}
+.furniture-bed-1:before {
+  content: "\e93e";
+}
+.furniture-bunk-bed:before {
+  content: "\e93f";
+}
+.furniture-table-1:before {
+  content: "\e940";
+}
+.furniture-armchair:before {
+  content: "\e941";
+}
+.furniture-stool:before {
+  content: "\e942";
+}
+.furniture-table:before {
+  content: "\e943";
+}
+.furniture-desk2:before {
+  content: "\e944";
+}
+.furniture-sofa-1:before {
+  content: "\e945";
+}
+.furniture-sofa2:before {
+  content: "\e946";
+}
+.furniture-bed:before {
+  content: "\e947";
+}
+.furniture-drawers-1:before {
+  content: "\e948";
+}
+.furniture-stand:before {
+  content: "\e949";
+}
+.furniture-shelf-1:before {
+  content: "\e94a";
+}
+.furniture-drawers:before {
+  content: "\e94b";
+}
+.furniture-bookcase:before {
+  content: "\e94c";
+}
+.furniture-closet-1:before {
+  content: "\e94d";
+}
+.furniture-wardrobe:before {
+  content: "\e94e";
+}
+.furniture-shelf:before {
+  content: "\e94f";
+}
+.furniture-cabinet:before {
+  content: "\e950";
+}
+.furniture-closet:before {
+  content: "\e951";
+}
+.furniture-box:before {
+  content: "\e952";
+}
+.furniture-box-1:before {
+  content: "\e953";
+}
+.furniture-boxes:before {
+  content: "\e954";
+}
+.furniture-carriage:before {
+  content: "\e955";
+}
+.furniture-clock2:before {
+  content: "\e956";
+}
+.furniture-conveyor:before {
+  content: "\e957";
+}
+.furniture-crane:before {
+  content: "\e958";
+}
+.furniture-credit-card:before {
+  content: "\e959";
+}
+.furniture-credit-card-1:before {
+  content: "\e95a";
+}
+.furniture-delivery-truck:before {
+  content: "\e95b";
+}
+.furniture-delivery-truck-1:before {
+  content: "\e95c";
+}
+.furniture-delivery-truck-2:before {
+  content: "\e95d";
+}
+.furniture-delivery-truck-3:before {
+  content: "\e95e";
+}
+.furniture-flag:before {
+  content: "\e95f";
+}
+.furniture-fragile:before {
+  content: "\e960";
+}
+.furniture-fragile-1:before {
+  content: "\e961";
+}
+.furniture-gift:before {
+  content: "\e962";
+}
+.furniture-list:before {
+  content: "\e963";
+}
+.furniture-mailbox:before {
+  content: "\e964";
+}
+.furniture-package:before {
+  content: "\e965";
+}
+.furniture-package-1:before {
+  content: "\e966";
+}
+.furniture-package-2:before {
+  content: "\e967";
+}
+.furniture-parachute:before {
+  content: "\e968";
+}
+.furniture-placeholder:before {
+  content: "\e969";
+}
+.furniture-qr-code:before {
+  content: "\e96a";
+}
+.furniture-route:before {
+  content: "\e96b";
+}
+.furniture-send:before {
+  content: "\e96c";
+}
+.furniture-side-up:before {
+  content: "\e96d";
+}
+.furniture-switch:before {
+  content: "\e96e";
+}
+.furniture-telephone:before {
+  content: "\e96f";
+}
+.furniture-traffic-light:before {
+  content: "\e970";
+}
+.furniture-transfer:before {
+  content: "\e971";
+}
+.furniture-trolley:before {
+  content: "\e972";
+}
+.furniture-trolley-1:before {
+  content: "\e973";
+}
+.furniture-weight:before {
+  content: "\e974";
+}
+.furniture-wind-rose:before {
+  content: "\e975";
+}
+.furniture-worldwide:before {
+  content: "\e976";
+}
+.furniture-worldwide-1:before {
+  content: "\e977";
+}
+.furniture-worldwide-2:before {
+  content: "\e978";
+}
+.furniture-profile:before {
+  content: "\e980";
+}
+.furniture-back:before {
+  content: "\e979";
+}
+.furniture-heart:before {
+  content: "\e97a";
+}
+.furniture-search:before {
+  content: "\e97b";
+}
+.furniture-next:before {
+  content: "\e97c";
+}
+.furniture-reload:before {
+  content: "\e97d";
+}
+.furniture-bag:before {
+  content: "\e97e";
+}
+.furniture-shopping-cart:before {
+  content: "\e97f";
+}

@@ -1,14 +1,21 @@
 
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Muli');
+//@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600");
 
+@import '~mdi/css/materialdesignicons';
 // Variables
 @import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+@import './style.css';
+@import './pnotify.custom.min.css';
+@import './datatables.min.css';
+@import './jquery.dataTables.min.css';
+@import './dataTables.bootstrap4.min.css';
+
+.off{
+  display: none;
 }
