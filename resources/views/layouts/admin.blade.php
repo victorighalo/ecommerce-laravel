@@ -12,6 +12,17 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
     <link href="{{ asset('admin/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugins/bootstrap-tagsinput.css') }}" rel="stylesheet">
+    <style>
+        .bootstrap-tagsinput{
+            width: 100%;
+        }
+        .bootstrap-tagsinput .tag {
+            color: black;
+            background: silver;
+            padding: 3px;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
