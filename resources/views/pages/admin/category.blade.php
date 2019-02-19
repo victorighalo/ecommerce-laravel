@@ -36,7 +36,7 @@
                                                     <label for="category_id">{{ __('Category name') }}</label>
                                                 <select class="form-control" name="category_id" id="category_id">
                                                     @foreach($categories as $category)
-                                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                                    <option value="{{$category->taxonomy_id}}">{{$category->taxonomy_name}}</option>
                                                         @endforeach
                                                 </select>
                                                 <span class="invalid-feedback errorshow" role="alert">
@@ -65,7 +65,7 @@
 
             </div>
             <div class="row">
-                <div class="col-12 grid-margin">
+                <div class="col-6 grid-margin">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title mb-4">Categories</h5>
@@ -74,17 +74,24 @@
                                     <thead>
                                     <tr>
                                         <th>Name</th>
-                                        <th>Slug</th>
+                                        <th>Sub categories</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($categories as $category)
                                         <tr>
                                             <td>
-                                                {{$category->name}}
+                                                {{$category->taxonomy_name}}
                                             </td>
                                             <td>
-                                                {{$category->slug}}
+                                            <div class="row">
+                                               <div class="col-12 p-2">
+                                            {{$category->taxonomy_name}}
+                                               </div>
+                                                <div class="col-12 p-2">
+                                            {{$category->taxonomy_name}}
+                                               </div>
+                                            </div>
                                             </td>
                                         </tr>
                                         @endforeach
