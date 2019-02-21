@@ -10,6 +10,7 @@
             </div>
 
             <div class="modal-body">
+                <h4 class="image_load_status text-center invalid-feedback "></h4>
                 <form action="" method="" name="add_images_form">
 
                 </form>

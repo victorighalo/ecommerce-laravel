@@ -45,6 +45,7 @@
 <script src="{{ asset('admin/js/vendor.js') }}"></script>
 <script src="{{ asset('admin/js/app.js') }}" ></script>
 <script src="{{ asset('admin/js/all.js') }}" ></script>
+<script src="{{ asset('plugins/jquery.blockUI.js') }}" ></script>
 <script>
     $.ajaxSetup({
         headers: {

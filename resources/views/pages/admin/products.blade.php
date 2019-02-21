@@ -25,8 +25,8 @@
                                                 </div>        
                                                 
                                                 <div class="col-sm-4">
-                                                    <label for="name">{{ __('Labels') }}</label>
-                                                    <input type="text" id="label" class="form-control" name="labels" data-role="tagsinput"  required>
+                                                    <label for="name">{{ __('Tags') }}</label>
+                                                    <input type="text" id="tags" class="form-control" name="tags" data-role="tagsinput"  required>
                                                     <span class="invalid-feedback errorshow" role="alert">
                                                 </span>
                                                 </div>      
@@ -139,39 +139,52 @@
 @push('script')
     <script src="{{asset('plugins/bootstrap-tagsinput.min.js')}}"></script>
     <script>
-        const bsmodal = $('#images-modal');
-        const mediafolder = "{{asset('')}}/";
+        var bsmodal = $('#images-modal');
+        var mediafolder = "{{asset('')}}/";
+        var imagesBag = [];
+        $(document).ajaxStop($.unblockUI);
         $(document).ready(function () {
             $("#load_images_btn").click(function () {
                 $('#images-modal').modal('show')
-
+                $('.modal-content').block({
+                    message: '<h5>Loading...</h5>',
+                    css: {border: '1px solid #fff' }
+                });
                 $.ajax({
                     url: "{{route('load_images')}}",
                     type: 'GET',
                 })
                     .done(function(data) {
+                        $('.modal-content').unblock();
+                        bsmodal.find('.modal-body').find('form').empty();
                         $(data).map( function(index, value){
                             var image = "{!! asset('') !!}"+value.file;
                             var id = value.id;
+                            bsmodal.find('.image_load_status').html("")
                             bsmodal.find('.modal-body').find('form').append(
-                                `<div class="gallery_item image-container">
-                    <img src="${image}" width="100px">
-                    <input type='radio' name='gal_item' value="${id}" data-image_name="${image}" class="gallery_item_checkbox">
-                    </div>`
+                                `<div style="display:inline-block ;">
+                    <img src="${image}" width="100px" height="80px">
+                    <input type='checkbox' name='gal_item' value="${id}" data-image_name="${image}" class="gallery_item_checkbox">
+                    </div>
+                    `
                             )
                         })
                     }).fail(function(error) {
-
+                    bsmodal.find('.image_load_status').html("Failed to load images. Please Try again.")
+                    $('.modal-content').unblock();
                 });
             })
 
             // Add Images
             $("#add_images").click( function(){
-                $("form[name='add_images_form']").find('input:radio:checked').map( function(index, value){
+                imagesBag = [];
+                $("form[name='add_images_form']").find('input:checkbox:checked').map( function(index, value){
+                    imagesBag.push($(value).data('image_name'))
                     $(".chosen_images").append(
-                        `<img src="${$(value).data('image_name')}" width="100px">`
+                        `<img src="${$(value).data('image_name')}" width="100px" height="80px" style="padding:10px">`
                     )
                 })
+                console.log(imagesBag)
                 $('#images-modal').modal('hide')
 
             })
@@ -193,7 +206,7 @@
                 var uploaded_file = $("#files_upload").prop('files')[0];
                 var form_data = new FormData();
                 form_data.append('uploaded_file', uploaded_file);
-
+                $.blockUI({message: '<h5>Uploading...</h5>'});
                 $.ajax({
                     url: "{{route('upload_product')}}", // point to server-side PHP script
                     data: form_data,
@@ -237,13 +250,26 @@
 
             $("form#product_form").on('submit', function (e) {
                 e.preventDefault();
+                if(imagesBag.length == 0){
+                    new PNotify({
+                        title: 'Oops!',
+                        text: 'No Image selected.',
+                        addclass: 'custom_notification',
+                        type: 'error'
+                    });
+                    return false;
+                }
                 $(".add_product_btn").prop('disabled', true)
                 $(".add_product_btn > .process_indicator").removeClass('off');
                 $("span.errorshow").html("")
+
+                var form_data = new FormData();
+                // form_data.append('form_data', $(this).serialize());
+                form_data.append('images', imagesBag);
                 $.ajax({
                     type: "POST",
                     url: "{!! route('create_products') !!}",
-                    data: $(this).serialize()
+                    data: {form_data:$(this).serialize(), images: imagesBag}
                 }).done(function (data) {
                     $(".add_product_btn").prop('disabled', false)
                     $(".add_product_btn > .process_indicator").addClass('off');
@@ -292,8 +318,9 @@
                 $("span.errorshow").html("")
                 $.ajax({
                     type: "POST",
+                    dataType:'json',
                     url: "{!! route('create_sub_category') !!}",
-                    data: $(this).serialize()
+                    data: $(this).serializeArray()
                 }).done(function (data) {
                     $(".add_sub_category_btn").prop('disabled', false)
                     $(".add_sub_category_btn > .process_indicator").addClass('off');
