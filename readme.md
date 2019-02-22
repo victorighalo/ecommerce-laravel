@@ -1,1 +1,1 @@
-## An E-commerce application made with Laravel
+## An E-commerce application made with Laravel $ JQuery
