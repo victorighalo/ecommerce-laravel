@@ -22,6 +22,23 @@
             background: silver;
             padding: 3px;
         }
+        .product_img_container{
+            display: inline-block;
+            position: relative;
+        }
+        .product_img_container:hover .product_img_container_delete{
+            display: block;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left:0;
+            background: rgba(000,000,000,0.7);
+            cursor: pointer;
+        }
+        .product_img_container_delete{
+            position: absolute;
+            padding: 10px;
+        }
     </style>
 </head>
 <body>

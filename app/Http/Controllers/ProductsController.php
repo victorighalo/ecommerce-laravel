@@ -27,30 +27,88 @@ class ProductsController extends Controller
     public function create(Request $request)
     {
 
-        //Parse query-string input
-        parse_str($request->form_data, $product_data);
+        try {
+            //Parse query-string input
+            parse_str($request->form_data, $product_data);
 
-        //Generate SKU
-        $sku = strtoupper(substr($product_data['name'], 0, 3)) . "-" . $product_data['category_id'];
+            //Generate SKU
+            $sku = strtoupper(substr($product_data['name'], 0, 3)) . "-" . $product_data['category_id'];
 
-        //Create Product
-        $product = Product::create([
-            'name' => $product_data['name'],
-            'sku' => $sku,
-            'description' => $product_data['description'],
-            'meta_keywords' => $product_data['tags'],
-            'state' => ProductState::ACTIVE
-        ]);
+            //Create Product
+            $product = Product::create([
+                'name' => $product_data['name'],
+                'sku' => $sku,
+                'description' => $product_data['description'],
+                'meta_keywords' => $product_data['tags'],
+                'state' => ProductState::ACTIVE
+            ]);
 
-        //Get Taxon
-        $taxon = Taxon::where('id', $product_data['category_id'])->first();
+            //Get Taxon
+            $taxon = Taxon::where('id', $product_data['category_id'])->first();
 
-        //Add Taxon to product
-        $product->addTaxon($taxon);
+            //Add Taxon to product
+            $product->addTaxon($taxon);
 
-        //Relate images to product
-        foreach ($request['images'] as $image) {
-            $product->addMedia($image)->toMediaCollection('images');
+            //Relate images to product
+            foreach ($request['images'] as $image) {
+                $product->addMedia($image)
+                    ->preservingOriginal()
+                    ->toMediaCollection('images');
+            }
+            return response()->json(['status' => 200, 'message' => 'Product updated'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 400, 'message' => 'Failed to update product'], 400);
+        }
+
+    }
+
+    public function update(Request $request)
+    {
+
+        try {
+            //Parse query-string input
+            parse_str($request->form_data, $product_data);
+
+            //Generate SKU
+            $sku = strtoupper(substr($product_data['name'], 0, 3)) . "-" . $product_data['category_id'];
+
+            //Get Product
+            $product = Product::where('id', $product_data['id']);
+
+            //Update product
+            $product->update([
+                'name' => $product_data['name'],
+                'sku' => $sku,
+                'description' => $product_data['description'],
+                'meta_keywords' => $product_data['tags']
+            ]);
+
+            //Get Taxon
+            $taxon = Taxon::where('id', $product_data['category_id'])->first();
+
+            $hasTaxon = false;
+            foreach ($product->first()->taxons as $item) {
+                if ($item->id == $product_data['category_id']) {
+                    $hasTaxon = true;
+                }
+            }
+            //Add Taxon to product
+            if (!$hasTaxon) {
+                $product->first()->addTaxon($taxon);
+            }
+
+            //Relate images to product
+            if ($request['images']) {
+                foreach ($request['images'] as $image) {
+                    $product->first()
+                        ->addMedia($image)
+                        ->preservingOriginal()
+                        ->toMediaCollection('images');
+                }
+            }
+            return response()->json(['status' => 200, 'message' => 'Product updated'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 400, 'message' => 'Failed to update product'], 400);
         }
 
     }
@@ -100,6 +158,7 @@ class ProductsController extends Controller
                     
                                                         <a style="mrgin-bottom:25px; padding:15px 5px" class="dropdown-item activate_btn" href="#" id="' . $subdata->id . '" onclick="activate(' . $subdata->id . ')">Activate</a>
                                                         <a style="mrgin-bottom:25px; padding:15px 5px" class="dropdown-item deactivate_btn" href="#" id="' . $subdata->id . '" onclick="deactivate(' . $subdata->id . ')">Deactivate</a>
+                                                        <a style="mrgin-bottom:25px; padding:15px 5px" class="dropdown-item" href="' . route('edit_product', ['id' => $subdata->id]) . '">Edit</a>
                                                         <a style="mrgin-bottom:25px; padding:15px 5px" class="dropdown-item del_btn" href="#" id="' . $subdata->id . '" onclick="destroy(' . $subdata->id . ',' . ($subdata->taxons->first() ? $subdata->taxons->first()->id : null) . ')">Delete </a>
  </div></td>';
             })
@@ -133,5 +192,12 @@ class ProductsController extends Controller
         } catch (\Exception $e) {
             return response()->json(['message' => 'Failed to Activate', 'status' => 400], 400);
         }
+    }
+
+    public function edit($id)
+    {
+        $product = Product::where('id', $id)->first();
+        $categories = Taxon::all();
+        return view('pages.admin.product_edit', compact('product', 'categories'));
     }
 }

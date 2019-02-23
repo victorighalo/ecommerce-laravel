@@ -107,6 +107,7 @@
                                         <th>Description</th>
                                         <th>State</th>
                                         <th>Category</th>
+                                        <th>Tags</th>
                                         <th>Date</th>
                                         <th>Image</th>
                                         <th>Action</th>
@@ -158,7 +159,8 @@
                 { data: 'name', name: 'name' },
                 { data: 'description', name: 'description' },
                 { data: 'state', name: 'state' },
-                { data: 'taxons', name: 'taxons' },
+                { data: 'taxons', name: 'meta_keywords' },
+                { data: 'meta_keywords', name: 'taxons' },
                 { data: 'created_at', name: 'created_at' },
                 { data: 'image', name: 'image' },
                 {data: 'action', name: 'action', orderable: false, searchable: false}
@@ -171,46 +173,53 @@
                 $('#images-modal').modal('show')
                 $('.modal-content').block({
                     message: '<h5>Loading...</h5>',
-                    css: {border: '1px solid #fff' }
+                    css: {border: '1px solid #fff'}
                 });
                 $.ajax({
                     url: "{{route('load_images')}}",
                     type: 'GET',
                 })
-                    .done(function(data) {
+                    .done(function (data) {
                         $('.modal-content').unblock();
                         bsmodal.find('.modal-body').find('form').empty();
-                        $(data).map( function(index, value){
-                            var image = "{!! asset('') !!}"+value.file;
+                        $(data).map(function (index, value) {
+                            var image = "{!! asset('') !!}" + value.file;
                             var id = value.id;
                             bsmodal.find('.image_load_status').html("")
                             bsmodal.find('.modal-body').find('form').append(
                                 `<div style="display:inline-block ;" data-imageid="${id}">
                     <img src="${image}" width="100px" height="80px">
                     <input type='checkbox' name='gal_item' value="${id}" data-image_link="${image}" data-image_path="${value.file}" class="gallery_item_checkbox">
-                    <!--<span style="cursor:pointer;" class="badge badge-danger" id="${id}" onclick="removeMedia(this)">x</span>-->
+                    <span style="cursor:pointer;" class="badge badge-danger" id="${id}" onclick="removeMedia(this)">x</span>
                     </div>
                     `
                             )
                         })
-                    }).fail(function(error) {
+                    }).fail(function (error) {
                     bsmodal.find('.image_load_status').html("Failed to load images. Please Try again.")
                     $('.modal-content').unblock();
                 });
-            })
+            });
 
             // Add Images to product
-            $("#add_images").click( function(){
+            $("#add_images").click(function () {
                 imageBag = [];
-                $("form[name='add_images_form']").find('input:checkbox:checked').map( function(index, value){
-                    imageBag.push($(value).data('image_path'))
+                $("form[name='add_images_form']").find('input:checkbox:checked').map(function (index, value) {
+                    var img_path = $(value).data('image_path');
+                    imageBag.push(img_path)
                     $(".chosen_images").append(
-                        `<img src="${$(value).data('image_link')}" width="100px" height="80px" style="padding:10px">`
+                        `<div class="product_img_container">
+                            <div class="product_img_container_delete">
+                            <span style="cursor:pointer;" class="badge badge-danger" data-imgpath="${img_path}" onclick="popImage(this)">x</span>
+                            </div>
+                            <img src="${$(value).data('image_link')}" width="100px" height="80px">
+                        </div>
+                        `
                     )
                 })
                 $('#images-modal').modal('hide')
 
-            })
+            });
 
             // Upload Action
             $("#upload_btn").click(function (event) {
@@ -336,6 +345,108 @@
             });
 
         });
+
+        function popImage(e) {
+            $(e).parent().parent().fadeOut()
+            imageBag = imageBag.filter( function (item) {
+                return item != $(e).data('imgpath');
+            })
+        }
+
+        function removeMedia (media) {
+            var item = $(media);
+            PNotify.removeAll();
+            new PNotify({
+                title: 'Confirm Removal',
+                text: 'Are you sure?',
+                icon: 'glyphicon glyphicon-question-sign',
+                addclass: 'custom_notification',
+                hide: false,
+                confirm: {
+                    confirm: true,
+                    buttons: [{
+                        text: 'Delete',
+                        addClass: 'btn-primary',
+                        click: function(notice) {
+                            $.ajax({
+                                url: "{{route('media_remove')}}",
+                                type: 'POST',
+                                data: {mediaId: item.attr('id') }
+                            }).done(function (data) {
+                                notice.update({
+                                    title: 'Success',
+                                    text: 'Removal successful.',
+                                    icon: true,
+                                    type: 'success',
+                                    hide: true,
+                                    confirm: {
+                                        confirm: false
+                                    },
+                                    buttons: {
+                                        closer: true,
+                                        sticker: true
+                                    }
+                                });
+                                item.parent().fadeOut();
+                            }).fail(function (response) {
+                                PNotify.removeAll();
+                                if (response.status == 500) {
+                                    new PNotify({
+                                        title: 'Oops!',
+                                        text: 'An Error Occurred. Please try again.',
+                                        type: 'error'
+                                    });
+                                    return false
+                                }
+                                if (response.status == 400) {
+                                    new PNotify({
+                                        title: 'Oops!',
+                                        text: 'Failed to delete image.',
+                                        type: 'error'
+                                    });
+                                    return false
+                                }
+                                else {
+                                    new PNotify({
+                                        title: 'Oops!',
+                                        text: 'An Error Occurred. Please try again.',
+                                        type: 'error'
+                                    });
+                                    return false
+                                }
+                            })
+                        }
+                    },
+                        {
+                            text: 'Cancel',
+                            addClass: 'btn-primary',
+                            click: function(notice) {
+                                notice.update({
+                                    title: 'Action Cancelled',
+                                    text: 'That was close...',
+                                    icon: true,
+                                    type: 'danger',
+                                    hide: true,
+                                    confirm: {
+                                        confirm: false
+                                    },
+                                    buttons: {
+                                        closer: true,
+                                        sticker: true
+                                    }
+                                });
+                            }
+                        }]
+                },
+                buttons: {
+                    closer: true,
+                    sticker: true
+                },
+                history: {
+                    history: false
+                }
+            })
+        };
 
         function deactivate (id) {
             PNotify.removeAll();
