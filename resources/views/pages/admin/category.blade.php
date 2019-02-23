@@ -10,7 +10,7 @@
                                 <a class="btn btn-link float-right" data-toggle="collapse" href="#form_collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
                                     <i class="fas fa-ellipsis-v"></i>
                                 </a></h4>
-                            <div class="collapse" id="form_collapse">
+                            <div class="" id="form_collapse">
                                 <div class="row">
                                 <div class="col-sm-6 p-4">
                                 <form id="category_form">
@@ -25,37 +25,80 @@
                                             <span>{{ __('Create') }}</span>
                                         </button>
                                         </div>
-
                                 </form>
+
+
+                                    <form id="sub_category_form">
+                                        @csrf
+                                        <div class="row form-group">
+                                            <label for="category_id">{{ __('Categories') }}</label>
+                                            <select class="form-control" name="category_id" id="category_id">
+                                                @foreach($categories as $category)
+                                                    <option value="{{$category->taxonomy_id}}">{{$category->taxonomy_name}}</option>
+                                                @endforeach
+                                            </select>
+                                            <span class="invalid-feedback errorshow" role="alert">
+                                        </span>
+                                        </div>
+
+                                        <div class="row form-group">
+                                            <label for="sub_category">{{ __('Sub category') }}</label>
+                                            <input type="text" id="sub_category" class="form-control" name="sub_category"  required>
+                                            <span class="invalid-feedback errorshow" role="alert">
+                                        </span>
+                                        </div>
+                                        <div class="mt-1">
+                                            <button class="btn float-right custom_button_color btn-warning btn-lg font-weight-medium add_sub_category_btn" type="submit">
+                                                <i class="fas fa-spinner fa-spin off process_indicator"></i>
+                                                <span>{{ __('Create') }}</span>
+                                            </button>
+                                        </div>
+                                    </form>
                             </div>
 
                                     <div class="col-sm-6 p-4">
-                                        <form id="sub_category_form">
-                                            @csrf
-                                            <div class="row form-group">
-                                                    <label for="category_id">{{ __('Category name') }}</label>
-                                                <select class="form-control" name="category_id" id="category_id">
-                                                    @foreach($categories as $category)
-                                                    <option value="{{$category->taxonomy_id}}">{{$category->taxonomy_name}}</option>
-                                                        @endforeach
-                                                </select>
-                                                <span class="invalid-feedback errorshow" role="alert">
-                                        </span>
-                                                </div>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title mb-4">Categories</h5>
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover " id="categories-table">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th>Sub categories</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        @foreach($categories as $category)
+                                                            <tr>
+                                                                <td>
+                                                                    {{$category->taxonomy_name}}
+                                                                </td>
+                                                                <td>
+                                                                    <div class="row">
+                                                                        @foreach($category->taxons as $subcategory)
+                                                                        <div class="col-12 pb-1">
+                                                                            <span>{{$subcategory['name']}} </span>
+                                                                            <a class="btn btn-sm btn-link delete_subcategory" id="{{$subcategory['id']}}"><i class="fas fa-trash"></i></a>
+                                                                            <a class="btn btn-sm btn-link edit_subcategory" id="{{$subcategory['id']}}"><i class="fas fa-edit"></i></a>
+                                                                        </div>
 
-                                            <div class="row form-group">
-                                                    <label for="sub_category">{{ __('Sub category name') }}</label>
-                                                    <input type="text" id="sub_category" class="form-control" name="sub_category"  required>
-                                                <span class="invalid-feedback errorshow" role="alert">
-                                        </span>
+                                                                            @endforeach
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <a class="btn btn-sm btn-link delete_category" id="{{$category->taxonomy_id}}"><i class="fas fa-trash"></i></a>
+                                                                    <a class="btn btn-sm btn-link edit_category" id="{{$category->taxonomy_id}}"><i class="fas fa-edit"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
-                                            <div class="mt-1">
-                                                <button class="btn float-right custom_button_color btn-warning btn-lg font-weight-medium add_sub_category_btn" type="submit">
-                                                    <i class="fas fa-spinner fa-spin off process_indicator"></i>
-                                                    <span>{{ __('Create') }}</span>
-                                                </button>
-                                            </div>
-                                        </form>
+                                        </div>
+
                                     </div>
                             </div>
                             </div>
@@ -63,44 +106,6 @@
                     </div>
                 </div>
 
-            </div>
-            <div class="row">
-                <div class="col-6 grid-margin">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title mb-4">Categories</h5>
-                            <div class="table-responsive">
-                                <table class="table table-striped " id="categories-table">
-                                    <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Sub categories</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($categories as $category)
-                                        <tr>
-                                            <td>
-                                                {{$category->taxonomy_name}}
-                                            </td>
-                                            <td>
-                                            <div class="row">
-                                               <div class="col-12 p-2">
-                                            {{$category->taxonomy_name}}
-                                               </div>
-                                                <div class="col-12 p-2">
-                                            {{$category->taxonomy_name}}
-                                               </div>
-                                            </div>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -127,6 +132,15 @@
                         addclass: 'custom_notification',
                         type: 'success'
                     });
+                    $("select[name='category_id']").prop('disabled', true);
+                    $.get("{!! route('load_categories') !!}")
+                        .done(function(data) {
+                            $("select[name='category_id']").empty();
+                            $("select[name='category_id']").prop('disabled', false);
+                            $.each(data, function (key, value) {
+                                $("select[name='category_id']").append('<option value="' + value.id + '">' + value.name + '</option>');
+                            });
+                        })
                 }).fail(function (response) {
                     $(".add_category_btn").prop('disabled', false)
                     $(".add_category_btn > .process_indicator").addClass('off');
@@ -159,7 +173,6 @@
                 })
             });
 
-
             $("form#sub_category_form").on('submit', function (e) {
                 e.preventDefault();
                 $(".add_sub_category_btn").prop('disabled', true)
@@ -174,10 +187,11 @@
                     $(".add_sub_category_btn > .process_indicator").addClass('off');
                     new PNotify({
                         title: 'Success!',
-                        text: 'Category created.',
+                        text: 'Sub category created.',
                         addclass: 'custom_notification',
                         type: 'success'
                     });
+                    location.reload()
                 }).fail(function (response) {
                     $(".add_sub_category_btn").prop('disabled', false)
                     $(".add_sub_category_btn > .process_indicator").addClass('off');
@@ -210,22 +224,375 @@
                 })
             });
 
-            $("select[name='state']").on('change', function () {
-                stateid = $(this).val();
-                $("select[name='city']").empty();
-                $("select[name='city']").append('<option>Loading...</option>');
-                $("select[name='city']").prop('disabled', true);
-                $.get(baseurl+"common/load_cites/"+stateid)
-                    .done(function(data) {
-                        $("select[name='city']").empty();
-                        $("select[name='city']").prop('disabled', false);
-                        $.each(data, function (key, value) {
-                            $("select[name='city']").append('<option value="' + value.local_id + '">' + value.local_name + '</option>');
-                        });
-                    })
+            $(".delete_subcategory").on('click', function () {
+                destroyTaxon($(this).attr('id'))
             });
 
+            $(".delete_category").on('click', function () {
+                destroyTaxonomy($(this).attr('id'))
+            });
 
+            $(".edit_subcategory").on('click', function () {
+                editTaxon($(this).attr('id'))
+            });
+
+            $(".edit_category").on('click', function () {
+                editTaxonomy($(this).attr('id'))
+            });
         });
+
+        function destroyTaxon (id) {
+            (new PNotify({
+                title: 'Confirm Delete',
+                text: 'Are you sure?',
+                icon: 'glyphicon glyphicon-question-sign',
+                addclass: 'custom_notification',
+                hide: false,
+                confirm: {
+                    confirm: true,
+                    buttons: [{
+                        text: 'Delete',
+                        addClass: 'btn-primary',
+                        click: function(notice) {
+                            $.ajax({
+                                type: "GET",
+                                url: "{!! route('destroy_subcategory') !!}"+"/"+id
+                            }).done(function (data) {
+                                notice.update({
+                                    title: 'Deleted',
+                                    text: data.message,
+                                    icon: true,
+                                    type: 'success',
+                                    hide: true,
+                                    confirm: {
+                                        confirm: false
+                                    },
+                                    buttons: {
+                                        closer: true,
+                                        sticker: true
+                                    }
+                                });
+                                location.reload()
+                            }).fail(function (response) {
+                                if (response.status == 500) {
+                                    new PNotify({
+                                        title: 'Oops!',
+                                        text: 'An Error Occurred. Please try again.',
+                                        type: 'error'
+                                    });
+                                    return false;
+                                }
+                                if (response.status == 400) {
+                                    new PNotify({
+                                        title: 'Oops!',
+                                        text: 'Failed to delete Product.',
+                                        type: 'error'
+                                    });
+                                    return false;
+                                }
+                                else {
+                                    new PNotify({
+                                        title: 'Oops!',
+                                        text: 'An Error Occurred. Please try again.',
+                                        type: 'error'
+                                    });
+                                }
+                            })
+
+                        }
+                    },
+                        {
+                            text: 'Cancel',
+                            addClass: 'btn-primary',
+                            click: function(notice) {
+                                notice.update({
+                                    title: 'Action Cancelled',
+                                    text: 'That was close...',
+                                    icon: true,
+                                    type: 'danger',
+                                    hide: true,
+                                    confirm: {
+                                        confirm: false
+                                    },
+                                    buttons: {
+                                        closer: true,
+                                        sticker: true
+                                    }
+                                });
+                            }
+                        }]
+                },
+                buttons: {
+                    closer: true,
+                    sticker: true
+                },
+                history: {
+                    history: false
+                }
+            }))
+        };
+        function destroyTaxonomy (id) {
+            (new PNotify({
+                title: 'Confirm Delete',
+                text: 'Are you sure?',
+                icon: 'glyphicon glyphicon-question-sign',
+                addclass: 'custom_notification',
+                hide: false,
+                confirm: {
+                    confirm: true,
+                    buttons: [{
+                        text: 'Delete',
+                        addClass: 'btn-primary',
+                        click: function(notice) {
+                            $.ajax({
+                                type: "GET",
+                                url: "{!! route('destroy_category') !!}"+"/"+id
+                            }).done(function (data) {
+                                notice.update({
+                                    title: 'Deleted',
+                                    text: data.message,
+                                    icon: true,
+                                    type: 'success',
+                                    hide: true,
+                                    confirm: {
+                                        confirm: false
+                                    },
+                                    buttons: {
+                                        closer: true,
+                                        sticker: true
+                                    }
+                                });
+                                location.reload()
+                            }).fail(function (response) {
+                                if (response.status == 500) {
+                                    new PNotify({
+                                        title: 'Oops!',
+                                        text: 'An Error Occurred. Please try again.',
+                                        type: 'error'
+                                    });
+                                    return false;
+                                }
+                                if (response.status == 400) {
+                                    new PNotify({
+                                        title: 'Oops!',
+                                        text: 'Failed to delete Product.',
+                                        type: 'error'
+                                    });
+                                    return false;
+                                }
+                                else {
+                                    new PNotify({
+                                        title: 'Oops!',
+                                        text: 'An Error Occurred. Please try again.',
+                                        type: 'error'
+                                    });
+                                }
+                            })
+
+                        }
+                    },
+                        {
+                            text: 'Cancel',
+                            addClass: 'btn-primary',
+                            click: function(notice) {
+                                notice.update({
+                                    title: 'Action Cancelled',
+                                    text: 'That was close...',
+                                    icon: true,
+                                    type: 'danger',
+                                    hide: true,
+                                    confirm: {
+                                        confirm: false
+                                    },
+                                    buttons: {
+                                        closer: true,
+                                        sticker: true
+                                    }
+                                });
+                            }
+                        }]
+                },
+                buttons: {
+                    closer: true,
+                    sticker: true
+                },
+                history: {
+                    history: false
+                }
+            }))
+        };
+        function editTaxon (id) {
+            (new PNotify({
+                title: 'Edit Subcategory',
+                text: 'You are about a subcategory!',
+                icon: 'glyphicon glyphicon-plus-sign',
+                addclass: 'custom_notification',
+                hide: false,
+                confirm: {
+                    prompt: true
+                },
+                buttons: {
+                    closer: false,
+                    sticker: false
+                },
+                history: {
+                    history: false
+                }
+
+            })).get().on('pnotify.confirm', function (e, notice, val) {
+                $.ajax({
+                    type: "POST",
+                    data: {value:val, id: id},
+                    url: "{!! route('edit_subcategory') !!}",
+                }).done(function (data) {
+                    new PNotify({
+                        title: 'Updated',
+                        text: data.message,
+                        icon: true,
+                        type: 'success',
+                        hide: true,
+                        confirm: {
+                            confirm: false
+                        },
+                        buttons: {
+                            closer: true,
+                            sticker: true
+                        }
+                    });
+                    location.reload();
+                }).fail(function (response) {
+                    superagentstable.ajax.reload();
+                    PNotify.removeAll();
+                    if (response.status == 500) {
+                        new PNotify({
+                            title: 'Oops!',
+                            text: 'Failed to update. Please try again.',
+                            type: 'error'
+                        });
+                        return false
+                    }
+                    if (response.status == 400) {
+                        new PNotify({
+                            title: 'Oops!',
+                            text: 'Failed to update. Please try again.',
+                            type: 'error'
+                        });
+                        return false
+                    }
+                    else {
+                        new PNotify({
+                            title: 'Oops!',
+                            text: 'Failed to update. Please try again.',
+                            type: 'error'
+                        });
+                        return false
+                    }
+                })
+
+            }).on('pnotify.cancel', function (e, notice) {
+                notice.cancelRemove().update({
+                    title: 'Action Cancelled',
+                    text: 'That was close...',
+                    icon: true,
+                    type: 'danger',
+                    hide: true,
+                    confirm: {
+                        confirm: false
+                    },
+                    buttons: {
+                        closer: true,
+                        sticker: true
+                    }
+                });
+            });
+
+        }
+        function editTaxonomy (id) {
+            (new PNotify({
+                title: 'Edit Category',
+                text: 'You are about a category!',
+                icon: 'glyphicon glyphicon-plus-sign',
+                addclass: 'custom_notification',
+                hide: false,
+                confirm: {
+                    prompt: true
+                },
+                buttons: {
+                    closer: false,
+                    sticker: false
+                },
+                history: {
+                    history: false
+                }
+
+            })).get().on('pnotify.confirm', function (e, notice, val) {
+                $.ajax({
+                    type: "POST",
+                    data: {value:val, id: id},
+                    url: "{!! route('edit_category') !!}",
+                }).done(function (data) {
+                    new PNotify({
+                        title: 'Updated',
+                        text: data.message,
+                        icon: true,
+                        type: 'success',
+                        hide: true,
+                        confirm: {
+                            confirm: false
+                        },
+                        buttons: {
+                            closer: true,
+                            sticker: true
+                        }
+                    });
+                    location.reload();
+                }).fail(function (response) {
+                    superagentstable.ajax.reload();
+                    PNotify.removeAll();
+                    if (response.status == 500) {
+                        new PNotify({
+                            title: 'Oops!',
+                            text: 'Failed to update. Please try again.',
+                            type: 'error'
+                        });
+                        return false
+                    }
+                    if (response.status == 400) {
+                        new PNotify({
+                            title: 'Oops!',
+                            text: 'Failed to update. Please try again.',
+                            type: 'error'
+                        });
+                        return false
+                    }
+                    else {
+                        new PNotify({
+                            title: 'Oops!',
+                            text: 'Failed to update. Please try again.',
+                            type: 'error'
+                        });
+                        return false
+                    }
+                })
+
+            }).on('pnotify.cancel', function (e, notice) {
+                notice.cancelRemove().update({
+                    title: 'Action Cancelled',
+                    text: 'That was close...',
+                    icon: true,
+                    type: 'danger',
+                    hide: true,
+                    confirm: {
+                        confirm: false
+                    },
+                    buttons: {
+                        closer: true,
+                        sticker: true
+                    }
+                });
+            });
+
+        }
+
     </script>
     @endpush

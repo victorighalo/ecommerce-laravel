@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Storage;
 use Vanilo\Framework\Models\Product;
 use Vanilo\Framework\Models\Taxon;
 use Vanilo\Product\Models\ProductState;

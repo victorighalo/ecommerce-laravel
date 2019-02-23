@@ -66,4 +66,48 @@ class CategoryController extends Controller
     protected function getTaxons($taxonomy_id){
         return Taxon::byTaxonomy($taxonomy_id)->get();
     }
+
+    public function getTaxonomiesJson(){
+        return response()->json(Taxonomy::all());
+    }
+
+    public function destroyTaxon($id){
+        try{
+        Taxon::where('id', $id)->delete();
+        return response()->json(['message' => 'Deleted', 'status' => 200], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Failed to Delete', 'status' => 400], 400);
+        }
+    }
+
+    public function destroyTaxonomy($id){
+        try{
+            Taxonomy::where('id', $id)->delete();
+            return response()->json(['message' => 'Deleted', 'status' => 200], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Failed to Delete', 'status' => 400], 400);
+        }
+    }
+
+    public function editTaxon(Request $request){
+        try{
+            $taxon = Taxon::where('id', $request->id)->first();
+            $taxon->name = $request->value;
+            $taxon->save();
+            return response()->json(['message' => 'Subcategory Updated', 'status' => 200], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Failed to Update' . $e->getMessage(), 'status' => 400], 400);
+        }
+    }
+
+    public function editTaxonomy(Request $request){
+        try{
+            $taxon = Taxonomy::where('id', $request->id)->first();
+            $taxon->name = $request->value;
+            $taxon->save();
+            return response()->json(['message' => 'Category Updated', 'status' => 200], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Failed to Update' . $e->getMessage(), 'status' => 400], 400);
+        }
+    }
 }
