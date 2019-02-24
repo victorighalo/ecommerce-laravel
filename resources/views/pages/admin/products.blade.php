@@ -24,20 +24,27 @@
                                                 </span>
                                                 </div>        
                                                 
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-3">
                                                     <label for="name">{{ __('Tags') }}</label>
                                                     <input type="text" id="tags" class="form-control" name="tags" data-role="tagsinput"  required>
                                                     <span class="invalid-feedback errorshow" role="alert">
                                                 </span>
                                                 </div>      
                                                 
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-3">
                                                     <label for="category_id">{{ __('Category') }}</label>
                                                     <select class="form-control" name="category_id" id="category_id">
                                                         @foreach($categories as $category)
                                                         <option value="{{$category->id}}">{{$category->name}}</option>
                                                         @endforeach
                                                     </select>
+                                                    <span class="invalid-feedback errorshow" role="alert">
+                                                    </span>
+                                                </div>
+
+                                                <div class="col-sm-2">
+                                                    <label for="price">{{ __('Price') }}</label>
+                                                    <input type="number" name="price" class="form-control" required>
                                                     <span class="invalid-feedback errorshow" role="alert">
                                                     </span>
                                                 </div>
@@ -106,6 +113,7 @@
                                         <th>Name</th>
                                         <th>Description</th>
                                         <th>State</th>
+                                        <th>Price</th>
                                         <th>Category</th>
                                         <th>Tags</th>
                                         <th>Date</th>
@@ -159,6 +167,7 @@
                 { data: 'name', name: 'name' },
                 { data: 'description', name: 'description' },
                 { data: 'state', name: 'state' },
+                { data: 'price', name: 'price' },
                 { data: 'taxons', name: 'meta_keywords' },
                 { data: 'meta_keywords', name: 'taxons' },
                 { data: 'created_at', name: 'created_at' },

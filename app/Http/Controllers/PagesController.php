@@ -11,9 +11,13 @@ class PagesController extends Controller
 {
     public function getProductList($taxon_slug){
         $taxon = Taxon::findBySlug($taxon_slug);
-        $products = $taxon->products;
-        $now = Carbon::now();
-        return view('pages.front.product_list', compact('products', 'now'));
+        if($taxon) {
+            $products = $taxon->products;
+            $now = Carbon::now();
+            return view('pages.front.product_list', compact('products', 'now'));
+        }else{
+            abort(404);
+        }
     }
 
     public function getProductDetails($slug, $product){

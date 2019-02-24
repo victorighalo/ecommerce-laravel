@@ -25,14 +25,14 @@
                                                 </span>
                                                 </div>
 
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-3">
                                                     <label for="name">{{ __('Tags') }}</label>
                                                     <input type="text" id="tags" class="form-control" name="tags" data-role="tagsinput" value="{{$product->meta_keywords}}"  required>
                                                     <span class="invalid-feedback errorshow" role="alert">
                                                 </span>
                                                 </div>
 
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-3">
                                                     <label for="category_id">{{ __('Category') }}</label>
                                                     <select class="form-control" name="category_id" id="category_id">
                                                         @foreach($categories as $category)
@@ -47,6 +47,14 @@
                                                             @endif
                                                         @endforeach
                                                     </select>
+                                                    <span class="invalid-feedback errorshow" role="alert">
+                                                    </span>
+                                                </div>
+
+
+                                                <div class="col-sm-2">
+                                                    <label for="price">{{ __('Price') }}</label>
+                                                    <input type="number" name="price" class="form-control" required>
                                                     <span class="invalid-feedback errorshow" role="alert">
                                                     </span>
                                                 </div>

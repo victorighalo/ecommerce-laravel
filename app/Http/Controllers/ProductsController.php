@@ -38,6 +38,7 @@ class ProductsController extends Controller
             $product = Product::create([
                 'name' => $product_data['name'],
                 'sku' => $sku,
+                'price' => $product_data['price'],
                 'description' => $product_data['description'],
                 'meta_keywords' => $product_data['tags'],
                 'state' => ProductState::ACTIVE
@@ -79,6 +80,8 @@ class ProductsController extends Controller
             $product->update([
                 'name' => $product_data['name'],
                 'sku' => $sku,
+                'slug' => str_slug($product_data['name'], '-'),
+                'price' => $product_data['price'],
                 'description' => $product_data['description'],
                 'meta_keywords' => $product_data['tags']
             ]);
@@ -150,6 +153,9 @@ class ProductsController extends Controller
             })->addColumn('taxons', function ($subdata) {
 
                 return $subdata->taxons->first() ? $subdata->taxons->first()->name : '';
+            })->editColumn('price', function ($subdata) {
+
+                return "&#8358;".number_format($subdata->price, '0', '.', ',');
             })
             ->addColumn('action', function ($subdata) {
                 return '      <td>
@@ -162,7 +168,7 @@ class ProductsController extends Controller
                                                         <a style="mrgin-bottom:25px; padding:15px 5px" class="dropdown-item del_btn" href="#" id="' . $subdata->id . '" onclick="destroy(' . $subdata->id . ',' . ($subdata->taxons->first() ? $subdata->taxons->first()->id : null) . ')">Delete </a>
  </div></td>';
             })
-            ->rawColumns(['image', 'action'])
+            ->rawColumns(['image', 'action', 'price'])
             ->make(true);
     }
 

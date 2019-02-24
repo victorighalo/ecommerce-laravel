@@ -118,8 +118,8 @@
                                 </select><a class="ps-product__title" href="product-detail">{{$product->title()}}</a>
                                 <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
                                 <p class="ps-product__price">
-                                    <del>£220</del>£120
-                                </p><a class="ps-btn ps-btn--sm" href="product-detail">Add to cart</a>
+                                    &#8358;{{number_format($product->price, '0', '.', ',')}}
+                                </p><a class="ps-btn ps-btn--sm" href="#">Add to cart</a>
                                 <p class="ps-product__feature"><i class="furniture-delivery-truck-2"></i>Free Shipping in 24 hours</p>
                             </div>
                         </div>
@@ -133,7 +133,7 @@
                             </select><a class="ps-product__title" href="product-detail">{{$product->title()}}</a>
                             <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
                             <p class="ps-product__price">
-                                <del>£220</del>£120
+                                &#8358;{{number_format($product->price, '0', '.', ',')}}
                             </p>
                         </div>
                     </div>
