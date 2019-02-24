@@ -19,13 +19,16 @@
         @if(Auth::check())
         @if(Auth::user()->hasRole('admin'))
         <li class="nav-item {{ Request::path() == 'office/category' ? 'active' : '' }}"><a class="nav-link" href="{{url('office/category')}}">
-                <i class="fas fa-users menu-icon"></i><span class="menu-title">Category</span></a>
+                <i class="fas fa-boxes menu-icon"></i><span class="menu-title">Category</span></a>
         </li>
             <li class="nav-item {{ Request::path() == 'office/products' ? 'active' : '' }}"><a class="nav-link" href="{{url('office/products')}}">
-               <i class="fas fa-people-carry menu-icon"></i> <span class="menu-title">Products</span></a>
+               <i class="fas fa-store menu-icon"></i> <span class="menu-title">Products</span></a>
         </li>
-            <li class="nav-item {{ Request::path() == 'superagents' ? 'active' : '' }}"><a class="nav-link" href="{{url('superagents')}}">
-                    <i class="fas fa-user-cog menu-icon"></i><span class="menu-title">Super Agents</span></a>
+            <li class="nav-item {{ Request::path() == 'orders' ? 'active' : '' }}"><a class="nav-link" href="{{url('#')}}">
+                    <i class="fas fa-money-check menu-icon"></i><span class="menu-title">Orders</span></a>
+        </li>
+                <li class="nav-item {{ Request::path() == 'settings' ? 'active' : '' }}"><a class="nav-link" href="{{url('#')}}">
+                    <i class="fas fa-cogs menu-icon"></i><span class="menu-title">Settings</span></a>
         </li>
         <li class="nav-item purchase-button  d-xs-block d-sm-none" >
             <a class="nav-link" href="{{ route('logout') }}"

@@ -1,10 +1,8 @@
 <?php
 
-
-
 Auth::routes();
 
-Route::get('/', 'HomeController@index');
+//Admin section
 Route::get('/office', 'OfficeController@office');
 
 //Products
@@ -33,3 +31,8 @@ Route::get('/office/category/destroy/{id?}', 'CategoryController@destroyTaxonomy
 Route::post('/office/category/create', 'CategoryController@create')->name('create_category');
 Route::post('/office/category/create_sub_category', 'CategoryController@createSubCategory')->name('create_sub_category');
 
+
+//Frontend
+Route::get('/', 'HomeController@index');
+Route::get('/{taxon_slug}', 'PagesController@getProductList')->name('getCategoryContent');
+Route::get('/{taxon_slug}/{product_slug}', 'PagesController@getProductDetails')->name('getProductDetails');
