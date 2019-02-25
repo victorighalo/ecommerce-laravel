@@ -12,11 +12,11 @@
                             <p>Filter Product</p>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
-                        <div class="ps-filter__result">
-                            <p>Showing 1–12 of 35 results</p>
-                        </div>
-                    </div>
+                    {{--<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">--}}
+                        {{--<div class="ps-filter__result">--}}
+                            {{--<p>Showing 1–{{}} of {{}} results</p>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                 </div>
                 <div class="ps-filter__content">
                     <div class="ps-filter__column" data-mh="column">
@@ -142,13 +142,15 @@
             </div>
         </div>
         <div class="ps-pagination">
+
             <ul class="pagination">
-                <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">...</a></li>
-                <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                {{--<li><a href="#"><i class="fa fa-angle-left"></i></a></li>--}}
+                {{--<li class="active"><a href="#">1</a></li>--}}
+                {{--<li><a href="#">2</a></li>--}}
+                {{--<li><a href="#">3</a></li>--}}
+                {{--<li><a href="#">...</a></li>--}}
+                {{--<li><a href="#"><i class="fa fa-angle-right"></i></a></li>--}}
+                {{ $products->links('vendor.pagination.custom') }}
             </ul>
         </div>
     </main>

@@ -12,7 +12,7 @@ class PagesController extends Controller
     public function getProductList($taxon_slug){
         $taxon = Taxon::findBySlug($taxon_slug);
         if($taxon) {
-            $products = $taxon->products;
+            $products = $taxon->products()->paginate(20)->onEachSide(2);
             $now = Carbon::now();
             return view('pages.front.product_list', compact('products', 'now'));
         }else{
