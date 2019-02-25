@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMediaTable extends Migration
+class CreateMediaUploadsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -27,6 +27,6 @@ class CreateMediaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('media');
+        Schema::dropIfExists('media_uploads');
     }
 }
