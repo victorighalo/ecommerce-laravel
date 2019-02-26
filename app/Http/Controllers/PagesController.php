@@ -20,9 +20,9 @@ class PagesController extends Controller
         }
     }
 
-    public function getProductDetails($slug, $product){
-        $taxon = Taxon::findBySlug($slug);
-        $products = $taxon->products;
-        return view('pages.front.product_list', compact('products'));
+    public function getProductDetails($taxon_slug, $product_slug){
+        $product = Product::where('slug', $product_slug)->first();
+        $tags = $product->meta_keywords ? explode(",", $product->meta_keywords) : null;
+        return view('pages.front.product_detail', compact('product', 'tags'));
     }
 }

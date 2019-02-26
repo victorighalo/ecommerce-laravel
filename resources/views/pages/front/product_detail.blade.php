@@ -4,449 +4,192 @@
     @include('partials.hero')
     <main class="ps-main">
         <div class="ps-container">
-            <div class="ps-filter">
+            <div class="ps-product--detail">
                 <div class="row">
-                    <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12 ">
-                        <div class="ps-filter__trigger">
-                            <div class="ps-filter__icon"><span></span></div>
-                            <p>Filter Product</p>
+                    <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12 ">
+                        <div class="ps-product__thumbnail">
+                            <div class="ps-product__image">
+                                @if($product->getMedia('images'))
+                                    @foreach($product->getMedia('images') as $image)
+                                       <div class="item">
+                                            <a href="{{$image->getFullUrl()}}">
+                                            <img src="{{$image->getFullUrl()}}" alt="{{$product->title()}}">
+                                            </a>
+                                        </div>
+                                    @endforeach
+                                @endif
+                            </div>
+                            <div class="ps-product__preview">
+                                <div class="ps-product__variants">
+                                    @if($product->getMedia('images'))
+                                        @foreach($product->getMedia('images') as $image)
+                                            <div class="item">
+                                                    <img src="{{$image->getFullUrl()}}" alt="{{$product->title()}}">
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                </div>
+                                <div class="ps-video">
+                                    <a class="popup-youtube ps-product__video" href="https://www.youtube.com/watch?v=meBbDqAXago">
+                                        <img src="images/product/detail/variant-5.jpg" alt=""><i class="fa fa-play"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
-                        <div class="ps-filter__result">
-                            <p>Showing 1–12 of 35 results</p>
+                    <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12 ">
+                        <div class="ps-product__info">
+                            <div class="ps-product__rating">
+                                <select class="ps-rating">
+                                    <option value="1">1</option>
+                                    <option value="1">2</option>
+                                    <option value="1">3</option>
+                                    <option value="1">4</option>
+                                    <option value="2">5</option>
+                                </select><a href="#">(Read all 8 reviews)</a>
+                            </div>
+                            <h1>{{$product->title()}}</h1>
+                            <p class="ps-product__category">
+                                @if($tags)
+                                    @foreach($tags as $tag)
+                                        <a href="#"><span class="badge badge-primary">{{$tag}}</span></a>
+                                        @endforeach
+                                    @endif
+                            </p>
+                            <h3 class="ps-product__price"><del><span>£</span> 330</del> <span>&#8358;</span> {{number_format($product->price, '0', '.', ',')}}</h3>
+                            <div class="ps-product__short-desc">
+                                <p>{{$product->description}}</p>
+                            </div>
+                            <div class="ps-product__block ps-product__style">
+                                <h4>CHOOSE YOUR COLOR</h4>
+                                <div class="ps-radio ps-radio--color ps-radio--inline color-1">
+                                    <input class="form-control" type="radio" id="color-1" name="color">
+                                    <label for="color-1"></label>
+                                </div>
+                                <div class="ps-radio ps-radio--color ps-radio--inline color-2">
+                                    <input class="form-control" type="radio" id="color-2" name="color">
+                                    <label for="color-2"></label>
+                                </div>
+                                <div class="ps-radio ps-radio--color ps-radio--inline color-3">
+                                    <input class="form-control" type="radio" id="color-3" name="color">
+                                    <label for="color-3"></label>
+                                </div>
+                                <div class="ps-radio ps-radio--color ps-radio--inline color-4">
+                                    <input class="form-control" type="radio" id="color-4" name="color">
+                                    <label for="color-4"></label>
+                                </div>
+                            </div>
+                            <div class="ps-product__block ps-product__size">
+                                <h4>CHOOSE SIZE & QUANTITY</h4>
+                                <select class="ps-select selectpicker" title="Select Size">
+                                    <option value="0">1</option>
+                                    <option value="1">2</option>
+                                    <option value="2">3</option>
+                                    <option value="3">4</option>
+                                    <option value="4">5</option>
+                                    <option value="5">6</option>
+                                </select>
+                                <div class="form-group ps-number">
+                                    <input class="form-control" type="text" value="1"><span class="up"></span><span class="down"></span>
+                                </div>
+                            </div>
+                            <div class="ps-product__shopping"><a class="ps-btn" href="cart.html">Add To Cart</a>
+                                <div class="ps-product__actions"><a class="mr-10" href="whishlist.html"><i class="furniture-heart"></i></a><a href="compare.html" title="Compare"><i class="furniture-reload"></i></a></div>
+                            </div>
+                            <div class="ps-product__sharing">
+                                <p>Share this:<a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a></p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="ps-filter__content">
-                    <div class="ps-filter__column" data-mh="column">
-                        <h3>SORT CATEGORIES BY</h3>
-                        <ul class="ps-list--filter">
-                            <li class="current"><a href="product-listing.html">All</a></li>
-                            <li><a href="product-listing.html">Men</a></li>
-                            <li><a href="product-listing.html">Women</a></li>
-                            <li><a href="product-listing.html">Suite & Jean</a></li>
-                            <li><a href="product-listing.html">Accessories</a></li>
-                            <li><a href="product-listing.html">Kids</a></li>
-                            <li><a href="product-listing.html">Handmade</a></li>
-                        </ul>
+                <div class="ps-product__content">
+                    <ul class="tab-list" role="tablist">
+                        <li class="active"><a href="#tab_01" aria-controls="tab_01" role="tab" data-toggle="tab">Overview</a></li>
+                        <li><a href="#tab_02" aria-controls="tab_02" role="tab" data-toggle="tab">Review</a></li>
+                        <li><a href="#tab_03" aria-controls="tab_03" role="tab" data-toggle="tab">PRODUCT TAGs</a></li>
+                        <li><a href="#tab_04" aria-controls="tab_04" role="tab" data-toggle="tab">ADDITIONAL</a></li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane active" role="tabpanel" id="tab_01">
+                        <p>Caramels tootsie roll carrot cake sugar plum. Sweet roll jelly bear claw liquorice. Gingerbread lollipop dragée cake. Pie topping jelly-o. Fruitcake dragée candy canes tootsie roll. Pastry jelly-o cupcake. Bonbon brownie soufflé muffin.</p>
+                        <p>Sweet roll soufflé oat cake apple pie croissant. Pie gummi bears jujubes cake lemon drops gummi bears croissant macaroon pie. Fruitcake tootsie roll chocolate cake Carrot cake cake bear claw jujubes topping cake apple pie. Jujubes gummi bears soufflé candy canes topping gummi bears cake soufflé cake. Cotton candy soufflé sugar plum pastry sweet roll..</p>
                     </div>
-                    <div class="ps-filter__column" data-mh="column">
-                        <h3>SORT PRODUCTS BY</h3>
-                        <ul class="ps-list--filter">
-                            <li class="current"><a href="product-listing.html">Default Sorting</a></li>
-                            <li><a href="product-listing.html">Sort by popularity</a></li>
-                            <li><a href="product-listing.html">Sort by average rating</a></li>
-                            <li><a href="product-listing.html">Sort by newness</a></li>
-                            <li><a href="product-listing.html">Sort by price: low to high</a></li>
-                            <li><a href="product-listing.html">Sort by price: high to low</a></li>
-                        </ul>
+                    <div class="tab-pane" role="tabpanel" id="tab_02">
+                        <p>1 review for <strong>Shoes Air Jordan</strong></p>
+                        <div class="ps-review">
+                            <div class="ps-review__thumbnail"><img src="images/user/1.jpg" alt=""></div>
+                            <div class="ps-review__content">
+                                <header>
+                                    <select class="ps-rating">
+                                        <option value="1">1</option>
+                                        <option value="1">2</option>
+                                        <option value="1">3</option>
+                                        <option value="1">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                    <p>By<a href=""> Alena Studio</a> - November 25, 2017</p>
+                                </header>
+                                <p>Soufflé danish gummi bears tart. Pie wafer icing. Gummies jelly beans powder. Chocolate bar pudding macaroon candy canes chocolate apple pie chocolate cake. Sweet caramels sesame snaps halvah bear claw wafer. Sweet roll soufflé muffin topping muffin brownie. Tart bear claw cake tiramisu chocolate bar gummies dragée lemon drops brownie.</p>
+                            </div>
+                        </div>
+                        <form class="ps-form--product-review" action="do_action" method="post">
+                            <h4>ADD YOUR REVIEW</h4>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                                    <div class="form-group">
+                                        <label>Name:<sup>*</sup></label>
+                                        <input class="form-control" type="text" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Email:<sup>*</sup></label>
+                                        <input class="form-control" type="email" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Your rating</label>
+                                        <select class="ps-rating">
+                                            <option value="1">1</option>
+                                            <option value="1">2</option>
+                                            <option value="1">3</option>
+                                            <option value="1">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12 ">
+                                    <div class="form-group">
+                                        <label>Your Review:</label>
+                                        <textarea class="form-control" rows="6"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="ps-btn">Submit Reviews</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <div class="ps-filter__column" data-mh="column">
-                        <h3>FILTER BY PRICE</h3>
-                        <ul class="ps-list--filter">
-                            <li class="current"><a href="product-listing.html">All</a></li>
-                            <li><a href="product-listing.html">£10.00 - £110.00</a></li>
-                            <li><a href="product-listing.html">£110.00 - £210.00</a></li>
-                            <li><a href="product-listing.html">£210.00 - £310.00</a></li>
-                            <li><a href="product-listing.html">£310.00+</a></li>
-                        </ul>
+                    <div class="tab-pane" role="tabpanel" id="tab_03">
+                        <p>Add your tag <span> *</span></p>
+                        <form class="ps-form--create-tags" action="_action" method="post">
+                            <div class="form-group">
+                                <input class="form-control" type="text" placeholder="">
+                                <button class="ps-btn">Add Tags</button>
+                            </div>
+                        </form>
+                        <p>Use spaces to separate tags. Use single quotes ( * ) for phrases.</p>
                     </div>
-                    <div class="ps-filter__column" data-mh="column">
-                        <h3>FILTER BY PRICE</h3>
-                        <ul class="ps-list--color">
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                        </ul>
-                    </div>
-                    <div class="ps-filter__column" data-mh="column">
-                        <h3>FILTER BY PRICE</h3>
-                        <ul class="ps-list--filter">
-                            <li class="current"><a href="product-listing.html">All</a></li>
-                            <li><a href="product-listing.html">New</a></li>
-                            <li><a href="product-listing.html">SaleOff</a></li>
-                            <li><a href="product-listing.html">Show Only Products On Sale</a></li>
-                            <li><a href="product-listing.html">In Stock Only</a></li>
-                            <li><a href="product-listing.html">Out of stock</a></li>
-                        </ul>
+                    <div class="tab-pane" role="tabpanel" id="tab_04">
+                        <form class="ps-form--addition" action="do_action" method="post">
+                            <div class="form-group">
+                                <textarea class="form-control" rows="6" placeholder="Enter your addition here..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button class="ps-btn">Submit</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
-                    <div class="ps-product">
-                        <div class="ps-product__thumbnail">
-                            <div class="ps-badge"><span>New</span></div>
-                            <div class="ps-badge ps-badge--sale"><span>-35%</span></div><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="images/product/Item-1.jpg" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
-                            <div class="ps-product__content full">
-                                <div class="ps-product__variants">
-                                    <div class="item"><img src="images/product/variants/variant-1.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
-                                </div>
-                                <select class="ps-rating">
-                                    <option value="1">1</option>
-                                    <option value="1">2</option>
-                                    <option value="1">3</option>
-                                    <option value="1">4</option>
-                                    <option value="2">5</option>
-                                </select><a class="ps-product__title" href="product-detail">VEDBO Version 2018</a>
-                                <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
-                                <p class="ps-product__price">
-                                    <del>£220</del>£120
-                                </p><a class="ps-btn ps-btn--sm" href="product-detail">Add to cart</a>
-                                <p class="ps-product__feature"><i class="furniture-delivery-truck-2"></i>Free Shipping in 24 hours</p>
-                            </div>
-                        </div>
-                        <div class="ps-product__content">
-                            <select class="ps-rating">
-                                <option value="1">1</option>
-                                <option value="1">2</option>
-                                <option value="1">3</option>
-                                <option value="1">4</option>
-                                <option value="2">5</option>
-                            </select><a class="ps-product__title" href="product-detail">VEDBO Version 2018</a>
-                            <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
-                            <p class="ps-product__price">
-                                <del>£220</del>£120
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
-                    <div class="ps-product">
-                        <div class="ps-product__thumbnail"><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="images/product/Item-2.jpg" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
-                            <div class="ps-product__content full">
-                                <div class="ps-product__variants">
-                                    <div class="item"><img src="images/product/variants/variant-1.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
-                                </div>
-                                <select class="ps-rating">
-                                    <option value="1">1</option>
-                                    <option value="1">2</option>
-                                    <option value="1">3</option>
-                                    <option value="1">4</option>
-                                    <option value="2">5</option>
-                                </select><a class="ps-product__title" href="product-detail">VEDBO Version 2018</a>
-                                <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
-                                <p class="ps-product__price">
-                                    <del>£220</del>£120
-                                </p><a class="ps-btn ps-btn--sm" href="product-detail">Add to cart</a>
-                                <p class="ps-product__feature"><i class="furniture-delivery-truck-2"></i>Free Shipping in 24 hours</p>
-                            </div>
-                        </div>
-                        <div class="ps-product__content">
-                            <select class="ps-rating">
-                                <option value="1">1</option>
-                                <option value="1">2</option>
-                                <option value="1">3</option>
-                                <option value="1">4</option>
-                                <option value="2">5</option>
-                            </select><a class="ps-product__title" href="product-detail">VEDBO Version 2018</a>
-                            <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
-                            <p class="ps-product__price">
-                                <del>£220</del>£120
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
-                    <div class="ps-product">
-                        <div class="ps-product__thumbnail">
-                            <div class="ps-badge ps-badge--sale"><span>-35%</span></div><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="images/product/Item-3.jpg" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
-                            <div class="ps-product__content full">
-                                <div class="ps-product__variants">
-                                    <div class="item"><img src="images/product/variants/variant-1.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
-                                </div>
-                                <select class="ps-rating">
-                                    <option value="1">1</option>
-                                    <option value="1">2</option>
-                                    <option value="1">3</option>
-                                    <option value="1">4</option>
-                                    <option value="2">5</option>
-                                </select><a class="ps-product__title" href="product-detail">VEDBO Version 2018</a>
-                                <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
-                                <p class="ps-product__price">
-                                    <del>£220</del>£120
-                                </p><a class="ps-btn ps-btn--sm" href="product-detail">Add to cart</a>
-                                <p class="ps-product__feature"><i class="furniture-delivery-truck-2"></i>Free Shipping in 24 hours</p>
-                            </div>
-                        </div>
-                        <div class="ps-product__content">
-                            <select class="ps-rating">
-                                <option value="1">1</option>
-                                <option value="1">2</option>
-                                <option value="1">3</option>
-                                <option value="1">4</option>
-                                <option value="2">5</option>
-                            </select><a class="ps-product__title" href="product-detail">VEDBO Version 2018</a>
-                            <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
-                            <p class="ps-product__price">
-                                <del>£220</del>£120
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
-                    <div class="ps-product">
-                        <div class="ps-product__thumbnail">
-                            <div class="ps-badge"><span>New</span></div>
-                            <div class="ps-badge ps-badge--sale"><span>-35%</span></div><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="images/product/Item-4.jpg" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
-                            <div class="ps-product__content full">
-                                <div class="ps-product__variants">
-                                    <div class="item"><img src="images/product/variants/variant-1.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
-                                </div>
-                                <select class="ps-rating">
-                                    <option value="1">1</option>
-                                    <option value="1">2</option>
-                                    <option value="1">3</option>
-                                    <option value="1">4</option>
-                                    <option value="2">5</option>
-                                </select><a class="ps-product__title" href="product-detail">VEDBO Version 2018</a>
-                                <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
-                                <p class="ps-product__price">
-                                    <del>£220</del>£120
-                                </p><a class="ps-btn ps-btn--sm" href="product-detail">Add to cart</a>
-                                <p class="ps-product__feature"><i class="furniture-delivery-truck-2"></i>Free Shipping in 24 hours</p>
-                            </div>
-                        </div>
-                        <div class="ps-product__content">
-                            <select class="ps-rating">
-                                <option value="1">1</option>
-                                <option value="1">2</option>
-                                <option value="1">3</option>
-                                <option value="1">4</option>
-                                <option value="2">5</option>
-                            </select><a class="ps-product__title" href="product-detail">VEDBO Version 2018</a>
-                            <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
-                            <p class="ps-product__price">
-                                <del>£220</del>£120
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
-                    <div class="ps-product">
-                        <div class="ps-product__thumbnail"><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="images/product/Item-5.jpg" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
-                            <div class="ps-product__content full">
-                                <div class="ps-product__variants">
-                                    <div class="item"><img src="images/product/variants/variant-1.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
-                                </div>
-                                <select class="ps-rating">
-                                    <option value="1">1</option>
-                                    <option value="1">2</option>
-                                    <option value="1">3</option>
-                                    <option value="1">4</option>
-                                    <option value="2">5</option>
-                                </select><a class="ps-product__title" href="product-detail">VEDBO Version 2018</a>
-                                <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
-                                <p class="ps-product__price">
-                                    <del>£220</del>£120
-                                </p><a class="ps-btn ps-btn--sm" href="product-detail">Add to cart</a>
-                                <p class="ps-product__feature"><i class="furniture-delivery-truck-2"></i>Free Shipping in 24 hours</p>
-                            </div>
-                        </div>
-                        <div class="ps-product__content">
-                            <select class="ps-rating">
-                                <option value="1">1</option>
-                                <option value="1">2</option>
-                                <option value="1">3</option>
-                                <option value="1">4</option>
-                                <option value="2">5</option>
-                            </select><a class="ps-product__title" href="product-detail">VEDBO Version 2018</a>
-                            <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
-                            <p class="ps-product__price">
-                                <del>£220</del>£120
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
-                    <div class="ps-product">
-                        <div class="ps-product__thumbnail"><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="images/product/Item-6.jpg" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
-                            <div class="ps-product__content full">
-                                <div class="ps-product__variants">
-                                    <div class="item"><img src="images/product/variants/variant-1.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
-                                </div>
-                                <select class="ps-rating">
-                                    <option value="1">1</option>
-                                    <option value="1">2</option>
-                                    <option value="1">3</option>
-                                    <option value="1">4</option>
-                                    <option value="2">5</option>
-                                </select><a class="ps-product__title" href="product-detail">VEDBO Version 2018</a>
-                                <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
-                                <p class="ps-product__price">
-                                    <del>£220</del>£120
-                                </p><a class="ps-btn ps-btn--sm" href="product-detail">Add to cart</a>
-                                <p class="ps-product__feature"><i class="furniture-delivery-truck-2"></i>Free Shipping in 24 hours</p>
-                            </div>
-                        </div>
-                        <div class="ps-product__content">
-                            <select class="ps-rating">
-                                <option value="1">1</option>
-                                <option value="1">2</option>
-                                <option value="1">3</option>
-                                <option value="1">4</option>
-                                <option value="2">5</option>
-                            </select><a class="ps-product__title" href="product-detail">VEDBO Version 2018</a>
-                            <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
-                            <p class="ps-product__price">
-                                <del>£220</del>£120
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
-                    <div class="ps-product">
-                        <div class="ps-product__thumbnail"><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="images/product/Item-7.jpg" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
-                            <div class="ps-product__content full">
-                                <div class="ps-product__variants">
-                                    <div class="item"><img src="images/product/variants/variant-1.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
-                                </div>
-                                <select class="ps-rating">
-                                    <option value="1">1</option>
-                                    <option value="1">2</option>
-                                    <option value="1">3</option>
-                                    <option value="1">4</option>
-                                    <option value="2">5</option>
-                                </select><a class="ps-product__title" href="product-detail">VEDBO Version 2018</a>
-                                <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
-                                <p class="ps-product__price">
-                                    <del>£220</del>£120
-                                </p><a class="ps-btn ps-btn--sm" href="product-detail">Add to cart</a>
-                                <p class="ps-product__feature"><i class="furniture-delivery-truck-2"></i>Free Shipping in 24 hours</p>
-                            </div>
-                        </div>
-                        <div class="ps-product__content">
-                            <select class="ps-rating">
-                                <option value="1">1</option>
-                                <option value="1">2</option>
-                                <option value="1">3</option>
-                                <option value="1">4</option>
-                                <option value="2">5</option>
-                            </select><a class="ps-product__title" href="product-detail">VEDBO Version 2018</a>
-                            <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
-                            <p class="ps-product__price">
-                                <del>£220</del>£120
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
-                    <div class="ps-product">
-                        <div class="ps-product__thumbnail"><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a><img src="images/product/Item-8.jpg" alt=""><a class="ps-product__overlay" href="product-detail.html"></a>
-                            <div class="ps-product__content full">
-                                <div class="ps-product__variants">
-                                    <div class="item"><img src="images/product/variants/variant-1.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-2.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-3.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-4.jpg" alt=""></div>
-                                    <div class="item"><img src="images/product/variants/variant-5.jpg" alt=""></div>
-                                </div>
-                                <select class="ps-rating">
-                                    <option value="1">1</option>
-                                    <option value="1">2</option>
-                                    <option value="1">3</option>
-                                    <option value="1">4</option>
-                                    <option value="2">5</option>
-                                </select><a class="ps-product__title" href="product-detail">VEDBO Version 2018</a>
-                                <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
-                                <p class="ps-product__price">
-                                    <del>£220</del>£120
-                                </p><a class="ps-btn ps-btn--sm" href="product-detail">Add to cart</a>
-                                <p class="ps-product__feature"><i class="furniture-delivery-truck-2"></i>Free Shipping in 24 hours</p>
-                            </div>
-                        </div>
-                        <div class="ps-product__content">
-                            <select class="ps-rating">
-                                <option value="1">1</option>
-                                <option value="1">2</option>
-                                <option value="1">3</option>
-                                <option value="1">4</option>
-                                <option value="2">5</option>
-                            </select><a class="ps-product__title" href="product-detail">VEDBO Version 2018</a>
-                            <div class="ps-product__categories"><a href="product-listing.html">Armchair</a></div>
-                            <p class="ps-product__price">
-                                <del>£220</del>£120
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="ps-pagination">
-            <ul class="pagination">
-                <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">...</a></li>
-                <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-            </ul>
         </div>
     </main>
 @endsection
