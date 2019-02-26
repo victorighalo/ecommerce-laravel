@@ -122,7 +122,7 @@ class ProductsController extends Controller
             //Get product model
             $product = Product::where('id', $product_id);
 
-            if (!$taxon_id == 0) {
+            if (!$taxon_id == 0 && $product->exists()) {
                 //Get Taxon
                 $taxon = Taxon::where('id', $taxon_id)->first();
 
@@ -140,12 +140,13 @@ class ProductsController extends Controller
 
     public function getProductsData(Request $request)
     {
+
         $products = Product::all();
         return Datatables::of($products)->editColumn('created_at', function ($data) {
             return $data->created_at ? with(new Carbon($data->created_at))->toDayDateTimeString() : '';
         })
             ->addColumn('image', function ($subdata) {
-                if ($subdata->getMedia('images')->first()) {
+                if ($subdata->getMedia('images')->count()) {
                     return "<img src=" . $subdata->getMedia('images')->first()->getFullUrl() . "  width='100px'>";
                 } else {
                     return "None";

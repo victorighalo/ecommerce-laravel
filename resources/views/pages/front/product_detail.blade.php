@@ -49,8 +49,9 @@
                                 </select><a href="#">(Read all 8 reviews)</a>
                             </div>
                             <h1>{{$product->title()}}</h1>
+                            <h1>{{$ratings}}</h1>
                             <p class="ps-product__category">
-                                @if($tags)
+                                @if(isset($tags))
                                     @foreach($tags as $tag)
                                         <a href="#"><span class="badge badge-primary">{{$tag}}</span></a>
                                         @endforeach

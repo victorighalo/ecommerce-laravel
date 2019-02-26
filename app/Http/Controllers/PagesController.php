@@ -23,6 +23,7 @@ class PagesController extends Controller
     public function getProductDetails($taxon_slug, $product_slug){
         $product = Product::where('slug', $product_slug)->first();
         $tags = $product->meta_keywords ? explode(",", $product->meta_keywords) : null;
-        return view('pages.front.product_detail', compact('product', 'tags'));
+        $ratings = $product->ratings ? $product->ratingPercent() : 0;
+        return view('pages.front.product_detail', compact('product', 'tags', 'ratings'));
     }
 }

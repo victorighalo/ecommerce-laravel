@@ -23,6 +23,6 @@ class OfficeController extends Controller
 //        Role::create(['name' => 'admin']);
 //        $user = User::find(1)->first();
 //        $user->assignRole('admin');
-        return view('pages.admin.index');
+        return redirect('office/products');
     }
 }
