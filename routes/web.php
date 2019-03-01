@@ -36,3 +36,7 @@ Route::post('/office/category/create_sub_category', 'CategoryController@createSu
 Route::get('/', 'HomeController@index');
 Route::get('/{taxon_slug}', 'PagesController@getProductList')->name('getCategoryContent');
 Route::get('/{taxon_slug}/{product_slug}', 'PagesController@getProductDetails')->name('getProductDetails');
+
+//Cart
+Route::post('/cart/add', 'CartController@add')->name('add_to_cart');
+

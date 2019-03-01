@@ -56,5 +56,13 @@
 <!-- Custom scripts-->
 <script src="{{ asset('js/main.js')}}"></script>
 {{--<script src="{{ asset('js/app.js') }}" defer></script>--}}
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
+@stack('script')
 </body>
 </html>

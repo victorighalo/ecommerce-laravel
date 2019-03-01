@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Vanilo\Cart\Facades\Cart;
 use Vanilo\Framework\Models\Taxon;
 
-class HomeController extends Controller
+class HomeController extends BaseController
 {
     /**
      * Create a new controller instance.
@@ -25,8 +26,15 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+        if(Cart::exists()){
+            $cart_count = Cart::itemCount();
+        }else{
+            $cart_count = 0;
+        }
+
         $categories = Taxon::all();
-        return view('pages.index', compact('categories'));
+        return view('pages.index', compact('categories', 'cart_count'));
     }
 
 

@@ -61,41 +61,14 @@
                             <div class="ps-product__short-desc">
                                 <p>{{$product->description}}</p>
                             </div>
-                            <div class="ps-product__block ps-product__style">
-                                <h4>CHOOSE YOUR COLOR</h4>
-                                <div class="ps-radio ps-radio--color ps-radio--inline color-1">
-                                    <input class="form-control" type="radio" id="color-1" name="color">
-                                    <label for="color-1"></label>
-                                </div>
-                                <div class="ps-radio ps-radio--color ps-radio--inline color-2">
-                                    <input class="form-control" type="radio" id="color-2" name="color">
-                                    <label for="color-2"></label>
-                                </div>
-                                <div class="ps-radio ps-radio--color ps-radio--inline color-3">
-                                    <input class="form-control" type="radio" id="color-3" name="color">
-                                    <label for="color-3"></label>
-                                </div>
-                                <div class="ps-radio ps-radio--color ps-radio--inline color-4">
-                                    <input class="form-control" type="radio" id="color-4" name="color">
-                                    <label for="color-4"></label>
-                                </div>
-                            </div>
                             <div class="ps-product__block ps-product__size">
-                                <h4>CHOOSE SIZE & QUANTITY</h4>
-                                <select class="ps-select selectpicker" title="Select Size">
-                                    <option value="0">1</option>
-                                    <option value="1">2</option>
-                                    <option value="2">3</option>
-                                    <option value="3">4</option>
-                                    <option value="4">5</option>
-                                    <option value="5">6</option>
-                                </select>
+                                <h4>CHOOSE QUANTITY</h4>
                                 <div class="form-group ps-number">
-                                    <input class="form-control" type="text" value="1"><span class="up"></span><span class="down"></span>
+                                    <input class="form-control" name="item_qty" type="text" value="1"><span class="up"></span><span class="down"></span>
                                 </div>
                             </div>
-                            <div class="ps-product__shopping"><a class="ps-btn" href="cart.html">Add To Cart</a>
-                                <div class="ps-product__actions"><a class="mr-10" href="whishlist.html"><i class="furniture-heart"></i></a><a href="compare.html" title="Compare"><i class="furniture-reload"></i></a></div>
+                            <div class="ps-product__shopping"><a class="ps-btn" data-slug="{{$product->slug}}" id="add_to_cart">Add To Cart</a>
+
                             </div>
                             <div class="ps-product__sharing">
                                 <p>Share this:<a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a></p>
@@ -194,3 +167,32 @@
         </div>
     </main>
 @endsection
+
+@push('script')
+    <script>
+
+        $(document).ready(function () {
+            //load images to modal
+            $("#add_to_cart").click(function () {
+                var slug = $(this).data('slug');
+                var qty = $("input[name='item_qty']").val();
+                if(qty < 1){
+                    alert('Qty less than 1')
+                    return false;
+                }
+                $.ajax({
+                    url: "{{route('add_to_cart')}}",
+                    type: 'POST',
+                    data: {qty: qty, slug:slug}
+                })
+                    .done(function (data) {
+                    console.log(data)
+
+                    }).fail(function (error) {
+                    console.log(error)
+                });
+            });
+
+        });
+    </script>
+    @endpush

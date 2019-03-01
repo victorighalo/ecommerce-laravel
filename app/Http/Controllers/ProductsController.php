@@ -9,7 +9,7 @@ use Vanilo\Framework\Models\Taxon;
 use Vanilo\Product\Models\ProductState;
 use Yajra\Datatables\Datatables;
 
-class ProductsController extends Controller
+class ProductsController extends BaseController
 {
     public function __construct()
     {
@@ -18,10 +18,15 @@ class ProductsController extends Controller
 
     public function index()
     {
+        if(Cart::exists()){
+            $cart_count = Cart::itemCount();
+        }else{
+            $cart_count = 0;
+        }
         $categories = Taxon::all();
         $products = Product::all();
 
-        return view('pages.admin.products', compact('categories', 'products'));
+        return view('pages.admin.products', compact('categories', 'products', 'cart_count'));
     }
 
     public function create(Request $request)

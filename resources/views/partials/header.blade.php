@@ -121,7 +121,7 @@
                 <li><a href="contact-us.html">Contact</a></li>
             </ul>
             <div class="menu-toggle"><span></span></div>
-            <div class="ps-cart"><a class="ps-cart__toggle" href="#"><span><i>20</i></span><img src="images/market.svg" alt=""></a>
+            <div class="ps-cart"><a class="ps-cart__toggle" href="#"><span><i>{{$cart_count}}</i></span><img src="images/market.svg" alt=""></a>
                 <div class="ps-cart__listing">
                     <div class="ps-cart__content">
                         <div class="ps-cart-item"><a class="ps-cart-item__close" href="#"></a>
