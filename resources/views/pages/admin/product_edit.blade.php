@@ -36,7 +36,7 @@
                                                     <label for="category_id">{{ __('Category') }}</label>
                                                     <select class="form-control" name="category_id" id="category_id">
                                                         @foreach($categories as $category)
-                                                            @if($product->taxons->first())
+                                                            @if(count($product->taxons))
                                                                 @if($product->taxons->first()->name == $category->name)
                                                             <option value="{{$category->id}}" selected>{{$category->name}}</option>
                                                                 @else

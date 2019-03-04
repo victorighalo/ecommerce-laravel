@@ -15622,3 +15622,9 @@ select.form-control {
   border-color: #A7A9AA !important;
   color: #fff !important;
 }
+.loading[data-state=closed] {
+  display: none;
+}
+.loading[data-state=open] {
+  display: block;
+}

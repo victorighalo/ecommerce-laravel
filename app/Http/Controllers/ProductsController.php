@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Vanilo\Cart\Facades\Cart;
 use Vanilo\Framework\Models\Product;
 use Vanilo\Framework\Models\Taxon;
 use Vanilo\Product\Models\ProductState;
@@ -18,15 +19,11 @@ class ProductsController extends BaseController
 
     public function index()
     {
-        if(Cart::exists()){
-            $cart_count = Cart::itemCount();
-        }else{
-            $cart_count = 0;
-        }
-        $categories = Taxon::all();
-        $products = Product::all();
 
-        return view('pages.admin.products', compact('categories', 'products', 'cart_count'));
+        $categories = Taxon::all();
+        $products = \App\Product::all();
+
+        return view('pages.admin.products', compact('categories', 'products'));
     }
 
     public function create(Request $request)
@@ -40,7 +37,7 @@ class ProductsController extends BaseController
             $sku = strtoupper(substr($product_data['name'], 0, 3)) . "-" . $product_data['category_id'];
 
             //Create Product
-            $product = Product::create([
+            $product = \App\Product::create([
                 'name' => $product_data['name'],
                 'sku' => $sku,
                 'price' => $product_data['price'],
@@ -70,7 +67,7 @@ class ProductsController extends BaseController
 
     public function update(Request $request)
     {
-
+        $hasSameTaxon = null;
         try {
             //Parse query-string input
             parse_str($request->form_data, $product_data);
@@ -79,9 +76,16 @@ class ProductsController extends BaseController
             $sku = strtoupper(substr($product_data['name'], 0, 3)) . "-" . $product_data['category_id'];
 
             //Get Product
-            $product = Product::where('id', $product_data['id']);
+            $product = \App\Product::where('id', $product_data['id']);
 
-            //Update product
+            //Get Selected Taxon
+            $taxon = Taxon::where('id',$product_data['category_id'])->first();
+
+
+            //check if product has Taxon
+            $hasTaxon = !is_null($product->first()->taxons);
+
+            //Update product details
             $product->update([
                 'name' => $product_data['name'],
                 'sku' => $sku,
@@ -91,18 +95,19 @@ class ProductsController extends BaseController
                 'meta_keywords' => $product_data['tags']
             ]);
 
-            //Get Taxon
-            $taxon = Taxon::where('id', $product_data['category_id'])->first();
 
-            $hasTaxon = false;
-            foreach ($product->first()->taxons as $item) {
-                if ($item->id == $product_data['category_id']) {
-                    $hasTaxon = true;
+            //Check if product already has same Taxon to prevent exception
+            if($hasTaxon) {
+                foreach ($product->first()->taxons as $item) {
+                    if ($item->id == $product_data['category_id']) {
+                        $hasSameTaxon = true;
+                    }
                 }
             }
+
             //Add Taxon to product
-            if (!$hasTaxon) {
-                $product->first()->addTaxon($taxon);
+            if (!$hasSameTaxon) {
+                $product->first()->taxons()->save($taxon);
             }
 
             //Relate images to product
@@ -116,7 +121,7 @@ class ProductsController extends BaseController
             }
             return response()->json(['status' => 200, 'message' => 'Product updated'], 200);
         } catch (\Exception $e) {
-            return response()->json(['status' => 400, 'message' => 'Failed to update product'], 400);
+            return response()->json(['status' => 400, 'message' => 'Failed to update product '.$e->getMessage()], 400);
         }
 
     }
@@ -125,7 +130,7 @@ class ProductsController extends BaseController
     {
         try {
             //Get product model
-            $product = Product::where('id', $product_id);
+            $product = \App\Product::where('id', $product_id);
 
             if (!$taxon_id == 0 && $product->exists()) {
                 //Get Taxon
@@ -146,7 +151,8 @@ class ProductsController extends BaseController
     public function getProductsData(Request $request)
     {
 
-        $products = Product::all();
+        $products = \App\Product::all();
+
         return Datatables::of($products)->editColumn('created_at', function ($data) {
             return $data->created_at ? with(new Carbon($data->created_at))->toDayDateTimeString() : '';
         })
@@ -157,8 +163,10 @@ class ProductsController extends BaseController
                     return "None";
                 }
             })->addColumn('taxons', function ($subdata) {
-
-                return $subdata->taxons->first() ? $subdata->taxons->first()->name : '';
+                if(($subdata->taxons->count())){
+                   return $subdata->taxons->first()->name;
+                }
+                return 'Uncategorized';
             })->editColumn('price', function ($subdata) {
 
                 return "&#8358;".number_format($subdata->price, '0', '.', ',');
@@ -171,7 +179,7 @@ class ProductsController extends BaseController
                                                         <a style="mrgin-bottom:25px; padding:15px 5px" class="dropdown-item activate_btn" href="#" id="' . $subdata->id . '" onclick="activate(' . $subdata->id . ')">Activate</a>
                                                         <a style="mrgin-bottom:25px; padding:15px 5px" class="dropdown-item deactivate_btn" href="#" id="' . $subdata->id . '" onclick="deactivate(' . $subdata->id . ')">Deactivate</a>
                                                         <a style="mrgin-bottom:25px; padding:15px 5px" class="dropdown-item" href="' . route('edit_product', ['id' => $subdata->id]) . '">Edit</a>
-                                                        <a style="mrgin-bottom:25px; padding:15px 5px" class="dropdown-item del_btn" href="#" id="' . $subdata->id . '" onclick="destroy(' . $subdata->id . ',' . ($subdata->taxons->first() ? $subdata->taxons->first()->id : null) . ')">Delete </a>
+                                                        <a style="mrgin-bottom:25px; padding:15px 5px" class="dropdown-item del_btn" href="#" id="' . $subdata->id . '" onclick="destroy(' . $subdata->id . ',' . ( ($subdata->taxons->count()) ? $subdata->taxons->first()->id : null) . ')">Delete </a>
  </div></td>';
             })
             ->rawColumns(['image', 'action', 'price'])
@@ -208,7 +216,7 @@ class ProductsController extends BaseController
 
     public function edit($id)
     {
-        $product = Product::where('id', $id)->first();
+        $product = \App\Product::where('id', $id)->first();
         $categories = Taxon::all();
         return view('pages.admin.product_edit', compact('product', 'categories'));
     }

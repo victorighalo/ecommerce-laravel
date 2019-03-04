@@ -28,6 +28,14 @@
     <link rel="stylesheet" href="{{asset('plugins/jquery-ui/jquery-ui.min.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/lightGallery-master/dist/css/lightgallery.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <style>
+
+        .off {
+            display: none;
+        }
+        .on {
+            display: block;
+        }    </style>
 </head>
 {{--<!--[if IE 7]><body class="ie7 lt-ie8 lt-ie9 lt-ie10"><![endif]-->--}}
 {{--<!--[if IE 8]><body class="ie8 lt-ie9 lt-ie10"><![endif]-->--}}

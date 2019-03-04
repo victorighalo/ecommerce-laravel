@@ -67,7 +67,10 @@
                                     <input class="form-control" name="item_qty" type="text" value="1"><span class="up"></span><span class="down"></span>
                                 </div>
                             </div>
-                            <div class="ps-product__shopping"><a class="ps-btn" data-slug="{{$product->slug}}" id="add_to_cart">Add To Cart</a>
+                            <div class="ps-product__shopping">
+                                <button class="ps-btn" data-slug="{{$product->slug}}" id="add_to_cart">
+                                    <i class="fa fa-circle-o-notch fa-spin processing off" aria-hidden="true"></i> Add To Cart
+                                </button>
 
                             </div>
                             <div class="ps-product__sharing">
@@ -173,7 +176,10 @@
 
         $(document).ready(function () {
             //load images to modal
+            $(".processing").prop('disabled', true)
             $("#add_to_cart").click(function () {
+                $(".processing").removeClass('off')
+                $("#add_to_cart").prop('disabled', true)
                 var slug = $(this).data('slug');
                 var qty = $("input[name='item_qty']").val();
                 if(qty < 1){
@@ -186,9 +192,13 @@
                     data: {qty: qty, slug:slug}
                 })
                     .done(function (data) {
-                    console.log(data)
+                        $(".processing").addClass('off')
+                        $("#add_to_cart").prop('disabled', false)
+                        console.log(data)
 
                     }).fail(function (error) {
+                    $(".processing").addClass('off')
+                    $("#add_to_cart").prop('disabled', false)
                     console.log(error)
                 });
             });
