@@ -121,7 +121,13 @@
                 <li><a href="contact-us.html">Contact</a></li>
             </ul>
             <div class="menu-toggle"><span></span></div>
-            <div class="ps-cart"><a class="ps-cart__toggle" href="#"><span><i>{{$cart_count}}</i></span><img src="images/market.svg" alt=""></a>
+            <div class="ps-cart"><a class="ps-cart__toggle" href="{{url('cart')}}"><span class="cart_count">
+                        @if(isset($cart_count))
+                        <i>{{$cart_count}}</i>
+                            @else
+                            0
+                            @endif
+                    </span><img src="images/market.svg" alt=""></a>
                 <div class="ps-cart__listing">
                     <div class="ps-cart__content">
                         <div class="ps-cart-item"><a class="ps-cart-item__close" href="#"></a>

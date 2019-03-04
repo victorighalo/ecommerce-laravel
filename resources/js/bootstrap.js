@@ -57,13 +57,13 @@ let token = document.head.querySelector('meta[name="csrf-token"]');
 
 //Import other libraries
 
-window.chart = require('chart.js')
+// window.chart = require('chart')
 
-require('./chart')
-require('./off-canvas')
-require('./misc')
-require('./dashboard')
-require('./maps')
+// require('./chart')
+// require('./off-canvas')
+// require('./misc')
+// require('./dashboard')
+// require('./maps')
 window.PNotify = require('./pnotify.custom.min')
 window.DataTable = require('./jquery.dataTables')
 // window.DataTable = require('./dataTables.bootstrap4')

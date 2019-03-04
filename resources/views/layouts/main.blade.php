@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="{{asset('plugins/slick/slick/slick.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/jquery-ui/jquery-ui.min.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/lightGallery-master/dist/css/lightgallery.min.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/snackbar.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <style>
 
@@ -61,9 +62,11 @@
 <script src="{{ asset('plugins/elevatezoom/jquery.elevatezoom.js')}}"></script>
 <script src="{{ asset('plugins/gmap3.min.js')}}"></script>
 <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+<script src="{{ asset('plugins/snackbar.min.js')}}"></script>
+
 <!-- Custom scripts-->
 <script src="{{ asset('js/main.js')}}"></script>
-{{--<script src="{{ asset('js/app.js') }}" defer></script>--}}
+<script src="{{ asset('js/app.js') }}"></script>
 <script>
     $.ajaxSetup({
         headers: {

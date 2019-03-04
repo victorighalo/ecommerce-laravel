@@ -57,7 +57,7 @@
                                         @endforeach
                                     @endif
                             </p>
-                            <h3 class="ps-product__price"><del><span>£</span> 330</del> <span>&#8358;</span> {{number_format($product->price, '0', '.', ',')}}</h3>
+                            <h3 class="ps-product__price"> <span>&#8358;</span> {{number_format($product->price, '0', '.', ',')}}</h3>
                             <div class="ps-product__short-desc">
                                 <p>{{$product->description}}</p>
                             </div>
@@ -194,7 +194,13 @@
                     .done(function (data) {
                         $(".processing").addClass('off')
                         $("#add_to_cart").prop('disabled', false)
-                        console.log(data)
+                        $(".cart_count").html("<i>"+data.cart_count+"</i>")
+                        Snackbar.show({
+                            showAction: false,
+                            text: 'Cart updated.',
+                            actionTextColor: '#ffffff',
+                            backgroundColor:"#53A6E8"
+                        });
 
                     }).fail(function (error) {
                     $(".processing").addClass('off')
@@ -204,5 +210,6 @@
             });
 
         });
+
     </script>
     @endpush

@@ -7,7 +7,8 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+window.React = require('react');
+window.ReactDom = require('react-dom');
 
 /**
  * The following block of code may be used to automatically register your

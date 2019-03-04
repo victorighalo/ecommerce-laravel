@@ -1,6 +1,11 @@
 <?php
 
-Auth::routes();
+//Cart
+Route::get('/cart', 'CartController@index');
+Route::post('/cart/add', 'CartController@add')->name('add_to_cart');
+Route::get('/cart/destroy/{slug}', 'CartController@destroy')->name('destroy_item_cart');
+Route::post('/cart/update', 'CartController@increase')->name('update_cart');
+
 
 //Admin section
 Route::get('/office', 'OfficeController@office');
@@ -33,10 +38,9 @@ Route::post('/office/category/create_sub_category', 'CategoryController@createSu
 
 
 //Frontend
-Route::get('/', 'HomeController@index');
 Route::get('/{taxon_slug}', 'PagesController@getProductList')->name('getCategoryContent');
 Route::get('/{taxon_slug}/{product_slug}', 'PagesController@getProductDetails')->name('getProductDetails');
 
-//Cart
-Route::post('/cart/add', 'CartController@add')->name('add_to_cart');
 
+Route::get('/', 'HomeController@index');
+Auth::routes();
