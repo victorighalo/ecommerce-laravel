@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Vanilo\Cart\Facades\Cart;
+use Vanilo\Cart\Contracts\CartItem;
 use Vanilo\Framework\Models\Product;
 
 class CartController extends BaseController
@@ -13,11 +14,13 @@ class CartController extends BaseController
 
         if(Cart::exists()){
             $cart_count = Cart::itemCount();
+            $cart = Cart::model()->items;
         }else{
             $cart_count = 0;
+            $cart = [];
         }
 
-        $cart = Cart::model()->items;
+
 
         return view('pages.front.cart', compact('cart', 'cart_count'));
     }
@@ -41,5 +44,25 @@ class CartController extends BaseController
         }catch (\Exception $e){
             return back()->with('error', 'Failed to delete cart item!');
         }
+    }
+
+    public function update(CartItem $cart_item, Request $request){
+        try {
+//            $cart_item = Cart::getItems()->where('id', 7);
+
+            $cart_item->quantity = $request->qty;
+            $cart_item->save();
+            return response()->json($cart_item);
+        }catch (\Exception $e){
+            return response()->json($e->getMessage());
+        }
+    }
+
+
+    public function remove(CartItem $cart_item)
+    {
+        Cart::removeItem($cart_item);
+        flash()->info($cart_item->getBuyable()->getName() . ' has been removed from cart');
+        return redirect()->route('cart.show');
     }
 }

@@ -11,10 +11,12 @@
                     </div>
                 @endif
                     @if (session('error'))
-                        <div class="alert alert-success">
+                        <div class="alert alert-danger">
                             {{ session('error') }}
                         </div>
                     @endif
+
+                    @if(count($cart))
                 <table class="table ps-cart__table">
                     <thead>
                     <tr>
@@ -37,7 +39,7 @@
                         <td>
                             <div class="form-group--number">
                                 <button class="minus"><span>-</span></button>
-                                <input class="form-control" type="text" value="{{$item->quantity}}">
+                                <input class="form-control" type="text" value="{{$item->quantity}}" data-cart_id="{{$item->id}}">
                                 <button class="plus"><span>+</span></button>
                             </div>
                         </td>
@@ -66,6 +68,11 @@
                         <h3>Total Price:  <span>&#8358;</span> {{number_format( ($item->total()), '0', '.', ',')}}</h3><a class="ps-btn" href="checkout.html">Process to checkout</a>
                     </div>
                 </div>
+                        @else
+                        <div class="alert alert-info text-center">
+                            Cart is empty
+                        </div>
+                        @endif
             </div>
         </div>
     </div>
@@ -75,18 +82,58 @@
     <script>
 
         $(document).ready(function () {
-            var searchRequest = null;
-            var searchInput = $("#search-input");
 
-            var searchEvents = function() {
-                if (searchRequest)
-                    searchRequest.abort()
-                searchRequest = $.get('/search', {term: $(this).val()}, null, 'script');
+            var minus = function() {
+                var cart_id = $(this).next().data('cart_id');
+                $.post('{!! route('update_cart') !!}'+'/'+cart_id, {qty: $(this).next().val()})
+                    .done(function (data) {
+                        Snackbar.show({
+                            showAction: true,
+                            text: 'Cart updated.',
+                            actionTextColor: '#ffffff',
+                            backgroundColor:"#53A6E8",
+                            actionText: 'Close!'
+                        });
+                    })
+                    .fail(function (error) {
+                        Snackbar.show({
+                            showAction: true,
+                            text: 'Cart update failed!.',
+                            actionTextColor: '#ffffff',
+                            backgroundColor:"#FE970D",
+                            actionText: 'Close!'
+                        });
+                    })
+            };
+            var plus = function() {
+                var cart_id = $(this).prev().data('cart_id');
+                $.post('{!! route('update_cart') !!}'+'/'+cart_id, { qty: $(this).prev().val()})
+                    .done(function (data) {
+                        Snackbar.show({
+                            showAction: true,
+                            text: 'Cart updated.',
+                            actionTextColor: '#ffffff',
+                            backgroundColor:"#53A6E8",
+                            actionText: 'Close!'
+                        });
+                    })
+                    .fail(function (error) {
+                        Snackbar.show({
+                            showAction: true,
+                            text: 'Cart update failed!.',
+                            actionTextColor: '#ffffff',
+                            backgroundColor:"#FE970D",
+                            actionText: 'Close!'
+                        });
+                    })
             };
 
-            searchInput.on({
-                change: searchEvents,
-                keyup: $.debounce(500, searchEvents)
+            $(".minus").on({
+                click: _.debounce(minus, 500)
+            });
+
+            $(".plus").on({
+                click: _.debounce(plus, 500)
             });
         });
 

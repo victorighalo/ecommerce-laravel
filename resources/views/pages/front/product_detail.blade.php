@@ -196,7 +196,7 @@
                         $("#add_to_cart").prop('disabled', false)
                         $(".cart_count").html("<i>"+data.cart_count+"</i>")
                         Snackbar.show({
-                            showAction: false,
+                            showAction: true,
                             text: 'Cart updated.',
                             actionTextColor: '#ffffff',
                             backgroundColor:"#53A6E8"
@@ -205,7 +205,12 @@
                     }).fail(function (error) {
                     $(".processing").addClass('off')
                     $("#add_to_cart").prop('disabled', false)
-                    console.log(error)
+                    Snackbar.show({
+                        showAction: true,
+                        text: 'Cart update failed!.',
+                        actionTextColor: '#ffffff',
+                        backgroundColor:"#FE970D"
+                    });
                 });
             });
 

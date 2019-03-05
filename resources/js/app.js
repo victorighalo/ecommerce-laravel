@@ -9,6 +9,7 @@ require('./bootstrap');
 
 window.React = require('react');
 window.ReactDom = require('react-dom');
+window._ = require('lodash')
 
 /**
  * The following block of code may be used to automatically register your

@@ -59173,6 +59173,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 window.ReactDom = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

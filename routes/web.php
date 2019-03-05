@@ -4,7 +4,7 @@
 Route::get('/cart', 'CartController@index');
 Route::post('/cart/add', 'CartController@add')->name('add_to_cart');
 Route::get('/cart/destroy/{slug}', 'CartController@destroy')->name('destroy_item_cart');
-Route::post('/cart/update', 'CartController@increase')->name('update_cart');
+Route::post('/cart/update/{cart_item?}', 'CartController@update')->name('update_cart');
 
 
 //Admin section
