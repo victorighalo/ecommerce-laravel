@@ -47,7 +47,7 @@
                             <span>&#8358;</span> {{number_format( ($item->price * $item->quantity), '0', '.', ',')}}
                         </td>
                         <td>
-                            <a href="{{route('destroy_item_cart', ['slug' => $item->product->slug])}}"> <div class="ps-remove"></div></a>
+                            <div data-cart_id="{{$item->id}}" class="ps-remove destroy"></div>
                         </td>
                     </tr>
                         @endforeach
@@ -128,12 +128,48 @@
                     })
             };
 
+            var destroy = function() {
+                Snackbar.show({
+                    showAction: true,
+                    text: 'Removing item from cart',
+                    actionTextColor: '#ffffff',
+                    backgroundColor:"#53A6E8",
+                    actionText: 'Close!'
+                });
+                var cart_id = $(this).data('cart_id');
+                var self = $(this)
+                $.post('{!! route('destroy_cart') !!}'+'/'+cart_id)
+                    .done(function (data) {
+                        Snackbar.show({
+                            showAction: true,
+                            text: data,
+                            actionTextColor: '#ffffff',
+                            backgroundColor:"#53A6E8",
+                            actionText: 'Close!'
+                        });
+                        self.parent().parent().fadeOut()
+                    })
+                    .fail(function (error) {
+                        Snackbar.show({
+                            showAction: true,
+                            text: 'Cart item delete failed!.',
+                            actionTextColor: '#ffffff',
+                            backgroundColor:"#FE970D",
+                            actionText: 'Close!'
+                        });
+                    })
+            };
+
             $(".minus").on({
                 click: _.debounce(minus, 500)
             });
 
             $(".plus").on({
                 click: _.debounce(plus, 500)
+            });
+
+            $(".destroy").on({
+                click: _.debounce(destroy, 500)
             });
         });
 

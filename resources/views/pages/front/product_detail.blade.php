@@ -6,6 +6,16 @@
         <div class="ps-container">
             <div class="ps-product--detail">
                 <div class="row">
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    @if (session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
                     <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12 ">
                         <div class="ps-product__thumbnail">
                             <div class="ps-product__image">
@@ -79,12 +89,11 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="ps-product__content">
                     <ul class="tab-list" role="tablist">
                         <li class="active"><a href="#tab_01" aria-controls="tab_01" role="tab" data-toggle="tab">Overview</a></li>
                         <li><a href="#tab_02" aria-controls="tab_02" role="tab" data-toggle="tab">Review</a></li>
-                        <li><a href="#tab_03" aria-controls="tab_03" role="tab" data-toggle="tab">PRODUCT TAGs</a></li>
-                        <li><a href="#tab_04" aria-controls="tab_04" role="tab" data-toggle="tab">ADDITIONAL</a></li>
                     </ul>
                 </div>
                 <div class="tab-content">
@@ -93,7 +102,11 @@
                         <p>Sweet roll soufflé oat cake apple pie croissant. Pie gummi bears jujubes cake lemon drops gummi bears croissant macaroon pie. Fruitcake tootsie roll chocolate cake Carrot cake cake bear claw jujubes topping cake apple pie. Jujubes gummi bears soufflé candy canes topping gummi bears cake soufflé cake. Cotton candy soufflé sugar plum pastry sweet roll..</p>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="tab_02">
-                        <p>1 review for <strong>Shoes Air Jordan</strong></p>
+                        <p>{{$product->commentCount()}} reviews for <strong>{{$product->title()}}</strong></p>
+                        @if(isset($product))
+                        @if(isset($product->comments))
+                        @if(count($product->comments))
+                            @foreach($product->comments as $comment)
                         <div class="ps-review">
                             <div class="ps-review__thumbnail"><img src="images/user/1.jpg" alt=""></div>
                             <div class="ps-review__content">
@@ -105,22 +118,26 @@
                                         <option value="1">4</option>
                                         <option value="5">5</option>
                                     </select>
-                                    <p>By<a href=""> Alena Studio</a> - November 25, 2017</p>
+                                    <p>By<a href=""> {{$comment->creator->firstname}}</a> - {{$comment->created_at->diffForHumans()}}</p>
                                 </header>
-                                <p>Soufflé danish gummi bears tart. Pie wafer icing. Gummies jelly beans powder. Chocolate bar pudding macaroon candy canes chocolate apple pie chocolate cake. Sweet caramels sesame snaps halvah bear claw wafer. Sweet roll soufflé muffin topping muffin brownie. Tart bear claw cake tiramisu chocolate bar gummies dragée lemon drops brownie.</p>
+                                <p>{{$comment->body}}</p>
                             </div>
                         </div>
-                        <form class="ps-form--product-review" action="do_action" method="post">
+                                    @endforeach
+                        @endif
+                        @endif
+                        @endif
+                        <form class="ps-form--product-review" action="{{route('add_comment', ['product_id' => $product->id])}}" method="post">
+                            @csrf
                             <h4>ADD YOUR REVIEW</h4>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
                                     <div class="form-group">
-                                        <label>Name:<sup>*</sup></label>
-                                        <input class="form-control" type="text" placeholder="">
+                                        <label>Guest:<sup>*</sup></label>
                                     </div>
                                     <div class="form-group">
-                                        <label>Email:<sup>*</sup></label>
-                                        <input class="form-control" type="email" placeholder="">
+                                        <label>Title:<sup>*</sup></label>
+                                        <input class="form-control" type="text" placeholder="" name="title">
                                     </div>
                                     <div class="form-group">
                                         <label>Your rating</label>
@@ -136,32 +153,12 @@
                                 <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12 ">
                                     <div class="form-group">
                                         <label>Your Review:</label>
-                                        <textarea class="form-control" rows="6"></textarea>
+                                        <textarea class="form-control" rows="6" name="comment"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <button class="ps-btn">Submit Reviews</button>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="tab-pane" role="tabpanel" id="tab_03">
-                        <p>Add your tag <span> *</span></p>
-                        <form class="ps-form--create-tags" action="_action" method="post">
-                            <div class="form-group">
-                                <input class="form-control" type="text" placeholder="">
-                                <button class="ps-btn">Add Tags</button>
-                            </div>
-                        </form>
-                        <p>Use spaces to separate tags. Use single quotes ( * ) for phrases.</p>
-                    </div>
-                    <div class="tab-pane" role="tabpanel" id="tab_04">
-                        <form class="ps-form--addition" action="do_action" method="post">
-                            <div class="form-group">
-                                <textarea class="form-control" rows="6" placeholder="Enter your addition here..."></textarea>
-                            </div>
-                            <div class="form-group">
-                                <button class="ps-btn">Submit</button>
                             </div>
                         </form>
                     </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Vanilo\Cart\Facades\Cart;
@@ -14,7 +15,7 @@ class ProductsController extends BaseController
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => 'addComment']);
     }
 
     public function index()
@@ -219,5 +220,19 @@ class ProductsController extends BaseController
         $product = \App\Product::where('id', $id)->first();
         $categories = Taxon::all();
         return view('pages.admin.product_edit', compact('product', 'categories'));
+    }
+
+    public function addComment($product_id, Request $request){
+        try {
+            $user = User::where('firstname', 'guest')->first();
+            $product = \App\Product::where('id', $product_id)->first();
+            $product->comment([
+                'title' => $request->title,
+                'body' => $request->comment,
+            ], $user);
+            return back()->with('status', 'Comment created');
+        }catch (\Exception $e){
+            return back()->with('error', 'Comment creation failed');
+        }
     }
 }

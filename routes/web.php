@@ -3,8 +3,8 @@
 //Cart
 Route::get('/cart', 'CartController@index');
 Route::post('/cart/add', 'CartController@add')->name('add_to_cart');
-Route::get('/cart/destroy/{slug}', 'CartController@destroy')->name('destroy_item_cart');
 Route::post('/cart/update/{cart_item?}', 'CartController@update')->name('update_cart');
+Route::post('/cart/destroy/{cart_item?}', 'CartController@destroy')->name('destroy_cart');
 
 
 //Admin section
@@ -40,6 +40,8 @@ Route::post('/office/category/create_sub_category', 'CategoryController@createSu
 //Frontend
 Route::get('/{taxon_slug}', 'PagesController@getProductList')->name('getCategoryContent');
 Route::get('/{taxon_slug}/{product_slug}', 'PagesController@getProductDetails')->name('getProductDetails');
+
+Route::post('/product/comment/add/{product_id?}', 'ProductsController@addComment')->name('add_comment');
 
 
 Route::get('/', 'HomeController@index');

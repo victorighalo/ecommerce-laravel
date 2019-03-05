@@ -11,6 +11,7 @@ use Vanilo\Support\Traits\BuyableImageSpatieV7;
 use willvincent\Rateable\Rateable;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Vanilo\Category\Models\TaxonProxy;
+use BrianFaust\Commentable\Traits\HasComments;
 
 class Product extends BaseProduct implements Buyable, HasMedia
 {
@@ -18,6 +19,7 @@ class Product extends BaseProduct implements Buyable, HasMedia
         Rateable,
         BuyableModel,
         BuyableImageSpatieV7,
+        HasComments,
         HasMediaTrait;
 
     public function taxons(): MorphToMany

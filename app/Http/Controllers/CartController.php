@@ -35,16 +35,6 @@ class CartController extends BaseController
         }
     }
 
-    public function destroy($slug){
-        try {
-            $product = Product::findBySlug($slug);
-            Cart::removeProduct($product);
-
-            return back()->with('status', 'Item removed from cart!');
-        }catch (\Exception $e){
-            return back()->with('error', 'Failed to delete cart item!');
-        }
-    }
 
     public function update(CartItem $cart_item, Request $request){
         try {
@@ -59,10 +49,9 @@ class CartController extends BaseController
     }
 
 
-    public function remove(CartItem $cart_item)
+    public function destroy(CartItem $cart_item)
     {
         Cart::removeItem($cart_item);
-        flash()->info($cart_item->getBuyable()->getName() . ' has been removed from cart');
-        return redirect()->route('cart.show');
+        return response()->json($cart_item->getBuyable()->getName(). ' has been removed from cart');
     }
 }
