@@ -60,7 +60,7 @@
 <script src="{{ asset('plugins/slick/slick/slick.min.js')}}"></script>
 <script src="{{ asset('plugins/jquery.matchHeight-min.js')}}"></script>
 <script src="{{ asset('plugins/elevatezoom/jquery.elevatezoom.js')}}"></script>
-<script src="{{ asset('plugins/gmap3.min.js')}}"></script>
+{{--<script src="{{ asset('plugins/gmap3.min.js')}}"></script>--}}
 <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <script src="{{ asset('plugins/snackbar.min.js')}}"></script>
 

@@ -674,7 +674,7 @@
         subMenuToggle();
         masonry('.ps-masonry');
         stickyHeader();
-        mapConfig();
+        // mapConfig();
         rating();
         countDown();
         slickConfig();

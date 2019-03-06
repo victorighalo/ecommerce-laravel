@@ -39,11 +39,11 @@
                                         @endforeach
                                     @endif
                                 </div>
-                                <div class="ps-video">
-                                    <a class="popup-youtube ps-product__video" href="https://www.youtube.com/watch?v=meBbDqAXago">
-                                        <img src="images/product/detail/variant-5.jpg" alt=""><i class="fa fa-play"></i>
-                                    </a>
-                                </div>
+                                {{--<div class="ps-video">--}}
+                                    {{--<a class="popup-youtube ps-product__video" href="https://www.youtube.com/watch?v=meBbDqAXago">--}}
+                                        {{--<img src="images/product/detail/variant-5.jpg" alt=""><i class="fa fa-play"></i>--}}
+                                    {{--</a>--}}
+                                {{--</div>--}}
                             </div>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                             </div>
                             <div class="ps-product__block ps-product__size">
                                 <h4>CHOOSE QUANTITY</h4>
-                                <div class="form-group ps-number">
+                                <div class="form-group ps-number" style="float: left;">
                                     <input class="form-control" name="item_qty" type="text" value="1"><span class="up"></span><span class="down"></span>
                                 </div>
                             </div>
@@ -111,14 +111,15 @@
                         <div class="ps-review">
                             <div class="ps-review__thumbnail"><img src="images/user/1.jpg" alt=""></div>
                             <div class="ps-review__content">
+
                                 <header>
-                                    <select class="product-rating-view">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
+                                    {{--<select class="product-rating-view">--}}
+                                        {{--<option value="1">1</option>--}}
+                                        {{--<option value="2">2</option>--}}
+                                        {{--<option value="3">3</option>--}}
+                                        {{--<option value="4">4</option>--}}
+                                        {{--<option value="5">5</option>--}}
+                                    {{--</select>--}}
                                     <p>By<a href="">
                                             @if(Auth::guest())
                                                 {{ucwords($comment->creator->firstname)}}
@@ -200,6 +201,7 @@
     <script>
 
         $(document).ready(function () {
+
             $("#add_to_cart").click(function () {
                 $(".processing").removeClass('off')
                 $("#add_to_cart").prop('disabled', true)
@@ -236,7 +238,6 @@
                     });
                 });
             });
-
 
             $('select.product-rating-comment').barrating({
                 theme: 'fontawesome-stars',
@@ -276,9 +277,6 @@
                     }
                 }
             });
-
-
         });
-
     </script>
     @endpush

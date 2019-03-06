@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Konekt\Acl\Traits\HasRoles;
+use willvincent\Rateable\Rating;
 
 class User extends \Konekt\AppShell\Models\User
 {
@@ -26,4 +27,9 @@ class User extends \Konekt\AppShell\Models\User
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function rating()
+    {
+        return $this->hasMany(Rating::class);
+    }
 }

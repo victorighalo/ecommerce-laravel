@@ -1,5 +1,7 @@
 <?php
 
+Route::get('/checkout', 'CheckoutController@index');
+
 //Cart
 Route::get('/cart', 'CartController@index');
 Route::post('/cart/add', 'CartController@add')->name('add_to_cart');
@@ -43,6 +45,8 @@ Route::get('/{taxon_slug}/{product_slug}', 'PagesController@getProductDetails')-
 
 Route::post('/product/comment/add/{product_id?}', 'ProductsController@addComment')->name('add_comment');
 Route::post('/product/rating/add', 'ProductsController@addRating')->name('rate_product');
+
+
 
 
 Route::get('/', 'HomeController@index');

@@ -27,13 +27,9 @@
         </div>
     </div>
     <nav class="navigation">
-        <div class="ps-container"><a class="ps-logo" href="index.html"><img src="images/logo.png" alt=""></a>
+        <div class="ps-container"><a class="ps-logo" href="{{url('/')}}"><img src="images/logo.png" alt=""></a>
             <ul class="main-menu menu">
-                <li class="current-menu-item menu-item-has-children"><a href="#">Home</a>
-                    <ul class="sub-menu">
-                        <li><a href="inde.html">Homepage 1</a></li>
-                        <li><a href="homepage-2.html">Homppage 2</a></li>
-                    </ul>
+                <li class="current-menu-item menu-item-has-children"><a href="{{url('/')}}">Home</a>
                 </li>
                 <li class="menu-item-has-children has-mega-menu"><a href="#">Departments</a>
                     <div class="mega-menu">

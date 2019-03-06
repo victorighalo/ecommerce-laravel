@@ -65,7 +65,7 @@
                         </div>
                     </div>
                     <div class="">
-                        <h3>Total Price:  <span>&#8358;</span> {{number_format( ($item->total()), '0', '.', ',')}}</h3><a class="ps-btn" href="checkout.html">Process to checkout</a>
+                        <h3>Total Price:  <span>&#8358;</span> {{number_format( ($item->total()), '0', '.', ',')}}</h3><a class="ps-btn" href="{{url('checkout')}}">Process to checkout</a>
                     </div>
                 </div>
                         @else
