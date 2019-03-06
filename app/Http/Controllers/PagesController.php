@@ -33,7 +33,7 @@ class PagesController extends BaseController
         }
         $product = \App\Product::where('slug', $product_slug)->first();
         $tags = $product->meta_keywords ? explode(",", $product->meta_keywords) : null;
-        $ratings = $product->ratings ? $product->ratingPercent() : 0;
+        $ratings = $product->averageRating() ;
         return view('pages.front.product_detail', compact('product', 'tags', 'ratings', 'cart_count'));
     }
 }

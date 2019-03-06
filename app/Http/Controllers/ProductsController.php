@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Vanilo\Cart\Facades\Cart;
 use Vanilo\Framework\Models\Product;
 use Vanilo\Framework\Models\Taxon;
@@ -15,7 +16,7 @@ class ProductsController extends BaseController
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => 'addComment']);
+        $this->middleware(['auth'])->except('addComment', 'addRating');
     }
 
     public function index()
@@ -223,8 +224,12 @@ class ProductsController extends BaseController
     }
 
     public function addComment($product_id, Request $request){
+        $request->validate([
+            'title' => 'required|max:255',
+            'body' => 'required',
+        ]);
         try {
-            $user = User::where('firstname', 'guest')->first();
+            $user = Auth::check() ? Auth::user()->firstname : User::where('firstname', 'guest')->first();
             $product = \App\Product::where('id', $product_id)->first();
             $product->comment([
                 'title' => $request->title,
@@ -235,4 +240,19 @@ class ProductsController extends BaseController
             return back()->with('error', 'Comment creation failed');
         }
     }
+
+    public function addRating(Request $request){
+        $request->validate([
+            'rating' => 'required',
+            'slug' => 'required',
+        ]);
+        $user = Auth::guest() ? User::where('firstname', 'guest')->first()->id : Auth::id();
+        $product = \App\Product::findBySlug($request->slug)->first();
+        $rating = new \willvincent\Rateable\Rating;
+        $rating->rating = $request->rating;
+        $rating->user_id = $user;
+        $product->ratings()->save($rating);
+        return response()->json($product->averageRating);
+    }
+
 }

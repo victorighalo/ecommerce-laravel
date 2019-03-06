@@ -363,9 +363,16 @@
     }
 
     function rating() {
-        $('select.ps-rating').barrating({
+        $('select.product-rating-action').barrating({
             theme: 'fontawesome-stars'
         });
+
+        $('select.product-rating-view').barrating({
+            theme: 'fontawesome-stars',
+            readonly: true
+        });
+
+
     }
 
     function mapConfig() {
@@ -593,7 +600,7 @@
                 }
             });
             var values = el.slider("option", "values");
-            console.log(values[1]);
+            // console.log(values[1]);
             min.text('$' + values[0]);
             max.text('$' + values[1]);
         }

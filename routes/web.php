@@ -42,6 +42,7 @@ Route::get('/{taxon_slug}', 'PagesController@getProductList')->name('getCategory
 Route::get('/{taxon_slug}/{product_slug}', 'PagesController@getProductDetails')->name('getProductDetails');
 
 Route::post('/product/comment/add/{product_id?}', 'ProductsController@addComment')->name('add_comment');
+Route::post('/product/rating/add', 'ProductsController@addRating')->name('rate_product');
 
 
 Route::get('/', 'HomeController@index');
