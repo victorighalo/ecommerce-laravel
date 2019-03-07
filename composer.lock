@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e1f693aa636367bdc0b31ff9439ed860",
+    "content-hash": "29bc72814676f48e374f74122ef13267",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -2224,6 +2224,64 @@
             "time": "2018-12-22T17:56:55+00:00"
         },
         {
+            "name": "lecturize/laravel-addresses",
+            "version": "v0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Lecturize/Laravel-Addresses.git",
+                "reference": "75d00fb2277a181dc8a95b205d510ab2ffc8783f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Lecturize/Laravel-Addresses/zipball/75d00fb2277a181dc8a95b205d510ab2ffc8783f",
+                "reference": "75d00fb2277a181dc8a95b205d510ab2ffc8783f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": ">=5.3",
+                "illuminate/support": ">=5.3",
+                "php": ">=5.6.4|^7.0",
+                "webpatser/laravel-countries": "^1.5"
+            },
+            "require-dev": {
+                "doctrine/dbal": "2.5.x",
+                "laravel/framework": ">=5.3",
+                "mockery/mockery": "0.9.*",
+                "phpunit/phpunit": "^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Lecturize\\Addresses\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Manfred Poellmann",
+                    "homepage": "http://twitter.com/AMPoellmann",
+                    "role": "developer"
+                }
+            ],
+            "description": "Simple address and contact management for Laravel 5.",
+            "homepage": "https://github.com/Lecturize/Laravel-Addresses",
+            "keywords": [
+                "addresses",
+                "contacts",
+                "laravel",
+                "lecturize"
+            ],
+            "time": "2018-07-04T21:33:12+00:00"
+        },
+        {
             "name": "maennchen/zipstream-php",
             "version": "v0.5.2",
             "source": {
@@ -3171,67 +3229,6 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
-        },
-        {
-            "name": "rennokki/rating",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/rennokki/rating.git",
-                "reference": "61324f08fe726994d583480441c889b98c757837"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/rennokki/rating/zipball/61324f08fe726994d583480441c889b98c757837",
-                "reference": "61324f08fe726994d583480441c889b98c757837",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "~5.5"
-            },
-            "require-dev": {
-                "orchestra/database": "~3.5.0|~3.6.0",
-                "orchestra/testbench": "~3.5.0|~3.6.0",
-                "phpunit/phpunit": "^6.2|^7.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Rennokki\\Rating\\RatingServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Rennokki\\Rating\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Alex Renoki",
-                    "email": "rennokki@gmail.com",
-                    "homepage": "https://twitter.com/rennokki",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Laravel Eloquent Rating allows you to assign ratings to any model.",
-            "homepage": "https://github.com/rennokki/rating",
-            "keywords": [
-                "Rate",
-                "Rating",
-                "eloquent",
-                "laravel",
-                "model",
-                "star",
-                "stars",
-                "system"
-            ],
-            "time": "2019-02-27T17:03:44+00:00"
         },
         {
             "name": "spatie/image",
@@ -5120,6 +5117,58 @@
             "time": "2019-01-29T11:11:52+00:00"
         },
         {
+            "name": "webpatser/laravel-countries",
+            "version": "1.5.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webpatser/laravel-countries.git",
+                "reference": "000d7aaa67a1eb488275feafe6ab74a6b7544e84"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webpatser/laravel-countries/zipball/000d7aaa67a1eb488275feafe6ab74a6b7544e84",
+                "reference": "000d7aaa67a1eb488275feafe6ab74a6b7544e84",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Webpatser\\Countries": "src/"
+                },
+                "classmap": [
+                    "src/commands"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christoph Kempen",
+                    "email": "christoph@downsized.nl",
+                    "homepage": "http://downsized.nl/",
+                    "role": "developer"
+                },
+                {
+                    "name": "Paul Kievits",
+                    "role": "developer"
+                }
+            ],
+            "description": "Laravel Countries is a bundle for Laravel, providing Almost ISO 3166_2, 3166_3, currency, Capital and more for all countries.",
+            "homepage": "https://github.com/webpatser/laravel-countries",
+            "keywords": [
+                "countries",
+                "iso_3166_2",
+                "iso_3166_3",
+                "laravel"
+            ],
+            "time": "2018-05-16T06:37:24+00:00"
+        },
+        {
             "name": "willvincent/laravel-rateable",
             "version": "1.07",
             "source": {
@@ -6460,6 +6509,67 @@
                 "xunit"
             ],
             "time": "2019-02-18T09:24:50+00:00"
+        },
+        {
+            "name": "rennokki/rating",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rennokki/rating.git",
+                "reference": "61324f08fe726994d583480441c889b98c757837"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rennokki/rating/zipball/61324f08fe726994d583480441c889b98c757837",
+                "reference": "61324f08fe726994d583480441c889b98c757837",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "~5.5"
+            },
+            "require-dev": {
+                "orchestra/database": "~3.5.0|~3.6.0",
+                "orchestra/testbench": "~3.5.0|~3.6.0",
+                "phpunit/phpunit": "^6.2|^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rennokki\\Rating\\RatingServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rennokki\\Rating\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alex Renoki",
+                    "email": "rennokki@gmail.com",
+                    "homepage": "https://twitter.com/rennokki",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel Eloquent Rating allows you to assign ratings to any model.",
+            "homepage": "https://github.com/rennokki/rating",
+            "keywords": [
+                "Rate",
+                "Rating",
+                "eloquent",
+                "laravel",
+                "model",
+                "star",
+                "stars",
+                "system"
+            ],
+            "time": "2019-02-27T17:03:44+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",

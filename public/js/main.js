@@ -372,6 +372,12 @@
             readonly: true
         });
 
+        $('select.product-rating-home-view').barrating({
+            theme: 'fontawesome-stars',
+            readonly: true,
+            initialRating: null
+        });
+
 
     }
 

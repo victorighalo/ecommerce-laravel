@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    @include('partials.hero')
+    @include('partials.hero', ['page' => 'Cart page'])
     <div class="ps-content">
         <div class="ps-container">
             <div class="ps-cart-listing">

@@ -40,10 +40,10 @@
                                                                 @if($product->taxons->first()->name == $category->name)
                                                             <option value="{{$category->id}}" selected>{{$category->name}}</option>
                                                                 @else
-                                                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                                                    <option value="{{$category->id}}">{{$category->name}} - {{$category->taxonomy->name}}</option>
                                                                 @endif
                                                                 @else
-                                                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                                                    <option value="{{$category->id}}">{{$category->name}} - {{$category->taxonomy->name}}</option>
                                                             @endif
                                                         @endforeach
                                                     </select>

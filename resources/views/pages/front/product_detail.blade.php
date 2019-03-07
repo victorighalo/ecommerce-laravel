@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    @include('partials.hero')
+    @include('partials.hero', ['page' => $product->title()])
     <main class="ps-main">
         <div class="ps-container">
             <div class="ps-product--detail">
@@ -82,7 +82,6 @@
                                 <button class="ps-btn" data-slug="{{$product->slug}}" id="add_to_cart">
                                     <i class="fa fa-circle-o-notch fa-spin processing off" aria-hidden="true"></i> Add To Cart
                                 </button>
-
                             </div>
                             <div class="ps-product__sharing">
                                 <p>Share this:<a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a></p>
@@ -103,6 +102,8 @@
                         <p>Sweet roll soufflé oat cake apple pie croissant. Pie gummi bears jujubes cake lemon drops gummi bears croissant macaroon pie. Fruitcake tootsie roll chocolate cake Carrot cake cake bear claw jujubes topping cake apple pie. Jujubes gummi bears soufflé candy canes topping gummi bears cake soufflé cake. Cotton candy soufflé sugar plum pastry sweet roll..</p>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="tab_02">
+                        @if(isset($product->comments))
+                        @if(count($product->comments))
                         <p>{{$product->commentCount()}} reviews for <strong>{{$product->title()}}</strong></p>
                         @if(isset($product))
                         @if(isset($product->comments))
@@ -135,6 +136,12 @@
                         @endif
                         @endif
                         @endif
+                            @else
+                            <p>Be the first to add a review for this product</p>
+                            @endif
+                            @else
+                                <p>Be the first to add a review for this product</p>
+                        @endif
                         <form class="ps-form--product-review" action="{{route('add_comment', ['product_id' => $product->id])}}" method="post">
                             @csrf
                             <h4>ADD YOUR REVIEW</h4>
@@ -143,7 +150,7 @@
                                     <div class="form-group">
                                         <strong><label>
                                             @if(Auth::guest())
-                                                {{ucwords($comment->creator->firstname)}}
+                                                Guest
                                             @else
                                                 {{Auth::user()->firstname}}
                                             @endif
