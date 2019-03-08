@@ -102,6 +102,11 @@
                             'product_slug' => $product->slug
                             ])}}"></a>
                             <div class="ps-product__content full">
+                                <pre>
+                                    @php
+                                    var_dump($product->getMedia('images'))
+                                    @endphp
+                                </pre>
                                 <div class="ps-product__variants">
                                     @if($product->getMedia('images'))
                                     @foreach($product->getMedia('images') as $image)

@@ -50,9 +50,10 @@ class ProductsController extends BaseController
 
             //Get Taxon
             $taxon = Taxon::where('id', $product_data['category_id'])->first();
+            $taxon = Taxon::findBySlug($taxon->slug);
 
             //Add Taxon to product
-            $product->addTaxon($taxon);
+            $taxon->addProduct($product);
 
             //Relate images to product
             foreach ($request['images'] as $image) {
@@ -60,9 +61,9 @@ class ProductsController extends BaseController
                     ->preservingOriginal()
                     ->toMediaCollection('images');
             }
-            return response()->json(['status' => 200, 'message' => 'Product updated'], 200);
+            return response()->json(['status' => 200, 'message' => 'Product created'], 200);
         } catch (\Exception $e) {
-            return response()->json(['status' => 400, 'message' => 'Failed to update product'], 400);
+            return response()->json(['status' => 400, 'message' => 'Failed to create product'. $e->getMessage()], 400);
         }
 
     }
@@ -81,12 +82,12 @@ class ProductsController extends BaseController
             $product = \App\Product::where('id', $product_data['id']);
 
             //Get Selected Taxon
-            $taxon = Taxon::where('id',$product_data['category_id'])->first();
+            $getTaxon = Taxon::where('id',$product_data['category_id'])->first();
 
 
-            //check if product has Taxon
-            $hasTaxon = !is_null($product->first()->taxons);
-
+//            //check if product has Taxon
+//            $hasTaxon = !is_null($product->first()->taxons);
+            $hasSameTaxon = false;
             //Update product details
             $product->update([
                 'name' => $product_data['name'],
@@ -99,18 +100,17 @@ class ProductsController extends BaseController
 
 
             //Check if product already has same Taxon to prevent exception
-            if($hasTaxon) {
+            if($product->first()->taxons->count()) {
                 foreach ($product->first()->taxons as $item) {
-                    if ($item->id == $product_data['category_id']) {
-                        $hasSameTaxon = true;
-                    }
+                    $taxon = Taxon::findBySlug($item->slug);
+                    $product->first()->taxons()->detach($taxon);
                 }
             }
 
             //Add Taxon to product
-            if (!$hasSameTaxon) {
+                $taxon = Taxon::findBySlug($getTaxon->slug);
                 $product->first()->taxons()->save($taxon);
-            }
+
 
             //Relate images to product
             if ($request['images']) {
@@ -166,7 +166,7 @@ class ProductsController extends BaseController
                 }
             })->addColumn('taxons', function ($subdata) {
                 if(($subdata->taxons->count())){
-                   return $subdata->taxons->first()->name;
+                   return $subdata->taxons->first()->name . '-' .$subdata->taxons->first()->taxonomy->name;
                 }
                 return 'Uncategorized';
             })->editColumn('price', function ($subdata) {

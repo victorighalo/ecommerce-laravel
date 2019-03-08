@@ -17,7 +17,6 @@ class PagesController extends BaseController
 
     public function home()
     {
-
         if(Cart::exists()){
             $cart_count = Cart::itemCount();
         }else{
@@ -36,8 +35,10 @@ class PagesController extends BaseController
             $cart_count = 0;
         }
         $taxon = Taxon::findBySlug($taxon_slug);
+
         if($taxon) {
             $products = $taxon->products()->paginate(20)->onEachSide(2);
+            dd($taxon->products()->count());
             $now = Carbon::now();
             return view('pages.front.product_list', compact('products', 'now', 'cart_count', 'taxon_slug'));
         }else{

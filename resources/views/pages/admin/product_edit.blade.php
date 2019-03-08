@@ -54,7 +54,7 @@
 
                                                 <div class="col-sm-2">
                                                     <label for="price">{{ __('Price') }}</label>
-                                                    <input type="number" name="price" class="form-control" required>
+                                                    <input type="number" name="price" class="form-control" value="{{$product->price}}" required>
                                                     <span class="invalid-feedback errorshow" role="alert">
                                                     </span>
                                                 </div>

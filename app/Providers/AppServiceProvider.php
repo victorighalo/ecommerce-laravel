@@ -20,6 +20,9 @@ class AppServiceProvider extends ServiceProvider
             \Konekt\User\Contracts\User::class, \App\User::class,
             TaxonContract::class, \App\Product::class
             );
+        \Illuminate\Database\Eloquent\Relations\Relation::morphMap([
+            'product' => \App\Product::class
+        ]);
     }
 
     /**

@@ -35,9 +35,10 @@ class CategoryController extends Controller
 
     public function createSubCategory(Request $request){
         try{
+            $taxonomy = Taxonomy::where('id', $request->category_id)->first();
             $category = Taxon::create([
                 'taxonomy_id' => $request->category_id,
-                'name' => $request->sub_category
+                'name' => $request->sub_category . '-' . $taxonomy->slug
             ]);
             return response()->json([
                 'message' => 'Successfully crceated category',
@@ -91,8 +92,10 @@ class CategoryController extends Controller
 
     public function editTaxon(Request $request){
         try{
+            $taxonomy = Taxonomy::where('id', $request->category_id)->first();
             $taxon = Taxon::where('id', $request->id)->first();
             $taxon->name = $request->value;
+            $taxon->slug = $request->value. '-' . $taxonomy->slug;
             $taxon->save();
             return response()->json(['message' => 'Subcategory Updated', 'status' => 200], 200);
         } catch (\Exception $e) {
@@ -102,9 +105,9 @@ class CategoryController extends Controller
 
     public function editTaxonomy(Request $request){
         try{
-            $taxon = Taxonomy::where('id', $request->id)->first();
-            $taxon->name = $request->value;
-            $taxon->save();
+            $taxonomy = Taxonomy::where('id', $request->id)->first();
+            $taxonomy->name = $request->value;
+            $taxonomy->save();
             return response()->json(['message' => 'Category Updated', 'status' => 200], 200);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Failed to Update' . $e->getMessage(), 'status' => 400], 400);
