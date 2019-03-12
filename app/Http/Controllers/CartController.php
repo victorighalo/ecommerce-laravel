@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Vanilo\Cart\Facades\Cart;
 use Vanilo\Cart\Contracts\CartItem;
-use Vanilo\Framework\Models\Product;
 
 class CartController extends BaseController
 {
@@ -27,7 +26,7 @@ class CartController extends BaseController
 
     public function add(Request $request){
         try {
-            $product = Product::findBySlug($request->slug);
+            $product = \App\Product::findBySlug($request->slug);
             Cart::addItem($product, $request->qty);
             return response()->json(['message' => 'Added to cart', 'cart_count' => Cart::itemCount()]);
         }catch (\Exception $e){

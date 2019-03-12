@@ -27,7 +27,7 @@
             <li class="nav-item {{ Request::path() == 'orders' ? 'active' : '' }}"><a class="nav-link" href="{{url('#')}}">
                     <i class="fas fa-money-check menu-icon"></i><span class="menu-title">Orders</span></a>
         </li>
-                <li class="nav-item {{ Request::path() == 'settings' ? 'active' : '' }}"><a class="nav-link" href="{{url('#')}}">
+                <li class="nav-item {{ Request::path() == 'settings' ? 'active' : '' }}"><a class="nav-link" href="{{url('office/settings')}}">
                     <i class="fas fa-cogs menu-icon"></i><span class="menu-title">Settings</span></a>
         </li>
         <li class="nav-item purchase-button  d-xs-block d-sm-none" >

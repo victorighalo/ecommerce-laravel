@@ -6,9 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Vanilo\Cart\Facades\Cart;
-use Vanilo\Framework\Models\Product;
-use Vanilo\Framework\Models\Taxon;
+use Vanilo\Category\Models\Taxon;
 use Vanilo\Product\Models\ProductState;
 use Yajra\Datatables\Datatables;
 
@@ -192,7 +190,7 @@ class ProductsController extends BaseController
     {
         try {
             //Get product model
-            $product = Product::where('id', $product_id)->first();
+            $product = \App\Product::where('id', $product_id)->first();
             $product->state = ProductState::INACTIVE();
             $product->save();
 
@@ -206,7 +204,7 @@ class ProductsController extends BaseController
     {
         try {
             //Get product model
-            $product = Product::where('id', $product_id)->first();
+            $product = \App\Product::where('id', $product_id)->first();
             $product->state = ProductState::ACTIVE();
             $product->save();
 

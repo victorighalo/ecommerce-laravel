@@ -18,7 +18,8 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         $this->app->concord->registerModel(
             \Konekt\User\Contracts\User::class, \App\User::class,
-            TaxonContract::class, \App\Product::class
+            TaxonContract::class, \App\Product::class,
+            TaxonContract::class, \App\Taxon::class
             );
         \Illuminate\Database\Eloquent\Relations\Relation::morphMap([
             'product' => \App\Product::class

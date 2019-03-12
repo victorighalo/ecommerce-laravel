@@ -46,6 +46,8 @@ Route::get('/category/destroy/{id?}', 'CategoryController@destroyTaxonomy')->nam
 Route::post('/category/create', 'CategoryController@create')->name('create_category');
 Route::post('/category/create_sub_category', 'CategoryController@createSubCategory')->name('create_sub_category');
 
+//App Settings
+    Route::get('/settings', 'SettingController@index');
 });
 
 //Frontend

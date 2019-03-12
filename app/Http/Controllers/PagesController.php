@@ -6,7 +6,7 @@ use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Vanilo\Cart\Facades\Cart;
-use Vanilo\Framework\Models\Taxon;
+use App\Taxon;
 
 class PagesController extends BaseController
 {
@@ -38,7 +38,6 @@ class PagesController extends BaseController
 
         if($taxon) {
             $products = $taxon->products()->paginate(20)->onEachSide(2);
-            dd($taxon->products()->count());
             $now = Carbon::now();
             return view('pages.front.product_list', compact('products', 'now', 'cart_count', 'taxon_slug'));
         }else{
