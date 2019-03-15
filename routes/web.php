@@ -1,7 +1,12 @@
 <?php
 
 Route::get('/', 'PagesController@home');
+
+Route::get('install', 'SettingController@install')->name('install');
+Route::post('install', 'SettingController@update');
+
 Auth::routes();
+
 
 Route::get('/checkout', 'CheckoutController@index');
 
@@ -48,6 +53,7 @@ Route::post('/category/create_sub_category', 'CategoryController@createSubCatego
 
 //App Settings
     Route::get('/settings', 'SettingController@index');
+    Route::post('/settings/save', 'SettingController@update');
 });
 
 //Frontend

@@ -14,10 +14,12 @@ class CreateDeliveryAddressesTable extends Migration
     public function up()
     {
         Schema::create('delivery_addresses', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id');
             $table->string('firstname');
             $table->string('lastname')->nullable();
-            $table->string('phone');
-            $table->increments('id');
+            $table->string('contact');
+            $table->string('email');
             $table->timestamps();
         });
     }

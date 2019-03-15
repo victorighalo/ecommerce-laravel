@@ -14,6 +14,11 @@ class CreatePickupAddressesTable extends Migration
     public function up()
     {
         Schema::create('pickup_addresses', function (Blueprint $table) {
+            $table->integer('state_id');
+            $table->integer('city_id');
+            $table->string('address');
+            $table->string('contact');
+            $table->string('map_location');
             $table->increments('id');
             $table->timestamps();
         });

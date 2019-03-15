@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Vanilo\Category\Contracts\Taxon as TaxonContract;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +26,8 @@ class AppServiceProvider extends ServiceProvider
         \Illuminate\Database\Eloquent\Relations\Relation::morphMap([
             'product' => \App\Product::class
         ]);
+        $app_settings = DB::table('app_settings')->first();
+        View::share('app_settings', $app_settings);
     }
 
     /**

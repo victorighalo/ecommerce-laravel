@@ -3,12 +3,12 @@
         <div class="ps-container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
-                    <div class="ps-site-info site-info"><a class="ps-logo" href="index.html"><img src="images/logo.png" alt=""></a>
-                        <p>Furniture is a global shop destination for 20-somethings. We sell cutting-edge fashion and offer a wide variety of fashion-related content, making Furniture Store the hub of a thriving fashion community.</p>
+                    <div class="ps-site-info site-info"><a class="ps-logo" href="{{url('/')}}"><img src="images/logo.png" alt=""></a>
+                        <p>{{$app_settings->store_description}}</p>
                         <div class="ps-site-info__contact">
                             <h4>Contact Info</h4>
-                            <p>460 West 34th Street, 15th floor, New York</p>
-                            <p>(+84 ) 7534 9773, (+84 ) 874 548</p>
+                            <p>{{$app_settings->store_address}}</p>
+                            <p>{{$app_settings->store_phone}}</p>
                         </div>
                         <ul class="ps-social">
                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -59,7 +59,7 @@
         <div class="ps-container">
             <div class="row">
                 <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12 ">
-                    <p>&copy; Copyright by <span>FURNITURE STORE</span>.  Design by <a href="#">Alena Studio</a>.</p>
+                    <p>&copy; Copyright by <span>{{$app_settings->store_name}}</span>.</p>
                 </div>
                 <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12 ">
                     <div class="ps-footer__payment-methods"><a href="#"><img src="images/payment-method/paypal.png" alt=""></a><a href="#"><img src="images/payment-method/visa.png" alt=""></a><a href="#"><img src="images/payment-method/master-card.png" alt=""></a></div>

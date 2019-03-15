@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DeliveryAddress;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Vanilo\Cart\Facades\Cart;
 use DB;
 class CheckoutController extends Controller

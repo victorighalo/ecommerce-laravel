@@ -12,6 +12,16 @@
                                         <h4 class="card-title font-weight-bold"> App Settings
                                         </h4>
                                         <div>
+                                            @if (session('status'))
+                                                <div class="alert alert-success">
+                                                    {{ session('status') }}
+                                                </div>
+                                            @endif
+                                            @if (session('error'))
+                                                <div class="alert alert-danger">
+                                                    {{ session('error') }}
+                                                </div>
+                                            @endif
                                         <form id="product_form">
                                             @csrf
                                             <div class="row form-group">
