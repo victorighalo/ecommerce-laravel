@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Vanilo\Cart\Facades\Cart;
-use Vanilo\Framework\Models\Product;
-use Vanilo\Framework\Models\Taxon;
+use Illuminate\Support\Facades\Auth;
+use Vanilo\Category\Models\Taxon;
 use Vanilo\Product\Models\ProductState;
 use Yajra\Datatables\Datatables;
 
@@ -15,7 +14,7 @@ class ProductsController extends BaseController
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => 'addComment']);
+        $this->middleware(['auth'])->except('addComment', 'addRating');
     }
 
     public function index()
@@ -49,9 +48,10 @@ class ProductsController extends BaseController
 
             //Get Taxon
             $taxon = Taxon::where('id', $product_data['category_id'])->first();
+            $taxon = Taxon::findBySlug($taxon->slug);
 
             //Add Taxon to product
-            $product->addTaxon($taxon);
+            $taxon->addProduct($product);
 
             //Relate images to product
             foreach ($request['images'] as $image) {
@@ -59,9 +59,9 @@ class ProductsController extends BaseController
                     ->preservingOriginal()
                     ->toMediaCollection('images');
             }
-            return response()->json(['status' => 200, 'message' => 'Product updated'], 200);
+            return response()->json(['status' => 200, 'message' => 'Product created'], 200);
         } catch (\Exception $e) {
-            return response()->json(['status' => 400, 'message' => 'Failed to update product'], 400);
+            return response()->json(['status' => 400, 'message' => 'Failed to create product'. $e->getMessage()], 400);
         }
 
     }
@@ -80,12 +80,12 @@ class ProductsController extends BaseController
             $product = \App\Product::where('id', $product_data['id']);
 
             //Get Selected Taxon
-            $taxon = Taxon::where('id',$product_data['category_id'])->first();
+            $getTaxon = Taxon::where('id',$product_data['category_id'])->first();
 
 
-            //check if product has Taxon
-            $hasTaxon = !is_null($product->first()->taxons);
-
+//            //check if product has Taxon
+//            $hasTaxon = !is_null($product->first()->taxons);
+            $hasSameTaxon = false;
             //Update product details
             $product->update([
                 'name' => $product_data['name'],
@@ -98,18 +98,17 @@ class ProductsController extends BaseController
 
 
             //Check if product already has same Taxon to prevent exception
-            if($hasTaxon) {
+            if($product->first()->taxons->count()) {
                 foreach ($product->first()->taxons as $item) {
-                    if ($item->id == $product_data['category_id']) {
-                        $hasSameTaxon = true;
-                    }
+                    $taxon = Taxon::findBySlug($item->slug);
+                    $product->first()->taxons()->detach($taxon);
                 }
             }
 
             //Add Taxon to product
-            if (!$hasSameTaxon) {
+                $taxon = Taxon::findBySlug($getTaxon->slug);
                 $product->first()->taxons()->save($taxon);
-            }
+
 
             //Relate images to product
             if ($request['images']) {
@@ -165,7 +164,7 @@ class ProductsController extends BaseController
                 }
             })->addColumn('taxons', function ($subdata) {
                 if(($subdata->taxons->count())){
-                   return $subdata->taxons->first()->name;
+                   return $subdata->taxons->first()->name . '-' .$subdata->taxons->first()->taxonomy->name;
                 }
                 return 'Uncategorized';
             })->editColumn('price', function ($subdata) {
@@ -191,7 +190,7 @@ class ProductsController extends BaseController
     {
         try {
             //Get product model
-            $product = Product::where('id', $product_id)->first();
+            $product = \App\Product::where('id', $product_id)->first();
             $product->state = ProductState::INACTIVE();
             $product->save();
 
@@ -205,7 +204,7 @@ class ProductsController extends BaseController
     {
         try {
             //Get product model
-            $product = Product::where('id', $product_id)->first();
+            $product = \App\Product::where('id', $product_id)->first();
             $product->state = ProductState::ACTIVE();
             $product->save();
 
@@ -223,8 +222,12 @@ class ProductsController extends BaseController
     }
 
     public function addComment($product_id, Request $request){
+        $request->validate([
+            'title' => 'required|max:255',
+            'body' => 'required',
+        ]);
         try {
-            $user = User::where('firstname', 'guest')->first();
+            $user = Auth::check() ? Auth::user()->firstname : User::where('firstname', 'guest')->first();
             $product = \App\Product::where('id', $product_id)->first();
             $product->comment([
                 'title' => $request->title,
@@ -235,4 +238,19 @@ class ProductsController extends BaseController
             return back()->with('error', 'Comment creation failed');
         }
     }
+
+    public function addRating(Request $request){
+        $request->validate([
+            'rating' => 'required',
+            'slug' => 'required',
+        ]);
+        $user = Auth::guest() ? User::where('firstname', 'guest')->first()->id : Auth::id();
+        $product = \App\Product::findBySlug($request->slug)->first();
+        $rating = new \willvincent\Rateable\Rating;
+        $rating->rating = $request->rating;
+        $rating->user_id = $user;
+        $product->ratings()->save($rating);
+        return response()->json($product->averageRating);
+    }
+
 }

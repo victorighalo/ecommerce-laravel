@@ -81,9 +81,8 @@
                                                                         <div class="col-12 pb-1">
                                                                             <span>{{$subcategory['name']}} </span>
                                                                             <a class="btn btn-sm btn-link delete_subcategory" id="{{$subcategory['id']}}"><i class="fas fa-trash"></i></a>
-                                                                            <a class="btn btn-sm btn-link edit_subcategory" id="{{$subcategory['id']}}"><i class="fas fa-edit"></i></a>
+                                                                            <a class="btn btn-sm btn-link edit_subcategory" id="{{$subcategory['id']}}" data-category_id="{{$category->taxonomy_id}}"><i class="fas fa-edit"></i></a>
                                                                         </div>
-
                                                                             @endforeach
                                                                     </div>
                                                                 </td>
@@ -233,7 +232,7 @@
             });
 
             $(".edit_subcategory").on('click', function () {
-                editTaxon($(this).attr('id'))
+                editTaxon($(this).attr('id'), $(this).data('category_id'))
             });
 
             $(".edit_category").on('click', function () {
@@ -421,7 +420,8 @@
                 }
             }))
         };
-        function editTaxon (id) {
+        function editTaxon (id, category_id) {
+
             (new PNotify({
                 title: 'Edit Subcategory',
                 text: 'You are about a subcategory!',
@@ -442,7 +442,7 @@
             })).get().on('pnotify.confirm', function (e, notice, val) {
                 $.ajax({
                     type: "POST",
-                    data: {value:val, id: id},
+                    data: {value:val, id: id, category_id: category_id},
                     url: "{!! route('edit_subcategory') !!}",
                 }).done(function (data) {
                     new PNotify({
@@ -461,7 +461,6 @@
                     });
                     location.reload();
                 }).fail(function (response) {
-                    superagentstable.ajax.reload();
                     PNotify.removeAll();
                     if (response.status == 500) {
                         new PNotify({

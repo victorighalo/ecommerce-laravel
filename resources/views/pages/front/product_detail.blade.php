@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    @include('partials.hero')
+    @include('partials.hero', ['page' => $product->title()])
     <main class="ps-main">
         <div class="ps-container">
             <div class="ps-product--detail">
@@ -39,27 +39,28 @@
                                         @endforeach
                                     @endif
                                 </div>
-                                <div class="ps-video">
-                                    <a class="popup-youtube ps-product__video" href="https://www.youtube.com/watch?v=meBbDqAXago">
-                                        <img src="images/product/detail/variant-5.jpg" alt=""><i class="fa fa-play"></i>
-                                    </a>
-                                </div>
+                                {{--<div class="ps-video">--}}
+                                    {{--<a class="popup-youtube ps-product__video" href="https://www.youtube.com/watch?v=meBbDqAXago">--}}
+                                        {{--<img src="images/product/detail/variant-5.jpg" alt=""><i class="fa fa-play"></i>--}}
+                                    {{--</a>--}}
+                                {{--</div>--}}
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12 ">
                         <div class="ps-product__info">
                             <div class="ps-product__rating">
-                                <select class="ps-rating">
-                                    <option value="1">1</option>
-                                    <option value="1">2</option>
-                                    <option value="1">3</option>
-                                    <option value="1">4</option>
-                                    <option value="2">5</option>
-                                </select><a href="#">(Read all 8 reviews)</a>
+                                <select class="product-rating-view">
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            @if($i <= round($ratings) )
+                                            <option value="1"></option>
+                                        @else
+                                            <option value="2"></option>
+                                        @endif
+                                        @endfor
+                                </select><a href="#tab_02" aria-controls="tab_02" role="tab" data-toggle="tab">(Read all {{$product->commentCount()}} reviews)</a>
                             </div>
                             <h1>{{$product->title()}}</h1>
-                            <h1>{{$ratings}}</h1>
                             <p class="ps-product__category">
                                 @if(isset($tags))
                                     @foreach($tags as $tag)
@@ -73,7 +74,7 @@
                             </div>
                             <div class="ps-product__block ps-product__size">
                                 <h4>CHOOSE QUANTITY</h4>
-                                <div class="form-group ps-number">
+                                <div class="form-group ps-number" style="float: left;">
                                     <input class="form-control" name="item_qty" type="text" value="1"><span class="up"></span><span class="down"></span>
                                 </div>
                             </div>
@@ -81,7 +82,6 @@
                                 <button class="ps-btn" data-slug="{{$product->slug}}" id="add_to_cart">
                                     <i class="fa fa-circle-o-notch fa-spin processing off" aria-hidden="true"></i> Add To Cart
                                 </button>
-
                             </div>
                             <div class="ps-product__sharing">
                                 <p>Share this:<a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a></p>
@@ -102,6 +102,8 @@
                         <p>Sweet roll soufflé oat cake apple pie croissant. Pie gummi bears jujubes cake lemon drops gummi bears croissant macaroon pie. Fruitcake tootsie roll chocolate cake Carrot cake cake bear claw jujubes topping cake apple pie. Jujubes gummi bears soufflé candy canes topping gummi bears cake soufflé cake. Cotton candy soufflé sugar plum pastry sweet roll..</p>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="tab_02">
+                        @if(isset($product->comments))
+                        @if(count($product->comments))
                         <p>{{$product->commentCount()}} reviews for <strong>{{$product->title()}}</strong></p>
                         @if(isset($product))
                         @if(isset($product->comments))
@@ -110,15 +112,22 @@
                         <div class="ps-review">
                             <div class="ps-review__thumbnail"><img src="images/user/1.jpg" alt=""></div>
                             <div class="ps-review__content">
+
                                 <header>
-                                    <select class="ps-rating">
-                                        <option value="1">1</option>
-                                        <option value="1">2</option>
-                                        <option value="1">3</option>
-                                        <option value="1">4</option>
-                                        <option value="5">5</option>
-                                    </select>
-                                    <p>By<a href=""> {{$comment->creator->firstname}}</a> - {{$comment->created_at->diffForHumans()}}</p>
+                                    {{--<select class="product-rating-view">--}}
+                                        {{--<option value="1">1</option>--}}
+                                        {{--<option value="2">2</option>--}}
+                                        {{--<option value="3">3</option>--}}
+                                        {{--<option value="4">4</option>--}}
+                                        {{--<option value="5">5</option>--}}
+                                    {{--</select>--}}
+                                    <p>By<a href="">
+                                            @if(Auth::guest())
+                                                {{ucwords($comment->creator->firstname)}}
+                                                @else
+                                            {{Auth::user()->firstname}}
+                                                @endif
+                                        </a> - {{$comment->created_at->diffForHumans()}}</p>
                                 </header>
                                 <p>{{$comment->body}}</p>
                             </div>
@@ -127,33 +136,51 @@
                         @endif
                         @endif
                         @endif
+                            @else
+                            <p>Be the first to add a review for this product</p>
+                            @endif
+                            @else
+                                <p>Be the first to add a review for this product</p>
+                        @endif
                         <form class="ps-form--product-review" action="{{route('add_comment', ['product_id' => $product->id])}}" method="post">
                             @csrf
                             <h4>ADD YOUR REVIEW</h4>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
                                     <div class="form-group">
-                                        <label>Guest:<sup>*</sup></label>
+                                        <strong><label>
+                                            @if(Auth::guest())
+                                                Guest
+                                            @else
+                                                {{Auth::user()->firstname}}
+                                            @endif
+                                        </label>
+                                        </strong>
                                     </div>
                                     <div class="form-group">
                                         <label>Title:<sup>*</sup></label>
-                                        <input class="form-control" type="text" placeholder="" name="title">
+                                        <input class="form-control" type="text" placeholder="" name="title" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Your rating</label>
-                                        <select class="ps-rating">
+                                        <span class="rating_indicator off">
+                                            <i class="fa fa-circle-o-notch fa-spin processing" aria-hidden="true"></i>
+                                            <span> Rating...</span>
+                                        </span>
+                                        <select class="product-rating-comment" data-slug="{{$product->slug}}">
                                             <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="1">3</option>
-                                            <option value="1">4</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
                                             <option value="5">5</option>
                                         </select>
-                                    </div>
+
+                                             </div>
                                 </div>
                                 <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12 ">
                                     <div class="form-group">
-                                        <label>Your Review:</label>
-                                        <textarea class="form-control" rows="6" name="comment"></textarea>
+                                        <label>Your Review:<sup>*</sup></label>
+                                        <textarea class="form-control" rows="6" name="comment" required></textarea>
                                     </div>
                                     <div class="form-group">
                                         <button class="ps-btn">Submit Reviews</button>
@@ -163,6 +190,15 @@
                         </form>
                     </div>
                 </div>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </div>
         </div>
     </main>
@@ -172,8 +208,7 @@
     <script>
 
         $(document).ready(function () {
-            //load images to modal
-            $(".processing").prop('disabled', true)
+
             $("#add_to_cart").click(function () {
                 $(".processing").removeClass('off')
                 $("#add_to_cart").prop('disabled', true)
@@ -211,7 +246,44 @@
                 });
             });
 
-        });
+            $('select.product-rating-comment').barrating({
+                theme: 'fontawesome-stars',
+                onSelect: function(value, text, event) {
+                    if (typeof(event) !== 'undefined') {
+                        // rating was selected by a user
+                        $(".rating_indicator").removeClass('off')
+                        var rating = $(event.target).data('rating-value');
+                        var slug = $(event.target).parent().prev().data('slug');
 
+                        $.ajax({
+                            url: "{{route('rate_product')}}",
+                            type: 'POST',
+                            data: {rating: rating, slug: slug}
+                        })
+                            .done(function (data) {
+                                $(".rating_indicator").addClass('off')
+                                Snackbar.show({
+                                    showAction: true,
+                                    text: 'Product rated.',
+                                    actionTextColor: '#ffffff',
+                                    backgroundColor: "#53A6E8"
+                                });
+
+                            }).fail(function (error) {
+                            $(".rating_indicator").addClass('off')
+                            Snackbar.show({
+                                showAction: true,
+                                text: 'Product rating failed!.',
+                                actionTextColor: '#ffffff',
+                                backgroundColor: "#FE970D"
+                            });
+                        })
+                    }else {
+                        // rating was selected programmatically
+                        // by calling `set` method
+                    }
+                }
+            });
+        });
     </script>
     @endpush

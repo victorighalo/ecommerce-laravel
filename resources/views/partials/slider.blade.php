@@ -1,6 +1,6 @@
 <div class="ps-slider--banner owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="9000" data-owl-gap="0" data-owl-nav="false" data-owl-dots="true" data-owl-item="1" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="1" data-owl-item-lg="1" data-owl-duration="1000" data-owl-mousedrag="on">
     <div class="ps-product--banner">
-        <div class="ps-product__thumbnail"><a href="#"><img src="images/banner/banner-1.png" alt=""></a></div>
+        <div class="ps-product__thumbnail"><a href="#"><img src="{{asset('images/banner/banner-1.png')}}" alt=""></a></div>
         <div class="ps-product__content">
             <h3>STOCKHOLM 2017</h3>
             <select class="ps-rating">
@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="ps-product--banner">
-        <div class="ps-product__thumbnail"><a href="#"><img src="images/banner/banner-2.png" alt=""></a></div>
+        <div class="ps-product__thumbnail"><a href="#"><img src="{{asset('images/banner/banner-2.png')}}" alt=""></a></div>
         <div class="ps-product__content">
             <h3>STOCKHOLM 2017</h3>
             <select class="ps-rating">

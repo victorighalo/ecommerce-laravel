@@ -36,7 +36,25 @@
         }
         .on {
             display: block;
-        }    </style>
+        }
+        .products_by_category .product_title{
+            background: #fff;
+            padding: 15px 10px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .products_by_category .product_title a{
+            font-weight: bold;
+            font-size: 13px;
+        }
+        .products_by_category img{
+            max-height: 200px;
+            min-height: 200px;
+            min-width: 100%;
+            width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 {{--<!--[if IE 7]><body class="ie7 lt-ie8 lt-ie9 lt-ie10"><![endif]-->--}}
 {{--<!--[if IE 8]><body class="ie8 lt-ie9 lt-ie10"><![endif]-->--}}
@@ -60,13 +78,13 @@
 <script src="{{ asset('plugins/slick/slick/slick.min.js')}}"></script>
 <script src="{{ asset('plugins/jquery.matchHeight-min.js')}}"></script>
 <script src="{{ asset('plugins/elevatezoom/jquery.elevatezoom.js')}}"></script>
-<script src="{{ asset('plugins/gmap3.min.js')}}"></script>
+{{--<script src="{{ asset('plugins/gmap3.min.js')}}"></script>--}}
 <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <script src="{{ asset('plugins/snackbar.min.js')}}"></script>
 
 <!-- Custom scripts-->
 <script src="{{ asset('js/main.js')}}"></script>
-<script src="{{ asset('js/app.js') }}"></script>
+{{--<script src="{{ asset('js/app.js') }}"></script>--}}
 <script>
     $.ajaxSetup({
         headers: {

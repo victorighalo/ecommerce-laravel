@@ -1,48 +1,65 @@
 <?php
 
+Route::get('/', 'PagesController@home');
+
+Route::get('install', 'SettingController@install')->name('install');
+Route::post('install', 'SettingController@update');
+
+Auth::routes();
+
+
+Route::get('/checkout', 'CheckoutController@index');
+
 //Cart
 Route::get('/cart', 'CartController@index');
 Route::post('/cart/add', 'CartController@add')->name('add_to_cart');
 Route::post('/cart/update/{cart_item?}', 'CartController@update')->name('update_cart');
 Route::post('/cart/destroy/{cart_item?}', 'CartController@destroy')->name('destroy_cart');
 
+//Common
+Route::post('/load_cities', 'CommonController@loadCities')->name('load_cities');
+Route::post('/add_address', 'CommonController@addAddress')->name('add_address');
+
+Route::group(['prefix' => 'office'], function (){
 
 //Admin section
-Route::get('/office', 'OfficeController@office');
+    Route::get('/', 'OfficeController@office');
 
 //Products
-Route::get('/office/products', 'ProductsController@index');
-Route::get('/office/products/activate/{id?}', 'ProductsController@activate')->name('activate_product');
-Route::get('/office/products/deactivate/{id?}', 'ProductsController@deactivate')->name('deactivate_product');
-Route::get('/office/products/destroy/{product_id?}/{taxon_id?}', 'ProductsController@destroy')->name('destroy_product');
-Route::get('/office/products/json', 'ProductsController@getProductsData')->name('get_products');
-Route::post('/office/products/create', 'ProductsController@create')->name('create_products');
-Route::get('/office/product/{id}/edit', 'ProductsController@edit')->name('edit_product');
-Route::post('/office/product/update', 'ProductsController@update')->name('update_product');
+Route::get('/products', 'ProductsController@index');
+Route::get('/products/activate/{id?}', 'ProductsController@activate')->name('activate_product');
+Route::get('/products/deactivate/{id?}', 'ProductsController@deactivate')->name('deactivate_product');
+Route::get('/products/destroy/{product_id?}/{taxon_id?}', 'ProductsController@destroy')->name('destroy_product');
+Route::get('/products/json', 'ProductsController@getProductsData')->name('get_products');
+Route::post('/products/create', 'ProductsController@create')->name('create_products');
+Route::get('/product/{id}/edit', 'ProductsController@edit')->name('edit_product');
+Route::post('/product/update', 'ProductsController@update')->name('update_product');
 
 //Media
-Route::post('/office//media/upload', 'MediaController@UploadMedia')->name('media_upload');
-Route::get('/office/media/images/load', 'MediaController@loadImages')->name('load_images');
-Route::post('/office/media/remove', 'MediaController@destroy')->name('media_remove');
-Route::post('/office/media/remove_spatie', 'MediaController@destroySpatieMedia')->name('media_remove_spatie');
+Route::post('/media/upload', 'MediaController@UploadMedia')->name('media_upload');
+Route::get('/media/images/load', 'MediaController@loadImages')->name('load_images');
+Route::post('/media/remove', 'MediaController@destroy')->name('media_remove');
+Route::post('/media/remove_spatie', 'MediaController@destroySpatieMedia')->name('media_remove_spatie');
 
 //Categories
-Route::get('/office/category', 'CategoryController@index');
-Route::get('/office/category/json', 'CategoryController@getTaxonomiesJson')->name('load_categories');
-Route::get('/office/subcategory/destroy/{id?}', 'CategoryController@destroyTaxon')->name('destroy_subcategory');
-Route::post('/office/subcategory/edit', 'CategoryController@editTaxon')->name('edit_subcategory');
-Route::post('/office/category/edit', 'CategoryController@editTaxonomy')->name('edit_category');
-Route::get('/office/category/destroy/{id?}', 'CategoryController@destroyTaxonomy')->name('destroy_category');
-Route::post('/office/category/create', 'CategoryController@create')->name('create_category');
-Route::post('/office/category/create_sub_category', 'CategoryController@createSubCategory')->name('create_sub_category');
+Route::get('/category', 'CategoryController@index');
+Route::get('/category/json', 'CategoryController@getTaxonomiesJson')->name('load_categories');
+Route::get('/subcategory/destroy/{id?}', 'CategoryController@destroyTaxon')->name('destroy_subcategory');
+Route::post('/subcategory/edit', 'CategoryController@editTaxon')->name('edit_subcategory');
+Route::post('/category/edit', 'CategoryController@editTaxonomy')->name('edit_category');
+Route::get('/category/destroy/{id?}', 'CategoryController@destroyTaxonomy')->name('destroy_category');
+Route::post('/category/create', 'CategoryController@create')->name('create_category');
+Route::post('/category/create_sub_category', 'CategoryController@createSubCategory')->name('create_sub_category');
 
+//App Settings
+    Route::get('/settings', 'SettingController@index');
+    Route::post('/settings/save', 'SettingController@update');
+});
 
 //Frontend
 Route::get('/{taxon_slug}', 'PagesController@getProductList')->name('getCategoryContent');
 Route::get('/{taxon_slug}/{product_slug}', 'PagesController@getProductDetails')->name('getProductDetails');
 
 Route::post('/product/comment/add/{product_id?}', 'ProductsController@addComment')->name('add_comment');
+Route::post('/product/rating/add', 'ProductsController@addRating')->name('rate_product');
 
-
-Route::get('/', 'HomeController@index');
-Auth::routes();
