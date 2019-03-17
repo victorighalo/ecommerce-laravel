@@ -31,7 +31,7 @@
                     @foreach($cart as $item)
                     <tr>
                         <td><a class="ps-product--compare" href="product-detail.html">
-                                <img class="mr-15" src="{{$item->product->getMedia('images')->first()->getFullUrl()}}" alt="">
+                                <img class="mr-15" src="{{env('APP_URL').$item->product->getMedia('images')->first()->getUrl()}}" alt="">
                                 {{$item->product->name}}</a></td>
                         <td>
                             <span>&#8358;</span> {{number_format($item->price, '0', '.', ',')}}
@@ -65,7 +65,7 @@
                         </div>
                     </div>
                     <div class="">
-                        <h3>Total Price:  <span>&#8358;</span> {{number_format( ($item->total()), '0', '.', ',')}}</h3><a class="ps-btn" href="{{url('checkout')}}">Process to checkout</a>
+                        <h3>Total Price:  <span>&#8358;</span> {{number_format( ($item->total()), '0', '.', ',')}}</h3><a class="ps-btn" href="{{url('checkout')}}">Proceed to checkout</a>
                     </div>
                 </div>
                         @else

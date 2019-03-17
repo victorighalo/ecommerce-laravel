@@ -95,7 +95,7 @@
                             {{--<a class="ps-product__favorite" href="#">--}}
                                 {{--<i class="furniture-heart"></i></a>--}}
                             @if ($product->getMedia('images')->first())
-                            <img src="{{$product->getMedia('images')->first()->getFullUrl()}}" alt="">
+                            <img src="{{env('APP_URL').$product->getMedia('images')->first()->getUrl()}}" alt="">
                             @endif
                             <a class="ps-product__overlay" href="{{route('getProductDetails', [
                             'taxon_slug' => $product->taxons->first()->slug,
@@ -105,7 +105,7 @@
                                 <div class="ps-product__variants">
                                     @if($product->getMedia('images'))
                                     @foreach($product->getMedia('images') as $image)
-                                    <div class="item"><img src="{{$image->getFullUrl()}}" alt=""></div>
+                                    <div class="item"><img src="{{env('APP_URL').$image->getUrl()}}" alt=""></div>
                                         @endforeach
                                         @endif
                                 </div>

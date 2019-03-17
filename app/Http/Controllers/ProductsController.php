@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Vanilo\Category\Models\Taxon;
+use App\Taxon;
+use Illuminate\Support\Facades\Storage;
 use Vanilo\Product\Models\ProductState;
 use Yajra\Datatables\Datatables;
 
@@ -41,7 +43,8 @@ class ProductsController extends BaseController
                 'name' => $product_data['name'],
                 'sku' => $sku,
                 'price' => $product_data['price'],
-                'description' => $product_data['description'],
+                'meta_description' => $product_data['meta_description'],
+                'description' => $request->description,
                 'meta_keywords' => $product_data['tags'],
                 'state' => ProductState::ACTIVE
             ]);
@@ -50,8 +53,10 @@ class ProductsController extends BaseController
             $taxon = Taxon::where('id', $product_data['category_id'])->first();
             $taxon = Taxon::findBySlug($taxon->slug);
 
+            $get_product = \App\Product::where('id', $product->id)->first();
             //Add Taxon to product
-            $taxon->addProduct($product);
+            $get_product->taxons()->save($taxon);
+
 
             //Relate images to product
             foreach ($request['images'] as $image) {
@@ -98,7 +103,7 @@ class ProductsController extends BaseController
 
 
             //Check if product already has same Taxon to prevent exception
-            if($product->first()->taxons->count()) {
+            if($product->first()->taxons()->count()) {
                 foreach ($product->first()->taxons as $item) {
                     $taxon = Taxon::findBySlug($item->slug);
                     $product->first()->taxons()->detach($taxon);
@@ -137,14 +142,14 @@ class ProductsController extends BaseController
                 $taxon = Taxon::where('id', $taxon_id)->first();
 
                 //Unlink Taxon
-                $product->taxons->detach($taxon);
+                $product->first()->taxons()->detach($taxon);
             }
 
             //Delete product
             $product->delete();
             return response()->json(['message' => 'Product Deleted', 'status' => 200], 200);
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Failed to Delete', 'status' => 400], 400);
+            return response()->json(['message' => 'Failed to Delete' . $e->getMessage(), 'status' => 400], 400);
         }
     }
 
@@ -158,7 +163,7 @@ class ProductsController extends BaseController
         })
             ->addColumn('image', function ($subdata) {
                 if ($subdata->getMedia('images')->count()) {
-                    return "<img src=" . $subdata->getMedia('images')->first()->getFullUrl() . "  width='100px'>";
+                    return "<img src=" .env('APP_URL'). $subdata->getMedia('images')->first()->getUrl('thumb') . "  width='100px'>";
                 } else {
                     return "None";
                 }

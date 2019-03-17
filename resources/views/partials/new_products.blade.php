@@ -12,7 +12,7 @@
                             <div class="ps-badge"><span>New</span></div>
                             {{--<div class="ps-badge ps-badge--sale"><span>-35%</span></div><a class="ps-product__favorite" href="#"><i class="furniture-heart"></i></a>--}}
                             @if($product->getMedia('images'))
-                            <img src="{{$product->getMedia('images')->first()->getFullUrl()}}" alt="{{$product->title()}}">
+                            <img src="{{env('APP_URL').$product->getMedia('images')->first()->getUrl()}}" alt="{{$product->title()}}">
                             @endif
                             <a class="ps-product__overlay" href="{{route('getProductDetails', [
                             'taxon_slug' => $product->taxons->first()->slug,
@@ -26,7 +26,7 @@
                                         @foreach($product->getMedia('images') as $image)
                                             <div class="item">
                                                 <a href="{{$image->getFullUrl()}}">
-                                                    <img src="{{$image->getFullUrl()}}" alt="{{$product->title()}}">
+                                                    <img src="{{env('APP_URL').$image->getUrl()}}" alt="{{$product->title()}}">
                                                 </a>
                                             </div>
                                         @endforeach

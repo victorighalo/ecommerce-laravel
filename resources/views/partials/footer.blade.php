@@ -11,9 +11,21 @@
                             <p>{{$app_settings->store_phone}}</p>
                         </div>
                         <ul class="ps-social">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                            @if($app_settings->store_facebook != "")
+                            <li><a href="{{$app_settings->store_facebook}}"><i class="fa fa-facebook"></i></a></li>
+                            @endif
+                            @if($app_settings->store_twitter != "")
+                            <li><a href="{{$app_settings->store_twitter}}"><i class="fa fa-twitter"></i></a></li>
+                            @endif
+                            @if($app_settings->store_instagram != "")
+                            <li><a href="{{$app_settings->store_instagram}}"><i class="fa fa-instagram"></i></a></li>
+                            @endif
+                                @if($app_settings->store_youtube != "")
+                                    <li><a href="{{$app_settings->store_youtube}}"><i class="fa fa-youtube"></i></a></li>
+                                @endif
+                                @if($app_settings->store_linkedin != "")
+                                    <li><a href="{{$app_settings->store_linkedin}}"><i class="fa fa-linkedin"></i></a></li>
+                                @endif
                         </ul>
                     </div>
                 </div>

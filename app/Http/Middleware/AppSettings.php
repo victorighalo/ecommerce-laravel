@@ -16,6 +16,16 @@ class AppSettings
     public function handle($request, Closure $next)
     {
 
+//        if($request->path() == 'login' ||
+//            $request->path() == 'logout' ||
+//            $request->path() == 'register' ||
+//            $request->path() == 'office/*' ||
+//            $request->path() == 'office/*/*'
+//        ){
+//            return $next($request);
+//        }else{
+//            dd('Stop');
+//        }
         if($request->method() == 'POST'){
             return $next($request);
         }

@@ -13,6 +13,8 @@
 
     <link href="{{ asset('admin/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('plugins/bootstrap-tagsinput.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/css/quill.snow.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/css/quill.bubble.css') }}" rel="stylesheet">
     <style>
         .bootstrap-tagsinput{
             width: 100%;
@@ -62,6 +64,7 @@
 <script src="{{ asset('admin/js/vendor.js') }}"></script>
 <script src="{{ asset('admin/js/app.js') }}" ></script>
 <script src="{{ asset('admin/js/all.js') }}" ></script>
+<script src="{{ asset('admin/js/quill.min.js') }}" ></script>
 <script src="{{ asset('plugins/jquery.blockUI.js') }}" ></script>
 <script>
     $.ajaxSetup({

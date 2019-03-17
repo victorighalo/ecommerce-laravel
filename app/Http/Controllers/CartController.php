@@ -18,9 +18,6 @@ class CartController extends BaseController
             $cart_count = 0;
             $cart = [];
         }
-
-
-
         return view('pages.front.cart', compact('cart', 'cart_count'));
     }
 

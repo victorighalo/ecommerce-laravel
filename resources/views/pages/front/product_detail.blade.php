@@ -22,8 +22,8 @@
                                 @if($product->getMedia('images'))
                                     @foreach($product->getMedia('images') as $image)
                                        <div class="item">
-                                            <a href="{{$image->getFullUrl()}}">
-                                            <img src="{{$image->getFullUrl()}}" alt="{{$product->title()}}">
+                                            <a href="{{env('APP_URL').$image->getUrl()}}">
+                                            <img src="{{env('APP_URL').$image->getUrl()}}" alt="{{$product->title()}}">
                                             </a>
                                         </div>
                                     @endforeach
@@ -34,7 +34,7 @@
                                     @if($product->getMedia('images'))
                                         @foreach($product->getMedia('images') as $image)
                                             <div class="item">
-                                                    <img src="{{$image->getFullUrl()}}" alt="{{$product->title()}}">
+                                                    <img src="{{env('APP_URL').$image->getUrl()}}" alt="{{$product->title()}}">
                                             </div>
                                         @endforeach
                                     @endif
@@ -70,7 +70,7 @@
                             </p>
                             <h3 class="ps-product__price"> <span>&#8358;</span> {{number_format($product->price, '0', '.', ',')}}</h3>
                             <div class="ps-product__short-desc">
-                                <p>{{$product->description}}</p>
+                                <p>{{$product->meta_description}}</p>
                             </div>
                             <div class="ps-product__block ps-product__size">
                                 <h4>CHOOSE QUANTITY</h4>

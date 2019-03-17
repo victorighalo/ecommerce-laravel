@@ -18,7 +18,7 @@
                             'product_slug' => $item->slug
                             ])}}">
                                 <img
-                                        src="{{$item->getMedia('images')->first()->getFullUrl()}}"
+                                        src="{{env('APP_URL').$item->getMedia('images')->first()->getUrl()}}"
                                         alt="{{$item->title()}}"
                                         class="img-responsive"
                                 >

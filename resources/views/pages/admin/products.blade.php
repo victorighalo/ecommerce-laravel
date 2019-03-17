@@ -55,15 +55,27 @@
                                             <div class="row justify-content-center form-group">
                                                 <div class="col-sm-12">
                                                 <label for="description">{{ __('Description') }}</label>
-                                                <textarea class="form-control" name="description" id="" cols="30" rows="5"></textarea>
+                                                <textarea class="form-control" name="meta_description" id="" cols="30" rows="2"></textarea>
                                                 <span class="invalid-feedback errorshow" role="alert">
                                         </span>
                                             </div>
+                                                <div class="col-sm-12 mt-5">
+                                                    <div class="card text-left">
+                                                        <div class="card-header">
+                                                <label for="overview">{{ __('Overview') }}</label>
+                                                        </div>
+                                                    <div id="editor">
 
-                                                <div class="col-sm-12 mt-3">
+                                                    </div>
+                                                    <span class="invalid-feedback errorshow" role="alert">
+                                        </span>
+                                            </div>
+                                            </div>
+
+                                                <div class="col-sm-12 mt-5">
                                                 <div class="card text-left">
                                                     <div class="card-header">
-                                                        <label for="description">{{ __('Images') }}</label>
+                                                        <label for="">{{ __('Images') }}</label>
                                                     </div>
                                                     <div class="card-body">
                                                             <div class="form-group">
@@ -134,6 +146,35 @@
 @push('script')
     <script src="{{asset('plugins/bootstrap-tagsinput.min.js')}}"></script>
     <script>
+        var toolbarOptions = [
+            ['link', 'image'],
+            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+            ['blockquote', 'code-block'],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+            [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+            [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+            [{ 'font': [] }],
+            [{ 'align': [] }],
+
+            ['clean']
+        ];
+        var options = {
+            placeholder: 'Compose an epic...',
+            readOnly: false,
+            theme: 'snow',
+            modules: {
+                toolbar: toolbarOptions
+            }
+        };
+        var description_container = $('#editor').get(0);
+        var quill = new Quill(description_container, options);
+        // var description = quill.getContents();
+        // var description_value = description;
+
         var bsmodal = $('#images-modal');
         var mediafolder = "{{asset('')}}/";
         var imageBag = [];
@@ -165,7 +206,7 @@
             ajax: '{!! route('get_products') !!}',
             columns: [
                 { data: 'name', name: 'name' },
-                { data: 'description', name: 'description' },
+                { data: 'meta_description', name: 'meta_description' },
                 { data: 'state', name: 'state' },
                 { data: 'price', name: 'price' },
                 { data: 'taxons', name: 'meta_keywords' },
@@ -292,12 +333,13 @@
             //Create product
             $("form#product_form").on('submit', function (e) {
                 e.preventDefault();
+
                 if(imageBag.length == 0){
                     new PNotify({
                         title: 'Oops!',
                         text: 'No Image selected.',
                         addclass: 'custom_notification',
-                        type: 'error'
+                        type: 'info'
                     });
                     return false;
                 }
@@ -311,7 +353,11 @@
                 $.ajax({
                     type: "POST",
                     url: "{!! route('create_products') !!}",
-                    data: {form_data:$(this).serialize(), images: imageBag}
+                    data: {
+                        form_data:$(this).serialize(),
+                        images: imageBag,
+                        description: $(description_container).find('.ql-editor').html()
+                    }
                 }).done(function (data) {
                     $(".add_product_btn").prop('disabled', false)
                     $(".add_product_btn > .process_indicator").addClass('off');
@@ -321,6 +367,7 @@
                         addclass: 'custom_notification',
                         type: 'success'
                     });
+                    productstable.ajax.reload();
                 }).fail(function (response) {
                     $(".add_product_btn").prop('disabled', false)
                     $(".add_product_btn > .process_indicator").addClass('off');
