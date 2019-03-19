@@ -98,9 +98,8 @@
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="tab_01">
-                        <p>Caramels tootsie roll carrot cake sugar plum. Sweet roll jelly bear claw liquorice. Gingerbread lollipop dragée cake. Pie topping jelly-o. Fruitcake dragée candy canes tootsie roll. Pastry jelly-o cupcake. Bonbon brownie soufflé muffin.</p>
-                        <p>Sweet roll soufflé oat cake apple pie croissant. Pie gummi bears jujubes cake lemon drops gummi bears croissant macaroon pie. Fruitcake tootsie roll chocolate cake Carrot cake cake bear claw jujubes topping cake apple pie. Jujubes gummi bears soufflé candy canes topping gummi bears cake soufflé cake. Cotton candy soufflé sugar plum pastry sweet roll..</p>
-                    </div>
+                        {!! $product->description !!}
+                          </div>
                     <div class="tab-pane" role="tabpanel" id="tab_02">
                         @if(isset($product->comments))
                         @if(count($product->comments))
@@ -183,7 +182,7 @@
                                         <textarea class="form-control" rows="6" name="comment" required></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <button class="ps-btn">Submit Reviews</button>
+                                        <button class="ps-btn">Submit Review</button>
                                     </div>
                                 </div>
                             </div>

@@ -163,7 +163,7 @@ class ProductsController extends BaseController
         })
             ->addColumn('image', function ($subdata) {
                 if ($subdata->getMedia('images')->count()) {
-                    return "<img src=" .env('APP_URL'). $subdata->getMedia('images')->first()->getUrl('thumb') . "  width='100px'>";
+                    return "<img src=" .env('APP_URL'). $subdata->getMedia('images')->first()->getUrl() . "  width='100px'>";
                 } else {
                     return "None";
                 }
@@ -175,6 +175,10 @@ class ProductsController extends BaseController
             })->editColumn('price', function ($subdata) {
 
                 return "&#8358;".number_format($subdata->price, '0', '.', ',');
+            })
+            ->editColumn('meta_description', function ($subdata) {
+
+                return str_limit($subdata->meta_description, 30);
             })
             ->addColumn('action', function ($subdata) {
                 return '      <td>

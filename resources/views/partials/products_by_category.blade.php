@@ -1,6 +1,6 @@
 <div class="ps-section ps-home-best-product">
     <div class="ps-container">
-        @foreach($categories as $category)
+        @foreach($all_categories as $category)
             @if($category->products->count() > 0)
             <div class="panel panel-primary">
             <div class="panel-heading">

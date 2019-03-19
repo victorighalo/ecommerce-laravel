@@ -23,6 +23,11 @@ class Product extends BaseProduct implements Buyable, HasMedia
         HasComments,
         HasMediaTrait;
 
+    public function morphTypeName(): string
+{
+    return 'App\Product';
+}
+
     public function taxons(): MorphToMany
     {
         return $this->morphToMany(

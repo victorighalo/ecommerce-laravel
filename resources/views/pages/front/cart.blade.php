@@ -56,12 +56,7 @@
                 <div class="ps-cart__actions">
                     <div class="ps-cart__promotion">
                         <div class="form-group">
-                            <div class="ps-form--icon"><i class="fa fa-angle-right"></i>
-                                <input class="form-control" type="text" placeholder="Promo Code">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <button class="ps-btn ps-btn--gray">Continue Shopping</button>
+                            <a href="{{url('/')}}" class="ps-btn ps-btn--gray">Continue Shopping</a>
                         </div>
                     </div>
                     <div class="">
@@ -79,21 +74,30 @@
 @endsection
 
 @push('script')
+    <script src="{{ asset('js/app.js')}}"></script>
+
     <script>
 
         $(document).ready(function () {
 
             var minus = function() {
                 var cart_id = $(this).next().data('cart_id');
-                $.post('{!! route('update_cart') !!}'+'/'+cart_id, {qty: $(this).next().val()})
+                $.post('{!! route('update_cart') !!}'+'/'+cart_id, {
+                    qty: $(this).next().val(),
+                    "_token": "{{ csrf_token() }}",
+                })
                     .done(function (data) {
                         Snackbar.show({
                             showAction: true,
                             text: 'Cart updated.',
                             actionTextColor: '#ffffff',
                             backgroundColor:"#53A6E8",
-                            actionText: 'Close!'
+                            actionText: 'Close!',
+                            pos: 'top-right'
                         });
+                        setTimeout(function () {
+                            location.reload()
+                        }, 2000);
                     })
                     .fail(function (error) {
                         Snackbar.show({
@@ -101,21 +105,29 @@
                             text: 'Cart update failed!.',
                             actionTextColor: '#ffffff',
                             backgroundColor:"#FE970D",
-                            actionText: 'Close!'
+                            actionText: 'Close!',
+                            pos: 'top-right'
                         });
                     })
             };
             var plus = function() {
                 var cart_id = $(this).prev().data('cart_id');
-                $.post('{!! route('update_cart') !!}'+'/'+cart_id, { qty: $(this).prev().val()})
+                $.post('{!! route('update_cart') !!}'+'/'+cart_id, {
+                    qty: $(this).prev().val(),
+                    "_token": "{{ csrf_token() }}",
+                })
                     .done(function (data) {
                         Snackbar.show({
                             showAction: true,
                             text: 'Cart updated.',
                             actionTextColor: '#ffffff',
                             backgroundColor:"#53A6E8",
-                            actionText: 'Close!'
+                            actionText: 'Close!',
+                            pos: 'top-right'
                         });
+                        setTimeout(function () {
+                            location.reload()
+                        }, 2000);
                     })
                     .fail(function (error) {
                         Snackbar.show({
@@ -123,7 +135,8 @@
                             text: 'Cart update failed!.',
                             actionTextColor: '#ffffff',
                             backgroundColor:"#FE970D",
-                            actionText: 'Close!'
+                            actionText: 'Close!',
+                            pos: 'top-right'
                         });
                     })
             };
@@ -134,7 +147,8 @@
                     text: 'Removing item from cart',
                     actionTextColor: '#ffffff',
                     backgroundColor:"#53A6E8",
-                    actionText: 'Close!'
+                    actionText: 'Close!',
+                    pos: 'top-right'
                 });
                 var cart_id = $(this).data('cart_id');
                 var self = $(this)
@@ -145,7 +159,8 @@
                             text: data,
                             actionTextColor: '#ffffff',
                             backgroundColor:"#53A6E8",
-                            actionText: 'Close!'
+                            actionText: 'Close!',
+                            pos: 'top-right'
                         });
                         self.parent().parent().fadeOut()
                     })
@@ -155,7 +170,8 @@
                             text: 'Cart item delete failed!.',
                             actionTextColor: '#ffffff',
                             backgroundColor:"#FE970D",
-                            actionText: 'Close!'
+                            actionText: 'Close!',
+                            pos: 'top-right'
                         });
                     })
             };

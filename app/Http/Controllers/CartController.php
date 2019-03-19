@@ -9,8 +9,13 @@ use Vanilo\Cart\Contracts\CartItem;
 class CartController extends BaseController
 {
 
-    public function index(){
+    public function __construct()
+    {
+        $this->middleware('web');
+    }
 
+    public function index(){
+        var_dump(Cart::exists());
         if(Cart::exists()){
             $cart_count = Cart::itemCount();
             $cart = Cart::model()->items;
@@ -18,6 +23,7 @@ class CartController extends BaseController
             $cart_count = 0;
             $cart = [];
         }
+        dd($cart_count, $cart);
         return view('pages.front.cart', compact('cart', 'cart_count'));
     }
 
