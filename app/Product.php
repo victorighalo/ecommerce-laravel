@@ -7,6 +7,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
 use Vanilo\Contracts\Buyable;
 use Vanilo\Product\Models\Product as BaseProduct;
+use Vanilo\Properties\Traits\HasPropertyValues;
 use Vanilo\Support\Traits\BuyableModel;
 use Vanilo\Support\Traits\BuyableImageSpatieV7;
 use willvincent\Rateable\Rateable;
@@ -21,6 +22,7 @@ class Product extends BaseProduct implements Buyable, HasMedia
         BuyableModel,
         BuyableImageSpatieV7,
         HasComments,
+        HasPropertyValues,
         HasMediaTrait;
 
     public function morphTypeName(): string

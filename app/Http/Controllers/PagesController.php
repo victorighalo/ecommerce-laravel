@@ -46,6 +46,8 @@ class PagesController extends BaseController
     }
 
     public function getProductDetails($taxon_slug, $product_slug){
+//        var_dump(config('vanillo.cart.session_key'));
+//        var_dump(session()->get(config('vanillo.cart.session_key')));
         if(Cart::exists()){
             $cart_count = Cart::itemCount();
         }else{

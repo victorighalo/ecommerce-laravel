@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Taxon;
 use Illuminate\Support\Facades\Storage;
 use Vanilo\Product\Models\ProductState;
+use Vanilo\Properties\Models\Property;
 use Yajra\Datatables\Datatables;
 
 class ProductsController extends BaseController
@@ -24,8 +25,11 @@ class ProductsController extends BaseController
 
         $categories = Taxon::all();
         $products = \App\Product::all();
+        $properties = Property::all();
 
-        return view('pages.admin.products', compact('categories', 'products'));
+        return view('pages.admin.products',
+            compact('categories', 'products', 'properties')
+        );
     }
 
     public function create(Request $request)

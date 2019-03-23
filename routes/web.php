@@ -48,9 +48,19 @@ Route::get('/category/destroy/{id?}', 'CategoryController@destroyTaxonomy')->nam
 Route::post('/category/create', 'CategoryController@create')->name('create_category');
 Route::post('/category/create_sub_category', 'CategoryController@createSubCategory')->name('create_sub_category');
 
+//Properties
+Route::get('/properties', 'PropertyController@index');
+Route::post('/properties/create', 'PropertyController@create')->name('create_property');
+Route::post('/properties/update', 'PropertyController@update')->name('update_property');
+Route::post('/properties/updatevalue', 'PropertyController@updateValue')->name('update_property_value');
+Route::post('/properties/updatetitle', 'PropertyController@updateTitle')->name('update_property_title');
+Route::post('/properties/value/create', 'PropertyController@createPropertyValue')->name('create_property_value');
+Route::get('/properties/json', 'PropertyController@getPropertiesJson')->name('load_properties');
+
+
 //App Settings
-    Route::get('/settings', 'SettingController@index');
-    Route::put('/settings/update', 'SettingController@update');
+Route::get('/settings', 'SettingController@index');
+Route::put('/settings/update', 'SettingController@update');
 });
 
 //Frontend
