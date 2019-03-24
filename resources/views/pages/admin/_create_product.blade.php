@@ -58,7 +58,7 @@
                                         <div><label for="">{{ __('Properties') }}</label></div>
                                     @foreach($properties as $property)
                                             <label for="">{{$property->name}}
-                                            <select name="{{$property->slug}}" id="" class="form-control" style="
+                                            <select name="product_property" id="" class="form-control" style="
                                             display: inline;
                                             width: auto;">
                                         @foreach($property->values() as $value)

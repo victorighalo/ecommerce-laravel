@@ -22,7 +22,8 @@ class ProductsController extends BaseController
 
     public function index()
     {
-
+//        dd(config('concord'));
+//        dd(config('session'));
         $categories = Taxon::all();
         $products = \App\Product::all();
         $properties = Property::all();
@@ -38,7 +39,8 @@ class ProductsController extends BaseController
         try {
             //Parse query-string input
             parse_str($request->form_data, $product_data);
-
+            parse_url($request->form_data, $product_data_array);
+            return response()->json( $request['form_data']);
             //Generate SKU
             $sku = strtoupper(substr($product_data['name'], 0, 3)) . "-" . $product_data['category_id'];
 
