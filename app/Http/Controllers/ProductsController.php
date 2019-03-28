@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Vanilo\Category\Models\Taxon;
+use App\Taxon;
+use Illuminate\Support\Facades\Storage;
 use Vanilo\Product\Models\ProductState;
+use Vanilo\Properties\Models\Property;
 use Yajra\Datatables\Datatables;
 
 class ProductsController extends BaseController
@@ -19,11 +22,15 @@ class ProductsController extends BaseController
 
     public function index()
     {
-
+//        dd(config('concord'));
+//        dd(config('session'));
         $categories = Taxon::all();
         $products = \App\Product::all();
+        $properties = Property::all();
 
-        return view('pages.admin.products', compact('categories', 'products'));
+        return view('pages.admin.products',
+            compact('categories', 'products', 'properties')
+        );
     }
 
     public function create(Request $request)
@@ -32,7 +39,8 @@ class ProductsController extends BaseController
         try {
             //Parse query-string input
             parse_str($request->form_data, $product_data);
-
+            parse_url($request->form_data, $product_data_array);
+            return response()->json( $request['form_data']);
             //Generate SKU
             $sku = strtoupper(substr($product_data['name'], 0, 3)) . "-" . $product_data['category_id'];
 
@@ -41,7 +49,8 @@ class ProductsController extends BaseController
                 'name' => $product_data['name'],
                 'sku' => $sku,
                 'price' => $product_data['price'],
-                'description' => $product_data['description'],
+                'meta_description' => $product_data['meta_description'],
+                'description' => $request->description,
                 'meta_keywords' => $product_data['tags'],
                 'state' => ProductState::ACTIVE
             ]);
@@ -50,8 +59,10 @@ class ProductsController extends BaseController
             $taxon = Taxon::where('id', $product_data['category_id'])->first();
             $taxon = Taxon::findBySlug($taxon->slug);
 
+            $get_product = \App\Product::where('id', $product->id)->first();
             //Add Taxon to product
-            $taxon->addProduct($product);
+            $get_product->taxons()->save($taxon);
+
 
             //Relate images to product
             foreach ($request['images'] as $image) {
@@ -98,7 +109,7 @@ class ProductsController extends BaseController
 
 
             //Check if product already has same Taxon to prevent exception
-            if($product->first()->taxons->count()) {
+            if($product->first()->taxons()->count()) {
                 foreach ($product->first()->taxons as $item) {
                     $taxon = Taxon::findBySlug($item->slug);
                     $product->first()->taxons()->detach($taxon);
@@ -137,14 +148,14 @@ class ProductsController extends BaseController
                 $taxon = Taxon::where('id', $taxon_id)->first();
 
                 //Unlink Taxon
-                $product->taxons->detach($taxon);
+                $product->first()->taxons()->detach($taxon);
             }
 
             //Delete product
             $product->delete();
             return response()->json(['message' => 'Product Deleted', 'status' => 200], 200);
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Failed to Delete', 'status' => 400], 400);
+            return response()->json(['message' => 'Failed to Delete' . $e->getMessage(), 'status' => 400], 400);
         }
     }
 
@@ -158,7 +169,7 @@ class ProductsController extends BaseController
         })
             ->addColumn('image', function ($subdata) {
                 if ($subdata->getMedia('images')->count()) {
-                    return "<img src=" . $subdata->getMedia('images')->first()->getFullUrl() . "  width='100px'>";
+                    return "<img src=" .env('APP_URL'). $subdata->getMedia('images')->first()->getUrl() . "  width='100px'>";
                 } else {
                     return "None";
                 }
@@ -170,6 +181,10 @@ class ProductsController extends BaseController
             })->editColumn('price', function ($subdata) {
 
                 return "&#8358;".number_format($subdata->price, '0', '.', ',');
+            })
+            ->editColumn('meta_description', function ($subdata) {
+
+                return str_limit($subdata->meta_description, 30);
             })
             ->addColumn('action', function ($subdata) {
                 return '      <td>

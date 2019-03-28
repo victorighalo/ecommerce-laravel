@@ -3,130 +3,8 @@
     @include('partials.image-modal')
     <div class="main-panel">
         <div class="content-wrapper">
-            <div class="row justify-content-center flex-grow mb-5 mt-5">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">  Create Product
-                                <a class="btn btn-link float-right" data-toggle="collapse" href="#form_collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </a></h4>
-                            <div class="collapse" id="form_collapse">
-                                <div class="row">
-                                    <div class="col-sm-12 p-4">
-                                        <form id="product_form">
-                                            @csrf
-                                            <div class="row form-group">
-                                                <div class="col-sm-4">
-                                                <label for="name">{{ __('Product name') }}</label>
-                                                <input type="text" id="name" class="form-control" name="name" required>
-                                                <span class="invalid-feedback errorshow" role="alert">
-                                                </span>
-                                                </div>        
-                                                
-                                                <div class="col-sm-3">
-                                                    <label for="name">{{ __('Tags') }}</label>
-                                                    <input type="text" id="tags" class="form-control" name="tags" data-role="tagsinput"  required>
-                                                    <span class="invalid-feedback errorshow" role="alert">
-                                                </span>
-                                                </div>      
-                                                
-                                                <div class="col-sm-3">
-                                                    <label for="category_id">{{ __('Category') }}</label>
-                                                    <select class="form-control" name="category_id" id="category_id">
-                                                        @foreach($categories as $category)
-                                                        <option value="{{$category->id}}">{{$category->name}} - {{$category->taxonomy->name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    <span class="invalid-feedback errorshow" role="alert">
-                                                    </span>
-                                                </div>
-
-                                                <div class="col-sm-2">
-                                                    <label for="price">{{ __('Price') }}</label>
-                                                    <input type="number" name="price" class="form-control" required>
-                                                    <span class="invalid-feedback errorshow" role="alert">
-                                                    </span>
-                                                </div>
-                                                
-                                            </div>
-
-
-                                            <div class="row justify-content-center form-group">
-                                                <div class="col-sm-12">
-                                                <label for="description">{{ __('Description') }}</label>
-                                                <textarea class="form-control" name="description" id="" cols="30" rows="5"></textarea>
-                                                <span class="invalid-feedback errorshow" role="alert">
-                                        </span>
-                                            </div>
-
-                                                <div class="col-sm-12 mt-3">
-                                                <div class="card text-left">
-                                                    <div class="card-header">
-                                                        <label for="description">{{ __('Images') }}</label>
-                                                    </div>
-                                                    <div class="card-body">
-                                                            <div class="form-group">
-                                                                <label>File upload</label>
-                                                                <input type="file" name="img[]" class="file-upload-default">
-                                                                <div class="input-group col-xs-12">
-                                                                    <input type="file" class="form-control file-upload-info" id="files_upload" placeholder="Upload Image">
-                                                                    <span class="input-group-append">
-                                                        <button class="file-upload-browse btn custom_button_color" type="button" id="upload_btn">Upload</button>
-                                                        </span>
-                                                                </div>
-                                                            </div>
-                                                        <div class="">
-                                                            <a href="#" class="btn custom_button_color"  id="load_images_btn">Choose images</a>
-                                                        </div>
-                                                        <div class="chosen_images mt-3">
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                </div>
-                                            </div>
-                                            <div class="mt-1">
-                                                <button class="btn float-right btn-primary btn-lg font-weight-medium add_product_btn" type="submit">
-                                                    <i class="fas fa-spinner fa-spin off process_indicator"></i>
-                                                    <span>{{ __('Create') }}</span>
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="row">
-                <div class="col-12 grid-margin">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title mb-4">Products</h5>
-                            <div class="table-responsive">
-                                <table class="table table-hover " id="table">
-                                    <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Description</th>
-                                        <th>State</th>
-                                        <th>Price</th>
-                                        <th>Category</th>
-                                        <th>Tags</th>
-                                        <th>Date</th>
-                                        <th>Image</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @include('pages.admin._create_product')
+            @include('pages.admin._view_products')
         </div>
     </div>
 @endsection
@@ -134,6 +12,35 @@
 @push('script')
     <script src="{{asset('plugins/bootstrap-tagsinput.min.js')}}"></script>
     <script>
+        var toolbarOptions = [
+            ['link', 'image'],
+            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+            ['blockquote', 'code-block'],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+            [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+            [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+            [{ 'font': [] }],
+            [{ 'align': [] }],
+
+            ['clean']
+        ];
+        var options = {
+            placeholder: 'Compose an epic...',
+            readOnly: false,
+            theme: 'snow',
+            modules: {
+                toolbar: toolbarOptions
+            }
+        };
+        var description_container = $('#editor').get(0);
+        var quill = new Quill(description_container, options);
+        // var description = quill.getContents();
+        // var description_value = description;
+
         var bsmodal = $('#images-modal');
         var mediafolder = "{{asset('')}}/";
         var imageBag = [];
@@ -165,7 +72,7 @@
             ajax: '{!! route('get_products') !!}',
             columns: [
                 { data: 'name', name: 'name' },
-                { data: 'description', name: 'description' },
+                { data: 'meta_description', name: 'meta_description' },
                 { data: 'state', name: 'state' },
                 { data: 'price', name: 'price' },
                 { data: 'taxons', name: 'meta_keywords' },
@@ -292,12 +199,13 @@
             //Create product
             $("form#product_form").on('submit', function (e) {
                 e.preventDefault();
+
                 if(imageBag.length == 0){
                     new PNotify({
                         title: 'Oops!',
                         text: 'No Image selected.',
                         addclass: 'custom_notification',
-                        type: 'error'
+                        type: 'info'
                     });
                     return false;
                 }
@@ -311,7 +219,11 @@
                 $.ajax({
                     type: "POST",
                     url: "{!! route('create_products') !!}",
-                    data: {form_data:$(this).serialize(), images: imageBag}
+                    data: {
+                        form_data:$(this).serialize(),
+                        images: imageBag,
+                        description: $(description_container).find('.ql-editor').html()
+                    }
                 }).done(function (data) {
                     $(".add_product_btn").prop('disabled', false)
                     $(".add_product_btn > .process_indicator").addClass('off');
@@ -321,6 +233,7 @@
                         addclass: 'custom_notification',
                         type: 'success'
                     });
+                    productstable.ajax.reload();
                 }).fail(function (response) {
                     $(".add_product_btn").prop('disabled', false)
                     $(".add_product_btn > .process_indicator").addClass('off');

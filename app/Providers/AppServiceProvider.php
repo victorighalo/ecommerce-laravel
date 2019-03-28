@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Vanilo\Category\Contracts\Taxon as TaxonContract;
 use Illuminate\Support\Facades\View;
-
+use App\Taxon;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -27,7 +27,9 @@ class AppServiceProvider extends ServiceProvider
             'product' => \App\Product::class
         ]);
         $app_settings = DB::table('app_settings')->first();
+        $all_categories = Taxon::all();
         View::share('app_settings', $app_settings);
+        View::share('all_categories', $all_categories);
     }
 
     /**

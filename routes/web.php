@@ -3,7 +3,7 @@
 Route::get('/', 'PagesController@home');
 
 Route::get('install', 'SettingController@install')->name('install');
-Route::post('install', 'SettingController@update');
+Route::post('install', 'SettingController@save');
 
 Auth::routes();
 
@@ -12,9 +12,6 @@ Route::get('/checkout', 'CheckoutController@index');
 
 //Cart
 Route::get('/cart', 'CartController@index');
-Route::post('/cart/add', 'CartController@add')->name('add_to_cart');
-Route::post('/cart/update/{cart_item?}', 'CartController@update')->name('update_cart');
-Route::post('/cart/destroy/{cart_item?}', 'CartController@destroy')->name('destroy_cart');
 
 //Common
 Route::post('/load_cities', 'CommonController@loadCities')->name('load_cities');
@@ -51,9 +48,19 @@ Route::get('/category/destroy/{id?}', 'CategoryController@destroyTaxonomy')->nam
 Route::post('/category/create', 'CategoryController@create')->name('create_category');
 Route::post('/category/create_sub_category', 'CategoryController@createSubCategory')->name('create_sub_category');
 
+//Properties
+Route::get('/properties', 'PropertyController@index');
+Route::post('/properties/create', 'PropertyController@create')->name('create_property');
+Route::post('/properties/update', 'PropertyController@update')->name('update_property');
+Route::post('/properties/updatevalue', 'PropertyController@updateValue')->name('update_property_value');
+Route::post('/properties/updatetitle', 'PropertyController@updateTitle')->name('update_property_title');
+Route::post('/properties/value/create', 'PropertyController@createPropertyValue')->name('create_property_value');
+Route::get('/properties/json', 'PropertyController@getPropertiesJson')->name('load_properties');
+
+
 //App Settings
-    Route::get('/settings', 'SettingController@index');
-    Route::post('/settings/save', 'SettingController@update');
+Route::get('/settings', 'SettingController@index');
+Route::put('/settings/update', 'SettingController@update');
 });
 
 //Frontend

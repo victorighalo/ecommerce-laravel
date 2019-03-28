@@ -24,9 +24,9 @@ class PagesController extends BaseController
             $cart_count = 0;
         }
 
-        $categories = Taxon::all();
+        $categories = Taxon::all()->take(12);
         $products = Product::all()->take(8);
-        return view('pages.index', compact('categories', 'cart_count', 'products'));
+        return view('pages.index', compact('categories','all_categories', 'cart_count', 'products'));
     }
 
     public function getProductList($taxon_slug){
@@ -47,6 +47,8 @@ class PagesController extends BaseController
     }
 
     public function getProductDetails($taxon_slug, $product_slug){
+//        var_dump(config('vanillo.cart.session_key'));
+//        var_dump(session()->get(config('vanillo.cart.session_key')));
         if(Cart::exists()){
             $cart_count = Cart::itemCount();
         }else{

@@ -16,7 +16,7 @@ class CreateAppSettingsTable extends Migration
         Schema::create('app_settings', function (Blueprint $table) {
             $table->string('store_name');
             $table->string('store_description')->nullable();
-            $table->string('store_about')->nullable();
+            $table->longText('store_about')->nullable();
             $table->string('store_address')->nullable();
             $table->string('store_email')->nullable();
             $table->string('store_facebook')->nullable();

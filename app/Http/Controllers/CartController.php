@@ -9,18 +9,14 @@ use Vanilo\Cart\Contracts\CartItem;
 class CartController extends BaseController
 {
 
+    public function __construct()
+    {
+        $this->middleware('web');
+    }
+
     public function index(){
-
-        if(Cart::exists()){
             $cart_count = Cart::itemCount();
-            $cart = Cart::model()->items;
-        }else{
-            $cart_count = 0;
-            $cart = [];
-        }
-
-
-
+            $cart = Cart::getItems();
         return view('pages.front.cart', compact('cart', 'cart_count'));
     }
 
@@ -28,7 +24,8 @@ class CartController extends BaseController
         try {
             $product = \App\Product::findBySlug($request->slug);
             Cart::addItem($product, $request->qty);
-            return response()->json(['message' => 'Added to cart', 'cart_count' => Cart::itemCount()]);
+            return response()->json(['message' => 'Added to cart', 'cart_count' => Cart::itemCount(),
+                'extra' => Cart::getItems()]);
         }catch (\Exception $e){
             return response()->json(['message' => 'Failed to add to cart']);
         }
