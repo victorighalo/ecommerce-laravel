@@ -17,6 +17,7 @@ class PagesController extends BaseController
 
     public function home()
     {
+        
         if(Cart::exists()){
             $cart_count = Cart::itemCount();
         }else{
