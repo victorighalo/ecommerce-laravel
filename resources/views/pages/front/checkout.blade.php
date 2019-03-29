@@ -45,23 +45,24 @@
                     </div>
                 @endif
                 {{--Add address--}}
-            <form class="ps-form--checkout" action="{{url('add_address')}}" method="post">
+            <form class="ps-form--checkout" action="{{url('checkout')}}" method="post">
+                {{ csrf_field() }}
                 <div class="row">
                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
                         <div class="ps-checkout__billing">
-                            <h3>Billing Details</h3>
+                            <h3>Delivery Address</h3>
                             <div class="form-group form-group--inline">
                                 <label>First Name<span>*</span>
                                 </label>
                                 <div class="form-group__content">
-                                    <input class="form-control" type="text" required>
+                                    <input class="form-control" type="text" name="firstname" required>
                                 </div>
                             </div>
                             <div class="form-group form-group--inline">
                                 <label>Last Name<span>*</span>
                                 </label>
                                 <div class="form-group__content">
-                                    <input class="form-control" type="text">
+                                    <input class="form-control" name="lastname" type="text">
                                 </div>
                             </div>
                             <div class="form-group form-group--inline">
@@ -89,36 +90,28 @@
                                 <label>Email Address<span>*</span>
                                 </label>
                                 <div class="form-group__content">
-                                    <input class="form-control" type="email" required>
+                                    <input class="form-control" type="email" name="email" required>
                                 </div>
                             </div>
                             <div class="form-group form-group--inline">
                                 <label>Phone<span>*</span>
                                 </label>
                                 <div class="form-group__content">
-                                    <input class="form-control" type="text" required>
+                                    <input class="form-control" type="text" name="phone" required>
                                 </div>
                             </div>
                             <div class="form-group form-group--inline">
                                 <label>Address<span>*</span>
                                 </label>
                                 <div class="form-group__content">
-                                    <input class="form-control" type="text" required>
+                                    <input class="form-control" type="text" name="address" required>
                                 </div>
                             </div>
-                            <div class="form-group form-group--inline">
-                            <button class="ps-btn ps-btn--sm">Add  delivery address</button>
-                            </div>
-                            <div class="form-group">
-                                <div class="ps-checkbox">
-                                    <input class="form-control" type="checkbox" id="cb01">
-                                    <label for="cb01">Create an account?</label>
-                                </div>
-                            </div>
+
                             <h3 class="mt-40"> Addition information</h3>
                             <div class="form-group form-group--inline textarea">
                                 <label>Order Notes</label>
-                                <textarea class="form-control" rows="7" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                <textarea class="form-control" rows="7" placeholder="Notes about your order, e.g. special notes for delivery." name="notes"></textarea>
                             </div>
                         </div>
                     </div>
@@ -168,13 +161,9 @@
                                         <li><a href="#"><img src="images/payment/2.png" alt=""></a></li>
                                         <li><a href="#"><img src="images/payment/3.png" alt=""></a></li>
                                     </ul>
-                                    <button class="ps-btn ps-btn--fullwidth">Place Order</button>
+                                    <button class="ps-btn ps-btn--fullwidth" type="submit">Place Order</button>
                                 </div>
                             </footer>
-                        </div>
-                        <div class="ps-shipping">
-                            <h3>FREE SHIPPING</h3>
-                            <p>YOUR ORDER QUALIFIES FOR FREE SHIPPING.<br> <a href="#"> Singup </a> for free shipping on every order, every time.</p>
                         </div>
                     </div>
                 </div>

@@ -9,6 +9,7 @@ Auth::routes();
 
 
 Route::get('/checkout', 'CheckoutController@index');
+Route::post('/checkout', 'CheckoutController@checkout');
 
 //Cart
 Route::get('/cart', 'CartController@index');
