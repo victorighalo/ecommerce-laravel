@@ -19,8 +19,6 @@ class CreateCustomersOrderItemsTable extends Migration
             $table->foreign('order_id')->references('id')->on('customers_orders')->onDelete('cascade');
             $table->integer('product_id');
             $table->string('product_type');
-            $table->integer('is_shipping');
-            $table->integer('shipping_cost')->nullable();
             $table->string('product_name')->nullable();
             $table->integer('product_quantity');
             $table->decimal('product_price', 15,2);

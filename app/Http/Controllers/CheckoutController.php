@@ -27,14 +27,10 @@ class CheckoutController extends Controller
         return view('pages.front.checkout', compact('cart_count', 'cart', 'states', 'addresses'));
     }
 
-    public function checkout(CheckoutRequest $request, OrderFactory $orderFactory)
+    public function checkout(CheckoutRequest $request)
     {
-        $checkout = Checkout::getFacadeRoot();
-        $checkout->update($request->all());
-        $checkout->setCart(Cart::model());
-        $order = $orderFactory->createFromCheckout($checkout);
+
         Cart::destroy();
-        dd($order);
 //        return view('checkout.thankyou', ['order' => $order]);
     }
 
