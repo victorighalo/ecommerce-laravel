@@ -3,15 +3,19 @@
 Route::get('/', 'PagesController@home');
 
 Route::get('install', 'SettingController@install')->name('install');
-Route::post('install', 'SettingController@save');
+Route::post('install', 'SettingController@store');
 
 Auth::routes();
 
 
 Route::get('/checkout', 'CheckoutController@index');
+Route::post('/checkout', 'PaymentController@initializePayStackTrans');
 
 //Cart
 Route::get('/cart', 'CartController@index');
+Route::post('/cart/add', 'CartController@add')->name('add_to_cart');
+Route::post('/cart/update/{cart_item?}', 'CartController@update')->name('update_cart');
+Route::post('/cart/destroy/{cart_item?}', 'CartController@destroy')->name('destroy_cart');
 
 //Common
 Route::post('/load_cities', 'CommonController@loadCities')->name('load_cities');

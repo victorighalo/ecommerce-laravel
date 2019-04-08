@@ -94,6 +94,7 @@
                             ])}}">{{$product->title()}}</a>
                             <div class="ps-product__categories"><a href="{{route('getCategoryContent', ['slug' => $product->taxons->first()->slug])}}">{{$product->taxons->first()->name}} - {{$product->taxons->first()->taxonomy->name}}</a></div>
                             <p class="ps-product__price">
+                                {{$product->delivery_price['amount']}}
                                 &#8358;{{number_format($product->price, '0', '.', ',')}}
                             </p>
                         </div>

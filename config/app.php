@@ -54,6 +54,8 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+    'PAYSTACK_SECRET_KEY' => env('PAYSTACK_SECRET_KEY', ''),
+
     'asset_url' => env('ASSET_URL', null),
 
     /*

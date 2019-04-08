@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDeliveryAddressesTable extends Migration
+class CreateCustomersOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreateDeliveryAddressesTable extends Migration
      */
     public function up()
     {
-        Schema::create('delivery_addresses', function (Blueprint $table) {
+        Schema::create('customers_orders', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('status');
             $table->integer('user_id')->nullable();
-            $table->string('session_id')->nullable();
-            $table->string('firstname');
-            $table->string('lastname')->nullable();
-            $table->string('contact');
-            $table->string('email');
-            $table->integer('state');
-            $table->integer('city');
+            $table->integer('is_shipping');
+            $table->integer('shipping_cost')->nullable();
+            $table->integer('delivery_id')->unsigned();
+            $table->integer('session_id')->nullable();
+            $table->mediumText('notes')->nullable();
             $table->timestamps();
         });
     }
@@ -34,6 +33,6 @@ class CreateDeliveryAddressesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('delivery_addresses');
+        Schema::dropIfExists('customers_orders');
     }
 }

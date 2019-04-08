@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use App\User;
 use http\Env\Response;
 use Illuminate\Http\Request;
@@ -22,8 +23,6 @@ class ProductsController extends BaseController
 
     public function index()
     {
-//        dd(config('concord'));
-//        dd(config('session'));
         $categories = Taxon::all();
         $products = \App\Product::all();
         $properties = Property::all();
@@ -39,8 +38,6 @@ class ProductsController extends BaseController
         try {
             //Parse query-string input
             parse_str($request->form_data, $product_data);
-            parse_url($request->form_data, $product_data_array);
-            return response()->json( $request['form_data']);
             //Generate SKU
             $sku = strtoupper(substr($product_data['name'], 0, 3)) . "-" . $product_data['category_id'];
 
@@ -70,6 +67,16 @@ class ProductsController extends BaseController
                     ->preservingOriginal()
                     ->toMediaCollection('images');
             }
+
+            //Create Delivery Price
+            if($product_data['delivery_price']) {
+                $product->first()->delivery_price()->create([
+                    'amount' => $product_data['delivery_price'],
+                    'delivery_price_type' => get_class($product),
+                    'delivery_price_id' => $product->id,
+                ]);
+            }
+
             return response()->json(['status' => 200, 'message' => 'Product created'], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 400, 'message' => 'Failed to create product'. $e->getMessage()], 400);
@@ -107,6 +114,13 @@ class ProductsController extends BaseController
                 'meta_keywords' => $product_data['tags']
             ]);
 
+            //Update Delivery Price
+            if($product_data['delivery_price']) {
+                $product->first()->delivery_price()->update([
+                    'amount' => $product_data['delivery_price']
+                ]);
+            }
+
 
             //Check if product already has same Taxon to prevent exception
             if($product->first()->taxons()->count()) {
@@ -130,6 +144,8 @@ class ProductsController extends BaseController
                         ->toMediaCollection('images');
                 }
             }
+
+
             return response()->json(['status' => 200, 'message' => 'Product updated'], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 400, 'message' => 'Failed to update product '.$e->getMessage()], 400);
