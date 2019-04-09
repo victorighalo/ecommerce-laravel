@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\User;
-use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Taxon;
-use Illuminate\Support\Facades\Storage;
 use Vanilo\Product\Models\ProductState;
 use Vanilo\Properties\Models\Property;
 use Yajra\Datatables\Datatables;

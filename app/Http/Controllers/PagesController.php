@@ -26,7 +26,7 @@ class PagesController extends BaseController
 
         $categories = Taxon::all()->take(12);
         $products = Product::all()->take(8);
-        return view('pages.index', compact('categories','all_categories', 'cart_count', 'products'));
+        return view('pages.index', compact('categories', 'cart_count', 'products'));
     }
 
     public function getProductList($taxon_slug){

@@ -80,10 +80,7 @@
                     {{--<div class="ps-cart__footer"><a class="ps-btn" href="cart.html">Check out<i class="furniture-next"></i></a></div>--}}
                 {{--</div>--}}
             </div>
-            <form class="ps-form--search" action="do_action" method="post"><i class="furniture-search"></i>
-                <input class="form-control" type="text" placeholder="Find product">
-                <button>Search</button>
-            </form>
+      @include('partials._search')
         </div>
     </nav>
 </header>

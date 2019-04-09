@@ -7,9 +7,12 @@ Route::post('install', 'SettingController@store');
 
 Auth::routes();
 
-
+//Checkout
 Route::get('/checkout', 'CheckoutController@index');
 Route::post('/checkout', 'PaymentController@initializePayStackTrans');
+
+//Search Product
+Route::get('search', 'SearchController@searchProduct')->name('search_product');
 
 //Cart
 Route::get('/cart', 'CartController@index');
@@ -77,3 +80,5 @@ Route::post('/product/rating/add', 'ProductsController@addRating')->name('rate_p
 Route::post('/cart/add', 'CartController@add')->name('add_to_cart');
 Route::post('/cart/update/{cart_item?}', 'CartController@update')->name('update_cart');
 Route::post('/cart/destroy/{cart_item?}', 'CartController@destroy')->name('destroy_cart');
+
+
