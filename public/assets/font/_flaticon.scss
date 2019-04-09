@@ -1,0 +1,83 @@
+    /*
+    Flaticon icon font: Flaticon
+    Creation date: 18/04/2018 13:01
+    */
+
+    @font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+    .fi:before{
+        display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .flaticon-horizontal-grid-layout-interface-symbol:before { content: "\f100"; }
+.flaticon-four-grid-layout-design-interface-symbol:before { content: "\f101"; }
+.flaticon-interface:before { content: "\f102"; }
+.flaticon-signs:before { content: "\f103"; }
+.flaticon-list:before { content: "\f104"; }
+.flaticon-headphone:before { content: "\f105"; }
+.flaticon-support-1:before { content: "\f106"; }
+.flaticon-box-1:before { content: "\f107"; }
+.flaticon-box:before { content: "\f108"; }
+.flaticon-credit-card:before { content: "\f109"; }
+.flaticon-support:before { content: "\f10a"; }
+.flaticon-shipped:before { content: "\f10b"; }
+.flaticon-startup:before { content: "\f10c"; }
+.flaticon-shirt:before { content: "\f10d"; }
+.flaticon-jacket:before { content: "\f10e"; }
+.flaticon-suit-and-tie-outfit:before { content: "\f10f"; }
+.flaticon-lab-coat:before { content: "\f110"; }
+.flaticon-new-sewing-machine:before { content: "\f111"; }
+.flaticon-stylist:before { content: "\f112"; }
+.flaticon-needle-with-thread-to-sew-clothes:before { content: "\f113"; }
+.flaticon-sewing-machine:before { content: "\f114"; }
+.flaticon-measuring-tape:before { content: "\f115"; }
+    
+    $font-Flaticon-horizontal-grid-layout-interface-symbol: "\f100";
+    $font-Flaticon-four-grid-layout-design-interface-symbol: "\f101";
+    $font-Flaticon-interface: "\f102";
+    $font-Flaticon-signs: "\f103";
+    $font-Flaticon-list: "\f104";
+    $font-Flaticon-headphone: "\f105";
+    $font-Flaticon-support-1: "\f106";
+    $font-Flaticon-box-1: "\f107";
+    $font-Flaticon-box: "\f108";
+    $font-Flaticon-credit-card: "\f109";
+    $font-Flaticon-support: "\f10a";
+    $font-Flaticon-shipped: "\f10b";
+    $font-Flaticon-startup: "\f10c";
+    $font-Flaticon-shirt: "\f10d";
+    $font-Flaticon-jacket: "\f10e";
+    $font-Flaticon-suit-and-tie-outfit: "\f10f";
+    $font-Flaticon-lab-coat: "\f110";
+    $font-Flaticon-new-sewing-machine: "\f111";
+    $font-Flaticon-stylist: "\f112";
+    $font-Flaticon-needle-with-thread-to-sew-clothes: "\f113";
+    $font-Flaticon-sewing-machine: "\f114";
+    $font-Flaticon-measuring-tape: "\f115";
