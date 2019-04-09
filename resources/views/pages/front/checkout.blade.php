@@ -69,7 +69,7 @@
                                 <label>State<span>*</span>
                                 </label>
                                 <div class="form-group__content">
-                                    <select name="state" id="state" class="form-control" required>
+                                    <select name="state_id" id="state" class="form-control" required>
                                     @foreach($states as $state)
                                             <option value="{{$state->state_id}}">{{$state->state_name}}</option>
                                         @endforeach
@@ -81,7 +81,7 @@
                                 <label>City<span>*</span>
                                 </label>
                                 <div class="form-group__content">
-                                    <select name="city" id="city" class="form-control" required>
+                                    <select name="city_id" id="city" class="form-control" required>
                                             <option value="" disabled="">Select state</option>
                                     </select>
                                 </div>
@@ -111,7 +111,7 @@
                             <h3 class="mt-40"> Addition information</h3>
                             <div class="form-group form-group--inline textarea">
                                 <label>Order Notes</label>
-                                <textarea class="form-control" rows="7" placeholder="Notes about your order, e.g. special notes for delivery." name="notes"></textarea>
+                                <textarea class="form-control" rows="7" placeholder="Notes about your order, e.g. special notes for delivery." name="additional_info"></textarea>
                             </div>
                         </div>
                     </div>
@@ -125,7 +125,7 @@
                                     <thead>
                                     <tr>
                                         <th class="text-uppercase">Product</th>
-                                        <th class="text-uppercase">Total</th>
+                                        <th class="text-uppercase">Subtotal</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -140,6 +140,12 @@
                                         @endif
                                         @endif
                                     </tbody>
+                                    <tfoot>
+                                    <tr style="color: #fff; font-size: 17px">
+                                        <th>Total</th>
+                                        <th style="text-align: right">{{number_format( Cart::total(), '0', '.', ',')}}</th>
+                                    </tr>
+                                    </tfoot>
                                 </table>
                             </div>
                             <footer>
@@ -178,17 +184,17 @@
 @push('script')
     <script>
         $(document).ready(function () {
-        $("select[name='state']").on('change', function () {
+        $("select[name='state_id']").on('change', function () {
             stateid = $(this).val();
-            $("select[name='city']").empty();
-            $("select[name='city']").append('<option>Loading...</option>');
-            $("select[name='city']").prop('disabled', true);
+            $("select[name='city_id']").empty();
+            $("select[name='city_id']").append('<option>Loading...</option>');
+            $("select[name='city_id']").prop('disabled', true);
             $.post("{!! url('load_cities') !!}",{id: stateid})
                 .done(function(msg) {
-                    $("select[name='city']").empty();
-                    $("select[name='city']").prop('disabled', false);
+                    $("select[name='city_id']").empty();
+                    $("select[name='city_id']").prop('disabled', false);
                     $.each(msg, function (key, value) {
-                        $("select[name='city']").append('<option value="' + value.city_id + '">' + value.city_name + '</option>');
+                        $("select[name='city_id']").append('<option value="' + value.city_id + '">' + value.city_name + '</option>');
                     });
                 })
         });

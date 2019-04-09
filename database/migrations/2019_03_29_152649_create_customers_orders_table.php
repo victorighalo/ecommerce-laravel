@@ -20,7 +20,6 @@ class CreateCustomersOrdersTable extends Migration
             $table->integer('is_shipping');
             $table->integer('shipping_cost')->nullable();
             $table->integer('delivery_id')->unsigned();
-            $table->foreign('order_id')->references('id')->on('customers_orders')->onDelete('cascade');
             $table->integer('session_id')->nullable();
             $table->mediumText('notes')->nullable();
             $table->timestamps();

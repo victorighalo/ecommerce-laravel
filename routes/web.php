@@ -9,7 +9,7 @@ Auth::routes();
 
 
 Route::get('/checkout', 'CheckoutController@index');
-Route::post('/checkout', 'CheckoutController@checkout');
+Route::post('/checkout', 'PaymentController@initializePayStackTrans');
 
 //Cart
 Route::get('/cart', 'CartController@index');
@@ -74,3 +74,6 @@ Route::get('/{taxon_slug}/{product_slug}', 'PagesController@getProductDetails')-
 Route::post('/product/comment/add/{product_id?}', 'ProductsController@addComment')->name('add_comment');
 Route::post('/product/rating/add', 'ProductsController@addRating')->name('rate_product');
 
+Route::post('/cart/add', 'CartController@add')->name('add_to_cart');
+Route::post('/cart/update/{cart_item?}', 'CartController@update')->name('update_cart');
+Route::post('/cart/destroy/{cart_item?}', 'CartController@destroy')->name('destroy_cart');

@@ -44,6 +44,13 @@
                                                     </span>
                                     </div>
 
+                                    <div class="col-sm-2">
+                                        <label for="delivery_price">{{ __('Delivery Price') }}</label>
+                                        <input type="number" name="delivery_price" class="form-control" required>
+                                        <span class="invalid-feedback errorshow" role="alert">
+                                                    </span>
+                                    </div>
+
                                 </div>
 
 
@@ -54,20 +61,20 @@
                                         <span class="invalid-feedback errorshow" role="alert">
                                         </span>
                                     </div>
-                                    <div class="col-sm-12 mt-4">
-                                        <div><label for="">{{ __('Properties') }}</label></div>
-                                    @foreach($properties as $property)
-                                            <label for="">{{$property->name}}
-                                            <select name="product_property" id="" class="form-control" style="
-                                            display: inline;
-                                            width: auto;">
-                                        @foreach($property->values() as $value)
-                                                    <option value="{{$value->value}}">{{$value->value}} {{$value->title}}</option>
-                                        @endforeach
-                                            </select>
-                                            </label>
-                                        @endforeach
-                                    </div>
+                                    {{--<div class="col-sm-12 mt-4">--}}
+                                        {{--<div><label for="">{{ __('Properties') }}</label></div>--}}
+                                    {{--@foreach($properties as $property)--}}
+                                            {{--<label for="">{{$property->name}}--}}
+                                            {{--<select name="product_property" id="" class="form-control" style="--}}
+                                            {{--display: inline;--}}
+                                            {{--width: auto;">--}}
+                                        {{--@foreach($property->values() as $value)--}}
+                                                    {{--<option value="{{$value->value}}">{{$value->value}} {{$value->title}}</option>--}}
+                                        {{--@endforeach--}}
+                                            {{--</select>--}}
+                                            {{--</label>--}}
+                                        {{--@endforeach--}}
+                                    {{--</div>--}}
                                     <div class="col-sm-12 mt-4">
                                         <div class=" text-left">
 

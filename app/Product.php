@@ -46,4 +46,9 @@ class Product extends BaseProduct implements Buyable, HasMedia
             ->width(50)
             ->height(50);
     }
+
+    public function delivery_price()
+    {
+        return $this->morphOne('App\DeliveryPrice', 'delivery_price');
+    }
 }

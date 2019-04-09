@@ -12,16 +12,9 @@ class TestPages extends TestCase
      *
      * @return void
      */
-    public function testHomeTest()
+    public function testBasicTest()
     {
         $response = $this->get('/');
-
-        $response->assertStatus(200);
-    }
-
-    public function testOffice()
-    {
-        $response = $this->get('/office/products');
 
         $response->assertStatus(200);
     }
