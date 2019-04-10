@@ -4,12 +4,13 @@
         <!-- About Sec -->
         <div class="acces-ser">
             <!-- Heading -->
+            <div class="heading text-center">
+                <h4>Available categories</h4>
+                <hr>
+            </div>
             <div class="row">
                 @foreach($categories as $category)
-                <div class="col-sm-4">
-                    <article> <img class="img-responsive" src="images/access-img-1.jpg" alt="" >
-                        <h6>{{$category->taxonomy->name}}</h6>
-                    </article>
+                <div class="col-sm-2 col-xs-3 padding-10">
                     <a href="{{route('get_category_content', ['taxon_slug' => $category->slug])}}" class="btn by">{{$category->name}}</a>
                 </div>
                     @endforeach

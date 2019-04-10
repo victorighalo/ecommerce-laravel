@@ -14,7 +14,6 @@ use willvincent\Rateable\Rateable;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Vanilo\Category\Models\TaxonProxy;
 use BrianFaust\Commentable\Traits\HasComments;
-use Laravel\Scout\Searchable;
 
 class Product extends BaseProduct implements Buyable, HasMedia
 {
@@ -24,9 +23,7 @@ class Product extends BaseProduct implements Buyable, HasMedia
         BuyableImageSpatieV7,
         HasComments,
         HasPropertyValues,
-        HasMediaTrait,
-        Searchable
-        ;
+        HasMediaTrait;
 
     public function morphTypeName(): string
 {
