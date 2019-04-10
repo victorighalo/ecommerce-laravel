@@ -1,119 +1,115 @@
-@extends('layouts.main')
+@extends('layouts.newmain')
 
 @section('content')
-    @include('partials.hero', ['page' => 'Cart page'])
-    <div class="ps-content">
-        <div class="ps-container">
-            <div class="ps-cart-listing">
-                @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>
-                @endif
-                    @if (session('error'))
-                        <div class="alert alert-danger">
-                            {{ session('error') }}
-                        </div>
-                    @endif
 
-                    @if(count($cart))
-                <table class="table ps-cart__table">
-                    <thead>
-                    <tr>
-                        <th>All Products</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($cart as $item)
-                    <tr>
-                        <td><a class="ps-product--compare" href="product-detail.html">
-                                <img class="mr-15" src="{{env('APP_URL').$item->product->getMedia('images')->first()->getUrl()}}" alt="">
-                                {{$item->product->name}}</a></td>
-                        <td>
-                            <span>&#8358;</span> {{number_format($item->price, '0', '.', ',')}}
-                         </td>
-                        <td>
-                            <div class="form-group--number">
-                                <button class="minus"><span>-</span></button>
-                                <input class="form-control" type="text" value="{{$item->quantity}}" data-cart_id="{{$item->id}}">
-                                <button class="plus"><span>+</span></button>
-                            </div>
-                        </td>
-                        <td>
-                            <span>&#8358;</span> {{number_format( ($item->price * $item->quantity), '0', '.', ',')}}
-                        </td>
-                        <td>
-                            <div data-cart_id="{{$item->id}}" class="ps-remove destroy"></div>
-                        </td>
-                    </tr>
+    <!--======= SUB BANNER =========-->
+    @include('partials.frontend.sub_banner', ['title' => 'Cart'])
+    <div id="content">
+
+    @if(count($cart))
+        <!-- PAGES INNER -->
+        <section class="padding-top-100 padding-bottom-100 pages-in chart-page">
+            <div class="container">
+
+                <!-- Payments Steps -->
+                <div class="shopping-cart text-center">
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col" class="text-left">Items</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Qty</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($cart as $item)
+                        <tr>
+                            <th class="text-left"> <!-- Media Image -->
+                                <a href="#." class="item-img">
+                                    <img class="media-object" src="{{env('APP_URL').$item->product->getMedia('images')->first()->getUrl()}}" alt=""> </a>
+                                <!-- Item Name -->
+                                <div class="media-body">
+                                    <span>{{$item->product->name}}</span>
+                                </div>
+                            </th>
+                            <td><span class="price"> <small>&#8358;</small> {{number_format($item->price, '0', '.', ',')}}</span></td>
+                            <td>
+                                <div class="quantity">
+                                    <input type="number" min="1" max="100" step="1" value="{{$item->quantity}}" class="form-control qty" data-cart_id="{{$item->id}}">
+                                </div>
+                            </td>
+                            <td><span class="price"> <small>&#8358;</small> {{number_format( ($item->price * $item->quantity), '0', '.', ',')}}</span></td>
+                            <td><a href="#." data-cart_id="{{$item->id}}" class="destroy"><i class="icon-close"></i></a></td>
+                        </tr>
                         @endforeach
-                    </tbody>
-                </table>
-                <div class="ps-cart__actions">
-                    <div class="ps-cart__promotion">
-                        <div class="form-group">
-                            <a href="{{url('/')}}" class="ps-btn ps-btn--gray">Continue Shopping</a>
-                        </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        @else
+            <div class="alert alert-info">
+                <div class="container">
+                    <div class="alert-icon">
+                        <i class="fa fa-exclamation-circle"></i>
                     </div>
-                    <div class="">
-                        <h3>Total Price:  <span>&#8358;</span> {{number_format( ($item->total()), '0', '.', ',')}}</h3><a class="ps-btn" href="{{url('checkout')}}">Proceed to checkout</a>
+                    <h5>Your cart is empty</h5>
+                </div>
+            </div>
+        @endif
+
+        <!-- PAGES INNER -->
+        @if(count($cart))
+        <section class="padding-top-100 padding-bottom-100 light-gray-bg shopping-cart small-cart">
+            <div class="container">
+
+                <!-- SHOPPING INFORMATION -->
+                <div class="cart-ship-info margin-top-0">
+                    <div class="row">
+
+                        <!-- DISCOUNT CODE -->
+                        <div class="col-sm-7">
+                            {{--<h6>Discound Code</h6>--}}
+                            {{--<form>--}}
+                                {{--<input type="text" value="" placeholder="ENTER YOUR CODE IF YOU HAVE ONE">--}}
+                                {{--<button type="submit" class="btn btn-small btn-dark">APPLY CODE</button>--}}
+                            {{--</form>--}}
+                            <div class="coupn-btn"> <a href="{{url('/')}}" class="btn">continue shopping</a></div>
+                        </div>
+
+                        <!-- SUB TOTAL -->
+                        <div class="col-sm-5">
+                            <h6>Grand Total</h6>
+                            <div class="grand-total">
+                                <div class="order-detail">
+                                    @foreach($cart as $item)
+                                    <p>{{$item->product->name}} <span>&#8358; {{number_format($item->price, '0', '.', ',')}} </span></p>
+                                    @endforeach
+
+                                    <!-- SUB TOTAL -->
+                                    <p class="all-total">TOTAL COST <span>&#8358; {{number_format( Cart::total(), '0', '.', ',')}}</span></p>
+                                </div>
+                                <a href="{{url('checkout')}}" class="btn margin-top-20">Proceed to checkout</a> </div>
+                        </div>
                     </div>
                 </div>
-                        @else
-                        <div class="alert alert-info text-center">
-                            Cart is empty
-                        </div>
-                        @endif
             </div>
-        </div>
+        </section>
+            @endif
     </div>
-@endsection
-
+    @endsection
 @push('script')
-    <script src="{{ asset('js/app.js')}}"></script>
-
+    <script src="{{ asset('assets/js/lodash.min.js')}}"></script>
     <script>
 
         $(document).ready(function () {
 
-            var minus = function() {
-                var cart_id = $(this).next().data('cart_id');
+            var update = function() {
+                var cart_id = $(this).data('cart_id');
                 $.post('{!! route('update_cart') !!}'+'/'+cart_id, {
-                    qty: $(this).next().val(),
-                    "_token": "{{ csrf_token() }}",
-                })
-                    .done(function (data) {
-                        Snackbar.show({
-                            showAction: true,
-                            text: 'Cart updated.',
-                            actionTextColor: '#ffffff',
-                            backgroundColor:"#53A6E8",
-                            actionText: 'Close!',
-                            pos: 'top-right'
-                        });
-                        setTimeout(function () {
-                            location.reload()
-                        }, 2000);
-                    })
-                    .fail(function (error) {
-                        Snackbar.show({
-                            showAction: true,
-                            text: 'Cart update failed!.',
-                            actionTextColor: '#ffffff',
-                            backgroundColor:"#FE970D",
-                            actionText: 'Close!',
-                            pos: 'top-right'
-                        });
-                    })
-            };
-            var plus = function() {
-                var cart_id = $(this).prev().data('cart_id');
-                $.post('{!! route('update_cart') !!}'+'/'+cart_id, {
-                    qty: $(this).prev().val(),
+                    qty: $(this).val(),
                     "_token": "{{ csrf_token() }}",
                 })
                     .done(function (data) {
@@ -176,17 +172,14 @@
                     })
             };
 
-            $(".minus").on({
-                click: _.debounce(minus, 500)
-            });
-
-            $(".plus").on({
-                click: _.debounce(plus, 500)
+            $(".qty").on({
+                change: _.debounce(update, 500)
             });
 
             $(".destroy").on({
                 click: _.debounce(destroy, 500)
             });
+
         });
 
     </script>

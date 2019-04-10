@@ -25,38 +25,35 @@ class PagesController extends BaseController
         }
 
         $categories = Taxon::all()->take(12);
-        $products = Product::all()->take(8);
-        return view('pages.index', compact('categories', 'cart_count', 'products'));
+        $latest_products = \App\Product::active()->new()->get();
+
+        return view('pages.index', compact('categories', 'cart_count', 'latest_products'));
     }
 
     public function getProductList($taxon_slug){
-        if(Cart::exists()){
-            $cart_count = Cart::itemCount();
-        }else{
-            $cart_count = 0;
-        }
         $taxon = Taxon::findBySlug($taxon_slug);
-
+        $categories = Taxon::all();
         if($taxon) {
-            $products = $taxon->products()->paginate(20)->onEachSide(2);
+            $products = $taxon->products()->paginate(30)->onEachSide(2);
             $now = Carbon::now();
-            return view('pages.front.product_list', compact('products', 'now', 'cart_count', 'taxon_slug'));
+            $title = $taxon->name;
+            return view('pages.front.products_by_category', compact('products', 'now', 'taxon_slug', 'title', 'categories'));
         }else{
             abort(404);
         }
     }
 
     public function getProductDetails($taxon_slug, $product_slug){
-//        var_dump(config('vanillo.cart.session_key'));
-//        var_dump(session()->get(config('vanillo.cart.session_key')));
         if(Cart::exists()){
             $cart_count = Cart::itemCount();
         }else{
             $cart_count = 0;
         }
+        $slug = $product_slug;
         $product = \App\Product::where('slug', $product_slug)->first();
+        $title = $product ? $product->title() : '';
         $tags = $product->meta_keywords ? explode(",", $product->meta_keywords) : null;
         $ratings = $product->averageRating() ;
-        return view('pages.front.product_detail', compact('product', 'tags', 'ratings', 'cart_count'));
+        return view('pages.front.single_product', compact('product', 'tags', 'ratings', 'cart_count', 'title'));
     }
 }

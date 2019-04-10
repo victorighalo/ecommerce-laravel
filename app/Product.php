@@ -51,4 +51,12 @@ class Product extends BaseProduct implements Buyable, HasMedia
     {
         return $this->morphOne('App\DeliveryPrice', 'delivery_price');
     }
+
+    public function scopeNew($query){
+        return $query->limit(20);
+    }
+
+    public function scopeActive($query){
+        return $query->where('state', 'active');
+    }
 }

@@ -9,6 +9,8 @@ Auth::routes();
 
 //Checkout
 Route::get('/checkout', 'CheckoutController@index');
+Route::get('/contact', 'CommonController@contact');
+Route::get('/about', 'CommonController@about');
 Route::post('/checkout', 'PaymentController@initializePayStackTrans');
 
 //Search Product
@@ -71,7 +73,7 @@ Route::put('/settings/update', 'SettingController@update');
 });
 
 //Frontend
-Route::get('/{taxon_slug}', 'PagesController@getProductList')->name('getCategoryContent');
+Route::get('/{taxon_slug}', 'PagesController@getProductList')->name('get_category_content');
 Route::get('/{taxon_slug}/{product_slug}', 'PagesController@getProductDetails')->name('getProductDetails');
 
 Route::post('/product/comment/add/{product_id?}', 'ProductsController@addComment')->name('add_comment');

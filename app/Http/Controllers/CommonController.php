@@ -14,4 +14,16 @@ class CommonController extends Controller
     public function addAddress(Request $request){
 
     }
+
+    public function contact(){
+        return view('pages.front.contact');
+    }
+
+    public function about(){
+        return view('pages.front.about');
+    }
+
+    public function sendEmail(){
+
+    }
 }

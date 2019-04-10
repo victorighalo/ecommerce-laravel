@@ -1,3 +1,49 @@
+<div class="top-bar">
+    <div class="container-full">
+        <p><i class="icon-envelope"></i> Info@boshop.com </p>
+        <p class="call"> <i class="icon-call-in"></i> 001 234 7895 </p>
+
+        <!-- Login Info -->
+        <div class="login-info">
+            <ul>
+                <li><a href="login.html">LOGIN</a></li>
+                <li><a href="#."> MY ACCOUNT </a></li>
+                <li><a href="{{url('cart')}}">MY CART</a></li>
+
+                <!-- USER BASKET -->
+                <li class="dropdown user-basket"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> (2) Items <i class="icon-basket-loaded"></i> </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="media-left">
+                                <div class="cart-img"> <a href="#"> <img class="media-object img-responsive" src="images/cart-img-1.jpg" alt="..."> </a> </div>
+                            </div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Rise Skinny Jeans</h6>
+                                <span class="price">129.00 USD</span> <span class="qty">QTY: 01</span> </div>
+                        </li>
+                        <li>
+                            <div class="media-left">
+                                <div class="cart-img"> <a href="#"> <img class="media-object img-responsive" src="images/cart-img-2.jpg" alt="..."> </a> </div>
+                            </div>
+                            <div class="media-body">
+                                <h6 class="media-heading">Mid Rise Skinny Jeans</h6>
+                                <span class="price">129.00 USD</span> <span class="qty">QTY: 01</span> </div>
+                        </li>
+                        <li>
+                            <h5 class="text-left">SUBTOTAL: <small> 258.00 USD </small></h5>
+                        </li>
+                        <li class="margin-0">
+                            <div class="row">
+                                <div class="col-sm-6"> <a href="{{url('cart')}}" class="btn">VIEW CART</a></div>
+                                <div class="col-sm-6 "> <a href="{{url('checkout')}}" class="btn">CHECK OUT</a></div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
 <header class="sticky">
     <div class="container">
 
@@ -41,7 +87,7 @@
                             <li> <a href="blog-detail_01.html">Blog Detail 01 </a> </li>
                         </ul>
                     </li>
-                    <li> <a href="about-us_01.html">About </a> </li>
+                    <li> <a href="{{url('about')}}">About </a> </li>
 
                     <!-- Two Link Option -->
                     <li class="dropdown"> <a href="#." class="dropdown-toggle" data-toggle="dropdown">Collection</a>
@@ -156,7 +202,7 @@
                             <div class="mega-menu-elements"> <img src="images/nav-img.png" alt="" > <a href="#." class="btn btn-inverse">Shop Now</a> </div>
                         </div>
                     </li>
-                    <li> <a href="contact.html"> contact</a> </li>
+                    <li> <a href="{{url('contact')}}"> contact</a> </li>
                 </ul>
             </div>
 
@@ -166,15 +212,15 @@
                     <!-- USER INFO -->
                     <li> <a href="#"><i class="lnr lnr-user"></i> </a></li>
                     <!-- USER BASKET -->
-                    <li> <a href="shopping-cart.html"><span class="c-no">2</span><i class="lnr lnr-cart"></i> </a> </li>
+                    <li> <a href="{{url('cart')}}"><span class="c-no">{{Cart::itemCount()}}</span><i class="lnr lnr-cart"></i> </a> </li>
                     <!-- SEARCH BAR -->
                     <li> <a href="javascript:void(0);" class="search-open"><i class="lnr lnr-magnifier"></i></a>
                         <div class="search-inside animated bounceInUp"> <i class="icon-close search-close"></i>
                             <div class="search-overlay"></div>
                             <div class="position-center-center">
                                 <div class="search">
-                                    <form>
-                                        <input type="search" placeholder="Search Shop">
+                                    <form action="{{url('search')}}" method="get">
+                                        <input type="search" placeholder="Search Shop" name="product">
                                         <button type="submit"><i class="icon-check"></i></button>
                                     </form>
                                 </div>

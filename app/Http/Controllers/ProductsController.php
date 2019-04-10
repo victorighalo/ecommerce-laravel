@@ -253,10 +253,10 @@ class ProductsController extends BaseController
     public function addComment($product_id, Request $request){
         $request->validate([
             'title' => 'required|max:255',
-            'body' => 'required',
+            'comment' => 'required',
         ]);
         try {
-            $user = Auth::check() ? Auth::user()->firstname : User::where('firstname', 'guest')->first();
+            $user = Auth::check() ? Auth::user() : User::where('firstname', 'guest');
             $product = \App\Product::where('id', $product_id)->first();
             $product->comment([
                 'title' => $request->title,

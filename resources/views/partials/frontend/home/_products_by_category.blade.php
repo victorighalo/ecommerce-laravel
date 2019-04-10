@@ -12,9 +12,9 @@
                 @foreach($all_categories as $i => $category)
                     @if($category->products->count() > 0)
                         @if($i == 0)
-                        <li class="nav-item"> <a class="active" id="{{$category->taxonomy->name}}" data-toggle="tab" href="#{{$category->taxonomy->name}}" role="tab" aria-selected="true">{{$category->name}} - {{$category->taxonomy->name}}</a> </li>
+                        <li class="nav-item"> <a class="active"  data-toggle="tab" href="#{{$category->taxonomy->name}}" role="tab" aria-selected="true">{{$category->name}} - {{$category->taxonomy->name}}</a> </li>
                         @else
-                         <li class="nav-item"> <a class="" id="{{$category->taxonomy->name}}" data-toggle="tab" href="#{{$category->taxonomy->name}}" role="tab" aria-selected="true">{{$category->name}} - {{$category->taxonomy->name}}</a> </li>
+                         <li class="nav-item"> <a class=""  data-toggle="tab" href="#{{$category->taxonomy->name}}" role="tab" aria-selected="true">{{$category->name}} - {{$category->taxonomy->name}}</a> </li>
                         @endif
                         @endif
                 @endforeach

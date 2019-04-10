@@ -26,15 +26,6 @@ class HomeController extends BaseController
      */
     public function index()
     {
-
-        if(Cart::exists()){
-            $cart_count = Cart::itemCount();
-        }else{
-            $cart_count = 0;
-        }
-
-        $categories = Taxon::all();
-        return view('pages.index', compact('categories', 'cart_count'));
     }
 
 

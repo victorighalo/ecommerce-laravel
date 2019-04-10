@@ -2,15 +2,24 @@
     <div class="container-full">
         <div class="insta-g">
             <div class="position-center-center">
-                <h3>From The @instgram</h3>
+                <h3>Follow us</h3>
             </div>
             <ul>
-                <li><img src="images/insta-post-1.jpg" alt="" ></li>
-                <li><img src="images/insta-post-2.jpg" alt="" ></li>
-                <li><img src="images/insta-post-6.jpg" alt="" ></li>
-                <li><img src="images/insta-post-4.jpg" alt="" ></li>
-                <li><img src="images/insta-post-5.jpg" alt="" ></li>
-                <li><img src="images/insta-post-3.jpg" alt="" ></li>
+                @if($app_settings->store_facebook != "")
+                    <li><a href="{{$app_settings->store_facebook}}"><i class="fa fa-facebook"></i></a></li>
+                @endif
+                @if($app_settings->store_twitter != "")
+                    <li><a href="{{$app_settings->store_twitter}}"><i class="fa fa-twitter"></i></a></li>
+                @endif
+                @if($app_settings->store_instagram != "")
+                    <li><a href="{{$app_settings->store_instagram}}"><i class="fa fa-instagram"></i></a></li>
+                @endif
+                @if($app_settings->store_youtube != "")
+                    <li><a href="{{$app_settings->store_youtube}}"><i class="fa fa-youtube"></i></a></li>
+                @endif
+                @if($app_settings->store_linkedin != "")
+                    <li><a href="{{$app_settings->store_linkedin}}"><i class="fa fa-linkedin"></i></a></li>
+                @endif
             </ul>
         </div>
     </div>
@@ -20,12 +29,9 @@
             <!-- ABOUT Location -->
             <div class="col-md-4">
                 <div class="about-footer"> <img class="margin-bottom-30" src="images/logo-foot.png" alt="" >
-                    <p><i class="icon-pointer"></i> Street No. 12, Newyork 12, <br>
-                        MD - 123, USA.</p>
-                    <p><i class="icon-call-end"></i> 1.800.123.456789 <br>
-                        1.800.123.456789</p>
-                    <p><i class="icon-envelope"></i> info@BoShop.com <br>
-                        contact@BoShop.com</p>
+                    <p><i class="icon-pointer"></i> {{$app_settings->store_address ? $app_settings->store_address : ""}}</p>
+                    <p><i class="icon-call-end"></i> {{$app_settings->store_phone ? $app_settings->store_phone : ""}}</p>
+                    <p><i class="icon-envelope"></i>  {{$app_settings->store_email ? $app_settings->store_email : ""}}</p>
                 </div>
             </div>
 
@@ -33,7 +39,7 @@
             <div class="col-md-5">
                 <h6>Links</h6>
                 <ul class="link two-half">
-                    <li><a href="#."> Products</a></li>
+                    <li><a href="{{url('about')}}"> About</a></li>
                     <li><a href="#."> Find a Store</a></li>
                     <li><a href="#."> Features</a></li>
                     <li><a href="#."> Privacy Policy</a></li>
@@ -68,7 +74,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <p>©  2018 BoShop All right reserved. <a href="https://webicode.com/">webicode</a></p>
+                    <p>©  2019 - {{date('Y')}} {{$app_settings->store_name}} All right reserved. <a href="">{{$app_settings->store_name}}</a></p>
                 </div>
                 <div class="col-md-6 text-right"> <img src="images/card-icon.png" alt="" > </div>
             </div>

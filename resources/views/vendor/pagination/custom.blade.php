@@ -1,5 +1,5 @@
 @if ($paginator->hasPages())
-    <ul class="pagination" role="navigation">
+    <ul class="pagination in-center" role="navigation">
         {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())
             <li class="disabled" aria-disabled="true"><a href="#"> <i class="fa fa-angle-left"></i></a></li>
