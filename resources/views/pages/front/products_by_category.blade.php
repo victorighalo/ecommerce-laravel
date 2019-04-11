@@ -97,49 +97,7 @@
             </div>
         </section>
 
-        <!-- About -->
-        <section class="small-about">
-            <div class="container-full">
-                <div class="news-letter padding-top-150 padding-bottom-150">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <h3>We always stay with our clients and respect their business. We deliver 100% and provide instant response to help them succeed in constantly changing and challenging business world. </h3>
-                            <ul class="social_icons">
-                                <li><a href="#."><i class="icon-social-facebook"></i></a></li>
-                                <li><a href="#."><i class="icon-social-twitter"></i></a></li>
-                                <li><a href="#."><i class="icon-social-tumblr"></i></a></li>
-                                <li><a href="#."><i class="icon-social-youtube"></i></a></li>
-                                <li><a href="#."><i class="icon-social-dribbble"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6">
-                            <h3>Subscribe Our Newsletter</h3>
-                            <span>Phasellus lacinia fermentum bibendum. Interdum et malesuada fames ac.</span>
-                            <form>
-                                <input type="email" placeholder="Enter your email address" required>
-                                <button type="submit">Subscribe</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Clients -->
-        <section class="clients light-gray-bg padding-top-60 padding-bottom-80">
-            <div class="container-full">
-                <div class="clients-slide">
-                    <div> <img src="images/c-mg-1.png" alt="" > </div>
-                    <div> <img src="images/c-mg-2.png" alt="" > </div>
-                    <div> <img src="images/c-mg-3.png" alt="" > </div>
-                    <div> <img src="images/c-mg-1.png" alt="" > </div>
-                    <div> <img src="images/c-mg-2.png" alt="" > </div>
-                    <div> <img src="images/c-mg-3.png" alt="" > </div>
-                    <div> <img src="images/c-mg-1.png" alt="" > </div>
-                    <div> <img src="images/c-mg-2.png" alt="" > </div>
-                    <div> <img src="images/c-mg-3.png" alt="" > </div>
-                </div>
-            </div>
-        </section>
+        {{--Product request--}}
+        @include('partials.frontend.product_request')
     </div>
 @endsection

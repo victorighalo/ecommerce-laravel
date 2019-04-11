@@ -32,7 +32,7 @@
                                                        class="form-control">
                                             </label>
                                             @if ($errors->has('email'))
-                                                <span class="invalid-feedback" role="alert">
+                                                <span role="alert">
                                             <strong>{{ $errors->first('email') }}</strong>
                                         </span>
                                             @endif
@@ -45,7 +45,7 @@
                                                        name="password" required class="form-control">
                                             </label>
                                             @if ($errors->has('password'))
-                                                <span class="invalid-feedback" role="alert">
+                                                <span role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                             @endif
@@ -58,7 +58,13 @@
 
                                         <!-- FORGET PASS -->
                                         <li class="col-md-6">
-                                            <div class="margin-top-15 text-right"><a href="#.">Forget Password</a></div>
+                                            <div class="margin-top-15 text-right">
+                                                @if (Route::has('password.request'))
+                                                    <a  href="{{ route('password.request') }}">
+                                                        {{ __('Forgot Your Password?') }}
+                                                    </a>
+                                                @endif
+                                            </div>
                                         </li>
                                     </ul>
                                 </form>
@@ -69,34 +75,5 @@
             </div>
         </section>
 
-        <!-- About -->
-        <section class="small-about">
-            <div class="container-full">
-                <div class="news-letter padding-top-150 padding-bottom-150">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <h3>We always stay with our clients and respect their business. We deliver 100% and provide
-                                instant response to help them succeed in constantly changing and challenging business
-                                world. </h3>
-                            <ul class="social_icons">
-                                <li><a href="#."><i class="icon-social-facebook"></i></a></li>
-                                <li><a href="#."><i class="icon-social-twitter"></i></a></li>
-                                <li><a href="#."><i class="icon-social-tumblr"></i></a></li>
-                                <li><a href="#."><i class="icon-social-youtube"></i></a></li>
-                                <li><a href="#."><i class="icon-social-dribbble"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6">
-                            <h3>Subscribe Our Newsletter</h3>
-                            <span>Phasellus lacinia fermentum bibendum. Interdum et malesuada fames ac.</span>
-                            <form>
-                                <input type="email" placeholder="Enter your email address" required>
-                                <button type="submit">Subscribe</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </div>
 @endsection

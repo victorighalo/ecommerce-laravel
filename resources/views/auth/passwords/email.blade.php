@@ -1,47 +1,62 @@
-@extends('layouts.app')
+@extends('layouts.newmain')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+    <div id="content">
 
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
+        <!-- PAGES INNER -->
+        <section class="chart-page login gray-bg padding-top-100 padding-bottom-100">
+            <div class="container">
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                <!-- Payments Steps -->
+                <div class="shopping-cart">
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                    <!-- SHOPPING INFORMATION -->
+                    <div class="cart-ship-info">
+                        <div class="row">
 
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                            <!-- Login Register -->
+                            <div class="col-sm-7 center-block">
+                                @if (session('status'))
+                                    <div class="alert alert-success" role="alert">
+                                        {{ session('status') }}
+                                    </div>
                                 @endif
-                            </div>
-                        </div>
+                                <h3 class="text-center margin-40">{{ __('Reset Password') }}</h3>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
+                                <!-- Login -->
+                                <form method="POST" action="{{ route('password.email') }}">
+                                    @csrf
+                                    <ul class="row">
+                                        <!-- Email -->
+                                        <li class="col-md-12">
+                                            <label> {{ __('E-Mail Address') }}
+                                                <input id="email" type="email"
+                                                       class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                                       name="email" value="{{ old('email') }}" required autofocus
+                                                       class="form-control">
+                                            </label>
+                                            @if ($errors->has('email'))
+                                                <span role="alert">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                            @endif
+                                        </li>
+
+                                        <!-- LOGIN -->
+                                        <li class="col-md-6">
+                                            <button type="submit" class="btn">  {{ __('Send Password Reset Link') }}</button>
+                                        </li>
+
+
+                                    </ul>
+                                </form>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+
     </div>
-</div>
 @endsection

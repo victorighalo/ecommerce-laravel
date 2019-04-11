@@ -30,6 +30,7 @@
 
                 @guest
                 <li><a href="{{url('login')}}">LOGIN</a></li>
+                <li><a href="{{url('register')}}">REGISTER</a></li>
                 @else
                     <li><a href="#."> MY ACCOUNT </a></li>
                     <li>

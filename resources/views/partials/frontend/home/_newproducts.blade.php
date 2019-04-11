@@ -20,14 +20,7 @@
                         <img class="img-1" src="{{env('APP_URL').$product->getMedia('images')->first()->getUrl()}}" alt="{{$product->title()}}">
                         <img class="img-2" src="{{env('APP_URL').$product->getMedia('images')->first()->getUrl()}}" alt="{{$product->title()}}">
                     @endif
-                    <!-- Overlay -->
-                    <div class="overlay">
-                        <div class="position-bottom">
-                            <div class="inn">
-                                <a href="images/product-1.jpg" data-lighter><i class="icon-magnifier"></i></a>
-                                <a href="#." data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="icon-basket"></i></a> <a href="#." data-toggle="tooltip" data-placement="top" title="Add To WishList"><i class="icon-heart"></i></a></div>
-                        </div>
-                    </div>
+
                 </div>
 
                 <!-- Item Name -->

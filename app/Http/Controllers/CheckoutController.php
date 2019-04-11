@@ -24,7 +24,7 @@ class CheckoutController extends Controller
         }
         $states = DB::table('states')->get();
         $addresses = DeliveryAddress::where('user_id', Auth::id())->get();
-        return view('pages.front.checkout', compact('cart_count', 'cart', 'states', 'addresses'));
+        return view('pages.front.checkout', compact(  'states', 'addresses'));
     }
 
     public function checkout(CheckoutRequest $request)

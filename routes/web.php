@@ -11,7 +11,7 @@ Auth::routes();
 Route::get('/checkout', 'CheckoutController@index');
 Route::get('/contact', 'CommonController@contact');
 Route::get('/about', 'CommonController@about');
-Route::post('/checkout', 'PaymentController@initializePayStackTrans');
+Route::post('/checkout', 'Payment\PaymentController@initializePayStackTrans');
 
 //Search Product
 Route::get('search', 'SearchController@searchProduct')->name('search_product');

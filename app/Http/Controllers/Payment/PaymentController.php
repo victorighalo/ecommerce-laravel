@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Payment;
 
 
 use App\Transactions;
@@ -10,6 +10,7 @@ use App\Http\Proxy\PayStackProxy;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Vanilo\Cart\Facades\Cart;
+use App\Http\Controllers\Controller;
 
 class PaymentController extends Controller
 {
@@ -22,19 +23,17 @@ class PaymentController extends Controller
     }
     
     public function initializePayStackTrans(Request $request){
-
         $trans_email = Auth::guest() ? $request->email : Auth::user()->email;
         $user_id = Auth::guest() ? Auth::id() : null;
         $amount = (Cart::total() * 100);
         $uuid = bin2hex(random_bytes(10)) ;
         $ref = trim($uuid);
         $initPayStack = $this->payStackProxy->initializeTransaction($trans_email, $amount , $ref);
-
-        if($initPayStack){
+        if($initPayStack->status){
 //            $this->createTransaction($amount, $trans_email, $user_id,$uuid, $request);
-            return redirect($initPayStack->authorization_url);
+            return redirect()->away($initPayStack->data->authorization_url);
         }else{
-            dd('Failed to contact Payment server');
+            return back()->with(['error' => $initPayStack->message]);
         }
     }
     protected function createTransaction($amount, $trans_email,$user_id,$uuid, Request $request){

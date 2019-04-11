@@ -13,7 +13,36 @@
 
                 <!-- Payments Steps -->
                 <div class="shopping-cart">
-
+                    <div class="row">
+                        <div class="col-md-12">
+                            @if (session('status'))
+                                <div class="alert alert-success">
+                                    <div class="container">
+                                        <div class="alert-icon">
+                                            <i class="fa fa-check"></i>
+                                        </div>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                                        </button>
+                                        {{ session('status') }}
+                                    </div>
+                                </div>
+                            @endif
+                            @if (session('error'))
+                                <div class="alert alert-danger">
+                                    <div class="container">
+                                        <div class="alert-icon">
+                                            <i class="fa fa-exclamation-circle"></i>
+                                        </div>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                                        </button>
+                                        {{ session('error') }}
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
                     <!-- SHOPPING INFORMATION -->
                     <div class="cart-ship-info">
                         <div class="row">
@@ -72,7 +101,7 @@
                                                     <textarea class="form-control" rows="7" placeholder="Notes about your order, e.g. special notes for delivery." name="additional_info"></textarea>
                                                     </div>
                                     </div>
-                                </form>
+
                             </div>
 
                             <!-- SUB TOTAL -->
@@ -80,13 +109,16 @@
                                 <h6>Your Order</h6>
                                 <div class="order-place">
                                     <div class="order-detail">
-                                        {{--@php--}}
-                                        {{--$delivery_cost--}}
-                                        {{--@endphp--}}
-                                        @foreach($cart as $item)
+                                        @php
+                                        $delivery_cost = 0;
+                                        @endphp
+                                        @foreach(Cart::getItems() as $item)
                                             <p>{{$item->product->name}} <span>&#8358; {{number_format($item->price, '0', '.', ',')}} </span></p>
+                                            @php
+                                                $delivery_cost += $item->product->delivery_cost;
+                                            @endphp
                                         @endforeach
-                                            <p>Shipping <span>&#8358; 300000 </span></p>
+                                            <p>Shipping <span>&#8358; {{$delivery_cost}} </span></p>
                                         <!-- SUB TOTAL -->
                                             <p class="all-total">TOTAL COST <span>&#8358; {{number_format( Cart::total(), '0', '.', ',')}}</span></p>
                                     </div>
@@ -111,7 +143,7 @@
                                                 </div>
                                             </li>
                                         </ul>
-                                        <a href="#." class="btn  btn-dark pull-right margin-top-30">PLACE ORDER</a> </div>
+                                        <button href="" class="btn  btn-dark pull-right margin-top-30" type="submit">PLACE ORDER</button> </div>
                                     </form>
                                 </div>
                             </div>
@@ -121,33 +153,6 @@
             </div>
         </section>
 
-        <!-- About -->
-        <section class="small-about">
-            <div class="container-full">
-                <div class="news-letter padding-top-150 padding-bottom-150">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <h3>We always stay with our clients and respect their business. We deliver 100% and provide instant response to help them succeed in constantly changing and challenging business world. </h3>
-                            <ul class="social_icons">
-                                <li><a href="#."><i class="icon-social-facebook"></i></a></li>
-                                <li><a href="#."><i class="icon-social-twitter"></i></a></li>
-                                <li><a href="#."><i class="icon-social-tumblr"></i></a></li>
-                                <li><a href="#."><i class="icon-social-youtube"></i></a></li>
-                                <li><a href="#."><i class="icon-social-dribbble"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6">
-                            <h3>Subscribe Our Newsletter</h3>
-                            <span>Phasellus lacinia fermentum bibendum. Interdum et malesuada fames ac.</span>
-                            <form>
-                                <input type="email" placeholder="Enter your email address" required>
-                                <button type="submit">Subscribe</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </div>
     @endsection
 

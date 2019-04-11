@@ -2,8 +2,6 @@
 
 @section('content')
 
-    <!--======= SUB BANNER =========-->
-    @include('partials.frontend.sub_banner', ['title' => 'Login'])
     <div id="content">
 
         <!-- PAGES INNER -->
@@ -19,47 +17,80 @@
 
                             <!-- Login Register -->
                             <div class="col-sm-7 center-block">
+                                <h3 class="text-center margin-40">Register</h3>
 
-                                <!-- Nav Tabs -->
-                                <ul class="nav" id="myTab" role="tablist">
-                                    <li class="nav-item"> <a class="nav-link active" id="login-tab" data-toggle="tab" href="#log" role="tab" aria-selected="true">Login</a> </li>
-                                    <li class="nav-item"> <a class="nav-link" id="reg-tab" data-toggle="tab" href="#reg" role="tab" aria-selected="false">Register</a> </li>
-                                </ul>
+                                <!-- Login -->
+                                <form method="POST" action="{{ route('register') }}">
+                                    @csrf
+                                    <ul class="row">
+                                        <!-- Email -->
+                                        <li class="col-md-12">
+                                            <label> {{ __('Name') }}
+                                                <input id="name" type="text"
+                                                       class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                                       name="name" value="{{ old('name') }}" required autofocus
+                                                       class="form-control">
+                                            </label>
+                                            @if ($errors->has('email'))
+                                                <span role="alert">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                            @endif
+                                        </li>
+                                        <!-- Email -->
+                                        <li class="col-md-12">
+                                            <label> {{ __('E-Mail Address') }}
+                                                <input id="email" type="email"
+                                                       class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                                       name="email" value="{{ old('email') }}" required autofocus
+                                                       class="form-control">
+                                            </label>
+                                            @if ($errors->has('email'))
+                                                <span role="alert">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                            @endif
+                                        </li>
+                                        <!-- Password -->
+                                        <li class="col-md-12">
+                                            <label> Password
+                                                <input id="password" type="password"
+                                                       class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                                       name="password" required class="form-control">
+                                            </label>
+                                            @if ($errors->has('password'))
+                                                <span role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                            @endif
+                                        </li>
 
-                                <!-- Login Register Inside -->
-                                <div class="tab-content" id="myTabContent">
-                                    <!-- Register -->
-                                    <div class="tab-pane fade" id="reg" role="tabpanel" aria-labelledby="reg-tab">
-                                        <form>
-                                            <ul class="row">
+                                        <!-- Password -->
+                                        <li class="col-md-12">
+                                            <label> Password
+                                                <input id="password-confirmation" type="password"
+                                                       class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}"
+                                                       name="password_confirmation" required class="form-control">
+                                            </label>
+                                        </li>
 
-                                                <!-- Name -->
-                                                <li class="col-md-12">
-                                                    <label> Email Address *
-                                                        <input type="text" name="first-name" value="" placeholder="" class="form-control">
-                                                    </label>
-                                                </li>
-                                                <!-- LAST NAME -->
-                                                <li class="col-md-12">
-                                                    <label> Password *
-                                                        <input type="password" name="last-name" value="" placeholder="" class="form-control">
-                                                    </label>
-                                                </li>
+                                        <!-- LOGIN -->
+                                        <li class="col-md-6">
+                                            <button type="submit" class="btn">REGISTER</button>
+                                        </li>
 
-                                                <!-- LOGIN -->
-                                                <li class="col-md-6">
-                                                    <button type="submit" class="btn">Register</button>
-                                                </li>
-
-                                                <!-- FORGET PASS -->
-                                                <li class="col-md-6">
-                                                    <div class="margin-top-15 text-right"> <a href="#.">Forget Password</a> </div>
-                                                </li>
-                                            </ul>
-                                        </form>
-
-                                    </div>
-                                </div>
+                                        <!-- FORGET PASS -->
+                                        <li class="col-md-6">
+                                            <div class="margin-top-15 text-right">
+                                                @if (Route::has('password.request'))
+                                                    <a  href="{{ route('password.request') }}">
+                                                        {{ __('Forgot Your Password?') }}
+                                                    </a>
+                                                @endif
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -67,32 +98,5 @@
             </div>
         </section>
 
-        <!-- About -->
-        <section class="small-about">
-            <div class="container-full">
-                <div class="news-letter padding-top-150 padding-bottom-150">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <h3>We always stay with our clients and respect their business. We deliver 100% and provide instant response to help them succeed in constantly changing and challenging business world. </h3>
-                            <ul class="social_icons">
-                                <li><a href="#."><i class="icon-social-facebook"></i></a></li>
-                                <li><a href="#."><i class="icon-social-twitter"></i></a></li>
-                                <li><a href="#."><i class="icon-social-tumblr"></i></a></li>
-                                <li><a href="#."><i class="icon-social-youtube"></i></a></li>
-                                <li><a href="#."><i class="icon-social-dribbble"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6">
-                            <h3>Subscribe Our Newsletter</h3>
-                            <span>Phasellus lacinia fermentum bibendum. Interdum et malesuada fames ac.</span>
-                            <form>
-                                <input type="email" placeholder="Enter your email address" required>
-                                <button type="submit">Subscribe</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </div>
 @endsection
