@@ -1,10 +1,11 @@
 <footer>
     <div class="container-full">
         <div class="insta-g">
-            <div class="position-center-center">
+            <div class="text-center">
                 <h3>Follow us</h3>
             </div>
-            <ul>
+            <div class="padding-20">
+            <ul class="justify-content-center d-flex text-center sm">
                 @if($app_settings->store_facebook != "")
                     <li><a href="{{$app_settings->store_facebook}}"><i class="fa fa-facebook"></i></a></li>
                 @endif
@@ -21,6 +22,7 @@
                     <li><a href="{{$app_settings->store_linkedin}}"><i class="fa fa-linkedin"></i></a></li>
                 @endif
             </ul>
+            </div>
         </div>
     </div>
     <div class="clearfix"></div>
@@ -35,37 +37,37 @@
                 </div>
             </div>
 
-            <!-- HELPFUL LINKS -->
-            <div class="col-md-5">
-                <h6>Links</h6>
-                <ul class="link two-half">
-                    <li><a href="{{url('about')}}"> About</a></li>
-                    <li><a href="#."> Find a Store</a></li>
-                    <li><a href="#."> Features</a></li>
-                    <li><a href="#."> Privacy Policy</a></li>
-                    <li><a href="#."> Blog</a></li>
-                    <li><a href="#."> Press Kit </a></li>
-                    <li><a href="#."> Products</a></li>
-                    <li><a href="#."> Find a Store</a></li>
-                    <li><a href="#."> Features</a></li>
-                    <li><a href="#."> Privacy Policy</a></li>
-                    <li><a href="#."> Blog</a></li>
-                    <li><a href="#."> Press Kit </a></li>
-                </ul>
-            </div>
+            {{--<!-- HELPFUL LINKS -->--}}
+            {{--<div class="col-md-5">--}}
+                {{--<h6>Links</h6>--}}
+                {{--<ul class="link two-half">--}}
+                    {{--<li><a href="{{url('about')}}"> About</a></li>--}}
+                    {{--<li><a href="#."> Find a Store</a></li>--}}
+                    {{--<li><a href="#."> Features</a></li>--}}
+                    {{--<li><a href="#."> Privacy Policy</a></li>--}}
+                    {{--<li><a href="#."> Blog</a></li>--}}
+                    {{--<li><a href="#."> Press Kit </a></li>--}}
+                    {{--<li><a href="#."> Products</a></li>--}}
+                    {{--<li><a href="#."> Find a Store</a></li>--}}
+                    {{--<li><a href="#."> Features</a></li>--}}
+                    {{--<li><a href="#."> Privacy Policy</a></li>--}}
+                    {{--<li><a href="#."> Blog</a></li>--}}
+                    {{--<li><a href="#."> Press Kit </a></li>--}}
+                {{--</ul>--}}
+            {{--</div>--}}
 
-            <!-- HELPFUL LINKS -->
-            <div class="col-md-3">
-                <h6>Account Info</h6>
-                <ul class="link">
-                    <li><a href="#."> Products</a></li>
-                    <li><a href="#."> Find a Store</a></li>
-                    <li><a href="#."> Features</a></li>
-                    <li><a href="#."> Privacy Policy</a></li>
-                    <li><a href="#."> Blog</a></li>
-                    <li><a href="#."> Press Kit </a></li>
-                </ul>
-            </div>
+            {{--<!-- HELPFUL LINKS -->--}}
+            {{--<div class="col-md-3">--}}
+                {{--<h6>Account Info</h6>--}}
+                {{--<ul class="link">--}}
+                    {{--<li><a href="#."> Products</a></li>--}}
+                    {{--<li><a href="#."> Find a Store</a></li>--}}
+                    {{--<li><a href="#."> Features</a></li>--}}
+                    {{--<li><a href="#."> Privacy Policy</a></li>--}}
+                    {{--<li><a href="#."> Blog</a></li>--}}
+                    {{--<li><a href="#."> Press Kit </a></li>--}}
+                {{--</ul>--}}
+            {{--</div>--}}
         </div>
     </div>
 

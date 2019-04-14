@@ -78,7 +78,7 @@
                 { data: 'taxons', name: 'meta_keywords' },
                 { data: 'meta_keywords', name: 'taxons' },
                 { data: 'created_at', name: 'created_at' },
-                { data: 'image', name: 'image' },
+                // { data: 'image', name: 'image' },
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
         });

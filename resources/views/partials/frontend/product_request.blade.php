@@ -14,10 +14,11 @@
                 </div>
                 <div class="col-lg-6">
                     <h3>Request a product</h3>
-                    <span>Phasellus lacinia fermentum bibendum. Interdum et malesuada fames ac.</span>
+                    <span>You cant find what you're looking for? <br>Send us a request and we'll reach out to you.</span>
                     <form>
                         <input type="email" placeholder="Enter your email address" required>
                         <input type="text" placeholder="Product name" required>
+                        <label for="" style="color: #fff; margin-top: 10px;">Message</label>
                         <textarea name="message" id="" rows="10" style="width:100%; "></textarea>
                         <button type="submit">Send</button>
                     </form>

@@ -20,13 +20,6 @@
                                     </div>
 
                                     <div class="col-sm-3">
-                                        <label for="name">{{ __('Tags') }}</label>
-                                        <input type="text" id="tags" class="form-control" name="tags" data-role="tagsinput"  required>
-                                        <span class="invalid-feedback errorshow" role="alert">
-                                                </span>
-                                    </div>
-
-                                    <div class="col-sm-3">
                                         <label for="category_id">{{ __('Category') }}</label>
                                         <select class="form-control" name="category_id" id="category_id">
                                             @foreach($categories as $category)
@@ -39,22 +32,30 @@
 
                                     <div class="col-sm-2">
                                         <label for="price">{{ __('Price') }}</label>
-                                        <input type="number" name="price" class="form-control" required>
+                                        <input type="number" name="price" value="0" class="form-control" required>
                                         <span class="invalid-feedback errorshow" role="alert">
                                                     </span>
                                     </div>
 
                                     <div class="col-sm-2">
                                         <label for="delivery_price">{{ __('Delivery Price') }}</label>
-                                        <input type="number" name="delivery_price" class="form-control" required>
+                                        <input type="number" name="delivery_price" value="0" class="form-control" required>
                                         <span class="invalid-feedback errorshow" role="alert">
                                                     </span>
                                     </div>
 
                                 </div>
 
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label for="name">{{ __('Tags') }}</label>
+                                        <input type="text" id="tags" class="form-control" name="tags" data-role="tagsinput"  required>
+                                        <span class="invalid-feedback errorshow" role="alert">
+                                                </span>
+                                    </div>
+                                </div>
 
-                                <div class="row justify-content-start form-group">
+                                <div class="row justify-content-start form-group mt-3">
                                     <div class="col-sm-6">
                                         <label for="description">{{ __('Description') }}</label>
                                         <textarea class="form-control" name="meta_description" id="" cols="30" rows="2"></textarea>

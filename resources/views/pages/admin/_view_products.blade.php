@@ -14,7 +14,7 @@
                             <th>Category</th>
                             <th>Tags</th>
                             <th>Date</th>
-                            <th>Image</th>
+                            {{--<th>Image</th>--}}
                             <th>Action</th>
                         </tr>
                         </thead>

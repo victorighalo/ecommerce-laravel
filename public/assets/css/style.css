@@ -4805,6 +4805,9 @@ footer li a {
 	width: 100%;
 	letter-spacing: 0px;
 }
+ul.sm li a {
+	font-size: 25px;
+}
 footer .two-half li {
 	width: 50%;
 	float: left;
