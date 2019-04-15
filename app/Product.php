@@ -56,4 +56,9 @@ class Product extends BaseProduct implements Buyable, HasMedia
     public function scopeActive($query){
         return $query->where('state', 'active');
     }
+
+    public function photos()
+    {
+        return $this->morphMany('App\Photo', 'photoable');
+    }
 }

@@ -60,10 +60,21 @@ class ProductsController extends BaseController
 
 
             //Relate images to product
-            foreach ($request['images'] as $image) {
-                $product->addMedia($image)
-                    ->preservingOriginal()
-                    ->toMediaCollection('images');
+//            foreach ($request['images'] as $image) {
+//                $product->addMedia($image)
+////                    ->preservingOriginal()
+//                    ->withResponsiveImages()
+//                    ->toMediaCollection();
+//            }
+
+            if($request['images']) {
+                foreach ($request['images'] as $image) {
+                $product->first()->photos()->create([
+                    'link' => $image,
+                    'photoable_type' => get_class($product),
+                    'photoable_id' => $product->id,
+                ]);
+                }
             }
 
             //Create Delivery Price
@@ -77,7 +88,7 @@ class ProductsController extends BaseController
 
             return response()->json(['status' => 200, 'message' => 'Product created'], 200);
         } catch (\Exception $e) {
-            return response()->json(['status' => 400, 'message' => 'Failed to create product'. $e->getMessage()], 400);
+            return response()->json(['status' => 400, 'message' => 'Failed to create product '. $e->getMessage()], 400);
         }
 
     }
@@ -100,7 +111,7 @@ class ProductsController extends BaseController
 
 
 //            //check if product has Taxon
-//            $hasTaxon = !is_null($product->first()->taxons);
+
             $hasSameTaxon = false;
             //Update product details
             $product->update([
@@ -202,13 +213,13 @@ class ProductsController extends BaseController
             })
             ->addColumn('action', function ($subdata) {
                 return '      <td>
-                                                    <button class="btn btn-danger btn-sm dropdown-toggle" type="button" id="settingcol" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-cogs"></i> </button>
-                                                    <div class="dropdown-menu" aria-labelledby="settingcol">
-                    
-                                                        <a style="mrgin-bottom:25px; padding:15px 5px" class="dropdown-item activate_btn" href="#" id="' . $subdata->id . '" onclick="activate(' . $subdata->id . ')">Activate</a>
-                                                        <a style="mrgin-bottom:25px; padding:15px 5px" class="dropdown-item deactivate_btn" href="#" id="' . $subdata->id . '" onclick="deactivate(' . $subdata->id . ')">Deactivate</a>
-                                                        <a style="mrgin-bottom:25px; padding:15px 5px" class="dropdown-item" href="' . route('edit_product', ['id' => $subdata->id]) . '">Edit</a>
-                                                        <a style="mrgin-bottom:25px; padding:15px 5px" class="dropdown-item del_btn" href="#" id="' . $subdata->id . '" onclick="destroy(' . $subdata->id . ',' . ( ($subdata->taxons->count()) ? $subdata->taxons->first()->id : null) . ')">Delete </a>
+                                                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="settingcol" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-cogs"></i> </button>
+                                                    <div class="dropdown-menu" aria-labelledby="settingcol" style="padding: 10px;">
+         
+                                                        <a style="padding:8px 5px" class="dropdown-item activate_btn" href="#" id="' . $subdata->id . '" onclick="activate(' . $subdata->id . ')">Activate <i class="fas fa-check float-right"></i></a>
+                                                        <a style="padding:8px 5px" class="dropdown-item deactivate_btn" href="#" id="' . $subdata->id . '" onclick="deactivate(' . $subdata->id . ')">Deactivate <i class="fas fa-ban float-right"></i></a>
+                                                        <a style="padding:8px 5px" class="dropdown-item" href="' . route('edit_product', ['id' => $subdata->id]) . '">Edit <i class="fas fa-edit float-right"></i></a>
+                                                        <a style="padding:8px 5px" class="dropdown-item del_btn" href="#" id="' . $subdata->id . '" onclick="destroy(' . $subdata->id . ',' . ( ($subdata->taxons->count()) ? $subdata->taxons->first()->id : null) . ')"><span>Delete</span> <i class="fas fa-trash float-right"></i></a>
  </div></td>';
             })
             ->rawColumns(['image', 'action', 'price'])

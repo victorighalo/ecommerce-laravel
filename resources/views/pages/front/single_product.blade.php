@@ -45,22 +45,21 @@
                 </div>
                     <!-- Popular Images Slider -->
                     <div class="col-md-7">
-
                         <!-- Place somewhere in the <body> of your page -->
                         <div id="slider-shop" class="flexslider">
                             <ul class="slides">
-                                @if($product->getMedia('images'))
-                                    @foreach($product->getMedia('images') as $image)
-                                        <li> <img class="img-responsive" src="{{env('APP_URL').$image->getUrl()}}" alt="{{$product->title()}}"> </li>
+                                @if($product->photos)
+                                    @foreach($product->photos as $image)
+                                        <li> <img class="img-responsive" src="{{config('app.url').'/public/'.$image->link}}" alt="{{$product->title()}}"> </li>
                                     @endforeach
                                 @endif
                             </ul>
                         </div>
                         <div id="shop-thumb" class="flexslider">
                             <ul class="slides">
-                                @if($product->getMedia('images'))
-                                    @foreach($product->getMedia('images') as $image)
-                                        <li> <img class="img-responsive" src="{{env('APP_URL').$image->getUrl()}}" alt="{{$product->title()}}"> </li>
+                                @if($product->photos)
+                                    @foreach($product->photos as $image)
+                                        <li> <img class="img-responsive" src="{{config('app.url').'/public/'.$image->link}}" alt="{{$product->title()}}"> </li>
                                     @endforeach
                                 @endif
                             </ul>

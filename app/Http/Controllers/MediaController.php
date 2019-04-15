@@ -72,7 +72,7 @@ class MediaController extends Controller
     }
 
     public function loadImages(){
-        $sliders = Media::latest()->limit(20)->get();
+        $sliders = Media::latest()->limit(40)->get();
         return $sliders;
     }
 
@@ -85,7 +85,8 @@ class MediaController extends Controller
                 $media_item->delete();
                 return response()->json(['status' => 200, 'message' => 'Media deleted'], 200);
             }else{
-                return response()->json(['status' => 400, 'message' => 'Failed to delete Media '.$file_exists . $path_file], 400);
+                $media_item->delete();
+                return response()->json(['status' => 200, 'message' => 'Corrupt media deleted '.$file_exists . $path_file], 200);
             }
         }catch (\Exception $e){
             return response()->json(['status' => 400, 'message' => 'Failed to delete Media'], 400);

@@ -8,18 +8,20 @@
         </div>
 
         <!-- Popular Item Slide -->
+        @if($latest_products)
+        @if(count($latest_products) > 0)
         <div class="papular-block block-slide-con">
         @foreach($latest_products as $product)
             <!-- Item -->
             <div class="item">
                 {{--<!-- Sale -->--}}
-                {{--<div class="on-sale"> Sale </div>--}}
+                <div class="on-sale"> New </div>
                 <!-- Item img -->
                 <div class="item-img">
-                    @if($product->getMedia('images'))
-                        <img class="img-1" src="{{env('APP_URL').$product->getMedia('images')->first()->getUrl()}}" alt="{{$product->title()}}">
-                        <img class="img-2" src="{{env('APP_URL').$product->getMedia('images')->first()->getUrl()}}" alt="{{$product->title()}}">
-                    @endif
+                    {{--@if(count($product->getMedia()))--}}
+                        <img class="img-1" src="{{$product->photos[0]->link}}" alt="{{$product->title()}}">
+                        <img class="img-2" src="{{$product->photos[0]->link}}" alt="{{$product->title()}}">
+                    {{--@endif--}}
 
                 </div>
 
@@ -34,7 +36,8 @@
                 <!-- Price -->
                 <span class="price"><small>&#8358;</small> {{number_format($product->price, '0', '.', ',')}}</span> </div>
             @endforeach
-
         </div>
+            @endif
+            @endif
     </div>
 </section>

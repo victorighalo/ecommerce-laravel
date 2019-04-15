@@ -28,16 +28,16 @@
                         <div class="tab-pane fade show active" id="{{$category->taxonomy->name}}" role="tabpanel">
 
                         @foreach($category->products as $item)
-                            @if($item->getMedia('images')->first())
+                            @if($item->photos)
                             <!-- Item -->
                             <div class="item">
                                 <div class="img-ser">
                                     <img
                                             class="img-1 lazyload"
-                                            src="{{env('APP_URL').$item->getMedia('images')->first()->getUrl()}}"
+                                            src="{{$item->photos[0]->link}}"
                                             alt="{{$item->title()}}"
                                     >
-                                    <img class="img-2 lazyload" src="{{env('APP_URL').$item->getMedia('images')->first()->getUrl()}}" alt="">
+                                    <img class="img-2 lazyload" src="{{$item->photos[0]->link}}" alt="">
 
                                 </div>
                                 <!-- Item Name -->
@@ -65,16 +65,16 @@
                             <div class="tab-pane animated fadeInDown" id="{{$category->taxonomy->name}}" role="tabpanel">
 
                             @foreach($category->products as $item)
-                                @if($item->getMedia('images')->first())
+                                @if($item->photos)
                                     <!-- Item -->
                                         <div class="item">
                                             <div class="img-ser">
                                                 <img
                                                         class="img-1 lazyload"
-                                                        src="{{env('APP_URL').$item->getMedia('images')->first()->getUrl()}}"
+                                                        src="{{$item->photos[0]->link}}"
                                                         alt="{{$item->title()}}"
                                                 >
-                                                <img class="img-2 lazyload" src="{{env('APP_URL').$item->getMedia('images')->first()->getUrl()}}" alt="">
+                                                <img class="img-2 lazyload" src="{{$item->getMedia()->first()->getUrl()}}" alt="">
 
                                             </div>
                                             <!-- Item Name -->

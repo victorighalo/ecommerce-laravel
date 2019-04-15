@@ -165,6 +165,7 @@
                     processData: false,
                 })
                     .done(function(data) {
+                        $.unblock();
                         $("#upload_btn").prop('disabled', false)
                         $("#upload_btn > .process_indicator").removeClass('on');
                         if(data.status == 0){
@@ -184,6 +185,7 @@
                             });
                         }
                     }).fail(function(error) {
+                    $.unblock();
                     $("#upload_btn").prop('disabled', false)
                     $("#upload_btn > .process_indicator").removeClass('on');
                     new PNotify({
