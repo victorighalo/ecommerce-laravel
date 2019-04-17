@@ -26,6 +26,11 @@ class AppServiceProvider extends ServiceProvider
         \Illuminate\Database\Eloquent\Relations\Relation::morphMap([
             'product' => \App\Product::class
         ]);
+
+        if(config('app.env') === 'production') {
+            \URL::forceScheme('https');
+        }
+
         $app_settings = DB::table('app_settings')->first();
         $all_categories = Taxon::all();
         View::share('app_settings', $app_settings);
