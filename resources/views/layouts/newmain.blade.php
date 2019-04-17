@@ -114,7 +114,7 @@
             background-color: #a72abd;
             color: #fff;
         }
-        .arrival-block .item {
+        .arrival-block .tab-content{
             width: 100%;
         }
 
