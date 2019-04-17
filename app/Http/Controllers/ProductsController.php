@@ -73,13 +73,11 @@ class ProductsController extends BaseController
             }
 
             //Create Delivery Price
-            if($product_data['delivery_price']) {
                 $product->delivery_price()->create([
                     'amount' => $product_data['delivery_price'],
                     'delivery_price_type' => get_class($product),
                     'delivery_price_id' => $productid,
                 ]);
-            }
 
             return response()->json(['status' => 200, 'message' => 'Product created'], 200);
         } catch (\Exception $e) {
@@ -144,7 +142,7 @@ class ProductsController extends BaseController
 
             if($request['images']) {
                 foreach ($request['images'] as $image) {
-                    $product->first()->photos()->create([
+                    $product->photos()->update([
                         'link' => $image,
                         'photoable_type' => get_class($product),
                         'photoable_id' => $product_data['id'],
@@ -152,6 +150,12 @@ class ProductsController extends BaseController
                 }
             }
 
+            //Create Delivery Price
+                $product->delivery_price()->update([
+                    'amount' => $product_data['delivery_price'],
+                    'delivery_price_type' => get_class($product),
+                    'delivery_price_id' => $product_data['id'],
+                ]);
 
             return response()->json(['status' => 200, 'message' => 'Product updated'], 200);
         } catch (\Exception $e) {

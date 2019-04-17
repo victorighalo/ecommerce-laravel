@@ -55,7 +55,7 @@
 
                                                 <div class="col-sm-2">
                                                     <label for="delivery_price">{{ __('Delivery Price') }}</label>
-                                                    <input type="number" name="delivery_price" value="{{$product->delivery_price->amount ? $product->delivery_price->amount : 0}}" class="form-control" required>
+                                                    <input type="number" name="delivery_price" value="{{$product->delivery_price ? $product->delivery_price->amount : 0}}" class="form-control" required>
                                                     <span class="invalid-feedback errorshow" role="alert">
                                                     </span>
                                                 </div>
