@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Vanilo\Category\Contracts\Taxon as TaxonContract;
 use Illuminate\Support\Facades\View;
@@ -26,6 +27,10 @@ class AppServiceProvider extends ServiceProvider
         \Illuminate\Database\Eloquent\Relations\Relation::morphMap([
             'product' => \App\Product::class
         ]);
+
+        if(config('app.env') === 'production') {
+            URL::forceSchema('https');
+        }
 
 
         $app_settings = DB::table('app_settings')->first();
