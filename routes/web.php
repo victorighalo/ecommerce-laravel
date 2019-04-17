@@ -1,6 +1,7 @@
 <?php
 
 Route::get('/', 'PagesController@home');
+Route::get('/home', 'PagesController@home');
 
 Route::get('install', 'SettingController@install')->name('install');
 Route::post('install', 'SettingController@store');

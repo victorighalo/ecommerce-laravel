@@ -12,7 +12,7 @@ class HttpsProtocol
 
         if(config('app.env') === 'production') {
         if (!$request->secure()) {
-                return redirect()->secure($request->getRequestUri());
+            URL::forceSchema('https');
             }
         }
 

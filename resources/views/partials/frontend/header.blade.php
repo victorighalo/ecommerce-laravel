@@ -53,7 +53,7 @@
     <div class="container">
 
         <!-- Logo -->
-        <div class="logo"> <a href="index.html"><img class="img-responsive" src="images/logo.svg" alt="" ></a> </div>
+        <div class="logo"> <a href=""><img class="img-responsive" src="images/logo.svg" alt="" ></a> </div>
         <nav class="navbar ownmenu navbar-expand-lg">
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span></span> </button>
             <div class="collapse navbar-collapse" id="navbarNav">
