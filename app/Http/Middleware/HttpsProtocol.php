@@ -11,11 +11,8 @@ class HttpsProtocol
     {
 
         if(config('app.env') === 'production') {
-        if (!$request->secure()) {
             URL::forceSchema('https');
-            }
         }
-
 
         return $next($request);
 
