@@ -2,13 +2,15 @@
 
 namespace App\Providers;
 
+use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\URL;
+
 use Illuminate\Support\ServiceProvider;
 use Vanilo\Category\Contracts\Taxon as TaxonContract;
 use Illuminate\Support\Facades\View;
 use App\Taxon;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -16,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(UrlGenerator $url)
     {
         Schema::defaultStringLength(191);
         $this->app->concord->registerModel(
@@ -29,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
         ]);
 
         if(config('app.env') === 'production') {
-            URL::forceSchema('https');
+            $url->forceScheme('https');
         }
 
 
