@@ -27,9 +27,6 @@ class AppServiceProvider extends ServiceProvider
             'product' => \App\Product::class
         ]);
 
-        if(config('app.env') === 'production') {
-            \URL::forceScheme('https');
-        }
 
         $app_settings = DB::table('app_settings')->first();
         $all_categories = Taxon::all();
