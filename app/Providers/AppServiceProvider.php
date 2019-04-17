@@ -26,10 +26,10 @@ class AppServiceProvider extends ServiceProvider
         \Illuminate\Database\Eloquent\Relations\Relation::morphMap([
             'product' => \App\Product::class
         ]);
-        $app_settings = DB::table('app_settings')->first();
-        $all_categories = Taxon::all();
-        View::share('app_settings', $app_settings);
-        View::share('all_categories', $all_categories);
+//        $app_settings = DB::table('app_settings')->first();
+//        $all_categories = Taxon::all();
+//        View::share('app_settings', $app_settings);
+//        View::share('all_categories', $all_categories);
     }
 
     /**
