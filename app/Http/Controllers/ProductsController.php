@@ -98,6 +98,7 @@ class ProductsController extends BaseController
 
             //Get Product
             $product = \App\Product::where('id', $product_data['id']);
+            $product_ref = $product;
 
             //Get Selected Taxon
             $getTaxon = Taxon::where('id',$product_data['category_id'])->first();
@@ -150,8 +151,8 @@ class ProductsController extends BaseController
                 }
             }
 
-            //Create Delivery Price
-                $product->delivery_price()->update([
+            //update Delivery Price
+                $product->first()->delivery_price()->update([
                     'amount' => $product_data['delivery_price'],
                     'delivery_price_type' => get_class($product),
                     'delivery_price_id' => $product_data['id'],
