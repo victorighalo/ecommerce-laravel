@@ -10,7 +10,7 @@
         <!-- New Arrival -->
         <div class="arrival-block">
             <ul class="nav nav-tabs" role="tablist">
-                @foreach($all_categories as $i => $category)
+                @foreach($categories as $i => $category)
                     @if($category->products->count() > 0)
                         @if($i == 0)
                         <li class="nav-item"> <a class="active"  data-toggle="tab" href="#{{$category->taxonomy->name}}" role="tab" aria-selected="true">{{$category->name}} - {{$category->taxonomy->name}}</a> </li>
@@ -23,7 +23,7 @@
 
             <!-- Tab Content -->
             <div class="tab-content" id="arrival-tab">
-            @foreach($all_categories as $index => $category)
+            @foreach($categories as $index => $category)
                 @if($category->products->count() > 0)
                     @if($index == 0)
                         <div class="tab-pane fade show active" id="{{$category->taxonomy->name}}" role="tabpanel">
