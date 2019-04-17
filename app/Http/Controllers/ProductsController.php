@@ -50,6 +50,9 @@ class ProductsController extends BaseController
                 'state' => ProductState::ACTIVE
             ]);
 
+            $productid = $product->id;
+
+
             //Get Taxon
             $taxon = Taxon::where('id', $product_data['category_id'])->first();
             $taxon = Taxon::findBySlug($taxon->slug);
@@ -59,30 +62,22 @@ class ProductsController extends BaseController
             $get_product->taxons()->save($taxon);
 
 
-            //Relate images to product
-//            foreach ($request['images'] as $image) {
-//                $product->addMedia($image)
-////                    ->preservingOriginal()
-//                    ->withResponsiveImages()
-//                    ->toMediaCollection();
-//            }
-
             if($request['images']) {
                 foreach ($request['images'] as $image) {
-                $product->first()->photos()->create([
+                $product->photos()->create([
                     'link' => $image,
                     'photoable_type' => get_class($product),
-                    'photoable_id' => $product->id,
+                    'photoable_id' => $productid,
                 ]);
                 }
             }
 
             //Create Delivery Price
             if($product_data['delivery_price']) {
-                $product->first()->delivery_price()->create([
+                $product->delivery_price()->create([
                     'amount' => $product_data['delivery_price'],
                     'delivery_price_type' => get_class($product),
-                    'delivery_price_id' => $product->id,
+                    'delivery_price_id' => $productid,
                 ]);
             }
 

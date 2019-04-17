@@ -18,10 +18,10 @@
                 <div class="on-sale"> New </div>
                 <!-- Item img -->
                 <div class="item-img">
-                    @if($product->hasPhoto())
-                        <img class="img-1" src="{{$product->FirstThumb}}" alt="{{$product->title()}}">
-                        <img class="img-2" src="{{$product->FirstThumb}}" alt="{{$product->title()}}">
-                    @endif
+
+                        <img class="img-1" src="{{$product->FirstImage}}" alt="{{$product->title()}}">
+                        <img class="img-2" src="{{$product->FirstImage}}" alt="{{$product->title()}}">
+
 
                 </div>
 
