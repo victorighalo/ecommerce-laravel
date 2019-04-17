@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Vanilo\Category\Models\Taxonomy;
 use Vanilo\Category\Models\Taxon;
 use Vanilo\Product\Models\Product;
@@ -95,7 +96,7 @@ class CategoryController extends Controller
             $taxonomy = Taxonomy::where('id', $request->category_id)->first();
             $taxon = Taxon::where('id', $request->id)->first();
             $taxon->name = $request->value;
-            $taxon->slug = $request->value. '-' . $taxonomy->slug;
+            $taxon->slug = Str::slug(strtolower($request->value.'-'.$taxonomy->slug));
             $taxon->save();
             return response()->json(['message' => 'Subcategory Updated', 'status' => 200], 200);
         } catch (\Exception $e) {

@@ -12,7 +12,7 @@
                         @foreach(Cart::getItems() as $item)
                         <li>
                             <div class="media-left">
-                                <div class="cart-img"> <a href="#"> <img class="media-object img-responsive" src="{{env('APP_URL').$item->product->getMedia('images')->first()->getUrl()}}" alt="{{$item->product->name}}"> </a> </div>
+                                <div class="cart-img"> <a href="#"> <img class="media-object img-responsive" src="{{$item->product->FirstImage}}" alt="{{$item->product->name}}"> </a> </div>
                             </div>
                             <div class="media-body">
                                 <h6 class="media-heading">{{$item->product->name}}</h6>

@@ -28,7 +28,10 @@
                         <tr>
                             <th class="text-left"> <!-- Media Image -->
                                 <a href="#." class="item-img">
-                                    <img class="media-object" src="{{env('APP_URL').$item->product->getMedia('images')->first()->getUrl()}}" alt=""> </a>
+                                    @if($item->product->hasPhoto())
+                                    <img class="media-object" src="{{$item->product->FirstImage}}" alt="">
+                                    @endif
+                                </a>
                                 <!-- Item Name -->
                                 <div class="media-body">
                                     <span>{{$item->product->name}}</span>

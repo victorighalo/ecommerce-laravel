@@ -114,6 +114,9 @@
             background-color: #a72abd;
             color: #fff;
         }
+        .arrival-block .item {
+            width: 100%;
+        }
 
     </style>
 

@@ -5,7 +5,7 @@
         <div class="acces-ser">
             <!-- Heading -->
             <div class="heading text-center">
-                <h4>Available categories</h4>
+                <h4>Available Categories</h4>
                 <hr>
             </div>
             <div class="row">
@@ -14,7 +14,6 @@
                     <a href="{{route('get_category_content', ['taxon_slug' => $category->slug])}}" class="btn by">{{$category->name}}</a>
                 </div>
                     @endforeach
-
             </div>
         </div>
     </div>

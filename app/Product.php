@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\HasPhotoTrait;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
@@ -23,7 +24,8 @@ class Product extends BaseProduct implements Buyable, HasMedia
         BuyableImageSpatieV7,
         HasComments,
         HasPropertyValues,
-        HasMediaTrait;
+        HasMediaTrait,
+        HasPhotoTrait;
 
     public function morphTypeName(): string
 {
@@ -57,8 +59,5 @@ class Product extends BaseProduct implements Buyable, HasMedia
         return $query->where('state', 'active');
     }
 
-    public function photos()
-    {
-        return $this->morphMany('App\Photo', 'photoable');
-    }
+
 }

@@ -3,8 +3,9 @@
 
         <!-- Main Heading -->
         <div class="heading text-center">
-            <h4>Best Collection Arrived</h4>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus maximus vehicula. </span> </div>
+            <h4>Top categories</h4>
+            {{--<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus maximus vehicula. </span> --}}
+        </div>
 
         <!-- New Arrival -->
         <div class="arrival-block">
@@ -28,16 +29,16 @@
                         <div class="tab-pane fade show active" id="{{$category->taxonomy->name}}" role="tabpanel">
 
                         @foreach($category->products as $item)
-                            @if($item->photos)
+                            @if($item->hasPhoto())
                             <!-- Item -->
                             <div class="item">
                                 <div class="img-ser">
                                     <img
                                             class="img-1 lazyload"
-                                            src="{{$item->photos[0]->link}}"
+                                            src="{{$item->FirstThumb}}"
                                             alt="{{$item->title()}}"
                                     >
-                                    <img class="img-2 lazyload" src="{{$item->photos[0]->link}}" alt="">
+                                    <img class="img-2 lazyload" src="{{$item->FirstThumb}}" alt="">
 
                                 </div>
                                 <!-- Item Name -->
@@ -65,16 +66,16 @@
                             <div class="tab-pane animated fadeInDown" id="{{$category->taxonomy->name}}" role="tabpanel">
 
                             @foreach($category->products as $item)
-                                @if($item->photos)
+                                @if($item->hasPhoto())
                                     <!-- Item -->
                                         <div class="item">
                                             <div class="img-ser">
                                                 <img
                                                         class="img-1 lazyload"
-                                                        src="{{$item->photos[0]->link}}"
+                                                        src="{{$item->FirstThumb}}"
                                                         alt="{{$item->title()}}"
                                                 >
-                                                <img class="img-2 lazyload" src="{{$item->getMedia()->first()->getUrl()}}" alt="">
+                                                <img class="img-2 lazyload" src="{{$item->FirstThumb}}" alt="">
 
                                             </div>
                                             <!-- Item Name -->

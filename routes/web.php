@@ -26,7 +26,7 @@ Route::post('/cart/destroy/{cart_item?}', 'CartController@destroy')->name('destr
 Route::post('/load_cities', 'CommonController@loadCities')->name('load_cities');
 Route::post('/add_address', 'CommonController@addAddress')->name('add_address');
 
-Route::group(['prefix' => 'office'], function (){
+Route::group(['prefix' => 'office', 'middleware' => ['role:admin']], function (){
 
 //Admin section
     Route::get('/', 'OfficeController@office');
@@ -40,12 +40,13 @@ Route::get('/products/json', 'ProductsController@getProductsData')->name('get_pr
 Route::post('/products/create', 'ProductsController@create')->name('create_products');
 Route::get('/product/{id}/edit', 'ProductsController@edit')->name('edit_product');
 Route::post('/product/update', 'ProductsController@update')->name('update_product');
+Route::post('/media/remove_product', 'ProductsController@removePhoto')->name('remove_product_media');
+
 
 //Media
 Route::post('/media/upload', 'MediaController@UploadMedia')->name('media_upload');
 Route::get('/media/images/load', 'MediaController@loadImages')->name('load_images');
 Route::post('/media/remove', 'MediaController@destroy')->name('media_remove');
-Route::post('/media/remove_spatie', 'MediaController@destroySpatieMedia')->name('media_remove_spatie');
 
 //Categories
 Route::get('/category', 'CategoryController@index');

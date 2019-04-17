@@ -68,9 +68,6 @@
             </div>
         </section>
 
-        <!--======= MAP =========-->
-        <div id="map"></div>
-
         <!-- About -->
         <section class="small-about">
             <div class="container-full">

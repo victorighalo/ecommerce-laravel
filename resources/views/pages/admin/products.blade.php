@@ -44,7 +44,7 @@
         var bsmodal = $('#images-modal');
         var mediafolder = "{{asset('')}}/";
         var imageBag = [];
-        $(document).ajaxStop($.unblockUI);
+
         {{--function removeMedia (media) {--}}
             {{--var item = $(media);--}}
 
@@ -165,7 +165,7 @@
                     processData: false,
                 })
                     .done(function(data) {
-                        $.unblock();
+                        $.unblockUI();
                         $("#upload_btn").prop('disabled', false)
                         $("#upload_btn > .process_indicator").removeClass('on');
                         if(data.status == 0){
@@ -185,7 +185,7 @@
                             });
                         }
                     }).fail(function(error) {
-                    $.unblock();
+                    $.unblockUI();
                     $("#upload_btn").prop('disabled', false)
                     $("#upload_btn > .process_indicator").removeClass('on');
                     new PNotify({

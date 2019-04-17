@@ -119,7 +119,8 @@ class ProductsController extends BaseController
                 'sku' => $sku,
                 'slug' => str_slug($product_data['name'], '-'),
                 'price' => $product_data['price'],
-                'description' => $product_data['description'],
+                'meta_description' => $product_data['meta_description'],
+                'description' => $request->description,
                 'meta_keywords' => $product_data['tags']
             ]);
 
@@ -145,12 +146,14 @@ class ProductsController extends BaseController
 
 
             //Relate images to product
-            if ($request['images']) {
+
+            if($request['images']) {
                 foreach ($request['images'] as $image) {
-                    $product->first()
-                        ->addMedia($image)
-                        ->preservingOriginal()
-                        ->toMediaCollection('images');
+                    $product->first()->photos()->create([
+                        'link' => $image,
+                        'photoable_type' => get_class($product),
+                        'photoable_id' => $product_data['id'],
+                    ]);
                 }
             }
 
@@ -293,4 +296,14 @@ class ProductsController extends BaseController
         return response()->json($product->averageRating);
     }
 
+    public function removePhoto(Request $request){
+        $product = \App\Product::findBySlug($request->productslug)->first();
+        try {
+            $product->removePhoto($request->imageid, $product->id);
+            return response()->json(['message' => 'Product image removed', 'status' => 200], 200);
+
+        }catch(\Exception $e){
+            return response()->json(['message' => 'Failed to remove Product image ' . $e->getMessage(), 'status' => 400], 400);
+        }
+    }
 }

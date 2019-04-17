@@ -17,17 +17,10 @@ class PagesController extends BaseController
 
     public function home()
     {
-        
-        if(Cart::exists()){
-            $cart_count = Cart::itemCount();
-        }else{
-            $cart_count = 0;
-        }
-
         $categories = Taxon::all()->take(12);
         $latest_products = \App\Product::active()->new()->get();
 
-        return view('pages.index', compact('categories', 'cart_count', 'latest_products'));
+        return view('pages.index', compact('categories', 'latest_products'));
     }
 
     public function getProductList($taxon_slug){

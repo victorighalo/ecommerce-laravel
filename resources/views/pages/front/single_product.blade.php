@@ -50,7 +50,7 @@
                             <ul class="slides">
                                 @if($product->photos)
                                     @foreach($product->photos as $image)
-                                        <li> <img class="img-responsive" src="{{config('app.url').'/public/'.$image->link}}" alt="{{$product->title()}}"> </li>
+                                        <li> <img class="img-responsive" src="{{asset($image->ImageUrl)}}" alt="{{$product->title()}}"> </li>
                                     @endforeach
                                 @endif
                             </ul>
@@ -59,7 +59,7 @@
                             <ul class="slides">
                                 @if($product->photos)
                                     @foreach($product->photos as $image)
-                                        <li> <img class="img-responsive" src="{{config('app.url').'/public/'.$image->link}}" alt="{{$product->title()}}"> </li>
+                                        <li> <img class="img-responsive" src="{{asset($image->ImageUrl)}}" alt="{{$product->title()}}"> </li>
                                     @endforeach
                                 @endif
                             </ul>

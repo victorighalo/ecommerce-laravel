@@ -3,7 +3,7 @@
 @section('content')
 
     <!--======= SUB BANNER =========-->
-    @include('partials.frontend.sub_banner', ['title' => $title])
+    @include('partials.frontend.sub_banner', ['title' => 'Search'])
     <div id="content">
 
         <!-- Products -->
@@ -25,9 +25,9 @@
 
                                             <!-- Images -->
                                                 <div class="thumb">
-                                                    @if ($product->getMedia('images')->first())
-                                                        <img class="img-1" src="{{env('APP_URL').$product->getMedia('images')->first()->getUrl()}}" alt="{{$product->title()}}">
-                                                        <img class="img-2" src="{{env('APP_URL').$product->getMedia('images')->first()->getUrl()}}" alt="{{$product->title()}}">
+                                                    @if($product->hasPhoto())
+                                                        <img class="img-1" src="{{$product->FirstImage}}" alt="{{$product->title()}}">
+                                                        <img class="img-2" src="{{$product->FirstImage}}" alt="{{$product->title()}}">
                                                 @endif
                                                 <!-- Overlay  -->
 

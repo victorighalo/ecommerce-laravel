@@ -3,7 +3,7 @@
 
         <!-- Main Heading -->
         <div class="heading text-center">
-            <h4>Newly added Products</h4>
+            <h4>Newly Added Products</h4>
             <hr>
         </div>
 
@@ -18,10 +18,10 @@
                 <div class="on-sale"> New </div>
                 <!-- Item img -->
                 <div class="item-img">
-                    {{--@if(count($product->getMedia()))--}}
-                        <img class="img-1" src="{{$product->photos[0]->link}}" alt="{{$product->title()}}">
-                        <img class="img-2" src="{{$product->photos[0]->link}}" alt="{{$product->title()}}">
-                    {{--@endif--}}
+                    @if($product->hasPhoto())
+                        <img class="img-1" src="{{$product->FirstThumb}}" alt="{{$product->title()}}">
+                        <img class="img-2" src="{{$product->FirstThumb}}" alt="{{$product->title()}}">
+                    @endif
 
                 </div>
 

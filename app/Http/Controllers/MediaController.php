@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Media;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 
@@ -26,13 +25,21 @@ class MediaController extends Controller
         if ($request->hasFile('uploaded_file')) {
             try {
                 $path = 'images/'.date('Y').'/'.date('m');
+                $thumb_path = 'thumbnail/images/'.date('Y').'/'.date('m');
                 $path2 = date('Y').'/'.date('m');
                 $upload_path = public_path($path);
+                $thumb_upload_path = public_path($thumb_path);
 
                 //Find or create upload folder
                 if(!is_dir($upload_path)){
                     if(!mkdir($upload_path, 0777, true)){
-                        return response()->json(['status' => 0, 'message' => 'An Error occurred. Try again.'], 400);
+                        return response()->json(['status' => 0, 'message' => 'An Error occurred creating images part. Try again.'], 400);
+                    }
+                }
+
+                if(!is_dir($thumb_upload_path)){
+                    if(!mkdir($thumb_upload_path, 0777, true)){
+                        return response()->json(['status' => 0, 'message' => 'An Error occurred craeting thumnail path. Try again.'], 400);
                     }
                 }
                 //Get file name
@@ -47,11 +54,11 @@ class MediaController extends Controller
                     );
 
                     // Resize to upload smaller size
-//                    $image_resize = Image::make($upload_path.'/'.$filename . "." .$ext );
-//                    $image_resize->resize(200, null, function ($constraint) {
-//                        $constraint->aspectRatio();
-//                    });
-//                    $image_resize->save($upload_path.'/'.$filename. "_thumb." .$ext );
+                    $image_resize = Image::make($upload_path.'/'.$filename . ".".$ext )
+                    ->resize(200, 200, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                    $image_resize->save($thumb_upload_path.'/'.$filename.".".$ext );
 
                     $media = new Media();
                     $media->file = $path.'/'.$filename. ".".$ext;
@@ -72,22 +79,34 @@ class MediaController extends Controller
     }
 
     public function loadImages(){
-        $sliders = Media::latest()->limit(40)->get();
-        return $sliders;
+        $photos = Media::latest()->limit(40)->get();
+        $data = [];
+        foreach ($photos as $item){
+            $data[] = (object)[
+                'id'=> $item->id,
+                'file' => $item->file,
+                'thumb' => 'thumbnail/'.$item->file,
+                'created_at' => $item->created_at
+            ];
+        }
+        return $data;
     }
 
     public function destroy(Request $request){
         $media_item = Media::where('id', $request->mediaId)->first();
         try{
             $path_file = public_path('/'.$media_item->file);
+            $thumb_path_file = public_path('thumbnail/'.$media_item->file);
             $file_exists =  File::exists($media_item->file);
-            if(File::delete($path_file)){
-                $media_item->delete();
-                return response()->json(['status' => 200, 'message' => 'Media deleted'], 200);
-            }else{
-                $media_item->delete();
-                return response()->json(['status' => 200, 'message' => 'Corrupt media deleted '.$file_exists . $path_file], 200);
+            $thumb_file_exists =  File::exists('thumbnail/'.$media_item->file);
+            if($file_exists){
+                File::delete($path_file);
             }
+            if($thumb_file_exists){
+                File::delete($thumb_path_file);
+            }
+            $media_item->delete();
+            return response()->json(['status' => 200, 'message' => 'Media deleted'], 200);
         }catch (\Exception $e){
             return response()->json(['status' => 400, 'message' => 'Failed to delete Media'], 400);
         }
@@ -101,4 +120,6 @@ class MediaController extends Controller
             return response()->json(['status' => 400, 'message' => 'Failed to delete Media'], 400);
         }
     }
+
+
 }

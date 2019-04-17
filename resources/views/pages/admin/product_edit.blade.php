@@ -25,12 +25,6 @@
                                                 </span>
                                                 </div>
 
-                                                <div class="col-sm-3">
-                                                    <label for="name">{{ __('Tags') }}</label>
-                                                    <input type="text" id="tags" class="form-control" name="tags" data-role="tagsinput" value="{{$product->meta_keywords}}"  required>
-                                                    <span class="invalid-feedback errorshow" role="alert">
-                                                </span>
-                                                </div>
 
                                                 <div class="col-sm-3">
                                                     <label for="category_id">{{ __('Category') }}</label>
@@ -53,21 +47,49 @@
 
 
                                                 <div class="col-sm-2">
-                                                    <label for="price">{{ __('Price') }}</label>
+                                                    <label for="price">{{ __('Price') }} </label>
                                                     <input type="number" name="price" class="form-control" value="{{$product->price}}" required>
                                                     <span class="invalid-feedback errorshow" role="alert">
                                                     </span>
                                                 </div>
 
+                                                <div class="col-sm-2">
+                                                    <label for="delivery_price">{{ __('Delivery Price') }}</label>
+                                                    <input type="number" name="delivery_price" value="{{$product->delivery_price->amount ? $product->delivery_price->amount : 0}}" class="form-control" required>
+                                                    <span class="invalid-feedback errorshow" role="alert">
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <label for="name">{{ __('Tags') }}</label>
+                                                    <input type="text" id="tags" class="form-control" name="tags" data-role="tagsinput" value="{{$product->meta_keywords}}"  required>
+                                                    <span class="invalid-feedback errorshow" role="alert">
+                                                </span>
+                                                </div>
                                             </div>
 
 
-                                            <div class="row justify-content-center form-group">
+                                            <div class="row justify-content-center form-group  mt-3">
                                                 <div class="col-sm-12">
                                                     <label for="description">{{ __('Description') }}</label>
-                                                    <textarea class="form-control" name="description" id="" cols="30" rows="5">{{$product->description}}</textarea>
+                                                    <textarea class="form-control" name="meta_description" id="" cols="30" rows="5">{{$product->meta_description}}</textarea>
                                                     <span class="invalid-feedback errorshow" role="alert">
                                         </span>
+                                                </div>
+
+                                                <div class="col-sm-12 mt-4">
+                                                    <div class=" text-left">
+
+                                                        <label for="overview">{{ __('Overview') }}</label>
+
+                                                        <div id="editor">
+                                                            {!! $product->description !!}
+                                                        </div>
+                                                        <span class="invalid-feedback errorshow" role="alert">
+                                        </span>
+                                                    </div>
                                                 </div>
 
                                                 <div class="col-sm-12 mt-3">
@@ -90,15 +112,17 @@
                                                                 <a href="#" class="btn custom_button_color"  id="load_images_btn">Choose images</a>
                                                             </div>
                                                             <div class="chosen_images mt-3">
-                                                                @foreach($product->getMedia('images')->all() as $image)
+                                                                @if($product->hasPhoto())
+                                                                @foreach($product->photos as $image)
                                                                     <div class="product_img_container">
                                                                         <div class="product_img_container_delete">
-                                                                            <span style="cursor:pointer;" class="badge badge-danger" data-imageid="{{$image->id}}" onclick="removeSpatieMedia(this)">x</span>
+                                                                            <span style="cursor:pointer;" class="badge badge-danger" data-imageid="{{$image->id}}" data-productslug="{{$product->slug}}" onclick="removeSpatieMedia(this)">x</span>
                                                                         </div>
-                                                             <img src="{{$image->getFullUrl()}}" value="{{$image->id}}"  width='100px'>
+                                                             <img src="{{asset('thumbnail/'.$image->link)}}" value="{{$image->id}}"  style="width:100px; height:100px">
                                                                     {{--<span style="cursor:pointer;" class="badge badge-danger" onclick="removeSpatieMedia({{$image->id}})">x</span>--}}
                                                                     </div>
                                                                         @endforeach
+                                                                    @endif
                                                             </div>
                                                         </div>
                                                     </div>
@@ -129,6 +153,33 @@
     <script>
         var bsmodal = $('#images-modal');
         var imageBag = [];
+
+        var toolbarOptions = [
+            ['link', 'image'],
+            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+            ['blockquote', 'code-block'],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+            [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+            [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+            [{ 'font': [] }],
+            [{ 'align': [] }],
+
+            ['clean']
+        ];
+        var options = {
+            readOnly: false,
+            theme: 'snow',
+            modules: {
+                toolbar: toolbarOptions
+            }
+        };
+        var description_container = $('#editor').get(0);
+        var quill = new Quill(description_container, options);
+
         $(document).ajaxStop($.unblockUI);
 
         $(document).ready(function () {
@@ -147,13 +198,14 @@
                         $('.modal-content').unblock();
                         bsmodal.find('.modal-body').find('form').empty();
                         $(data).map(function (index, value) {
-                            var image = "{!! asset('') !!}" + value.file;
+                            {{--var image = "{!! asset('') !!}" + value.file;--}}
+                            var thumb = "{!! asset('') !!}" + value.thumb;
                             var id = value.id;
                             bsmodal.find('.image_load_status').html("")
                             bsmodal.find('.modal-body').find('form').append(
                                 `<div style="display:inline-block ;" data-imageid="${id}">
-                    <img src="${image}" width="100px" height="80px">
-                    <input type='checkbox' name='gal_item' value="${id}" data-image_link="${image}" data-image_path="${value.file}" class="gallery_item_checkbox">
+                    <img src="${thumb}" width="100px" height="80px">
+                    <input type='checkbox' name='gal_item' value="${id}" data-image_link="${thumb}" data-image_path="${value.file}" class="gallery_item_checkbox">
                     <span style="cursor:pointer;" class="badge badge-danger" id="${id}" onclick="removeMedia(this)">x</span>
                     </div>
                     `
@@ -176,7 +228,7 @@
                             <div class="product_img_container_delete">
                             <span style="cursor:pointer;" class="badge badge-danger" data-imgpath="${img_path}" onclick="popImage(this)">x</span>
                             </div>
-                            <img src="${$(value).data('image_link')}" width="100px" height="80px">
+                            <img src="${$(value).data('image_link')}" style='width:100px; height:100px'>
                         </div>
                         `
                     )
@@ -213,6 +265,7 @@
                     processData: false,
                 })
                     .done(function(data) {
+                        $.unblockUI();
                         $("#upload_btn").prop('disabled', false)
                         $("#upload_btn > .process_indicator").removeClass('on');
                         if(data.status == 0){
@@ -232,6 +285,7 @@
                             });
                         }
                     }).fail(function(error) {
+                    $.unblockUI();
                     $("#upload_btn").prop('disabled', false)
                     $("#upload_btn > .process_indicator").removeClass('on');
                     new PNotify({
@@ -244,7 +298,7 @@
 
             });
 
-            //Create product
+            //Update product
             $("form#product_form").on('submit', function (e) {
                 e.preventDefault();
                 $(".add_product_btn").prop('disabled', true)
@@ -257,7 +311,11 @@
                 $.ajax({
                     type: "POST",
                     url: "{!! route('update_product') !!}",
-                    data: {form_data:$(this).serialize(), images: imageBag}
+                    data: {
+                        form_data:$(this).serialize(),
+                        images: imageBag,
+                        description: $(description_container).find('.ql-editor').html()
+                    }
                 }).done(function (data) {
                     $(".add_product_btn").prop('disabled', false)
                     $(".add_product_btn > .process_indicator").addClass('off');
@@ -279,10 +337,10 @@
                         });
                     }
                     if (response.status == 400) {
-                        $.each(response.responseJSON.message, function (key, item) {
-                            $("input[name="+key+"] + span.errorshow").html(item[0])
-                            $("input[name="+key+"] + span.errorshow").slideDown("slow")
-                        });
+                        // $.each(response.responseJSON.message, function (key, item) {
+                        //     $("input[name="+key+"] + span.errorshow").html(item[0])
+                        //     $("input[name="+key+"] + span.errorshow").slideDown("slow")
+                        // });
                         new PNotify({
                             title: 'Oops!',
                             text: 'Form validation error.',
@@ -404,22 +462,23 @@
         };
 
         function removeSpatieMedia (e) {
-            var id = $(e).data('imageid');
+            var imageid = $(e).data('imageid');
+            var productslug = $(e).data('productslug');
             $.blockUI(
                 {message: '<h5>Deleting...</h5>',
                 css: {border: '1px solid #fff' }}
                 );
             $.ajax({
-        url: "{{route('media_remove_spatie')}}",
+        url: "{{route('remove_product_media')}}",
         type: 'POST',
-        data: {id: id}
+        data: {imageid: imageid, productslug: productslug}
         })
         .done(function(data) {
             $.unblockUI();
             $(e).parent().parent().fadeOut();
             new PNotify({
                 title: 'Success!',
-                text: 'Image Deleted.',
+                text: data.message,
                 type: 'success'
             });
         }).fail(function(error) {
