@@ -18,7 +18,8 @@
         "lecturize/laravel-addresses": "^0.1.1",
         "vanilo/framework": "0.5",
         "willvincent/laravel-rateable": "^1.07",
-        "yajra/laravel-datatables-oracle": "~8.0"
+        "yajra/laravel-datatables-oracle": "~8.0",
+        "ext-gd": "*"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
