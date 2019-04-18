@@ -9,14 +9,18 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
 
 
 class HttpsProtocol
 {
     public function handle($request, Closure $next, $guard = null)
     {
-        if(!\Request::secure())
-            return \Redirect::secure(\Request::path());
+        if( ! Request::secure() )
+        {
+        return Redirect::secure( Request::path() );
+        }
 
         return $next($request);
     }
