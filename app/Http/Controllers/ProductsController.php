@@ -138,7 +138,6 @@ class ProductsController extends BaseController
                 $taxon = Taxon::findBySlug($getTaxon->slug);
                 $product->first()->taxons()->save($taxon);
 
-
             //update images for product
                 foreach ($request['images'] as $image) {
                     $product->first()->photos()->update([
