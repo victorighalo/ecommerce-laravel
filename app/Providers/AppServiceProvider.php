@@ -30,9 +30,9 @@ class AppServiceProvider extends ServiceProvider
             'product' => \App\Product::class
         ]);
 
-        if(config('app.env') === 'production') {
-            $url->forceScheme('https');
-        }
+//        if(config('app.env') === 'production') {
+//            $url->forceScheme('https');
+//        }
 
 
         $app_settings = DB::table('app_settings')->first();
