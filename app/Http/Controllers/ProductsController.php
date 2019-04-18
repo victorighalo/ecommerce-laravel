@@ -139,17 +139,14 @@ class ProductsController extends BaseController
                 $product->first()->taxons()->save($taxon);
 
 
-            //Relate images to product
-
-            if($request['images']) {
+            //update images for product
                 foreach ($request['images'] as $image) {
-                    $product->photos()->update([
+                    $product->first()->photos()->update([
                         'link' => $image,
                         'photoable_type' => get_class($product),
                         'photoable_id' => $product_data['id'],
                     ]);
                 }
-            }
 
             //update Delivery Price
                 $product->first()->delivery_price()->update([
