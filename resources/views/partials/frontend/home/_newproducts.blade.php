@@ -3,7 +3,7 @@
 
         <!-- Main Heading -->
         <div class="heading text-center">
-            <h4>Newly Added Products {{$latest_products->count()}}</h4>
+            <h4>Newly Added Products</h4>
             <hr>
         </div>
 
