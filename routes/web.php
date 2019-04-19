@@ -6,6 +6,12 @@ Route::get('/home', 'PagesController@home');
 Route::get('install', 'SettingController@install')->name('install');
 Route::post('install', 'SettingController@store');
 
+Route::get('/profile', 'PagesController@profile')->middleware('auth');
+Route::post('/profile', 'CommonController@updateProfile')->middleware('auth');
+
+Route::get('/change_password', 'PagesController@changePassword')->middleware('auth');
+Route::post('/change_password', 'CommonController@changePassword')->middleware('auth');
+
 Auth::routes();
 
 //Checkout

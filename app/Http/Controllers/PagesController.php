@@ -46,4 +46,12 @@ class PagesController extends BaseController
         $ratings = $product->averageRating() ;
         return view('pages.front.single_product', compact('product', 'tags', 'ratings', 'title'));
     }
+
+    public function profile(){
+        return view('auth.profile');
+    }
+
+    public function changePassword(){
+        return view('auth.change_password');
+    }
 }

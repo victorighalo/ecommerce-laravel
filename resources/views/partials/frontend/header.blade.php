@@ -58,8 +58,7 @@
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span></span> </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="nav">
-                    <li> <a href="{{url('/')}}">Home</a>
-                    </li>
+                    <li> <a href="{{url('/')}}">Home</a></li>
                     <li> <a href="{{url('about')}}">About </a> </li>
                     <li> <a href="{{url('contact')}}"> contact</a> </li>
                 </ul>
@@ -69,7 +68,7 @@
             <div class="nav-right">
                 <ul class="navbar-right">
                     <!-- USER INFO -->
-                    <li> <a href="#"><i class="lnr lnr-user"></i> </a></li>
+                    <li> <a href="{{url('profile')}}"><i class="lnr lnr-user"></i> </a></li>
                     <!-- USER BASKET -->
                     <li> <a href="{{url('cart')}}"><span class="c-no">{{Cart::itemCount()}}</span><i class="lnr lnr-cart"></i> </a> </li>
                     <!-- SEARCH BAR -->

@@ -18,7 +18,16 @@
                             <!-- Login Register -->
                             <div class="col-sm-7 center-block">
                                 <h3 class="text-center margin-40">Login</h3>
-
+                                @if ($errors->has('email'))
+                                    <span role="alert">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                @endif
+                                @if ($errors->has('password'))
+                                    <span role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
                                 <!-- Login -->
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
@@ -31,11 +40,6 @@
                                                        name="email" value="{{ old('email') }}" required autofocus
                                                        class="form-control">
                                             </label>
-                                            @if ($errors->has('email'))
-                                                <span role="alert">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                            @endif
                                         </li>
                                         <!-- Password -->
                                         <li class="col-md-12">
@@ -44,11 +48,7 @@
                                                        class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
                                                        name="password" required class="form-control">
                                             </label>
-                                            @if ($errors->has('password'))
-                                                <span role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                            @endif
+
                                         </li>
 
                                         <!-- LOGIN -->
