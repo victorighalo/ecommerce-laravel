@@ -13,9 +13,9 @@
                 @foreach($categories as $i => $category)
                     @if($category->products->count() > 0)
                         @if($i == 0)
-                        <li class="nav-item"> <a class="active"  data-toggle="tab" href="#{{$category->taxonomy->name}}" role="tab" aria-selected="true">{{$category->name}} - {{$category->taxonomy->name}}</a> </li>
+                        <li class="nav-item"> <a class="active"  data-toggle="tab" href="#{{$category->taxonomy->name}}" role="tab" aria-selected="true">{{strtoupper($category->name)}} - {{strtoupper($category->taxonomy->name)}}</a> </li>
                         @else
-                         <li class="nav-item"> <a class=""  data-toggle="tab" href="#{{$category->taxonomy->name}}" role="tab" aria-selected="true">{{$category->name}} - {{$category->taxonomy->name}}</a> </li>
+                         <li class="nav-item"> <a class=""  data-toggle="tab" href="#{{$category->taxonomy->name}}" role="tab" aria-selected="true">{{strtoupper($category->name)}} - {{strtoupper($category->taxonomy->name)}}</a> </li>
                         @endif
                         @endif
                 @endforeach
@@ -29,7 +29,7 @@
                         <div class="tab-pane fade show active" id="{{$category->taxonomy->name}}" role="tabpanel">
 
                         @foreach($category->products->take(10) as $item)
-                            @if($item->hasPhoto())
+                            @if($item->hasPhoto() && $item->isActive())
                             <!-- Item -->
                             <div class="item">
                                 <div class="img-ser">
