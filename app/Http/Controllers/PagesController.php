@@ -37,16 +37,13 @@ class PagesController extends BaseController
     }
 
     public function getProductDetails($taxon_slug, $product_slug){
-        if(Cart::exists()){
-            $cart_count = Cart::itemCount();
-        }else{
-            $cart_count = 0;
+        if(! \App\Product::where('slug', $product_slug)->exists() ){
+            abort(404);
         }
-        $slug = $product_slug;
         $product = \App\Product::where('slug', $product_slug)->first();
         $title = $product ? $product->title() : '';
         $tags = $product->meta_keywords ? explode(",", $product->meta_keywords) : null;
         $ratings = $product->averageRating() ;
-        return view('pages.front.single_product', compact('product', 'tags', 'ratings', 'cart_count', 'title'));
+        return view('pages.front.single_product', compact('product', 'tags', 'ratings', 'title'));
     }
 }

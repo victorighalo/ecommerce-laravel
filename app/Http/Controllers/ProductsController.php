@@ -139,13 +139,15 @@ class ProductsController extends BaseController
                 $product->first()->taxons()->save($taxon);
 
             //update images for product
+            if($request['images'] && count($request['images']) > 0) {
                 foreach ($request['images'] as $image) {
-                    $product->first()->photos()->update([
+                    $product->first()->photos()->create([
                         'link' => $image,
                         'photoable_type' => get_class($product),
                         'photoable_id' => $product_data['id'],
                     ]);
                 }
+            }
 
             //update Delivery Price
                 $product->first()->delivery_price()->update([

@@ -1,4 +1,4 @@
-<section class="padding-top-100 padding-bottom-100">
+<section class="light-gray-bg padding-top-100 padding-bottom-100">
     <div class="container-full">
 
         <!-- Main Heading -->
@@ -8,7 +8,7 @@
         </div>
 
         <!-- New Arrival -->
-        <div class="arrival-block">
+        <div class="arrival-block list-group">
             <ul class="nav nav-tabs" role="tablist">
                 @foreach($categories as $i => $category)
                     @if($category->products->count() > 0)
@@ -28,17 +28,28 @@
                     @if($index == 0)
                         <div class="tab-pane fade show active" id="{{$category->taxonomy->name}}" role="tabpanel">
 
-                        @foreach($category->products as $item)
+                        @foreach($category->products->take(10) as $item)
                             @if($item->hasPhoto())
                             <!-- Item -->
                             <div class="item">
                                 <div class="img-ser">
+                                    <a href="{{route('getProductDetails', [
+                            'taxon_slug' => $item->taxons->first()->slug,
+                            'product_slug' => $item->slug
+                            ])}}">
                                     <img
                                             class="img-1 lazyload"
                                             src="{{$item->FirstThumb}}"
                                             alt="{{$item->title()}}"
                                     >
+                                    </a>
+
+                                    <a href="{{route('getProductDetails', [
+                            'taxon_slug' => $item->taxons->first()->slug,
+                            'product_slug' => $item->slug
+                            ])}}">
                                     <img class="img-2 lazyload" src="{{$item->FirstThumb}}" alt="">
+                                    </a>
 
                                 </div>
                                 <!-- Item Name -->

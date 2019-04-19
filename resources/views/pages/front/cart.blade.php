@@ -84,7 +84,7 @@
 
                         <!-- SUB TOTAL -->
                         <div class="col-sm-5">
-                            <h6>Grand Total</h6>
+                            <h6>Checkout</h6>
                             <div class="grand-total">
                                 <div class="order-detail">
                                     @foreach($cart as $item)

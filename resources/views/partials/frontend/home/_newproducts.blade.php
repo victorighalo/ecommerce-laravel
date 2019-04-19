@@ -1,4 +1,4 @@
-<section class="light-gray-bg padding-top-100 padding-bottom-100">
+<section class="padding-top-100 padding-bottom-100">
     <div class="container">
 
         <!-- Main Heading -->
@@ -18,9 +18,18 @@
                 <div class="on-sale"> New </div>
                 <!-- Item img -->
                 <div class="item-img">
-
-                        <img class="img-1" src="{{$product->FirstImage}}" alt="{{$product->title()}}">
-                        <img class="img-2" src="{{$product->FirstImage}}" alt="{{$product->title()}}">
+                    <a href="{{route('getProductDetails', [
+                            'taxon_slug' => $product->taxons->first()->slug,
+                            'product_slug' => $product->slug
+                            ])}}">
+                        <img class="img-1" src="{{$product->FirstThumb}}" alt="{{$product->title()}}">
+                    </a>
+                    <a href="{{route('getProductDetails', [
+                            'taxon_slug' => $product->taxons->first()->slug,
+                            'product_slug' => $product->slug
+                            ])}}">
+                        <img class="img-2" src="{{$product->FirstThumb}}" alt="{{$product->title()}}">
+                    </a>
 
 
                 </div>

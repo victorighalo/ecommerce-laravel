@@ -26,7 +26,7 @@
                             @if($category->products->count() > 0)
                         <li class="menu-item-has-children">
 
-                            <a href="{{route('getCategoryContent', ['taxon_slug' => $category->slug])}}">{{$category->name}} - {{$category->taxonomy->name}}</a>
+                            <a href="{{route('get_category_content', ['taxon_slug' => $category->slug])}}">{{$category->name}} - {{$category->taxonomy->name}}</a>
                         </li>
                             @endif
                         @endforeach
