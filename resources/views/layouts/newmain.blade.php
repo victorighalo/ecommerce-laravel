@@ -126,6 +126,7 @@
 <div id="wrap">
    @include('partials.frontend.header')
     @yield('content')
+    @include('partials.frontend.categories_slider')
    @include('partials.frontend.footer')
 </div>
 
