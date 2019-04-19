@@ -257,6 +257,9 @@ class ProductsController extends BaseController
 
     public function edit($id)
     {
+        if(! \App\Product::where('id', $id)->exists() ){
+            abort(404);
+        }
         $product = \App\Product::where('id', $id)->first();
         $categories = Taxon::all();
         return view('pages.admin.product_edit', compact('product', 'categories'));
