@@ -183,7 +183,7 @@ class ProductsController extends BaseController
         }
     }
 
-    public function getProductsData(Request $request)
+    public function getProductsData()
     {
 
         $products = \App\Product::all();
@@ -205,6 +205,15 @@ class ProductsController extends BaseController
             })->editColumn('price', function ($subdata) {
 
                 return "&#8358;".number_format($subdata->price, '0', '.', ',');
+            })->editColumn('delivery_price', function ($subdata) {
+
+                return "&#8358;".number_format($subdata->delivery_price->amount, '0', '.', ',');
+            })->editColumn('state', function ($subdata) {
+                if($subdata->state == "active"){
+                    return  '<span class="badge badge-success">'.$subdata->state.'</span>';
+                    }else{
+                    return  '<span class="badge badge-danger">'.$subdata->state.'</span>';
+                }
             })
             ->editColumn('meta_description', function ($subdata) {
 
@@ -221,7 +230,7 @@ class ProductsController extends BaseController
                                                         <a style="padding:8px 5px" class="dropdown-item del_btn" href="#" id="' . $subdata->id . '" onclick="destroy(' . $subdata->id . ',' . ( ($subdata->taxons->count()) ? $subdata->taxons->first()->id : null) . ')"><span>Delete</span> <i class="fas fa-trash float-right"></i></a>
  </div></td>';
             })
-            ->rawColumns(['image', 'action', 'price'])
+            ->rawColumns(['image', 'action', 'price', 'delivery_price', 'state'])
             ->make(true);
     }
 

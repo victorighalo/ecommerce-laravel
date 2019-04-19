@@ -75,6 +75,7 @@
                 { data: 'meta_description', name: 'meta_description' },
                 { data: 'state', name: 'state' },
                 { data: 'price', name: 'price' },
+                { data: 'delivery_price', name: 'delivery_price' },
                 { data: 'taxons', name: 'meta_keywords' },
                 { data: 'meta_keywords', name: 'taxons' },
                 { data: 'created_at', name: 'created_at' },

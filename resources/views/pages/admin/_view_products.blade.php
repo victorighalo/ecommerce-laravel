@@ -11,6 +11,7 @@
                             <th>Description</th>
                             <th>State</th>
                             <th>Price</th>
+                            <th>Delivery Price</th>
                             <th>Category</th>
                             <th>Tags</th>
                             <th>Date</th>
