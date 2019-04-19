@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DeliveryPrice;
 use App\Product;
 use App\User;
 use Illuminate\Http\Request;
@@ -70,12 +71,10 @@ class ProductsController extends BaseController
                 }
             }
 
+            $delivery_price = new DeliveryPrice();
+            $delivery_price->amount = $product_data['delivery_price'];
             //Create Delivery Price
-                $product->delivery_price()->create([
-                    'amount' => $product_data['delivery_price'],
-                    'delivery_price_type' => get_class($product),
-                    'delivery_price_id' => $product->id,
-                ]);
+                $product->delivery_price()->save($delivery_price);
 
             return response()->json(['status' => 200, 'message' => 'Product created'], 200);
         } catch (\Exception $e) {
@@ -91,18 +90,15 @@ class ProductsController extends BaseController
             //Parse query-string input
             parse_str($request->form_data, $product_data);
 
+            //Get Taxon
+            $taxon = Taxon::findBySlug($product_data['taxon_slug']);
+
             //Generate SKU
-            $sku = strtoupper(substr($product_data['name'], 0, 3)) . "-" . $product_data['category_id'];
+            $sku = strtoupper(substr($product_data['name'], 0, 3)) . "-" . $taxon->id;
 
             //Get Product
             $product = \App\Product::where('id', $product_data['id']);
-            $product_ref = $product;
 
-            //Get Selected Taxon
-            $getTaxon = Taxon::where('id',$product_data['category_id'])->first();
-
-
-//            //check if product has Taxon
 
             $hasSameTaxon = false;
             //Update product details
@@ -116,43 +112,35 @@ class ProductsController extends BaseController
                 'meta_keywords' => $product_data['tags']
             ]);
 
-            //Update Delivery Price
-            if($product_data['delivery_price']) {
-                $product->first()->delivery_price()->update([
-                    'amount' => $product_data['delivery_price']
-                ]);
-            }
-
 
             //Check if product already has same Taxon to prevent exception
-            if($product->first()->taxons()->count()) {
-                foreach ($product->first()->taxons as $item) {
-                    $taxon = Taxon::findBySlug($item->slug);
-                    $product->first()->taxons()->detach($taxon);
-                }
-            }
+//            if($product->first()->taxons()->count()) {
+//                foreach ($product->first()->taxons as $item) {
+//                    $taxon = Taxon::findBySlug($item->slug);
+//                    $product->first()->taxons()->detach($taxon);
+//                }
+//            }
 
-            //Add Taxon to product
-                $taxon = Taxon::findBySlug($getTaxon->slug);
-                $product->first()->taxons()->save($taxon);
+            //update Taxon to product
+             $product->first()->taxons()->detach();
+             $product->first()->taxons()->save($taxon);
 
             //update images for product
             if($request['images'] && count($request['images']) > 0) {
                 foreach ($request['images'] as $image) {
                     $product->first()->photos()->create([
                         'link' => $image,
-                        'photoable_type' => get_class($product),
+                        'photoable_type' => get_class($product->first()),
                         'photoable_id' => $product_data['id'],
                     ]);
                 }
             }
 
             //update Delivery Price
-                $product->first()->delivery_price()->update([
-                    'amount' => $product_data['delivery_price'],
-                    'delivery_price_type' => get_class($product),
-                    'delivery_price_id' => $product_data['id'],
-                ]);
+            DeliveryPrice::where('delivery_price_id', $product_data['id'])->update(
+               ['amount' => $product_data['delivery_price']]
+            );
+
 
             return response()->json(['status' => 200, 'message' => 'Product updated'], 200);
         } catch (\Exception $e) {
@@ -192,8 +180,8 @@ class ProductsController extends BaseController
             return $data->created_at ? with(new Carbon($data->created_at))->toDayDateTimeString() : '';
         })
             ->addColumn('image', function ($subdata) {
-                if ($subdata->getMedia('images')->count()) {
-                    return "<img src=" .env('APP_URL'). $subdata->getMedia('images')->first()->getUrl() . "  width='100px'>";
+                if ($subdata->hasPhoto()) {
+                    return "<img src=" . $subdata->firstThumb . "  width='100px'>";
                 } else {
                     return "None";
                 }
