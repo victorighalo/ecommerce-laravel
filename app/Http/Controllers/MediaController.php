@@ -26,7 +26,6 @@ class MediaController extends Controller
             try {
                 $path = 'images/'.date('Y').'/'.date('m');
                 $thumb_path = 'thumbnail/images/'.date('Y').'/'.date('m');
-                $path2 = date('Y').'/'.date('m');
                 $upload_path = public_path($path);
                 $thumb_upload_path = public_path($thumb_path);
 
@@ -44,8 +43,8 @@ class MediaController extends Controller
                 }
                 //Get file name
                 $ext = $request->file('uploaded_file')->clientExtension();
-                $filename = preg_replace('/\..+$/', '', $request->file('uploaded_file')->getClientOriginalName());
-                $filename = strtolower($filename). '-' . date('mds');
+//                $filename = preg_replace('/\..+$/', '', $request->file('uploaded_file')->getClientOriginalName());
+                $filename = md5(uniqid());
 
                 try {
                     //Upload raw file
