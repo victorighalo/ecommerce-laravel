@@ -29,7 +29,7 @@
             ['clean']
         ];
         var options = {
-            placeholder: 'Compose an epic...',
+            placeholder: 'Product overview...',
             readOnly: false,
             theme: 'snow',
             modules: {

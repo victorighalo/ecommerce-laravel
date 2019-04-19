@@ -41,6 +41,9 @@
             position: absolute;
             padding: 10px;
         }
+        .brighttheme .ui-pnotify-action-button{
+            color: #fff;
+        }
     </style>
 </head>
 <body>
