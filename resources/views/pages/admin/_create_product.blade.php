@@ -111,7 +111,7 @@
                                                     </div>
                                                     </div>
                                                     <div class="col-sm-6">
-                                                        <label>Select image for the product</label><br>
+                                                        <label>Select images for the product</label><br>
                                                         <a href="#" class="btn custom_button_color"  id="load_images_btn"><i class="fas fa-image"></i> Choose images</a>
                                                     </div>
                                                 </div>
