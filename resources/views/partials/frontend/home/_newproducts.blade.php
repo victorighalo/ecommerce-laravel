@@ -24,6 +24,7 @@
                             ])}}">
                         <img class="img-1" src="{{$product->FirstThumb}}" alt="{{$product->title()}}">
                     </a>
+                    @if($product->taxons)
                     <a href="{{route('getProductDetails', [
                             'taxon_slug' => $product->taxons->first()->slug,
                             'product_slug' => $product->slug

@@ -36,8 +36,12 @@ class ProductsController extends BaseController
         try {
             //Parse query-string input
             parse_str($request->form_data, $product_data);
+
+            //Get Taxon
+            $taxon = Taxon::findBySlug($product_data['taxon_slug']);
+
             //Generate SKU
-            $sku = strtoupper(substr($product_data['name'], 0, 3)) . "-" . $product_data['category_id'];
+            $sku = strtoupper(substr($product_data['name'], 0, 3)) . "-" . $taxon->id;
 
             //Create Product
             $product = \App\Product::create([
@@ -50,24 +54,18 @@ class ProductsController extends BaseController
                 'state' => ProductState::ACTIVE
             ]);
 
-            $productid = $product->id;
 
-
-            //Get Taxon
-            $taxon = Taxon::where('id', $product_data['category_id'])->first();
-            $taxon = Taxon::findBySlug($taxon->slug);
-
-            $get_product = \App\Product::where('id', $product->id)->first();
             //Add Taxon to product
-            $get_product->taxons()->save($taxon);
+            $product->taxons()->save($taxon);
 
 
+            //Add images to product
             if($request['images']) {
                 foreach ($request['images'] as $image) {
                 $product->photos()->create([
                     'link' => $image,
                     'photoable_type' => get_class($product),
-                    'photoable_id' => $productid,
+                    'photoable_id' => $product->id,
                 ]);
                 }
             }
@@ -76,7 +74,7 @@ class ProductsController extends BaseController
                 $product->delivery_price()->create([
                     'amount' => $product_data['delivery_price'],
                     'delivery_price_type' => get_class($product),
-                    'delivery_price_id' => $productid,
+                    'delivery_price_id' => $product->id,
                 ]);
 
             return response()->json(['status' => 200, 'message' => 'Product created'], 200);

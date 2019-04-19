@@ -23,9 +23,9 @@
                                         <div class="row">
                                     <div class="col-sm-4">
                                         <label for="category_id">{{ __('Category') }}</label>
-                                        <select class="form-control" name="category_id" id="category_id">
+                                        <select class="form-control" name="taxon_slug" id="category_id">
                                             @foreach($categories as $category)
-                                                <option value="{{$category->id}}">{{$category->name}} - {{$category->taxonomy->name}}</option>
+                                                <option value="{{$category->slug}}">{{$category->name}} - {{$category->taxonomy->name}}</option>
                                             @endforeach
                                         </select>
                                         <span class="invalid-feedback errorshow" role="alert">
