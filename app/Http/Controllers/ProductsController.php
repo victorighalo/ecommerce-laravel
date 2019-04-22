@@ -153,6 +153,7 @@ class ProductsController extends BaseController
         try {
             //Get product model
             $product = \App\Product::where('id', $product_id);
+            $name = $product->first()->name;
 
 //            if (!$taxon_id == 0 && $product->exists()) {
 //                //Get Taxon
@@ -167,7 +168,7 @@ class ProductsController extends BaseController
 
             //Delete product
             $product->delete();
-            return response()->json(['message' => $product->first()->name .' Deleted', 'status' => 200], 200);
+            return response()->json(['message' => $name .' Deleted', 'status' => 200], 200);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Failed to Delete ' . $e->getMessage(), 'status' => 400], 400);
         }
