@@ -12,6 +12,14 @@ Route::post('/profile', 'CommonController@updateProfile')->middleware('auth');
 Route::get('/change_password', 'PagesController@changePassword')->middleware('auth');
 Route::post('/change_password', 'CommonController@changePassword')->middleware('auth');
 
+Route::get('email-test', function(){
+
+    $details['email'] = 'victorighalo@live.com';
+
+    dispatch(new App\Jobs\SendEmailJob($details));
+
+    dd('done');
+});
 Auth::routes();
 
 //Checkout

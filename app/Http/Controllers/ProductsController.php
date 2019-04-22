@@ -70,7 +70,6 @@ class ProductsController extends BaseController
                 ]);
                 }
             }
-
             $delivery_price = new DeliveryPrice();
             $delivery_price->amount = $product_data['delivery_price'];
             //Create Delivery Price
