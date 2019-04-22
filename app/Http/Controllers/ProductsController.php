@@ -154,19 +154,22 @@ class ProductsController extends BaseController
             //Get product model
             $product = \App\Product::where('id', $product_id);
 
-            if (!$taxon_id == 0 && $product->exists()) {
-                //Get Taxon
-                $taxon = Taxon::where('id', $taxon_id)->first();
+//            if (!$taxon_id == 0 && $product->exists()) {
+//                //Get Taxon
+//                $taxon = Taxon::where('id', $taxon_id)->first();
+//
+//                //Unlink Taxon
+//                $product->first()->taxons()->detach($taxon);
+//            }
 
-                //Unlink Taxon
-                $product->first()->taxons()->detach($taxon);
-            }
+            //Remove from delivery prices table
+            DeliveryPrice::where('delivery_price_id', $product_id)->delete();
 
             //Delete product
             $product->delete();
-            return response()->json(['message' => 'Product Deleted', 'status' => 200], 200);
+            return response()->json(['message' => $product->first()->name .' Deleted', 'status' => 200], 200);
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Failed to Delete' . $e->getMessage(), 'status' => 400], 400);
+            return response()->json(['message' => 'Failed to Delete ' . $e->getMessage(), 'status' => 400], 400);
         }
     }
 
