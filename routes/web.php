@@ -75,7 +75,6 @@ Route::get('/product/{id}/edit', 'ProductsController@edit')->name('edit_product'
 Route::post('/product/update', 'ProductsController@update')->name('update_product');
 Route::post('/media/remove_product', 'ProductsController@removePhoto')->name('remove_product_media');
 
-
 //Media
 Route::post('/media/upload', 'MediaController@UploadMedia')->name('media_upload');
 Route::get('/media/images/load', 'MediaController@loadImages')->name('load_images');

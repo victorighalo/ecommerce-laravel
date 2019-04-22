@@ -79,5 +79,6 @@
     var uploadUrl = "{{route('media_upload')}}";
     var photoDriver = "{{config('app.PHOTO_DRIVER')}}";
 </script>
+
 @stack('script')
 </html>

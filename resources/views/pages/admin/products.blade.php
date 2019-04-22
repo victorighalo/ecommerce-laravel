@@ -548,7 +548,6 @@
                 }
             })
         };
-
         function destroy (id, catid) {
             if(!catid){
                 catid = 0;

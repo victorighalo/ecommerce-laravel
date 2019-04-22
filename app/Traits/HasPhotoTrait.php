@@ -6,7 +6,6 @@ namespace App\Traits;
 trait HasPhotoTrait
 {
 
-
     protected function s3ThumbUrl(){
         return "https://s3.".env('AWS_DEFAULT_REGION').".amazonaws.com/".env('AWS_BUCKET')."/images/thumbnail/";
     }

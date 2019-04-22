@@ -304,4 +304,5 @@ class ProductsController extends BaseController
             return response()->json(['message' => 'Failed to remove Product image ' . $e->getMessage(), 'status' => 400], 400);
         }
     }
+
 }

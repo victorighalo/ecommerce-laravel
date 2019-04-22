@@ -21,4 +21,5 @@ class Photo extends Model
             return "https://s3.".env('AWS_DEFAULT_REGION').".amazonaws.com/".env('AWS_BUCKET')."/images/". $this->link;
         }
     }
+
 }
