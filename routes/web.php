@@ -77,10 +77,9 @@ Route::post('/media/remove_product', 'ProductsController@removePhoto')->name('re
 
 
 //Media
-Route::post('/media/uploads3', 'MediaController@UploadMedia')->name('media_upload');
-Route::post('/media/upload', 'MediaController@uploadToS3')->name('media_upload_s3');
+Route::post('/media/upload', 'MediaController@UploadMedia')->name('media_upload');
 Route::get('/media/images/load', 'MediaController@loadImages')->name('load_images');
-Route::post('/media/remove', 'MediaController@destroy')->name('media_remove');
+Route::post('/media/remove', 'MediaController@destroyMedia')->name('media_remove');
 
 //Categories
 Route::get('/category', 'CategoryController@index');

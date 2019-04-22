@@ -75,6 +75,9 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+    var s3Url = " https://s3.{{env('AWS_DEFAULT_REGION') }}.amazonaws.com/{{env('AWS_BUCKET')}}/images/thumbnail/";
+    var uploadUrl = "{{route('media_upload')}}";
+    var photoDriver = "{{config('app.PHOTO_DRIVER')}}";
 </script>
 @stack('script')
 </html>

@@ -15,6 +15,10 @@ class Photo extends Model
 
     public function getImageUrlAttribute()
     {
-        return $this->link;
+        if(config('app.PHOTO_DRIVER') == 'local'){
+            return $this->link;
+        }elseif (config('app.PHOTO_DRIVER') == 's3'){
+            return "https://s3.".env('AWS_DEFAULT_REGION').".amazonaws.com/".env('AWS_BUCKET')."/images/". $this->link;
+        }
     }
 }

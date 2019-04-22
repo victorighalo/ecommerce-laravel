@@ -5,8 +5,15 @@ namespace App\Traits;
 
 trait HasPhotoTrait
 {
-    public $S3URL = " 'https://s3.' . env('AWS_DEFAULT_REGION') . '.amazonaws.com/' . env('AWS_BUCKET') . '/' ";
 
+
+    protected function s3ThumbUrl(){
+        return "https://s3.".env('AWS_DEFAULT_REGION').".amazonaws.com/".env('AWS_BUCKET')."/images/thumbnail/";
+    }
+
+    protected function s3Url(){
+        return "https://s3.".env('AWS_DEFAULT_REGION').".amazonaws.com/".env('AWS_BUCKET')."/images/";
+    }
     public function photos()
     {
         return $this->morphMany('App\Photo', 'photoable');
@@ -17,19 +24,21 @@ trait HasPhotoTrait
     }
 
     public function getFirstImageAttribute(){
+        if(config('app.PHOTO_DRIVER') == 'local'){
             return $this->hasPhoto() ? $this->photos()->first()->link : "";
-    }
+        }elseif (config('app.PHOTO_DRIVER') == 's3'){
+            return $this->hasPhoto() ? $this->s3Url(). $this->photos()->first()->link : "";
+        }
 
-    public function getFirstImageS3Attribute(){
-            return $this->hasPhoto() ? $this->S3URL. $this->photos()->first()->link : "";
     }
 
     public function getFirstThumbAttribute(){
+        if(config('app.PHOTO_DRIVER') == 'local'){
             return $this->hasPhoto() ? "thumbnail/".$this->photos()->first()->link : "";
-    }
+        }elseif (config('app.PHOTO_DRIVER') == 's3'){
+            return $this->hasPhoto() ? $this->s3ThumbUrl().$this->photos()->first()->link : "";
+        }
 
-    public function getFirstThumbS3Attribute(){
-            return $this->hasPhoto() ? $this->S3URL."thumb/".$this->photos()->first()->link : "";
     }
 
     public function removePhoto($id, $itemId){

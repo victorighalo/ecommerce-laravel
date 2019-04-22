@@ -106,7 +106,7 @@
                                                         <input type="file" name="img[]" class="file-upload-default">
                                                         <input type="file" class="form-control file-upload-info" id="files_upload" placeholder="Upload Image">
                                                         <span class="input-group-append">
-                                                        <button class="file-upload-browse btn custom_button_color" type="button" id="upload_btn">Upload</button>
+                                                        <button class="file-upload-browse btn custom_button_color" type="button" id="upload_btn"><i class="fas fa-upload"></i> Upload</button>
                                                         </span>
                                                     </div>
                                                     </div>
