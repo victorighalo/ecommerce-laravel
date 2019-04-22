@@ -198,7 +198,7 @@ class ProductsController extends BaseController
                 return "&#8358;".number_format($subdata->price, '0', '.', ',');
             })->editColumn('delivery_price', function ($subdata) {
 
-                return "&#8358;".number_format($subdata->delivery_price ? $subdata->delivery_price->amount : 0, '0', '.', ',');
+                return "&#8358;".number_format($subdata->delivery_price->amount, '0', '.', ',');
             })->editColumn('state', function ($subdata) {
                 if($subdata->state == "active"){
                     return  '<span class="badge badge-success">'.$subdata->state.'</span>';
@@ -296,8 +296,9 @@ class ProductsController extends BaseController
     }
 
     public function removePhoto(Request $request){
+        $product = \App\Product::findBySlug($request->productslug)->first();
         try {
-            \App\Photo::find($request->imageid)->delete();
+            $product->removePhoto($request->imageid, $product->id);
             return response()->json(['message' => 'Product image removed', 'status' => 200], 200);
 
         }catch(\Exception $e){

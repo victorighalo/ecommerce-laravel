@@ -40,7 +40,10 @@
         var quill = new Quill(description_container, options);
 
         var bsmodal = $('#images-modal');
-        var mediaUrl = "{{asset('')}}/";
+        var mediaUrl = "{{route('media_upload')}}";
+        var uploadUrl = "{{asset('')}}/";
+        var photoDriver = "{{config('app.PHOTO_DRIVER')}}";
+        var s3Url = " https://s3.{{env('AWS_DEFAULT_REGION') }}.amazonaws.com/{{env('AWS_BUCKET')}}/images/thumbnail/";
         var imageBag = [];
 
         var productstable = $('#table').DataTable({
@@ -70,6 +73,14 @@
             }
         })();
 
+        (function setUploadUrl(){
+            if(photoDriver == 'local'){
+                uploadUrl = "{{route('media_upload')}}"
+            }
+            else if(photoDriver == 's3'){
+                uploadUrl = "{{route('media_upload_s3')}}";
+            }
+        })();
 
         $(document).ready(function () {
             //load images to modal
@@ -225,7 +236,6 @@
                     });
                     productstable.ajax.reload();
                 }).fail(function (response) {
-                    console.log(response)
                     $(".add_product_btn").prop('disabled', false)
                     $(".add_product_btn > .process_indicator").addClass('off');
                     if (response.status == 500) {

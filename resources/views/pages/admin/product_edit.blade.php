@@ -107,14 +107,14 @@
                                                                 <div class="input-group col-xs-12">
                                                                     <input type="file" class="form-control file-upload-info" id="files_upload" placeholder="Upload Image">
                                                                     <span class="input-group-append">
-                                                        <button class="file-upload-browse btn custom_button_color" type="button" id="upload_btn"><i class="fas fa-upload"></i> Upload</button>
+                                                        <button class="file-upload-browse btn custom_button_color" type="button" id="upload_btn">Upload</button>
                                                         </span>
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-sm-6">
                                                                 <label>Select images for the product</label><br>
-                                                                <a href="#" class="btn custom_button_color"  id="load_images_btn"><i class="fas fa-image"></i> Choose images</a>
+                                                                <a href="#" class="btn custom_button_color"  id="load_images_btn">Choose images</a>
                                                             </div>
                                                         </div>
                                                             <div class="chosen_images mt-3">
@@ -122,14 +122,10 @@
                                                                 @foreach($product->photos as $image)
                                                                     <div class="product_img_container">
                                                                         <div class="product_img_container_delete">
-                                                                            <span style="cursor:pointer;" class="badge badge-danger" data-imageid="{{$image->id}}" data-productslug="{{$product->slug}}" onclick="removeProductMedia(this)">x</span>
+                                                                            <span style="cursor:pointer;" class="badge badge-danger" data-imageid="{{$image->id}}" data-productslug="{{$product->slug}}" onclick="removeSpatieMedia(this)">x</span>
                                                                         </div>
-                                                                        @if(config('app.PHOTO_DRIVER') == 'local')
                                                              <img src="{{asset('thumbnail/'.$image->link)}}" value="{{$image->id}}"  style="width:100px; height:100px">
-                                                                        @elseif(config('app.PHOTO_DRIVER') == 's3')
-                                                                            <img src="https://s3.{{env('AWS_DEFAULT_REGION') }}.amazonaws.com/{{env('AWS_BUCKET')}}/images/thumbnail/{{$image->link}}" value="{{$image->id}}"  style="width:100px; height:100px">
-                                                                        @endif
-                                                                            {{--<span style="cursor:pointer;" class="badge badge-danger" onclick="removeSpatieMedia({{$image->id}})">x</span>--}}
+                                                                    {{--<span style="cursor:pointer;" class="badge badge-danger" onclick="removeSpatieMedia({{$image->id}})">x</span>--}}
                                                                     </div>
                                                                         @endforeach
                                                                     @endif
@@ -141,7 +137,7 @@
                                             <div class="mt-1">
                                                 <button class="btn float-right btn-primary btn-lg font-weight-medium add_product_btn" type="submit">
                                                     <i class="fas fa-spinner fa-spin off process_indicator"></i>
-                                                    <span><i class="fas fa-save"></i> {{ __('Update') }}</span>
+                                                    <span>{{ __('Update') }}</span>
                                                 </button>
                                             </div>
                                         </form>
@@ -163,8 +159,6 @@
     <script>
         var bsmodal = $('#images-modal');
         var imageBag = [];
-        var mediaUrl = "{{asset('')}}/";
-
 
         var toolbarOptions = [
             ['link', 'image'],
@@ -194,16 +188,6 @@
 
         $(document).ajaxStop($.unblockUI);
 
-        (function setMediaUrl(){
-            if(photoDriver == 'local'){
-                mediaUrl = "{{asset('')}}"
-            }
-            else if(photoDriver == 's3'){
-                mediaUrl = s3Url;
-            }
-        })();
-
-
         $(document).ready(function () {
             //load images to modal
             $("#load_images_btn").click(function () {
@@ -221,7 +205,7 @@
                         bsmodal.find('.modal-body').find('form').empty();
                         $(data).map(function (index, value) {
                             {{--var image = "{!! asset('') !!}" + value.file;--}}
-                            var thumb = mediaUrl+value.file;
+                            var thumb = "{!! asset('') !!}" + value.thumb;
                             var id = value.id;
                             bsmodal.find('.image_load_status').html("")
                             bsmodal.find('.modal-body').find('form').append(
@@ -278,7 +262,7 @@
                 form_data.append('uploaded_file', uploaded_file);
                 $.blockUI({message: '<h5>Uploading...</h5>'});
                 $.ajax({
-                    url: uploadUrl, // point to server-side PHP script
+                    url: "{{route('media_upload')}}", // point to server-side PHP script
                     data: form_data,
                     type: 'POST',
                     dataType:'JSON',
@@ -483,9 +467,9 @@
             })
         };
 
-        function removeProductMedia (e) {
+        function removeSpatieMedia (e) {
             var imageid = $(e).data('imageid');
-            // var productslug = $(e).data('productslug');
+            var productslug = $(e).data('productslug');
             $.blockUI(
                 {message: '<h5>Deleting...</h5>',
                 css: {border: '1px solid #fff' }}
@@ -493,7 +477,7 @@
             $.ajax({
         url: "{{route('remove_product_media')}}",
         type: 'POST',
-        data: {imageid: imageid}
+        data: {imageid: imageid, productslug: productslug}
         })
         .done(function(data) {
             $.unblockUI();
