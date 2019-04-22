@@ -58,6 +58,8 @@ return [
 
     'asset_url' => env('ASSET_URL', null),
 
+    'PHOTO_DRIVER' => env('PHOTO_DRIVER', 'local'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

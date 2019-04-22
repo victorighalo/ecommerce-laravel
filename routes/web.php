@@ -20,6 +20,24 @@ Route::get('email-test', function(){
 
     dd('done');
 });
+
+Route::get('aws-test', function(){
+
+    try {
+        $url = 'https://s3.' . env('AWS_DEFAULT_REGION') . '.amazonaws.com/' . env('AWS_BUCKET') . '/';
+        $images = [];
+        $files = Storage::disk('s3')->files('images');
+        foreach ($files as $file) {
+            $images[] = [
+                'name' => str_replace('images/', '', $file),
+                'src' => $url . $file
+            ];
+        }
+        dd($images);
+    }catch (\Exception $e){
+        var_dump($e->getMessage());
+    }
+});
 Auth::routes();
 
 //Checkout
@@ -59,7 +77,8 @@ Route::post('/media/remove_product', 'ProductsController@removePhoto')->name('re
 
 
 //Media
-Route::post('/media/upload', 'MediaController@UploadMedia')->name('media_upload');
+Route::post('/media/uploads3', 'MediaController@UploadMedia')->name('media_upload');
+Route::post('/media/upload', 'MediaController@uploadToS3')->name('media_upload_s3');
 Route::get('/media/images/load', 'MediaController@loadImages')->name('load_images');
 Route::post('/media/remove', 'MediaController@destroy')->name('media_remove');
 

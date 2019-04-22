@@ -38,34 +38,14 @@
         };
         var description_container = $('#editor').get(0);
         var quill = new Quill(description_container, options);
-        // var description = quill.getContents();
-        // var description_value = description;
 
         var bsmodal = $('#images-modal');
-        var mediafolder = "{{asset('')}}/";
+        var mediaUrl = "{{route('media_upload')}}";
+        var uploadUrl = "{{asset('')}}/";
+        var photoDriver = "{{config('app.PHOTO_DRIVER')}}";
+        var s3Url = " https://s3.{{env('AWS_DEFAULT_REGION') }}.amazonaws.com/{{env('AWS_BUCKET')}}/images/thumbnail/";
         var imageBag = [];
 
-        {{--function removeMedia (media) {--}}
-            {{--var item = $(media);--}}
-
-            {{--$('.modal-content').block({--}}
-                {{--message: '<h5>Deleting...</h5>',--}}
-                {{--css: {border: '1px solid #fff' }--}}
-            {{--});--}}
-            {{--$.ajax({--}}
-                {{--url: "{{route('media_remove')}}",--}}
-                {{--type: 'POST',--}}
-                {{--data: {mediaId: item.attr('id') }--}}
-            {{--})--}}
-                {{--.done(function(data) {--}}
-                    {{--$('.modal-content').unblock();--}}
-                    {{--item.parent().fadeOut()--}}
-                {{--}).fail(function(error) {--}}
-                {{--bsmodal.find('.image_load_status').html("Failed to delete image. Please Try again.")--}}
-                {{--$('.modal-content').unblock();--}}
-            {{--});--}}
-
-        {{--};--}}
         var productstable = $('#table').DataTable({
             processing: true,
             serverSide: true,
@@ -84,6 +64,24 @@
             ]
         });
 
+        (function setMediaUrl(){
+            if(photoDriver == 'local'){
+                mediaUrl = "{{asset('')}}"
+            }
+            else if(photoDriver == 's3'){
+                mediaUrl = s3Url;
+            }
+        })();
+
+        (function setUploadUrl(){
+            if(photoDriver == 'local'){
+                uploadUrl = "{{route('media_upload')}}"
+            }
+            else if(photoDriver == 's3'){
+                uploadUrl = "{{route('media_upload_s3')}}";
+            }
+        })();
+
         $(document).ready(function () {
             //load images to modal
             $("#load_images_btn").click(function () {
@@ -100,7 +98,7 @@
                         $('.modal-content').unblock();
                         bsmodal.find('.modal-body').find('form').empty();
                         $(data).map(function (index, value) {
-                            var image = "{!! asset('') !!}" + value.file;
+                            var image = mediaUrl+value.file;
                             var id = value.id;
                             bsmodal.find('.image_load_status').html("")
                             bsmodal.find('.modal-body').find('form').append(
@@ -157,7 +155,7 @@
                 form_data.append('uploaded_file', uploaded_file);
                 $.blockUI({message: '<h5>Uploading...</h5>'});
                 $.ajax({
-                    url: "{{route('media_upload')}}", // point to server-side PHP script
+                    url: uploadUrl,
                     data: form_data,
                     type: 'POST',
                     dataType:'JSON',
