@@ -43,7 +43,8 @@
                             </div>
                     @endif
                 </div>
-                    <!-- Popular Images Slider -->
+
+                            <!-- Popular Images Slider -->
                     <div class="col-md-7">
                         <!-- Place somewhere in the <body> of your page -->
                         <div id="slider-shop" class="flexslider">

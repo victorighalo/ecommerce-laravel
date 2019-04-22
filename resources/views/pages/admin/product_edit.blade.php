@@ -36,10 +36,10 @@
                                                                 @if($product->taxons->first()->name == $category->name)
                                                             <option value="{{$category->slug}}" selected>{{$category->name}}</option>
                                                                 @else
-                                                                    <option value="{{$category->id}}">{{$category->name}} - {{$category->taxonomy->name}}</option>
+                                                                    <option value="{{$category->slug}}">{{$category->name}} - {{$category->taxonomy->name}}</option>
                                                                 @endif
                                                                 @else
-                                                                    <option value="{{$category->id}}">{{$category->name}} - {{$category->taxonomy->name}}</option>
+                                                                    <option value="{{$category->slug}}">{{$category->name}} - {{$category->taxonomy->name}}</option>
                                                             @endif
                                                         @endforeach
                                                     </select>
