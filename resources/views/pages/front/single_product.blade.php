@@ -71,7 +71,7 @@
                     <div class="col-md-5">
                         <h4>{{$product->title()}}</h4>
                         <pre>
-                            @php(var_dump($product->propertyValues))
+
                         </pre>
                         <select class="product-rating-view">
                             @for ($i = 1; $i <= 5; $i++)
@@ -89,6 +89,14 @@
                                 @if(isset($tags))
                                     @foreach($tags as $tag)
                                         <span class="badge badge-primary text-white">{{$tag}}</span>
+                                    @endforeach
+                                @endif
+                            </li>
+                            <li>
+                                @if(isset($product->propertyValues))
+                                    @foreach($product->propertyValues as $propertyValue)
+                                        {{ $propertyValue->property->name }}: <span class="font-weight-bold text-white"
+                                        style="color: #000 !important;padding-right: 10px;font-size: 14px">{{ ucfirst($propertyValue->title) }} </span>
                                     @endforeach
                                 @endif
                             </li>
