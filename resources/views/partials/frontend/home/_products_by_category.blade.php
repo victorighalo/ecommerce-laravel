@@ -13,9 +13,9 @@
                 @foreach($categories as $i => $category)
                     @if($category->products->count() > 0)
                         @if($i == 0)
-                        <li class="nav-item"> <a class="active"  data-toggle="tab" href="#{{$category->taxonomy->slug}}" role="tab" aria-selected="true">{{strtoupper($category->name)}} - {{strtoupper($category->taxonomy->name)}}</a> </li>
+                        <li class="nav-item"> <a class="active"  data-toggle="tab" href="#{{$category->slug}}" role="tab" aria-selected="true">{{strtoupper($category->name)}} - {{strtoupper($category->taxonomy->name)}}</a> </li>
                         @else
-                         <li class="nav-item"> <a class=""  data-toggle="tab" href="#{{$category->taxonomy->slug}}" role="tab" aria-selected="true">{{strtoupper($category->name)}} - {{strtoupper($category->taxonomy->name)}}</a> </li>
+                         <li class="nav-item"> <a class=""  data-toggle="tab" href="#{{$category->slug}}" role="tab" aria-selected="true">{{strtoupper($category->name)}} - {{strtoupper($category->taxonomy->name)}}</a> </li>
                         @endif
                         @endif
                 @endforeach
@@ -26,7 +26,7 @@
             @foreach($categories as $index => $category)
                 @if($category->products->count() > 0)
                     @if($index == 0)
-                        <div class="tab-pane fade show active" id="{{$category->taxonomy->slug}}" role="tabpanel">
+                        <div class="tab-pane fade show active" id="{{$category->slug}}" role="tabpanel">
 
                         @foreach($category->products->take(10) as $item)
                             @if($item->hasPhoto() && $item->isActive())
@@ -74,7 +74,7 @@
 
                         </div>
                         @else
-                            <div class="tab-pane animated fadeInDown" id="{{$category->taxonomy->name}}" role="tabpanel">
+                            <div class="tab-pane animated fadeInDown" id="{{$category->slug}}" role="tabpanel">
 
                             @foreach($category->products as $item)
                                 @if($item->hasPhoto())

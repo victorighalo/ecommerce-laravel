@@ -13,13 +13,13 @@
 
         <div class="col-sm-4">
             <label for="property_value">{{ __('Property value') }}</label>
-            <input type="text" id="property_value" class="form-control" name="property_value" placeholder="300"  required>
+            <input type="text" id="property_value" class="form-control" name="property_value" placeholder="300, Red"  required>
             <span class="invalid-feedback errorshow" role="alert">
                                         </span>
         </div>
         <div class="col-sm-4">
             <label for="property_title">{{ __('Property title') }} (optional)</label>
-            <input type="text" id="property_title" class="form-control" name="property_title" placeholder="Kg" >
+            <input type="text" id="property_title" class="form-control" value=" " name="property_title" placeholder="Kg" >
             <span class="invalid-feedback errorshow" role="alert">
                                         </span>
         </div>

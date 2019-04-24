@@ -70,6 +70,9 @@
                     <!-- COntent -->
                     <div class="col-md-5">
                         <h4>{{$product->title()}}</h4>
+                        <pre>
+                            @php(var_dump($product->propertyValues))
+                        </pre>
                         <select class="product-rating-view">
                             @for ($i = 1; $i <= 5; $i++)
                                 @if($i <= round($ratings) )
@@ -92,6 +95,7 @@
                         </ul>
                         <!-- Item Detail -->
                         <p>{{$product->meta_description}}</p>
+
 
                         <!-- Short By -->
                         <div class="some-info">

@@ -58,7 +58,7 @@
                             $("select[name='property_slug']").empty();
                             $("select[name='property_slug']").prop('disabled', false);
                             $.each(data, function (key, value) {
-                                $("select[name='property_slug']").append('<option value="' + value.id + '">' + value.name + '</option>');
+                                $("select[name='property_slug']").append('<option value="' + value.slug + '">' + value.name + '</option>');
                             });
                         })
                 }).fail(function (response) {
@@ -145,11 +145,11 @@
             });
 
             $(".delete_property_value").on('click', function () {
-                destroyProperty($(this).attr('id'))
+                destroyPropertyValue($(this).attr('id'))
             });
 
             $(".delete_property").on('click', function () {
-                destroyPropertyValue($(this).attr('id'))
+                destroyProperty($(this).attr('id'))
             });
 
             $(".edit_property_value").on('click', function () {
@@ -179,7 +179,7 @@
                         click: function(notice) {
                             $.ajax({
                                 type: "GET",
-                                url: "{!! route('destroy_subcategory') !!}"+"/"+id
+                                url: "{!! route('destroy_property') !!}"+"/"+id
                             }).done(function (data) {
                                 notice.update({
                                     title: 'Deleted',
@@ -208,7 +208,7 @@
                                 if (response.status == 400) {
                                     new PNotify({
                                         title: 'Oops!',
-                                        text: 'Failed to delete Product.',
+                                        text: 'Failed to delete Property value.',
                                         type: 'error'
                                     });
                                     return false;
@@ -269,7 +269,7 @@
                         click: function(notice) {
                             $.ajax({
                                 type: "GET",
-                                url: "{!! route('destroy_category') !!}"+"/"+id
+                                url: "{!! route('destroy_property_value') !!}"+"/"+id
                             }).done(function (data) {
                                 notice.update({
                                     title: 'Deleted',
@@ -298,7 +298,7 @@
                                 if (response.status == 400) {
                                     new PNotify({
                                         title: 'Oops!',
-                                        text: 'Failed to delete Product.',
+                                        text: 'Failed to delete Property.',
                                         type: 'error'
                                     });
                                     return false;

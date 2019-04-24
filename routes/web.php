@@ -94,6 +94,8 @@ Route::post('/category/create_sub_category', 'CategoryController@createSubCatego
 Route::get('/properties', 'PropertyController@index');
 Route::post('/properties/create', 'PropertyController@create')->name('create_property');
 Route::post('/properties/update', 'PropertyController@update')->name('update_property');
+Route::get('/properties/destroy/{id?}', 'PropertyController@destroy')->name('destroy_property');
+Route::get('/properties/value/destroy/{id?}', 'PropertyController@destroyPropVal')->name('destroy_property_value');
 Route::post('/properties/updatevalue', 'PropertyController@updateValue')->name('update_property_value');
 Route::post('/properties/updatetitle', 'PropertyController@updateTitle')->name('update_property_title');
 Route::post('/properties/value/create', 'PropertyController@createPropertyValue')->name('create_property_value');

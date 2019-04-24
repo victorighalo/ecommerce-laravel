@@ -34,9 +34,10 @@ class ProductsController extends BaseController
     public function create(Request $request)
     {
 
+
         try {
             //Parse query-string input
-            parse_str($request->form_data, $product_data);
+            parse_str(html_entity_decode($request->form_data), $product_data);
 
             //Get Taxon
             $taxon = Taxon::findBySlug($product_data['taxon_slug']);
@@ -70,10 +71,16 @@ class ProductsController extends BaseController
                 ]);
                 }
             }
+
+            //Create Delivery Price
             $delivery_price = new DeliveryPrice();
             $delivery_price->amount = $product_data['delivery_price'];
-            //Create Delivery Price
-                $product->delivery_price()->save($delivery_price);
+            $product->delivery_price()->save($delivery_price);
+
+            //Assign product to categories
+            if($request->has('properties')) {
+                $product->propertyValues()->sync($request->properties);
+            }
 
             return response()->json(['status' => 200, 'message' => 'Product created'], 200);
         } catch (\Exception $e) {

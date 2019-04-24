@@ -199,20 +199,28 @@
                     });
                     return false;
                 }
+
                 $(".add_product_btn").prop('disabled', true)
                 $(".add_product_btn > .process_indicator").removeClass('off');
                 $("span.errorshow").html("")
 
-                var form_data = new FormData();
-                // form_data.append('form_data', $(this).serialize());
-                form_data.append('images', imageBag);
+                //Get product properties
+                var properties = [];
+                $.each($(".property_values select"), function(i, value){
+                    if($(value).val() != "null") {
+                        properties.push($(value).val())
+                    }
+                });
+
+
                 $.ajax({
                     type: "POST",
                     url: "{!! route('create_products') !!}",
                     data: {
                         form_data:$(this).serialize(),
                         images: imageBag,
-                        description: $(description_container).find('.ql-editor').html()
+                        description: $(description_container).find('.ql-editor').html(),
+                        properties: properties
                     }
                 }).done(function (data) {
                     $(".add_product_btn").prop('disabled', false)
