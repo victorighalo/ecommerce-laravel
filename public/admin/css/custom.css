@@ -7,29 +7,8 @@
 
 /* ----- DIALOG/MODAL ----- */
 /* FADE/SCALE EFFECT */
-.modal.fade .modal-dialog {
-    opacity: 0;
-    -webkit-transform: scale(0.1);
-    -ms-transform: scale(0.1);
-    -o-transform: scale(0.1);
-    transform: scale(0.1);
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-}
 
-.modal.fade.in .modal-dialog {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    -ms-transform: scale(1);
-    -o-transform: scale(1);
-    transform: scale(1);
-    -webkit-transform: translate3d(0%, 0, 0);
-    -ms-transform: translate3d(0%, 0, 0);
-    -o-transform: translate3d(0%, 0, 0);
-    transform: translate3d(0%, 0, 0);
-}
+
 
 /* DIALOG CONTENT */
 .modal-content {
