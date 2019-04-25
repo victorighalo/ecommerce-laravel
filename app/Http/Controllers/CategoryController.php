@@ -16,7 +16,7 @@ class CategoryController extends Controller
     }
 
     public function index(){
-        $categories = $this->taxonomiesWithChildren(1);
+        $categories = Taxonomy::all();
         return view('pages.admin.category', compact('categories'));
     }
 
@@ -51,7 +51,28 @@ class CategoryController extends Controller
         }
     }
 
-    protected function taxonomiesWithChildren($taxonomy_id){
+    public function createChildCategory(Request $request){
+        $request->validate([
+            'taxonomy_id' => 'required',
+            'taxon_id' => 'required',
+            'input' => 'required',
+        ]);
+
+        try{
+        Taxon::create([
+            'taxonomy_id' => $request->taxonomy_id,
+            'parent_id' => $request->taxon_id,
+            'name' => $request->input
+        ]);
+            return response()->json([
+                'message' => 'Successfully crceated Child Category'
+            ], 200);
+        }catch (\Exception $e){
+            return response()->json(['message' => 'Failed to create category' . $e->getMessage()], 400);
+        }
+    }
+
+    protected function taxonomiesWithChildren(){
         $categories = Taxonomy::all();
         $menu = [];
         foreach ($categories as $category){

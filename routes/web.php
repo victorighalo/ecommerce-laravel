@@ -59,10 +59,11 @@ Route::post('/cart/destroy/{cart_item?}', 'CartController@destroy')->name('destr
 Route::post('/load_cities', 'CommonController@loadCities')->name('load_cities');
 Route::post('/add_address', 'CommonController@addAddress')->name('add_address');
 
+
+//Office section
 Route::group(['prefix' => 'office', 'middleware' => ['role:admin']], function (){
 
-//Admin section
-    Route::get('/', 'OfficeController@office');
+Route::get('/', 'OfficeController@office');
 
 //Products
 Route::get('/products', 'ProductsController@index');
@@ -89,6 +90,7 @@ Route::post('/category/edit', 'CategoryController@editTaxonomy')->name('edit_cat
 Route::get('/category/destroy/{id?}', 'CategoryController@destroyTaxonomy')->name('destroy_category');
 Route::post('/category/create', 'CategoryController@create')->name('create_category');
 Route::post('/category/create_sub_category', 'CategoryController@createSubCategory')->name('create_sub_category');
+Route::post('/category/create_child_category', 'CategoryController@createChildCategory')->name('create_child_category');
 
 //Properties
 Route::get('/properties', 'PropertyController@index');
