@@ -26,7 +26,6 @@
     <link href="{{asset('assets/css/responsive.css')}}" rel="stylesheet">
     <link href="{{asset('assets/font/flaticon.css')}}" rel="stylesheet">
 
-
     <!-- JavaScripts -->
     <script src="{{ asset('assets/js/modernizr.js')}}"></script>
 

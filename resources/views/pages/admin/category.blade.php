@@ -79,10 +79,18 @@
                                                                     <div class="row">
                                                                         @foreach($category->taxons as $subcategory)
                                                                         <div class="col-12 pb-1">
-                                                                            <span>{{$subcategory['name']}} </span>
-                                                                            <a class="btn btn-sm btn-link delete_subcategory" id="{{$subcategory['id']}}"><i class="fas fa-trash"></i></a>
-                                                                            <a class="btn btn-sm btn-link edit_subcategory" id="{{$subcategory['id']}}" data-category_id="{{$category->taxonomy_id}}"><i class="fas fa-edit"></i></a>
-                                                                        </div>
+                                                                            <div class="btn-group">
+                                                                                <button class="btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                    <span>{{ucwords($subcategory['name'])}} </span>
+                                                                                </button>
+                                                                                <div class="dropdown-menu">
+                                                                                    <a class="btn btn-sm dropdown-item delete_subcategory" id="{{$subcategory['id']}}"><i class="fas fa-trash"></i> Delete</a>
+                                                                                    <a class="btn btn-sm dropdown-item edit_subcategory" id="{{$subcategory['id']}}" data-category_id="{{$category->taxonomy_id}}"><i class="fas fa-edit"></i> Edit</a>
+                                                                                    <div class="dropdown-divider"></div>
+                                                                                    <a class="btn btn-sm dropdown-item add_childcategory" id="{{$subcategory['id']}}"><i class="fas fa-plus"></i> Add </a>
+                                                                                </div>
+                                                                            </div>
+                                                                            </div>
                                                                             @endforeach
                                                                     </div>
                                                                 </td>
