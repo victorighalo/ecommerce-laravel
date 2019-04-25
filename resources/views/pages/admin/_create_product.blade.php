@@ -25,7 +25,10 @@
                                         <label for="category_id">{{ __('Category') }}</label>
                                         <select class="form-control" name="taxon_slug" id="category_id">
                                             @foreach($categories as $category)
-                                                <option value="{{$category->slug}}">{{$category->name}} - {{$category->taxonomy->name}}</option>
+                                                        <option value="{{$category->slug}}">{{$category->taxonomy->name}} - {{$category->name}} </option>
+                                                            @foreach($category->children as $child_category)
+                                                                <option value="{{$child_category->slug}}">{{$category->taxonomy->name}} - {{$category->name}} - {{$child_category->name}} </option>
+                                                            @endforeach
                                             @endforeach
                                         </select>
                                         <span class="invalid-feedback errorshow" role="alert">

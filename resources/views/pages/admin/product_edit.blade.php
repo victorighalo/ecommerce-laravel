@@ -33,14 +33,14 @@
                                                     <select class="form-control" name="taxon_slug" id="category_id">
                                                         @foreach($categories as $category)
                                                             @if(count($product->taxons))
-                                                                @if($product->taxons->first()->name == $category->name)
-                                                            <option value="{{$category->slug}}" selected>{{$category->name}}</option>
-                                                                @else
-                                                                    <option value="{{$category->slug}}">{{$category->name}} - {{$category->taxonomy->name}}</option>
+                                                                {{--@if(!count($category->children))--}}
+                                                                @if($product->taxons->first()->slug == $category->slug)
+                                                                <option value="{{$category->slug}}" selected>{{$category->taxonomy->name}} {{$category->parent ? ' - ' . $category->parent->name : '' }} - {{$category->name}}</option>
+                                                                    @else
+                                                                    <option value="{{$category->slug}}">{{$category->taxonomy->name}} {{$category->parent ? ' - ' .$category->parent->name : '' }} - {{$category->name}}</option>
                                                                 @endif
-                                                                @else
-                                                                    <option value="{{$category->slug}}">{{$category->name}} - {{$category->taxonomy->name}}</option>
-                                                            @endif
+                                                                   @else
+                                                                  @endif
                                                         @endforeach
                                                     </select>
                                                     <span class="invalid-feedback errorshow" role="alert">

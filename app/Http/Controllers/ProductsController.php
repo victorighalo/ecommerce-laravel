@@ -99,6 +99,7 @@ class ProductsController extends BaseController
             //Get Taxon
             $taxon = Taxon::findBySlug($product_data['taxon_slug']);
 
+
             //Generate SKU
             $sku = strtoupper(substr($product_data['name'], 0, 3)) . "-" . $taxon->id;
 
