@@ -13,7 +13,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-dialog" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-dialog" data-dismiss="modal" id="cancel_save_child_category">Cancel</button>
                 <button type="button" class="btn btn-dialog" id="save_child_category"> <i class="fas fa-spinner fa-spin off process_indicator"></i> Save</button>
             </div>
         </div><!-- modal-content -->

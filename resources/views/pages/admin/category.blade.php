@@ -214,6 +214,11 @@
                     }
                 })
             })
+
+            $("#cancel_save_child_category").on('click', function () {
+                $("#save_child_category").prop('disabled', false)
+                $("#save_child_category > .process_indicator").addClass('off');
+            });
         });
 
         function destroyTaxon (id) {

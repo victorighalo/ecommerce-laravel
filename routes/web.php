@@ -74,6 +74,7 @@ Route::get('/products/json', 'ProductsController@getProductsData')->name('get_pr
 Route::post('/products/create', 'ProductsController@create')->name('create_products');
 Route::get('/product/{id}/edit', 'ProductsController@edit')->name('edit_product');
 Route::post('/product/update', 'ProductsController@update')->name('update_product');
+Route::post('/product/properties/update/{id?}', 'ProductsController@updateProperties')->name('update_product_properties');
 Route::post('/media/remove_product', 'ProductsController@removePhoto')->name('remove_product_media');
 
 //Media

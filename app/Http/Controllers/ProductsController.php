@@ -222,10 +222,10 @@ class ProductsController extends BaseController
                 return '      <td>
                                                     <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="settingcol" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-cogs"></i> </button>
                                                     <div class="dropdown-menu" aria-labelledby="settingcol" style="padding: 10px;">
-         
                                                         <a style="padding:8px 5px" class="dropdown-item activate_btn" href="#" id="' . $subdata->id . '" onclick="activate(' . $subdata->id . ')">Activate <i class="fas fa-check float-right"></i></a>
                                                         <a style="padding:8px 5px" class="dropdown-item deactivate_btn" href="#" id="' . $subdata->id . '" onclick="deactivate(' . $subdata->id . ')">Deactivate <i class="fas fa-ban float-right"></i></a>
                                                         <a style="padding:8px 5px" class="dropdown-item" href="' . route('edit_product', ['id' => $subdata->id]) . '">Edit <i class="fas fa-edit float-right"></i></a>
+                                                        <a style="padding:8px 5px" class="dropdown-item edit_product_properties" href="#" onclick="editProperty(' . $subdata->id . ',' . 'this' .')" data-product_name="'.$subdata->name.'">Edit Properties <i class="fas fa-edit float-right"></i></a>
                                                         <a style="padding:8px 5px" class="dropdown-item del_btn" href="#" id="' . $subdata->id . '" onclick="destroy(' . $subdata->id . ',' . ( ($subdata->taxons->count()) ? $subdata->taxons->first()->id : null) . ')"><span>Delete</span> <i class="fas fa-trash float-right"></i></a>
  </div></td>';
             })
@@ -311,6 +311,23 @@ class ProductsController extends BaseController
         }catch(\Exception $e){
             return response()->json(['message' => 'Failed to remove Product image ' . $e->getMessage(), 'status' => 400], 400);
         }
+    }
+
+    public function updateProperties($id, Request $request){
+        //Assign product to categories
+        $request->validate( [
+            'properties' => 'required'
+        ]);
+
+        //Get product model
+        $product = \App\Product::where('id', $id)->first();
+
+        //Update properties
+        if($request->has('properties')) {
+            $product->propertyValues()->sync($request->properties);
+        }
+
+        return response()->json(['status' => 200, 'message' => 'Product properties updated'], 200);
     }
 
 }
