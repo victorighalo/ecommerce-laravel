@@ -44,7 +44,7 @@ class PagesController extends BaseController
         $product = \App\Product::where('slug', $product_slug)->first();
         $title = $product ? $product->title() : '';
         $tags = $product->meta_keywords ? explode(",", $product->meta_keywords) : null;
-        $ratings = $product->averageRating() ;
+        $ratings = $product->ratingPercent() ;
         return view('pages.front.single_product', compact('product', 'tags', 'ratings', 'title'));
     }
 

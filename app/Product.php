@@ -3,9 +3,6 @@
 namespace App;
 
 use App\Traits\HasPhotoTrait;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\Models\Media;
 use Vanilo\Contracts\Buyable;
 use Vanilo\Product\Models\Product as BaseProduct;
 use Vanilo\Properties\Traits\HasPropertyValues;

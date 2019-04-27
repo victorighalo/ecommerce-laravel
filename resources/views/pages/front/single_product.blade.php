@@ -70,18 +70,16 @@
                     <!-- COntent -->
                     <div class="col-md-5">
                         <h4>{{$product->title()}}</h4>
-                        <pre>
-
-                        </pre>
                         <select class="product-rating-view">
-                            @for ($i = 1; $i <= 5; $i++)
-                                @if($i <= round($ratings) )
+                            @for ($i = 0; $i < 5; $i++)
+                                @if($i <= $ratings )
                                     <option value="1"></option>
                                 @else
                                     <option value="2"></option>
                                 @endif
                             @endfor
                         </select>
+
                         <span class="price"><small>&#8358;</small> {{number_format($product->price, '0', '.', ',')}}</span>
                         <ul class="item-owner">
                             <li>Category:<span> {{$product->taxons->first()->slug}}</span></li>
