@@ -96,7 +96,7 @@
                                 @if(isset($product->propertyValues))
                                     @foreach($product->propertyValues as $propertyValue)
                                         {{ $propertyValue->property->name }}: <span class="font-weight-bold text-white"
-                                        style="color: #000 !important;padding-right: 10px;font-size: 14px">{{ ucfirst($propertyValue->title) }} {{$propertyValue->title ? ucfirst($propertyValue->title) : ''}}</span>
+                                        style="color: #000 !important;padding-right: 10px;font-size: 14px">{{ ucfirst($propertyValue->value) }} {{$propertyValue->title ? ucfirst($propertyValue->title) : ''}}</span>
                                     @endforeach
                                 @endif
                             </li>
