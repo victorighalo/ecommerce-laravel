@@ -3,7 +3,7 @@
         <div class="news-letter padding-top-150 padding-bottom-150">
             <div class="row">
                 <div class="col-lg-6">
-                    <h3>We always stay with our clients and respect their business. We deliver 100% and provide instant response to help them succeed in constantly changing and challenging business world. </h3>
+                    <h3>We always stay with our clients and respect their business. We deliver 100% and provide instant response to help them succeed in a constantly changing and challenging business world. </h3>
                     <ul class="social_icons">
                         <li><a href="#."><i class="icon-social-facebook"></i></a></li>
                         <li><a href="#."><i class="icon-social-twitter"></i></a></li>

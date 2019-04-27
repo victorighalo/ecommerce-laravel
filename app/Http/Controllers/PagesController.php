@@ -18,6 +18,7 @@ class PagesController extends BaseController
     public function home()
     {
         $categories = Taxon::all()->take(12);
+
         $latest_products = \App\Product::active()->new()->get();
 
         return view('pages.index', compact('categories', 'latest_products'));

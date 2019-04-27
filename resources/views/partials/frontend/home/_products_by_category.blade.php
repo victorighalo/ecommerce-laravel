@@ -3,31 +3,32 @@
 
         <!-- Main Heading -->
         <div class="heading text-center">
-            <h4>Top categories</h4>
-            {{--<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus maximus vehicula. </span> --}}
+            <h4>Top Product Categories</h4>
         </div>
 
         <!-- New Arrival -->
         <div class="arrival-block list-group">
             <ul class="nav nav-tabs" role="tablist">
+                @php($track = 0)
                 @foreach($categories as $i => $category)
                     @if($category->products->count() > 0)
-                        @if($i == 0)
+                        @if($track == 0)
                         <li class="nav-item"> <a class="active"  data-toggle="tab" href="#{{$category->slug}}" role="tab" aria-selected="true">{{strtoupper($category->name)}} - {{strtoupper($category->taxonomy->name)}}</a> </li>
                         @else
                          <li class="nav-item"> <a class=""  data-toggle="tab" href="#{{$category->slug}}" role="tab" aria-selected="true">{{strtoupper($category->name)}} - {{strtoupper($category->taxonomy->name)}}</a> </li>
                         @endif
+                        @php($track+=1)
                         @endif
                 @endforeach
                   </ul>
 
             <!-- Tab Content -->
             <div class="tab-content" id="arrival-tab">
+                @php($track2 = 0)
             @foreach($categories as $index => $category)
                 @if($category->products->count() > 0)
-                    @if($index == 0)
+                        @if($track2 == 0)
                         <div class="tab-pane fade show active" id="{{$category->slug}}" role="tabpanel">
-
                         @foreach($category->products->take(10) as $item)
                             @if($item->hasPhoto() && $item->isActive())
                             <!-- Item -->
@@ -111,6 +112,7 @@
 
                             </div>
                         @endif
+                            @php($track2+=1)
                 @endif
             @endforeach
             </div>

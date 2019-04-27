@@ -5,7 +5,7 @@
         <div class="acces-ser">
             <!-- Heading -->
             <div class="heading text-center">
-                <h4>Available Categories</h4>
+                <h4>Our Categories</h4>
                 <hr>
             </div>
             <div class="row">
@@ -14,6 +14,12 @@
                     <a href="{{route('get_category_content', ['taxon_slug' => $category->slug])}}" title="{{$category->name}}" class="btn by">{{str_limit($category->name, 10)}}</a>
                 </div>
                     @endforeach
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12 text-center mt-5">
+                    <a href="{{url('categories')}}" class="btn btn-primary">View More</a>
+                </div>
             </div>
         </div>
     </div>
