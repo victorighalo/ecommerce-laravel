@@ -208,7 +208,7 @@ a:hover, a:focus {
 }
 .btn:hover {
 	background: #fe351a;
-	color: #2d3a4b;
+	color: #fff;
 }
 .btn-inverse {
 	background: #fe351a;
@@ -2488,6 +2488,8 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	padding-left: 0px;
 	padding-right: 0px;
 	width: 100%;
+}.shop-detail .some-info .btn:focus {
+color: #fff !important;
 }
 .shop-detail .some-info .quinty input {
 	width: 100%;

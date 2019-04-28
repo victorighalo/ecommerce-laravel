@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Payment;
 
 
+use App\Http\Requests\PaymentRequest;
 use App\Transactions;
 use App\User;
 use Illuminate\Http\Request;
@@ -22,13 +23,17 @@ class PaymentController extends Controller
         $this->middleware(['web']);
     }
     
-    public function initializePayStackTrans(Request $request){
+    public function initializePayStackTrans(PaymentRequest $request){
         $trans_email = Auth::guest() ? $request->email : Auth::user()->email;
         $user_id = Auth::guest() ? Auth::id() : null;
         $amount = (Cart::total() * 100);
         $uuid = bin2hex(random_bytes(10)) ;
         $ref = trim($uuid);
         $initPayStack = $this->payStackProxy->initializeTransaction($trans_email, $amount , $ref);
+
+        if(!$initPayStack){
+            return back()->with(['error' => 'Network failure. Please try again.']);
+        }
         if($initPayStack->status){
 //            $this->createTransaction($amount, $trans_email, $user_id,$uuid, $request);
             return redirect()->away($initPayStack->data->authorization_url);

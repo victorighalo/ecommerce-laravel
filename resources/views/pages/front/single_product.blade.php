@@ -3,7 +3,7 @@
 @section('content')
 
 <!--======= SUB BANNER =========-->
-@include('partials.frontend.sub_banner', ['title' => $title])
+@include('partials.frontend.sub_banner', ['category' => $product->taxons->first()])
 
 <!-- Content -->
 <div id="content">
@@ -51,7 +51,7 @@
                             <ul class="slides">
                                 @if($product->photos)
                                     @foreach($product->photos as $image)
-                                        <li> <img class="img-responsive" src="{{asset($image->ImageUrl)}}" alt="{{$product->title()}}"> </li>
+                                        <li> <img class="img-responsive" src="{{asset($image->ImageUrl)}}" alt="{{$product->title()}}" onerror="this.src='{{asset('assets/images/image-placeholder.png')}}'"> </li>
                                     @endforeach
                                 @endif
                             </ul>
@@ -60,7 +60,7 @@
                             <ul class="slides">
                                 @if($product->photos)
                                     @foreach($product->photos as $image)
-                                        <li> <img class="img-responsive" src="{{asset($image->ImageUrl)}}" alt="{{$product->title()}}"> </li>
+                                        <li> <img class="img-responsive" src="{{asset($image->ImageUrl)}}" alt="{{$product->title()}}" onerror="this.src='{{asset('assets/images/image-placeholder.png')}}'"> </li>
                                     @endforeach
                                 @endif
                             </ul>
@@ -262,7 +262,7 @@
                     .done(function (data) {
                         $(".processing").addClass('off')
                         $("#add_to_cart").prop('disabled', false)
-                        $(".cart_count").html("<i>"+data.cart_count+"</i>")
+                        $(".c-no").html("<i>"+data.cart_count+"</i>")
                         Snackbar.show({
                             showAction: true,
                             text: 'Cart updated.',

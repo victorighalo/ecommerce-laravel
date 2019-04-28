@@ -45,13 +45,10 @@
                     </div>
                     <!-- SHOPPING INFORMATION -->
                     <div class="cart-ship-info">
-                        <div class="row">
-
-                            <!-- ESTIMATE SHIPPING & TAX -->
+                            <form action="{{url('checkout')}}" method="post" class="row">
                             <div class="col-sm-7">
                                 <!-- SHIPPING info -->
                                 <h6 class="margin-top-50">Shipping information</h6>
-                                <form action="{{url('checkout')}}" method="post">
                                     {{ csrf_field() }}
                                     <div class="row">
                                                 <div class="col-md-6">
@@ -82,7 +79,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label>Email Address<span>*</span>
-                                                        <input type="email" name="email" required>
+                                                        <input type="email" name="email" value="{{Auth::guest() ? '' : Auth::user()->email}}" required {{Auth::guest() ? '' : 'disabled'}}>
                                                     </label>
                                                 </div>
                                                 <div class="col-md-6">
@@ -103,7 +100,6 @@
                                     </div>
 
                             </div>
-
                             <!-- SUB TOTAL -->
                             <div class="col-sm-5">
                                 <h6>Your Order</h6>
@@ -145,13 +141,13 @@
                                         </ul>
                                         <button href="" class="btn btn-small  btn-secondary pull-left margin-top-30" type="button"><i class="fa fa-phone"></i> CALL TO ORDER</button> </div>
                                         <button href="" class="btn  btn-dark pull-right margin-top-30" type="submit"><i class="fa fa-credit-card"></i> PLACE ORDER</button> </div>
+                            </div>
+
                                     </form>
-                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+    </div>
+
         </section>
 
     </div>

@@ -14,14 +14,6 @@ use App\Http\Requests\CheckoutRequest;
 class CheckoutController extends Controller
 {
     public function index(){
-
-        if(Cart::isNotEmpty()){
-            $cart_count = Cart::itemCount();
-            $cart = Cart::getItems();
-
-        }else{
-            $cart_count = 0;
-        }
         $states = DB::table('states')->get();
         $addresses = DeliveryAddress::where('user_id', Auth::id())->get();
         return view('pages.front.checkout', compact(  'states', 'addresses'));
