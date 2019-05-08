@@ -1,6 +1,6 @@
 
 <section class="clients light-gray-bg padding-top-60 padding-bottom-80">
-    <div class="container-full">
+    <div class="container">
         <h4 class="title text-center">Product Categories</h4>
         <div class="clients-slide">
             @foreach($all_categories as $category)

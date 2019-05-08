@@ -7,14 +7,15 @@
                         <i class="mdi mdi-cube text-danger icon-lg"></i>
                     </div>
                     <div class="float-right">
-                        <p class="card-text text-right">Units balance</p>
+                        <p class="card-text text-right">Total Products</p>
                         <div class="fluid-container">
-                            <h3 class="card-title font-weight-bold text-right mb-0">{{number_format($balance, 0,",",".")}}</h3>
+                            <i class="fas fa-spinner fa-spin process_indicator"></i>
+                            <h3 class="card-title font-weight-bold text-right mb-0" id="total_products_stat"></h3>
                         </div>
                     </div>
                 </div>
                 <p class="text-muted mt-3">
-                    <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> Total unit in account
+                    <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> Total products in stock
                 </p>
             </div>
         </div>
@@ -27,14 +28,15 @@
                         <i class="mdi mdi-cube-outline text-warning icon-lg"></i>
                     </div>
                     <div class="float-right">
-                        <p class="card-text text-right">Units purchased</p>
+                        <p class="card-text text-right">Total sales</p>
                         <div class="fluid-container">
-                            <h3 class="card-title font-weight-bold text-right mb-0">3455</h3>
+                            <i class="fas fa-spinner fa-spin process_indicator"></i>
+                            <h3 class="card-title font-weight-bold text-right mb-0" id="total_sales"></h3>
                         </div>
                     </div>
                 </div>
                 <p class="text-muted mt-3">
-                    <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> Total unit purchased
+                    <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> Total successful sales
                 </p>
             </div>
         </div>
@@ -49,7 +51,8 @@
                     <div class="float-right">
                         <p class="card-text text-right">Agents</p>
                         <div class="fluid-container">
-                            <h3 class="card-title font-weight-bold text-right mb-0">{{number_format($agents, 0,",",".")}}</h3>
+                            <i class="fas fa-spinner fa-spin process_indicator"></i>
+                            <h3 class="card-title font-weight-bold text-right mb-0"></h3>
                         </div>
                     </div>
                 </div>
@@ -69,7 +72,8 @@
                     <div class="float-right">
                         <p class="card-text text-right">Customers</p>
                         <div class="fluid-container">
-                            <h3 class="card-title font-weight-bold text-right mb-0">{{number_format($customers, 0,",",".")}}</h3>
+                            <i class="fas fa-spinner fa-spin process_indicator"></i>
+                            <h3 class="card-title font-weight-bold text-right mb-0"></h3>
                         </div>
                     </div>
                 </div>

@@ -5,7 +5,7 @@
         <div class="acces-ser">
             <!-- Heading -->
             <div class="heading text-center">
-                <h4>Our Categories</h4>
+                <h4>Popular Categories</h4>
                 <hr>
             </div>
             <div class="row">

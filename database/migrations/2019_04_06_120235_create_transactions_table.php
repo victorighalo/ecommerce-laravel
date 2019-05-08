@@ -23,7 +23,7 @@ class CreateTransactionsTable extends Migration
             $table->longText('address');
             $table->string('phone');
             $table->string('currency')->nullable();
-            $table->string('status')->default('pending');
+            $table->string('status');
             $table->uuid('reference')->index();
             $table->uuid('additional_info')->nullable();
             $table->string('gateway_response')->nullable();
@@ -37,6 +37,7 @@ class CreateTransactionsTable extends Migration
             $table->string('customer')->nullable();
             $table->string('plan')->nullable();
             $table->integer('user_id')->nullable();
+            $table->integer('cart_id');
             $table->string('user_email');
             $table->timestamps();
         });

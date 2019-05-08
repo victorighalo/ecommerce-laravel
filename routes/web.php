@@ -65,6 +65,14 @@ Route::group(['prefix' => 'office', 'middleware' => ['role:admin']], function ()
 
 Route::get('/', 'OfficeController@office');
 
+//Dashboard
+Route::get('dashboard', 'OfficeController@dashboard');
+Route::post('get_store_stats', 'OfficeController@getStoreStats')->name('get_store_stats');
+
+//Orders
+    Route::get('orders', 'OfficeController@orders');
+    Route::get('orders/data', 'OfficeController@ordersData')->name('orders_data');
+
 //Products
 Route::get('/products', 'ProductsController@index');
 Route::get('/products/activate/{id?}', 'ProductsController@activate')->name('activate_product');

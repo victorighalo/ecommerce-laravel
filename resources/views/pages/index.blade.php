@@ -4,6 +4,7 @@
     @include('partials.frontend.slider_home')
     <div id="content">
         <!-- Shop By Category -->
+        @include('partials.frontend._search')
         @include('partials.frontend.home._categories')
         <!-- Products by Category -->
         @include('partials.frontend.home._products_by_category')
