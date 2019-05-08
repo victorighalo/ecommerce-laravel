@@ -5,7 +5,7 @@
     <!--======= SUB BANNER =========-->
     @include('partials.frontend.sub_banner', ['title' => $title])
     <div id="content">
-
+    @include('partials.frontend._search')
         <!-- Products -->
         <section class="shop-page padding-top-100 padding-bottom-100">
             <div class="container">
