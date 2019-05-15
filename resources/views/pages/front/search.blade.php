@@ -10,7 +10,6 @@
         <section class="shop-page padding-top-100 padding-bottom-100">
             <div class="container">
                 <div class="row">
-
                     <!-- Item Content -->
                     <div class="col-md-9">
                         <!-- Item -->

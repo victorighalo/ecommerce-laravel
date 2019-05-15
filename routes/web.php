@@ -16,28 +16,10 @@ Route::get('email-test', function(){
 
     $details['email'] = 'victorighalo@live.com';
 
-    dispatch(new App\Jobs\SendEmailJob($details));
+    \App\Jobs\SendEmailJob::dispatch($details);
 
-    dd('done');
 });
 
-Route::get('aws-test', function(){
-
-    try {
-        $url = 'https://s3.' . env('AWS_DEFAULT_REGION') . '.amazonaws.com/' . env('AWS_BUCKET') . '/';
-        $images = [];
-        $files = Storage::disk('s3')->files('images');
-        foreach ($files as $file) {
-            $images[] = [
-                'name' => str_replace('images/', '', $file),
-                'src' => $url . $file
-            ];
-        }
-        dd($images);
-    }catch (\Exception $e){
-        var_dump($e->getMessage());
-    }
-});
 Auth::routes();
 
 //Checkout

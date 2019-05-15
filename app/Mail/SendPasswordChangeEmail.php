@@ -28,6 +28,6 @@ class SendPasswordChangeEmail extends Mailable
      */
     public function build()
     {
-        return $this->from('victorighalo@gmail.com')->view('view.email.passwordchange');
+        return $this->from('hello@leatherceo.com')->view('view.email.passwordchange');
     }
 }
