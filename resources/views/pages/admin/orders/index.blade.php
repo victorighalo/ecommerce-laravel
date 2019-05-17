@@ -11,7 +11,13 @@
                                 <table class="table table-bordered" id="table">
                                     <thead>
                                     <tr>
-                                        <th>Name</th>
+                                        <th>Date</th>
+                                        <th>Amount</th>
+                                        <th>Firstname</th>
+                                        <th>Lastname</th>
+                                        <th>State</th>
+                                        <th>City</th>
+                                        <th>Action</th>
                                     </tr>
                                     </thead>
                                 </table>
@@ -32,7 +38,13 @@
                 serverSide: true,
                 ajax: '{!! route('orders_data') !!}',
                 columns: [
-                    {data: 'name', name: 'name'},
+                    {data: 'created_at', name: 'date'},
+                    {data: 'amount', name: 'amount'},
+                    {data: 'firstname', name: 'Firstname'},
+                    {data: 'lastname', name: 'Lastname'},
+                    {data: 'state_name', name: 'State'},
+                    {data: 'city_name', name: 'City'},
+                    {data: 'action', name: 'Action', oderable:false},
                 ]
             });
         })

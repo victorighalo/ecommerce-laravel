@@ -48,8 +48,17 @@ class OfficeController extends Controller
         $data = \App\Transactions::join('cart_items', function ($join){
           $join->on('transactions.cart_id', '=', 'cart_items.cart_id');
         }
-        )->get();
-        return Datatables::of($data)->make(true);
+        )->join('states', 'transactions.state_id', 'states.state_id')
+        ->join('cities', 'transactions.city_id', 'cities.city_id')
+            ->get();
+
+        return Datatables::of($data)
+            ->editColumn('amount', function ($item){
+            return number_format($item->price, 0,'.', ',');
+        })->addColumn('action', function ($item){
+            return "<button class='btn btn-md btn-link view_products'>Products</button>";
+        })
+            ->make(true);
     }
 
 }
