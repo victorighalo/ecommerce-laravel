@@ -59,6 +59,13 @@
                                                     </span>
                                                 </div>
 
+                                                <div class="col-sm-2">
+                                                    <label for="price">{{ __('Delivery Price') }}</label>
+                                                    <input type="number" name="price" class="form-control" value="{{$product->delivery_price}}" required>
+                                                    <span class="invalid-feedback errorshow" role="alert">
+                                                    </span>
+                                                </div>
+
                                             </div>
 
 
