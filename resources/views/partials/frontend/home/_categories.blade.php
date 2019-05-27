@@ -11,7 +11,7 @@
 
                 @foreach($categories as $category)
 
-                    <a href="{{route('get_category_content', ['taxon_slug' => $category->slug])}}" title="{{$category->name}}" class="btn by">{{str_limit($category->name, 10)}}</a>
+                    <a href="{{route('get_category_content', ['taxon_slug' => $category->slug])}}" title="{{$category->name}}" class="btn by">{{$category->name}}</a>
 
                     @endforeach
 
