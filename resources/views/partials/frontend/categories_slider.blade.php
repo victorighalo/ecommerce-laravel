@@ -5,7 +5,7 @@
         <div class="">
             @foreach($all_categories as $category)
 
-                    <a href="{{route('get_category_content', ['taxon_slug' => $category->slug])}}" title="{{$category->name}}" class="text-capitalize font-16px">{{str_limit($category->name, 10)}}<span>({{count($category->products)}})  </span></a>
+                    <a href="{{route('get_category_content', ['taxon_slug' => $category->slug])}}" title="{{$category->name}}" class="text-capitalize font-16px; margin-bottom-15">{{$category->name}}<span>({{count($category->products)}})  </span></a>
 
             @endforeach
         </div>
