@@ -12,6 +12,8 @@ Route::post('/profile', 'CommonController@updateProfile')->middleware('auth');
 Route::get('/change_password', 'PagesController@changePassword')->middleware('auth');
 Route::post('/change_password', 'CommonController@changePassword')->middleware('auth');
 
+Route::get('brand/{taxonomy_slug}', 'PagesController@getBrandProducts')->name('get_brand');
+
 Route::get('email-test', function(){
 
     $details['email'] = 'victorighalo@live.com';
@@ -52,8 +54,8 @@ Route::get('dashboard', 'OfficeController@dashboard');
 Route::post('get_store_stats', 'OfficeController@getStoreStats')->name('get_store_stats');
 
 //Orders
-    Route::get('orders', 'OfficeController@orders');
-    Route::get('orders/data', 'OfficeController@ordersData')->name('orders_data');
+Route::get('orders', 'OfficeController@orders');
+Route::get('orders/data', 'OfficeController@ordersData')->name('orders_data');
 
 //Products
 Route::get('/products', 'ProductsController@index');
@@ -82,6 +84,7 @@ Route::get('/category/destroy/{id?}', 'CategoryController@destroyTaxonomy')->nam
 Route::post('/category/create', 'CategoryController@create')->name('create_category');
 Route::post('/category/create_sub_category', 'CategoryController@createSubCategory')->name('create_sub_category');
 Route::post('/category/create_child_category', 'CategoryController@createChildCategory')->name('create_child_category');
+Route::post('/category/upload/image', 'CategoryController@addTaxonImage')->name('upload_category_image');
 
 //Properties
 Route::get('/properties', 'PropertyController@index');
@@ -103,6 +106,7 @@ Route::put('/settings/update', 'SettingController@update');
 //Frontend
 Route::get('/{taxon_slug}', 'PagesController@getProductList')->name('get_category_content');
 Route::get('/{taxon_slug}/{product_slug}', 'PagesController@getProductDetails')->name('getProductDetails');
+
 
 Route::post('/product/comment/add/{product_id?}', 'ProductsController@addComment')->name('add_comment');
 Route::post('/product/rating/add', 'ProductsController@addRating')->name('rate_product');

@@ -1,4 +1,4 @@
-<div class="col-sm-12 p-4">
+
     <div class="card">
         <div class="card-body">
             <h5 class="card-title mb-4">Categories</h5>
@@ -6,7 +6,7 @@
                 <table class="table table-hover " id="categories-table">
                     <thead>
                     <tr>
-                        <th>Name</th>
+                        <th>Category</th>
                         <th>Sub categories</th>
                         <th>Action</th>
                     </tr>
@@ -36,7 +36,7 @@
                                                             data-taxon_id="{{$subcategory->id}}"
                                                             data-taxonomy_name="{{ucwords($category->name)}}"
                                                             data-taxon_name="{{ucwords($subcategory->name)}}"
-                                                    ><i class="fas fa-plus"></i> Add </a>
+                                                    ><i class="fas fa-plus"></i> Add child-category </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -61,6 +61,8 @@
                             <td>
                                 <a class="btn btn-sm btn-link delete_category" id="{{$category->taxonomy_id}}"><i class="fas fa-trash"></i></a>
                                 <a class="btn btn-sm btn-link edit_category" id="{{$category->taxonomy_id}}"><i class="fas fa-edit"></i></a>
+                                <input type="file" placeholder="Upload image" style="display: none;" class="upload_cat_image" data-category_id="{{$category->id}}">
+                                <a class="btn btn-sm btn-link edit_subcategory_image" id="{{$child_category->id}}" ><i class="fas fa-image" aria-hidden="true"></i></a>
                             </td>
                         </tr>
                     @endforeach
@@ -70,4 +72,3 @@
         </div>
     </div>
 
-</div>

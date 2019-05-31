@@ -234,7 +234,7 @@
                     });
                     productstable.ajax.reload();
                 }).fail(function (response) {
-                    console.log(response)
+
                     $(".add_product_btn").prop('disabled', false)
                     $(".add_product_btn > .process_indicator").addClass('off');
                     if (response.status == 500) {
