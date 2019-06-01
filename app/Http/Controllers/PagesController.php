@@ -61,7 +61,9 @@ class PagesController extends BaseController
     public function getBrandProducts($slug){
         $brand = Taxonomy::findBySlug($slug);
 
-        $categories = $brand->rootLevelTaxons();
+        $categories = Taxon::where('taxonomy_id', $brand->id)->get();
+//        dd($categories->first()->products()->count());
+//        dd(Taxon::all()->first()->products);
 
         if($brand) {
             $now = Carbon::now();

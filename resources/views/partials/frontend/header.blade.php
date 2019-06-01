@@ -61,6 +61,28 @@
                     <li> <a href="{{url('/')}}">Home</a></li>
                     <li> <a href="{{url('about')}}">About </a> </li>
                     <li> <a href="{{url('contact')}}"> contact</a> </li>
+                    <li class="dropdown megamenu"> <a href="#." class="dropdown-toggle" data-toggle="dropdown">Brands</a>
+                        <div class="dropdown-menu">
+                            <div class="row">
+                                @foreach($brands as $brand)
+                                    <div class="col-sm-3 margin-bottom-20" >
+                                    <h6>
+                                        {{$brand->name}}
+                                    </h6>
+                                        <ul class="col-2-li">
+                                            @foreach($brand->rootLevelTaxons() as $category)
+                                            <li>
+                                                <a href="{{route('get_category_content', ['taxon_slug' => $category->slug])}}" title="{{$category->name}}">
+                                                    {{$category->name}}
+                                                </a>
+                                            </li>
+                                                @endforeach
+                                        </ul>
+                                    </div>
+                                    @endforeach
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
 
