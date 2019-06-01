@@ -62,7 +62,7 @@
                                 <a class="btn btn-sm btn-link delete_category" id="{{$category->taxonomy_id}}"><i class="fas fa-trash"></i></a>
                                 <a class="btn btn-sm btn-link edit_category" id="{{$category->taxonomy_id}}"><i class="fas fa-edit"></i></a>
                                 <input type="file" placeholder="Upload image" style="display: none;" class="upload_cat_image" data-category_id="{{$category->id}}">
-                                <a class="btn btn-sm btn-link edit_subcategory_image" id="{{$child_category->id}}" ><i class="fas fa-image" aria-hidden="true"></i></a>
+                                <a class="btn btn-sm btn-link edit_subcategory_image" id="{{$category->id}}" ><i class="fas fa-image" aria-hidden="true"></i></a>
                             </td>
                         </tr>
                     @endforeach
