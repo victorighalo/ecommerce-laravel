@@ -1,43 +1,56 @@
-<section class="padding-top-100 padding-bottom-100">
+<section class="light-gray-bg padding-top-100 padding-bottom-100">
     <div class="container-full">
 
         <!-- Main Heading -->
         <div class="heading text-center">
-            <h4>Best Collection Arrived</h4>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus maximus vehicula. </span> </div>
+            <h4>Top Product Categories</h4>
+        </div>
 
         <!-- New Arrival -->
-        <div class="arrival-block">
+        <div class="arrival-block list-group">
             <ul class="nav nav-tabs" role="tablist">
-                @foreach($all_categories as $i => $category)
+                @php($track = 0)
+                @foreach($categories as $i => $category)
                     @if($category->products->count() > 0)
-                        @if($i == 0)
-                        <li class="nav-item"> <a class="active"  data-toggle="tab" href="#{{$category->taxonomy->name}}" role="tab" aria-selected="true">{{$category->name}} - {{$category->taxonomy->name}}</a> </li>
+                        @if($track == 0)
+                        <li class="nav-item"> <a class="active"  data-toggle="tab" href="#{{$category->slug}}" role="tab" aria-selected="true">{{strtoupper($category->name)}} - {{strtoupper($category->taxonomy->name)}}</a> </li>
                         @else
-                         <li class="nav-item"> <a class=""  data-toggle="tab" href="#{{$category->taxonomy->name}}" role="tab" aria-selected="true">{{$category->name}} - {{$category->taxonomy->name}}</a> </li>
+                         <li class="nav-item"> <a class=""  data-toggle="tab" href="#{{$category->slug}}" role="tab" aria-selected="true">{{strtoupper($category->name)}} - {{strtoupper($category->taxonomy->name)}}</a> </li>
                         @endif
+                        @php($track+=1)
                         @endif
                 @endforeach
                   </ul>
 
             <!-- Tab Content -->
             <div class="tab-content" id="arrival-tab">
-            @foreach($all_categories as $index => $category)
+                @php($track2 = 0)
+            @foreach($categories as $index => $category)
                 @if($category->products->count() > 0)
-                    @if($index == 0)
-                        <div class="tab-pane fade show active" id="{{$category->taxonomy->name}}" role="tabpanel">
-
-                        @foreach($category->products as $item)
-                            @if($item->getMedia('images')->first())
+                        @if($track2 == 0)
+                        <div class="tab-pane fade show active" id="{{$category->slug}}" role="tabpanel">
+                        @foreach($category->products->take(10) as $item)
+                            @if($item->hasPhoto() && $item->isActive())
                             <!-- Item -->
                             <div class="item">
                                 <div class="img-ser">
+                                    <a href="{{route('getProductDetails', [
+                            'taxon_slug' => $item->taxons->first()->slug,
+                            'product_slug' => $item->slug
+                            ])}}">
                                     <img
                                             class="img-1 lazyload"
-                                            src="{{env('APP_URL').$item->getMedia('images')->first()->getUrl()}}"
+                                            src="{{$item->FirstThumb}}"
                                             alt="{{$item->title()}}"
                                     >
-                                    <img class="img-2 lazyload" src="{{env('APP_URL').$item->getMedia('images')->first()->getUrl()}}" alt="">
+                                    </a>
+
+                                    <a href="{{route('getProductDetails', [
+                            'taxon_slug' => $item->taxons->first()->slug,
+                            'product_slug' => $item->slug
+                            ])}}">
+                                    <img class="img-2 lazyload" src="{{$item->FirstThumb}}" alt="">
+                                    </a>
 
                                 </div>
                                 <!-- Item Name -->
@@ -62,19 +75,19 @@
 
                         </div>
                         @else
-                            <div class="tab-pane animated fadeInDown" id="{{$category->taxonomy->name}}" role="tabpanel">
+                            <div class="tab-pane animated fadeInDown" id="{{$category->slug}}" role="tabpanel">
 
                             @foreach($category->products as $item)
-                                @if($item->getMedia('images')->first())
+                                @if($item->hasPhoto())
                                     <!-- Item -->
                                         <div class="item">
                                             <div class="img-ser">
                                                 <img
                                                         class="img-1 lazyload"
-                                                        src="{{env('APP_URL').$item->getMedia('images')->first()->getUrl()}}"
+                                                        src="{{$item->FirstThumb}}"
                                                         alt="{{$item->title()}}"
                                                 >
-                                                <img class="img-2 lazyload" src="{{env('APP_URL').$item->getMedia('images')->first()->getUrl()}}" alt="">
+                                                <img class="img-2 lazyload" src="{{$item->FirstThumb}}" alt="">
 
                                             </div>
                                             <!-- Item Name -->
@@ -99,6 +112,7 @@
 
                             </div>
                         @endif
+                            @php($track2+=1)
                 @endif
             @endforeach
             </div>

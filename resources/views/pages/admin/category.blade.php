@@ -1,8 +1,9 @@
 @extends('layouts.admin')
 @section('content')
+    @include('partials.category_modal')
     <div class="main-panel">
         <div class="content-wrapper">
-            <div class="row justify-content-center flex-grow mb-5 mt-5">
+            <div class="row justify-content-center flex-grow mb-5 mt-3">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
@@ -12,93 +13,8 @@
                                 </a></h4>
                             <div class="" id="form_collapse">
                                 <div class="row">
-                                <div class="col-sm-6 p-4">
-                                <form id="category_form">
-                                    @csrf
-                                    <div class="row form-group">
-                                            <label for="name">{{ __('Category name') }}</label>
-                                            <input type="text" id="name" class="form-control" name="name" required>
-                                        <span class="invalid-feedback errorshow" role="alert">
-                                        </span>
-                                        <button class="btn custom_button_color btn-warning btn-lg font-weight-medium add_category_btn mt-2" type="submit">
-                                            <i class="fas fa-spinner fa-spin off process_indicator"></i>
-                                            <span>{{ __('Create') }}</span>
-                                        </button>
-                                        </div>
-                                </form>
-
-
-                                    <form id="sub_category_form">
-                                        @csrf
-                                        <div class="row form-group">
-                                            <label for="category_id">{{ __('Categories') }}</label>
-                                            <select class="form-control" name="category_id" id="category_id">
-                                                @foreach($categories as $category)
-                                                    <option value="{{$category->taxonomy_id}}">{{$category->taxonomy_name}}</option>
-                                                @endforeach
-                                            </select>
-                                            <span class="invalid-feedback errorshow" role="alert">
-                                        </span>
-                                        </div>
-
-                                        <div class="row form-group">
-                                            <label for="sub_category">{{ __('Sub category') }}</label>
-                                            <input type="text" id="sub_category" class="form-control" name="sub_category"  required>
-                                            <span class="invalid-feedback errorshow" role="alert">
-                                        </span>
-                                        </div>
-                                        <div class="mt-1">
-                                            <button class="btn float-right custom_button_color btn-warning btn-lg font-weight-medium add_sub_category_btn" type="submit">
-                                                <i class="fas fa-spinner fa-spin off process_indicator"></i>
-                                                <span>{{ __('Create') }}</span>
-                                            </button>
-                                        </div>
-                                    </form>
-                            </div>
-
-                                    <div class="col-sm-6 p-4">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h5 class="card-title mb-4">Categories</h5>
-                                                <div class="table-responsive">
-                                                    <table class="table table-hover " id="categories-table">
-                                                        <thead>
-                                                        <tr>
-                                                            <th>Name</th>
-                                                            <th>Sub categories</th>
-                                                            <th>Action</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        @foreach($categories as $category)
-                                                            <tr>
-                                                                <td>
-                                                                    {{$category->taxonomy_name}}
-                                                                </td>
-                                                                <td>
-                                                                    <div class="row">
-                                                                        @foreach($category->taxons as $subcategory)
-                                                                        <div class="col-12 pb-1">
-                                                                            <span>{{$subcategory['name']}} </span>
-                                                                            <a class="btn btn-sm btn-link delete_subcategory" id="{{$subcategory['id']}}"><i class="fas fa-trash"></i></a>
-                                                                            <a class="btn btn-sm btn-link edit_subcategory" id="{{$subcategory['id']}}" data-category_id="{{$category->taxonomy_id}}"><i class="fas fa-edit"></i></a>
-                                                                        </div>
-                                                                            @endforeach
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <a class="btn btn-sm btn-link delete_category" id="{{$category->taxonomy_id}}"><i class="fas fa-trash"></i></a>
-                                                                    <a class="btn btn-sm btn-link edit_category" id="{{$category->taxonomy_id}}"><i class="fas fa-edit"></i></a>
-                                                                </td>
-                                                            </tr>
-                                                        @endforeach
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
+                                    @include('pages.admin.category._create_category')
+                                    @include('pages.admin.category._view_categories')
                             </div>
                             </div>
                         </div>
@@ -112,6 +28,7 @@
 
 @push('script')
     <script>
+        var taxonomy_id, taxon_id;
         $(document).ready(function () {
             $("form#category_form").on('submit', function (e) {
                 e.preventDefault();
@@ -223,6 +140,7 @@
                 })
             });
 
+
             $(".delete_subcategory").on('click', function () {
                 destroyTaxon($(this).attr('id'))
             });
@@ -237,6 +155,69 @@
 
             $(".edit_category").on('click', function () {
                 editTaxonomy($(this).attr('id'))
+            });
+
+            $(".add_child_category").on('click', function () {
+                var parent_category_details = $(this).data('taxonomy_name') + '-' + $(this).data('taxon_name');
+                taxonomy_id = $(this).data('taxonomy_id');
+                taxon_id = $(this).data('taxon_id');
+                $('#parent_category_details').html(parent_category_details)
+                $('#child_category_modal').modal('show')
+            });
+
+            $("#save_child_category").on('click', function () {
+                $("#save_child_category").prop('disabled', true)
+                $("#save_child_category > .process_indicator").removeClass('off');
+                var input = $("input[name='child_category_input']").val()
+                $.ajax({
+                    type: "POST",
+                    url: "{!! route('create_child_category') !!}",
+                    data: {
+                        taxonomy_id: taxonomy_id,
+                        taxon_id: taxon_id,
+                        input: input,
+                    }
+                }).done(function (data) {
+                    $("#save_child_category").prop('disabled', false)
+                    $("#save_child_category > .process_indicator").addClass('off');
+                    new PNotify({
+                        title: 'Success!',
+                        text: 'Child Category created.',
+                        addclass: 'custom_notification',
+                        type: 'success'
+                    });
+                    location.reload()
+                }).fail(function (response) {
+                    $("#save_child_category").prop('disabled', false)
+                    $("#save_child_category > .process_indicator").addClass('off');
+                    if (response.responseJSON.status == 500) {
+                        new PNotify({
+                            title: 'Oops!',
+                            text: 'An Error Occurred. Please try again.',
+                            addclass: 'custom_notification',
+                            type: 'error'
+                        });
+                    }
+                    if (response.status == 400) {
+                        new PNotify({
+                            title: 'Oops!',
+                            text: response.responseJSON.message,
+                            type: 'error'
+                        });
+                    }
+                    else {
+                        new PNotify({
+                            title: 'Oops!',
+                            text: 'An Error Occurred. Please try again.',
+                            type: 'error'
+                        });
+                    }
+                })
+            })
+
+            $("#cancel_save_child_category").on('click', function () {
+                $("#save_child_category").prop('disabled', false)
+                $("#save_child_category > .process_indicator").addClass('off');
             });
         });
 

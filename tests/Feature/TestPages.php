@@ -12,10 +12,20 @@ class TestPages extends TestCase
      *
      * @return void
      */
-    public function testBasicTest()
+    public function testLanding()
     {
         $response = $this->get('/');
 
         $response->assertStatus(200);
+    }
+
+    public function testHome()
+    {
+        $this->get('/home')->assertStatus(200)->assertSee('Our Categories');
+    }
+
+    public function testProfile()
+    {
+        $this->get('/profile')->assertStatus(200);
     }
 }

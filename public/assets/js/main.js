@@ -64,6 +64,7 @@ $('.block-slide').owlCarousel({
 $('.block-slide-con').owlCarousel({
     loop:true,
     margin:30,
+    autoplay:true,
     nav:true,
 	navText: ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
     responsive:{
@@ -100,6 +101,7 @@ $('.two-col').owlCarousel({
 $('.clients-slide').owlCarousel({
     loop:true,
     margin:30,
+    autoplay:true,
     nav:false,
 	navText: ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
     responsive:{

@@ -12,7 +12,7 @@
                         @foreach(Cart::getItems() as $item)
                         <li>
                             <div class="media-left">
-                                <div class="cart-img"> <a href="#"> <img class="media-object img-responsive" src="{{env('APP_URL').$item->product->getMedia('images')->first()->getUrl()}}" alt="{{$item->product->name}}"> </a> </div>
+                                <div class="cart-img"> <a href="#"> <img class="media-object img-responsive" src="{{$item->product->FirstImage}}" alt="{{$item->product->name}}"> </a> </div>
                             </div>
                             <div class="media-body">
                                 <h6 class="media-heading">{{$item->product->name}}</h6>
@@ -53,13 +53,12 @@
     <div class="container">
 
         <!-- Logo -->
-        <div class="logo"> <a href="index.html"><img class="img-responsive" src="images/logo.svg" alt="" ></a> </div>
+        <div class="logo"> <a href="{{url('/')}}"><img class="img-responsive" src="{{asset('assets/images/big-stan-logo.png')}}" alt="logo" style="width: 50%" ></a> </div>
         <nav class="navbar ownmenu navbar-expand-lg">
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span></span> </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="nav">
-                    <li> <a href="{{url('/')}}">Home</a>
-                    </li>
+                    <li> <a href="{{url('/')}}">Home</a></li>
                     <li> <a href="{{url('about')}}">About </a> </li>
                     <li> <a href="{{url('contact')}}"> contact</a> </li>
                 </ul>
@@ -69,7 +68,7 @@
             <div class="nav-right">
                 <ul class="navbar-right">
                     <!-- USER INFO -->
-                    <li> <a href="#"><i class="lnr lnr-user"></i> </a></li>
+                    <li> <a href="{{url('profile')}}"><i class="lnr lnr-user"></i> </a></li>
                     <!-- USER BASKET -->
                     <li> <a href="{{url('cart')}}"><span class="c-no">{{Cart::itemCount()}}</span><i class="lnr lnr-cart"></i> </a> </li>
                     <!-- SEARCH BAR -->

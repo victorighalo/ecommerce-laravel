@@ -2,9 +2,7 @@
 
 namespace App;
 
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\Models\Media;
+use App\Traits\HasPhotoTrait;
 use Vanilo\Contracts\Buyable;
 use Vanilo\Product\Models\Product as BaseProduct;
 use Vanilo\Properties\Traits\HasPropertyValues;
@@ -15,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Vanilo\Category\Models\TaxonProxy;
 use BrianFaust\Commentable\Traits\HasComments;
 
-class Product extends BaseProduct implements Buyable, HasMedia
+class Product extends BaseProduct implements Buyable
 {
     use
         Rateable,
@@ -23,7 +21,7 @@ class Product extends BaseProduct implements Buyable, HasMedia
         BuyableImageSpatieV7,
         HasComments,
         HasPropertyValues,
-        HasMediaTrait;
+        HasPhotoTrait;
 
     public function morphTypeName(): string
 {
@@ -37,12 +35,6 @@ class Product extends BaseProduct implements Buyable, HasMedia
         );
     }
 
-    public function registerMediaConversions(Media $media = null)
-    {
-        $this->addMediaConversion('thumb')
-            ->width(50)
-            ->height(50);
-    }
 
     public function delivery_price()
     {
@@ -50,10 +42,12 @@ class Product extends BaseProduct implements Buyable, HasMedia
     }
 
     public function scopeNew($query){
-        return $query->limit(20);
+        return $query->latest()->take(20);
     }
 
     public function scopeActive($query){
         return $query->where('state', 'active');
     }
+
+
 }

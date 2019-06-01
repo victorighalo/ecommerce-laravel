@@ -1,9 +1,24 @@
 <?php
 
 Route::get('/', 'PagesController@home');
+Route::get('/home', 'PagesController@home');
 
 Route::get('install', 'SettingController@install')->name('install');
 Route::post('install', 'SettingController@store');
+
+Route::get('/profile', 'PagesController@profile')->middleware('auth');
+Route::post('/profile', 'CommonController@updateProfile')->middleware('auth');
+
+Route::get('/change_password', 'PagesController@changePassword')->middleware('auth');
+Route::post('/change_password', 'CommonController@changePassword')->middleware('auth');
+
+Route::get('email-test', function(){
+
+    $details['email'] = 'victorighalo@live.com';
+
+    \App\Jobs\SendEmailJob::dispatch($details);
+
+});
 
 Auth::routes();
 
@@ -26,10 +41,19 @@ Route::post('/cart/destroy/{cart_item?}', 'CartController@destroy')->name('destr
 Route::post('/load_cities', 'CommonController@loadCities')->name('load_cities');
 Route::post('/add_address', 'CommonController@addAddress')->name('add_address');
 
-Route::group(['prefix' => 'office'], function (){
 
-//Admin section
-    Route::get('/', 'OfficeController@office');
+//Office section
+Route::group(['prefix' => 'office', 'middleware' => ['role:admin']], function (){
+
+Route::get('/', 'OfficeController@office');
+
+//Dashboard
+Route::get('dashboard', 'OfficeController@dashboard');
+Route::post('get_store_stats', 'OfficeController@getStoreStats')->name('get_store_stats');
+
+//Orders
+    Route::get('orders', 'OfficeController@orders');
+    Route::get('orders/data', 'OfficeController@ordersData')->name('orders_data');
 
 //Products
 Route::get('/products', 'ProductsController@index');
@@ -40,12 +64,13 @@ Route::get('/products/json', 'ProductsController@getProductsData')->name('get_pr
 Route::post('/products/create', 'ProductsController@create')->name('create_products');
 Route::get('/product/{id}/edit', 'ProductsController@edit')->name('edit_product');
 Route::post('/product/update', 'ProductsController@update')->name('update_product');
+Route::post('/product/properties/update/{id?}', 'ProductsController@updateProperties')->name('update_product_properties');
+Route::post('/media/remove_product', 'ProductsController@removePhoto')->name('remove_product_media');
 
 //Media
 Route::post('/media/upload', 'MediaController@UploadMedia')->name('media_upload');
 Route::get('/media/images/load', 'MediaController@loadImages')->name('load_images');
-Route::post('/media/remove', 'MediaController@destroy')->name('media_remove');
-Route::post('/media/remove_spatie', 'MediaController@destroySpatieMedia')->name('media_remove_spatie');
+Route::post('/media/remove', 'MediaController@destroyMedia')->name('media_remove');
 
 //Categories
 Route::get('/category', 'CategoryController@index');
@@ -56,11 +81,14 @@ Route::post('/category/edit', 'CategoryController@editTaxonomy')->name('edit_cat
 Route::get('/category/destroy/{id?}', 'CategoryController@destroyTaxonomy')->name('destroy_category');
 Route::post('/category/create', 'CategoryController@create')->name('create_category');
 Route::post('/category/create_sub_category', 'CategoryController@createSubCategory')->name('create_sub_category');
+Route::post('/category/create_child_category', 'CategoryController@createChildCategory')->name('create_child_category');
 
 //Properties
 Route::get('/properties', 'PropertyController@index');
 Route::post('/properties/create', 'PropertyController@create')->name('create_property');
 Route::post('/properties/update', 'PropertyController@update')->name('update_property');
+Route::get('/properties/destroy/{id?}', 'PropertyController@destroy')->name('destroy_property');
+Route::get('/properties/value/destroy/{id?}', 'PropertyController@destroyPropVal')->name('destroy_property_value');
 Route::post('/properties/updatevalue', 'PropertyController@updateValue')->name('update_property_value');
 Route::post('/properties/updatetitle', 'PropertyController@updateTitle')->name('update_property_title');
 Route::post('/properties/value/create', 'PropertyController@createPropertyValue')->name('create_property_value');

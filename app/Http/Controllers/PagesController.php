@@ -17,17 +17,11 @@ class PagesController extends BaseController
 
     public function home()
     {
-        
-        if(Cart::exists()){
-            $cart_count = Cart::itemCount();
-        }else{
-            $cart_count = 0;
-        }
-
         $categories = Taxon::all()->take(12);
+
         $latest_products = \App\Product::active()->new()->get();
 
-        return view('pages.index', compact('categories', 'cart_count', 'latest_products'));
+        return view('pages.index', compact('categories', 'latest_products'));
     }
 
     public function getProductList($taxon_slug){
@@ -44,16 +38,21 @@ class PagesController extends BaseController
     }
 
     public function getProductDetails($taxon_slug, $product_slug){
-        if(Cart::exists()){
-            $cart_count = Cart::itemCount();
-        }else{
-            $cart_count = 0;
+        if(! \App\Product::where('slug', $product_slug)->exists() ){
+            abort(404);
         }
-        $slug = $product_slug;
         $product = \App\Product::where('slug', $product_slug)->first();
         $title = $product ? $product->title() : '';
         $tags = $product->meta_keywords ? explode(",", $product->meta_keywords) : null;
-        $ratings = $product->averageRating() ;
-        return view('pages.front.single_product', compact('product', 'tags', 'ratings', 'cart_count', 'title'));
+        $ratings = $product->ratingPercent() ;
+        return view('pages.front.single_product', compact('product', 'tags', 'ratings', 'title'));
+    }
+
+    public function profile(){
+        return view('auth.profile');
+    }
+
+    public function changePassword(){
+        return view('auth.change_password');
     }
 }

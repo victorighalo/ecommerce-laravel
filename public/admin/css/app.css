@@ -8211,7 +8211,7 @@ input:focus {
       z-index: 999; }
     .sidebar .nav .nav-item .collapse.show,
     .sidebar .nav .nav-item .collapsing {
-      background: #FFCDCD; }
+      background: #D7DBF0; }
     .sidebar .nav .nav-item .nav-link {
       align-items: center;
       display: flex;
@@ -8220,7 +8220,7 @@ input:focus {
       height: 52px;
       color: #4a4949; }
       .sidebar .nav .nav-item .nav-link[aria-expanded="true"] {
-        background: #FFCDCD; }
+        background: #D7DBF0; }
       .sidebar .nav .nav-item .nav-link .menu-icon {
         margin-right: 1.25rem;
         width: 16px;
@@ -8291,12 +8291,12 @@ input:focus {
     .sidebar .nav .nav-item.active > .nav-link {
       color: #fff; }
 .sidebar .nav .nav-item.active {
-  background: #BA3636;}
+  background: #2d3a4b;}
       .sidebar .nav .nav-item.active > .nav-link .menu-title,
       .sidebar .nav .nav-item.active > .nav-link i {
         color: inherit; }
     .sidebar .nav:not(.sub-menu) > .nav-item:hover:not(.nav-profile) > .nav-link {
-      background: #FFCDCD;
+      background: #D7DBF0;
       color: #fff; }
     .sidebar .nav.sub-menu {
       margin-bottom: 0;
@@ -8336,7 +8336,7 @@ input:focus {
         transition-duration: 0.3s;
         font-size: 14px; }
         .sidebar .nav .nav-item.purchase-button .nav-link:hover {
-          background-color: #FFCDCD;
+          background-color: #D7DBF0;
           *zoom: 1;
           filter: progid:DXImageTransform.Microsoft.gradient(gradientType=1, startColorstr='#FFD209FA', endColorstr='#FF4F81D4');
           background-image: -owg-linear-gradient(left, #d209fa 1%, #4f81d4 100%);
@@ -8361,7 +8361,7 @@ input:focus {
 /* Navbar */
 .navbar {
   font-family: 'Muli', sans-serif;
-  background: linear-gradient(270deg, #e84040, #990000);
+  background: linear-gradient(270deg, #2d3a4b, #14254b);
   transition: background 0.25s ease;
   -webkit-transition: background 0.25s ease;
   -moz-transition: background 0.25s ease;
@@ -9983,12 +9983,12 @@ select.form-control {
     border-left: 3px solid rgba(255, 255, 255, 0.2); } }
 /*//Custom styles*/
 .custom_notification .brighttheme-notice{
-  background: #BA3636 !important;
-  border-color: #BA3636 !important;
+  background: #2d3a4b !important;
+  border-color: #2d3a4b !important;
   color: #fff !important;
 }.custom_notification .brighttheme-notice .ui-pnotify-action-button.btn-primary{
-  background: #BA3636 !important;
-  border-color: #BA3636 !important;
+  background: #2d3a4b !important;
+  border-color: #2d3a4b !important;
   color: #fff !important;
 }
 .custom_button_color{

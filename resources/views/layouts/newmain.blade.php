@@ -26,7 +26,6 @@
     <link href="{{asset('assets/css/responsive.css')}}" rel="stylesheet">
     <link href="{{asset('assets/font/flaticon.css')}}" rel="stylesheet">
 
-
     <!-- JavaScripts -->
     <script src="{{ asset('assets/js/modernizr.js')}}"></script>
 
@@ -114,6 +113,9 @@
             background-color: #a72abd;
             color: #fff;
         }
+        .arrival-block .tab-content{
+            width: 100%;
+        }
 
     </style>
 
@@ -123,6 +125,7 @@
 <div id="wrap">
    @include('partials.frontend.header')
     @yield('content')
+    @include('partials.frontend.categories_slider')
    @include('partials.frontend.footer')
 </div>
 

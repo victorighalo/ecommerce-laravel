@@ -32,12 +32,12 @@
                                     </li>
                                     <li class="col-sm-6">
                                         <label>Phone *
-                                            <input type="text" class="form-control" name="company" id="company" placeholder="">
+                                            <input type="text" class="form-control" name="phone" id="phone" placeholder="">
                                         </label>
                                     </li>
                                     <li class="col-sm-6">
                                         <label>SUBJECT
-                                            <input type="text" class="form-control" name="website" id="website" placeholder="">
+                                            <input type="text" class="form-control" name="eubject" id="subject" placeholder="">
                                         </label>
                                     </li>
                                     <li class="col-sm-12">
@@ -67,9 +67,6 @@
                 </div>
             </div>
         </section>
-
-        <!--======= MAP =========-->
-        <div id="map"></div>
 
         <!-- About -->
         <section class="small-about">

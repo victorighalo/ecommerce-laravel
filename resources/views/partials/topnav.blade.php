@@ -1,6 +1,6 @@
 <nav class="navbar col-lg-12 col-12 fixed-top d-flex flex-row">
     <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center" style="background: transparent;">
-        <a class="navbar-brand brand-logo" href="{{url('/')}}">{{config('app.name')}}</a>
+        <a class="navbar-brand brand-logo" href="{{url('/')}}"><img class="img-responsive" src="{{asset('assets/images/big-stan-logo.png')}}" alt="logo" ></a>
         <a class="navbar-brand brand-logo-mini" href="{{url('/')}}"><i class="fab fa-lyft" style="font-size: 50px; color: #fff"></i></a>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-center">

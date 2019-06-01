@@ -2,30 +2,12 @@
 @section('content')
     <div class="main-panel">
         <div class="content-wrapper">
-            <div class="row justify-content-center flex-grow mb-5 mt-5">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Super Agent form
-                                <a class="btn btn-link float-right" data-toggle="collapse" href="#form_collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </a></h4>
-                            <p class="card-description">
-                                Fill the form below to create a Super Agent
-                            </p>
-                            <div class="collapse" id="form_collapse">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+            @include('partials.dashboard.stat')
             <div class="row">
                 <div class="col-12 grid-margin">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title mb-4">Agents</h5>
+                            <h5 class="card-title mb-4">Transactions</h5>
                             <div class="table-responsive">
                             <table class="table table-bordered" id="users-table">
                                 <thead>
@@ -47,3 +29,20 @@
         </div>
     </div>
 @endsection
+
+@push('script')
+    <script>
+        $(document).ready(function () {
+            $.when(
+                $.post( "{{route('get_store_stats') }}")
+            ).then(function (res) {
+                $("#total_products_stat").prev().addClass("off");
+                $("#total_products_stat").html(res.total_products)
+
+                $("#total_sales").prev().addClass("off");
+                $("#total_sales").html(res.total_transactions)
+            })
+        })
+
+    </script>
+    @endpush

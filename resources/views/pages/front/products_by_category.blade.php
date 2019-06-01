@@ -5,7 +5,7 @@
     <!--======= SUB BANNER =========-->
     @include('partials.frontend.sub_banner', ['title' => $title])
     <div id="content">
-
+    @include('partials.frontend._search')
         <!-- Products -->
         <section class="shop-page padding-top-100 padding-bottom-100">
             <div class="container">
@@ -23,13 +23,13 @@
                                     <div class="img-ser">
                                         <!-- Sale -->
                                         @if($product->created_at->diff($now)->days < 5)
-                                        <div class="on-sale"> Sale </div>
+                                        <div class="on-sale"> New </div>
                                         @endif
                                         <!-- Images -->
                                         <div class="thumb">
-                                            @if ($product->getMedia('images')->first())
-                                                <img class="img-1" src="{{env('APP_URL').$product->getMedia('images')->first()->getUrl()}}" alt="{{$product->title()}}">
-                                                <img class="img-2" src="{{env('APP_URL').$product->getMedia('images')->first()->getUrl()}}" alt="{{$product->title()}}">
+                                            @if($product->hasPhoto())
+                                                <img class="img-1" src="{{$product->FirstImage}}" alt="{{$product->title()}}">
+                                                <img class="img-2" src="{{$product->FirstImage}}" alt="{{$product->title()}}">
                                             @endif
                                             <!-- Overlay  -->
 

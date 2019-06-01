@@ -3,7 +3,7 @@
 @section('content')
 
 <!--======= SUB BANNER =========-->
-@include('partials.frontend.sub_banner', ['title' => $title])
+@include('partials.frontend.sub_banner', ['category' => $product->taxons->first()])
 
 <!-- Content -->
 <div id="content">
@@ -43,24 +43,24 @@
                             </div>
                     @endif
                 </div>
-                    <!-- Popular Images Slider -->
-                    <div class="col-md-7">
 
+                            <!-- Popular Images Slider -->
+                    <div class="col-md-7">
                         <!-- Place somewhere in the <body> of your page -->
                         <div id="slider-shop" class="flexslider">
                             <ul class="slides">
-                                @if($product->getMedia('images'))
-                                    @foreach($product->getMedia('images') as $image)
-                                        <li> <img class="img-responsive" src="{{env('APP_URL').$image->getUrl()}}" alt="{{$product->title()}}"> </li>
+                                @if($product->photos)
+                                    @foreach($product->photos as $image)
+                                        <li> <img class="img-responsive" src="{{asset($image->ImageUrl)}}" alt="{{$product->title()}}" onerror="this.src='{{asset('assets/images/image-placeholder.png')}}'"> </li>
                                     @endforeach
                                 @endif
                             </ul>
                         </div>
                         <div id="shop-thumb" class="flexslider">
                             <ul class="slides">
-                                @if($product->getMedia('images'))
-                                    @foreach($product->getMedia('images') as $image)
-                                        <li> <img class="img-responsive" src="{{env('APP_URL').$image->getUrl()}}" alt="{{$product->title()}}"> </li>
+                                @if($product->photos)
+                                    @foreach($product->photos as $image)
+                                        <li> <img class="img-responsive" src="{{asset($image->ImageUrl)}}" alt="{{$product->title()}}" onerror="this.src='{{asset('assets/images/image-placeholder.png')}}'"> </li>
                                     @endforeach
                                 @endif
                             </ul>
@@ -71,14 +71,15 @@
                     <div class="col-md-5">
                         <h4>{{$product->title()}}</h4>
                         <select class="product-rating-view">
-                            @for ($i = 1; $i <= 5; $i++)
-                                @if($i <= round($ratings) )
+                            @for ($i = 0; $i < 5; $i++)
+                                @if($i <= $ratings )
                                     <option value="1"></option>
                                 @else
                                     <option value="2"></option>
                                 @endif
                             @endfor
                         </select>
+
                         <span class="price"><small>&#8358;</small> {{number_format($product->price, '0', '.', ',')}}</span>
                         <ul class="item-owner">
                             <li>Category:<span> {{$product->taxons->first()->slug}}</span></li>
@@ -89,9 +90,18 @@
                                     @endforeach
                                 @endif
                             </li>
+                            <li>
+                                @if(isset($product->propertyValues))
+                                    @foreach($product->propertyValues as $propertyValue)
+                                        {{ $propertyValue->property->name }}: <span class="font-weight-bold text-white"
+                                        style="color: #000 !important;padding-right: 10px;font-size: 14px">{{ ucfirst($propertyValue->value) }} {{$propertyValue->title ? ucfirst($propertyValue->title) : ''}}</span>
+                                    @endforeach
+                                @endif
+                            </li>
                         </ul>
                         <!-- Item Detail -->
                         <p>{{$product->meta_description}}</p>
+
 
                         <!-- Short By -->
                         <div class="some-info">
@@ -252,7 +262,7 @@
                     .done(function (data) {
                         $(".processing").addClass('off')
                         $("#add_to_cart").prop('disabled', false)
-                        $(".cart_count").html("<i>"+data.cart_count+"</i>")
+                        $(".c-no").html("<i>"+data.cart_count+"</i>")
                         Snackbar.show({
                             showAction: true,
                             text: 'Cart updated.',

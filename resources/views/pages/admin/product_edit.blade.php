@@ -3,14 +3,14 @@
     @include('partials.image-modal')
     <div class="main-panel">
         <div class="content-wrapper">
-            <div class="row justify-content-center flex-grow mb-5 mt-5">
+            <div class="row justify-content-center flex-grow mb-5 mt-1">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">  Edit Product
+                            <h5 class="card-title">  Edit Product
                                 <a class="btn btn-link float-right" data-toggle="collapse" href="#form_collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
                                     <i class="fas fa-ellipsis-v"></i>
-                                </a></h4>
+                                </a></h5>
                             <div>
                                 <div class="row">
                                     <div class="col-sm-12 p-4">
@@ -18,94 +18,133 @@
                                             @csrf
                                             <div class="row form-group">
                                                 <input type="hidden" name="id" value="{{$product->id}}">
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-12">
                                                     <label for="name">{{ __('Product name') }}</label>
                                                     <input type="text" id="name" class="form-control" name="name" value="{{$product->title}}" required>
                                                     <span class="invalid-feedback errorshow" role="alert">
                                                 </span>
                                                 </div>
 
-                                                <div class="col-sm-3">
-                                                    <label for="name">{{ __('Tags') }}</label>
-                                                    <input type="text" id="tags" class="form-control" name="tags" data-role="tagsinput" value="{{$product->meta_keywords}}"  required>
-                                                    <span class="invalid-feedback errorshow" role="alert">
-                                                </span>
-                                                </div>
 
-                                                <div class="col-sm-3">
-                                                    <label for="category_id">{{ __('Category') }}</label>
-                                                    <select class="form-control" name="category_id" id="category_id">
+                                                <div class="col-sm-12 mt-5 pt-4 border-top">
+                                                    <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="category_id">{{ __('Product Category') }}</label>
+                                                    <select class="form-control" name="taxon_slug" id="category_id">
                                                         @foreach($categories as $category)
                                                             @if(count($product->taxons))
-                                                                @if($product->taxons->first()->name == $category->name)
-                                                            <option value="{{$category->id}}" selected>{{$category->name}}</option>
-                                                                @else
-                                                                    <option value="{{$category->id}}">{{$category->name}} - {{$category->taxonomy->name}}</option>
+                                                                {{--@if(!count($category->children))--}}
+                                                                @if($product->taxons->first()->slug == $category->slug)
+                                                                <option value="{{$category->slug}}" selected>{{$category->taxonomy->name}} {{$category->parent ? ' - ' . $category->parent->name : '' }} - {{$category->name}}</option>
+                                                                    @else
+                                                                    <option value="{{$category->slug}}">{{$category->taxonomy->name}} {{$category->parent ? ' - ' .$category->parent->name : '' }} - {{$category->name}}</option>
                                                                 @endif
-                                                                @else
-                                                                    <option value="{{$category->id}}">{{$category->name}} - {{$category->taxonomy->name}}</option>
-                                                            @endif
+                                                                   @else
+                                                                  @endif
                                                         @endforeach
                                                     </select>
                                                     <span class="invalid-feedback errorshow" role="alert">
                                                     </span>
                                                 </div>
+                                                        <div class="col-sm-8">
+                                                            <label for="name">{{ __('Product Tags') }}</label>
+                                                            <input type="text" id="tags" class="form-control" name="tags" data-role="tagsinput" value="{{$product->meta_keywords}}"  required>
+                                                            <span class="invalid-feedback errorshow" role="alert">
+                                                </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </div>
 
 
-                                                <div class="col-sm-2">
-                                                    <label for="price">{{ __('Price') }}</label>
+                                            <div class="row mt-5 pt-4 border-top">
+                                                <div class="col-sm-4">
+                                                    <label for="price">{{ __('Price') }} </label>
                                                     <input type="number" name="price" class="form-control" value="{{$product->price}}" required>
                                                     <span class="invalid-feedback errorshow" role="alert">
                                                     </span>
                                                 </div>
 
-                                                <div class="col-sm-2">
-                                                    <label for="price">{{ __('Delivery Price') }}</label>
-                                                    <input type="number" name="price" class="form-control" value="{{$product->delivery_price}}" required>
+                                                <div class="col-sm-4">
+                                                    <label for="delivery_price">{{ __('Delivery Price') }}</label>
+                                                    <input type="number" name="delivery_price" value="{{$product->delivery_price ? $product->delivery_price->amount : 0}}" class="form-control" required>
                                                     <span class="invalid-feedback errorshow" role="alert">
                                                     </span>
                                                 </div>
+                                            </div>
 
+                                            <div class="row mt-5 pt-4 border-top">
+                                                <div class="col-sm-12">
+                                                    <label for="price">{{ __('Properties') }} </label><br>
+                                            @if(isset($product->propertyValues))
+                                                @foreach($product->propertyValues as $propertyValue)
+                                                    {{ $propertyValue->property->name }}: <span class="font-weight-bold text-white"
+                                                                                                style="color: #000 !important;padding-right: 10px;font-size: 14px">{{ ucfirst($propertyValue->value) }} {{$propertyValue->title ? ucfirst($propertyValue->title) : ''}} | </span>
+                                                @endforeach
+                                            @endif
+                                                </div>
                                             </div>
 
 
                                             <div class="row justify-content-center form-group">
-                                                <div class="col-sm-12">
-                                                    <label for="description">{{ __('Description') }}</label>
-                                                    <textarea class="form-control" name="description" id="" cols="30" rows="5">{{$product->description}}</textarea>
+                                                <div class="col-sm-12 mt-4 pt-4 border-top">
+                                                    <label for="description">{{ __('Product Description') }}</label>
+                                                    <textarea class="form-control" name="meta_description" id="" cols="30" rows="5">{{$product->meta_description}}</textarea>
                                                     <span class="invalid-feedback errorshow" role="alert">
                                         </span>
                                                 </div>
 
-                                                <div class="col-sm-12 mt-3">
+                                                <div class="col-sm-12 mt-5 pt-4 border-top">
+                                                    <div class=" text-left">
+                                                        <label for="overview">{{ __('Product Overview') }}</label>
+
+                                                        <div id="editor">
+                                                            {!! $product->description !!}
+                                                        </div>
+                                                        <span class="invalid-feedback errorshow" role="alert">
+                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-12 mt-5 pt-4 border-top">
                                                     <div class="card text-left">
                                                         <div class="card-header">
-                                                            <label for="description">{{ __('Images') }}</label>
+                                                            <label for="description">{{ __('Product Images') }}</label>
                                                         </div>
                                                         <div class="card-body">
-                                                            <div class="form-group">
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-6">
                                                                 <label>File upload</label>
                                                                 <input type="file" name="img[]" class="file-upload-default">
                                                                 <div class="input-group col-xs-12">
                                                                     <input type="file" class="form-control file-upload-info" id="files_upload" placeholder="Upload Image">
                                                                     <span class="input-group-append">
-                                                        <button class="file-upload-browse btn custom_button_color" type="button" id="upload_btn">Upload</button>
+                                                        <button class="file-upload-browse btn custom_button_color" type="button" id="upload_btn"><i class="fas fa-upload"></i> Upload</button>
                                                         </span>
                                                                 </div>
                                                             </div>
-                                                            <div class="">
-                                                                <a href="#" class="btn custom_button_color"  id="load_images_btn">Choose images</a>
+
+                                                            <div class="col-sm-6">
+                                                                <label>Select images for the product</label><br>
+                                                                <a href="#" class="btn custom_button_color"  id="load_images_btn"><i class="fas fa-image"></i> Choose images</a>
                                                             </div>
+                                                        </div>
                                                             <div class="chosen_images mt-3">
-                                                                @foreach($product->getMedia('images')->all() as $image)
+                                                                @if($product->hasPhoto())
+                                                                @foreach($product->photos as $image)
                                                                     <div class="product_img_container">
                                                                         <div class="product_img_container_delete">
-                                                                            <span style="cursor:pointer;" class="badge badge-danger" data-imageid="{{$image->id}}" onclick="removeSpatieMedia(this)">x</span>
+                                                                            <span style="cursor:pointer;" class="badge badge-danger" data-imageid="{{$image->id}}" data-productslug="{{$product->slug}}" onclick="removeProductMedia(this)">x</span>
                                                                         </div>
-                                                             <img src="{{$image->getFullUrl()}}" value="{{$image->id}}"  width='100px'>
-                                                                    {{--<span style="cursor:pointer;" class="badge badge-danger" onclick="removeSpatieMedia({{$image->id}})">x</span>--}}
+                                                                        @if(config('app.PHOTO_DRIVER') == 'local')
+                                                             <img src="{{asset('thumbnail/'.$image->link)}}" value="{{$image->id}}"  style="width:100px; height:100px">
+                                                                        @elseif(config('app.PHOTO_DRIVER') == 's3')
+                                                                            <img src="https://s3.{{env('AWS_DEFAULT_REGION') }}.amazonaws.com/{{env('AWS_BUCKET')}}/images/thumbnail/{{$image->link}}" value="{{$image->id}}"  style="width:100px; height:100px">
+                                                                        @endif
+                                                                            {{--<span style="cursor:pointer;" class="badge badge-danger" onclick="removeSpatieMedia({{$image->id}})">x</span>--}}
                                                                     </div>
                                                                         @endforeach
+                                                                    @endif
                                                             </div>
                                                         </div>
                                                     </div>
@@ -114,7 +153,7 @@
                                             <div class="mt-1">
                                                 <button class="btn float-right btn-primary btn-lg font-weight-medium add_product_btn" type="submit">
                                                     <i class="fas fa-spinner fa-spin off process_indicator"></i>
-                                                    <span>{{ __('Update') }}</span>
+                                                    <span><i class="fas fa-save"></i> {{ __('Update') }}</span>
                                                 </button>
                                             </div>
                                         </form>
@@ -136,7 +175,46 @@
     <script>
         var bsmodal = $('#images-modal');
         var imageBag = [];
+        var mediaUrl = "{{asset('')}}/";
+
+
+        var toolbarOptions = [
+            ['link', 'image'],
+            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+            ['blockquote', 'code-block'],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+            [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+            [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+            [{ 'font': [] }],
+            [{ 'align': [] }],
+
+            ['clean']
+        ];
+        var options = {
+            readOnly: false,
+            theme: 'snow',
+            modules: {
+                toolbar: toolbarOptions
+            }
+        };
+        var description_container = $('#editor').get(0);
+        var quill = new Quill(description_container, options);
+
         $(document).ajaxStop($.unblockUI);
+
+        (function setMediaUrl(){
+            if(photoDriver == 'local'){
+                mediaUrl = "{{asset('')}}"
+            }
+            else if(photoDriver == 's3'){
+                mediaUrl = s3Url;
+            }
+        })();
+
 
         $(document).ready(function () {
             //load images to modal
@@ -154,13 +232,14 @@
                         $('.modal-content').unblock();
                         bsmodal.find('.modal-body').find('form').empty();
                         $(data).map(function (index, value) {
-                            var image = "{!! asset('') !!}" + value.file;
+                            {{--var image = "{!! asset('') !!}" + value.file;--}}
+                            var thumb = mediaUrl+value.file;
                             var id = value.id;
                             bsmodal.find('.image_load_status').html("")
                             bsmodal.find('.modal-body').find('form').append(
                                 `<div style="display:inline-block ;" data-imageid="${id}">
-                    <img src="${image}" width="100px" height="80px">
-                    <input type='checkbox' name='gal_item' value="${id}" data-image_link="${image}" data-image_path="${value.file}" class="gallery_item_checkbox">
+                    <img src="${thumb}" width="100px" height="80px">
+                    <input type='checkbox' name='gal_item' value="${id}" data-image_link="${thumb}" data-image_path="${value.file}" class="gallery_item_checkbox">
                     <span style="cursor:pointer;" class="badge badge-danger" id="${id}" onclick="removeMedia(this)">x</span>
                     </div>
                     `
@@ -183,7 +262,7 @@
                             <div class="product_img_container_delete">
                             <span style="cursor:pointer;" class="badge badge-danger" data-imgpath="${img_path}" onclick="popImage(this)">x</span>
                             </div>
-                            <img src="${$(value).data('image_link')}" width="100px" height="80px">
+                            <img src="${$(value).data('image_link')}" style='width:100px; height:100px'>
                         </div>
                         `
                     )
@@ -211,7 +290,7 @@
                 form_data.append('uploaded_file', uploaded_file);
                 $.blockUI({message: '<h5>Uploading...</h5>'});
                 $.ajax({
-                    url: "{{route('media_upload')}}", // point to server-side PHP script
+                    url: uploadUrl, // point to server-side PHP script
                     data: form_data,
                     type: 'POST',
                     dataType:'JSON',
@@ -220,6 +299,7 @@
                     processData: false,
                 })
                     .done(function(data) {
+                        $.unblockUI();
                         $("#upload_btn").prop('disabled', false)
                         $("#upload_btn > .process_indicator").removeClass('on');
                         if(data.status == 0){
@@ -239,6 +319,7 @@
                             });
                         }
                     }).fail(function(error) {
+                    $.unblockUI();
                     $("#upload_btn").prop('disabled', false)
                     $("#upload_btn > .process_indicator").removeClass('on');
                     new PNotify({
@@ -251,7 +332,7 @@
 
             });
 
-            //Create product
+            //Update product
             $("form#product_form").on('submit', function (e) {
                 e.preventDefault();
                 $(".add_product_btn").prop('disabled', true)
@@ -264,7 +345,11 @@
                 $.ajax({
                     type: "POST",
                     url: "{!! route('update_product') !!}",
-                    data: {form_data:$(this).serialize(), images: imageBag}
+                    data: {
+                        form_data:$(this).serialize(),
+                        images: imageBag,
+                        description: $(description_container).find('.ql-editor').html()
+                    }
                 }).done(function (data) {
                     $(".add_product_btn").prop('disabled', false)
                     $(".add_product_btn > .process_indicator").addClass('off');
@@ -286,10 +371,10 @@
                         });
                     }
                     if (response.status == 400) {
-                        $.each(response.responseJSON.message, function (key, item) {
-                            $("input[name="+key+"] + span.errorshow").html(item[0])
-                            $("input[name="+key+"] + span.errorshow").slideDown("slow")
-                        });
+                        // $.each(response.responseJSON.message, function (key, item) {
+                        //     $("input[name="+key+"] + span.errorshow").html(item[0])
+                        //     $("input[name="+key+"] + span.errorshow").slideDown("slow")
+                        // });
                         new PNotify({
                             title: 'Oops!',
                             text: 'Form validation error.',
@@ -410,23 +495,24 @@
             })
         };
 
-        function removeSpatieMedia (e) {
-            var id = $(e).data('imageid');
+        function removeProductMedia (e) {
+            var imageid = $(e).data('imageid');
+            // var productslug = $(e).data('productslug');
             $.blockUI(
                 {message: '<h5>Deleting...</h5>',
                 css: {border: '1px solid #fff' }}
                 );
             $.ajax({
-        url: "{{route('media_remove_spatie')}}",
+        url: "{{route('remove_product_media')}}",
         type: 'POST',
-        data: {id: id}
+        data: {imageid: imageid}
         })
         .done(function(data) {
             $.unblockUI();
             $(e).parent().parent().fadeOut();
             new PNotify({
                 title: 'Success!',
-                text: 'Image Deleted.',
+                text: data.message,
                 type: 'success'
             });
         }).fail(function(error) {

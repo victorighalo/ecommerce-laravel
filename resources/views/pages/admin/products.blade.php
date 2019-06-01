@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     @include('partials.image-modal')
+    @include('partials.property_edit_modal')
     <div class="main-panel">
         <div class="content-wrapper">
             @include('pages.admin._create_product')
@@ -16,20 +17,20 @@
             ['link', 'image'],
             ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
             ['blockquote', 'code-block'],
-            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-            [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-            [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+            [{'list': 'ordered'}, {'list': 'bullet'}],
+            [{'script': 'sub'}, {'script': 'super'}],      // superscript/subscript
+            [{'indent': '-1'}, {'indent': '+1'}],          // outdent/indent
 
-            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+            [{'header': [1, 2, 3, 4, 5, 6, false]}],
 
-            [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-            [{ 'font': [] }],
-            [{ 'align': [] }],
+            [{'color': []}, {'background': []}],          // dropdown with defaults from theme
+            [{'font': []}],
+            [{'align': []}],
 
             ['clean']
         ];
         var options = {
-            placeholder: 'Compose an epic...',
+            placeholder: 'Product overview...',
             readOnly: false,
             theme: 'snow',
             modules: {
@@ -38,50 +39,38 @@
         };
         var description_container = $('#editor').get(0);
         var quill = new Quill(description_container, options);
-        // var description = quill.getContents();
-        // var description_value = description;
 
         var bsmodal = $('#images-modal');
-        var mediafolder = "{{asset('')}}/";
+        var mediaUrl = "{{asset('')}}/";
         var imageBag = [];
-        $(document).ajaxStop($.unblockUI);
-        {{--function removeMedia (media) {--}}
-            {{--var item = $(media);--}}
-
-            {{--$('.modal-content').block({--}}
-                {{--message: '<h5>Deleting...</h5>',--}}
-                {{--css: {border: '1px solid #fff' }--}}
-            {{--});--}}
-            {{--$.ajax({--}}
-                {{--url: "{{route('media_remove')}}",--}}
-                {{--type: 'POST',--}}
-                {{--data: {mediaId: item.attr('id') }--}}
-            {{--})--}}
-                {{--.done(function(data) {--}}
-                    {{--$('.modal-content').unblock();--}}
-                    {{--item.parent().fadeOut()--}}
-                {{--}).fail(function(error) {--}}
-                {{--bsmodal.find('.image_load_status').html("Failed to delete image. Please Try again.")--}}
-                {{--$('.modal-content').unblock();--}}
-            {{--});--}}
-
-        {{--};--}}
+        var productId;
         var productstable = $('#table').DataTable({
             processing: true,
             serverSide: true,
             ajax: '{!! route('get_products') !!}',
             columns: [
-                { data: 'name', name: 'name' },
-                { data: 'meta_description', name: 'meta_description' },
-                { data: 'state', name: 'state' },
-                { data: 'price', name: 'price' },
-                { data: 'taxons', name: 'meta_keywords' },
-                { data: 'meta_keywords', name: 'taxons' },
-                { data: 'created_at', name: 'created_at' },
+                {data: 'name', name: 'name'},
+                {data: 'meta_description', name: 'meta_description'},
+                {data: 'state', name: 'state'},
+                {data: 'price', name: 'price'},
+                {data: 'delivery_price', name: 'delivery_price'},
+                {data: 'taxons', name: 'meta_keywords'},
+                {data: 'meta_keywords', name: 'taxons'},
+                {data: 'created_at', name: 'created_at'},
                 // { data: 'image', name: 'image' },
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
         });
+
+        (function setMediaUrl() {
+            if (photoDriver == 'local') {
+                mediaUrl = "{{asset('')}}"
+            }
+            else if (photoDriver == 's3') {
+                mediaUrl = s3Url;
+            }
+        })();
+
 
         $(document).ready(function () {
             //load images to modal
@@ -99,7 +88,7 @@
                         $('.modal-content').unblock();
                         bsmodal.find('.modal-body').find('form').empty();
                         $(data).map(function (index, value) {
-                            var image = "{!! asset('') !!}" + value.file;
+                            var image = mediaUrl + value.file;
                             var id = value.id;
                             bsmodal.find('.image_load_status').html("")
                             bsmodal.find('.modal-body').find('form').append(
@@ -142,7 +131,7 @@
                 event.preventDefault();
                 $(".upload_btn").prop('disabled', true)
                 $(".upload_btn > .process_indicator").removeClass('off');
-                if($("#files_upload").prop('files').length === 0){
+                if ($("#files_upload").prop('files').length === 0) {
                     new PNotify({
                         title: 'Oops!',
                         text: "No Content to upload",
@@ -156,18 +145,19 @@
                 form_data.append('uploaded_file', uploaded_file);
                 $.blockUI({message: '<h5>Uploading...</h5>'});
                 $.ajax({
-                    url: "{{route('media_upload')}}", // point to server-side PHP script
+                    url: uploadUrl,
                     data: form_data,
                     type: 'POST',
-                    dataType:'JSON',
+                    dataType: 'JSON',
                     contentType: false,
                     cache: false,
                     processData: false,
                 })
-                    .done(function(data) {
+                    .done(function (data) {
+                        $.unblockUI();
                         $("#upload_btn").prop('disabled', false)
                         $("#upload_btn > .process_indicator").removeClass('on');
-                        if(data.status == 0){
+                        if (data.status == 0) {
                             new PNotify({
                                 title: 'Oops!',
                                 text: 'An Error Occurred. Please try again.',
@@ -175,7 +165,7 @@
                                 type: 'error'
                             });
                         }
-                        else{
+                        else {
                             new PNotify({
                                 title: 'Success!',
                                 text: data.message,
@@ -183,7 +173,8 @@
                                 type: 'success'
                             });
                         }
-                    }).fail(function(error) {
+                    }).fail(function (error) {
+                    $.unblockUI();
                     $("#upload_btn").prop('disabled', false)
                     $("#upload_btn > .process_indicator").removeClass('on');
                     new PNotify({
@@ -200,7 +191,7 @@
             $("form#product_form").on('submit', function (e) {
                 e.preventDefault();
 
-                if(imageBag.length == 0){
+                if (imageBag.length == 0) {
                     new PNotify({
                         title: 'Oops!',
                         text: 'No Image selected.',
@@ -209,20 +200,28 @@
                     });
                     return false;
                 }
+
                 $(".add_product_btn").prop('disabled', true)
                 $(".add_product_btn > .process_indicator").removeClass('off');
                 $("span.errorshow").html("")
 
-                var form_data = new FormData();
-                // form_data.append('form_data', $(this).serialize());
-                form_data.append('images', imageBag);
+                //Get product properties
+                var properties = [];
+                $.each($(".property_values select"), function (i, value) {
+                    if ($(value).val() != "null") {
+                        properties.push($(value).val())
+                    }
+                });
+
+
                 $.ajax({
                     type: "POST",
                     url: "{!! route('create_products') !!}",
                     data: {
-                        form_data:$(this).serialize(),
+                        form_data: $(this).serialize(),
                         images: imageBag,
-                        description: $(description_container).find('.ql-editor').html()
+                        description: $(description_container).find('.ql-editor').html(),
+                        properties: properties
                     }
                 }).done(function (data) {
                     $(".add_product_btn").prop('disabled', false)
@@ -235,6 +234,7 @@
                     });
                     productstable.ajax.reload();
                 }).fail(function (response) {
+                    console.log(response)
                     $(".add_product_btn").prop('disabled', false)
                     $(".add_product_btn > .process_indicator").addClass('off');
                     if (response.status == 500) {
@@ -247,8 +247,8 @@
                     }
                     if (response.status == 400) {
                         $.each(response.responseJSON.message, function (key, item) {
-                            $("input[name="+key+"] + span.errorshow").html(item[0])
-                            $("input[name="+key+"] + span.errorshow").slideDown("slow")
+                            $("input[name=" + key + "] + span.errorshow").html(item[0])
+                            $("input[name=" + key + "] + span.errorshow").slideDown("slow")
                         });
                         new PNotify({
                             title: 'Oops!',
@@ -266,16 +266,36 @@
                 })
             });
 
+
         });
+
+
+        //Edit product properties
+        $("#update_property_btn").on('click', function () {
+            $("#update_property_btn").prop('disabled', true)
+            $("#update_property_btn > .process_indicator").removeClass('off');
+            updateProperties(productId)
+        });
+
+        $("#cancel_update_property_btn").on('click', function () {
+            $("#update_property_btn").prop('disabled', false)
+            $("#update_property_btn > .process_indicator").addClass('off');
+        });
+
+        function editProperty(id, name) {
+            productId = id;
+            $('#product_name').html($(name).data('product_name'))
+            $('#property_edit_modal').modal('show')
+        }
 
         function popImage(e) {
             $(e).parent().parent().fadeOut()
-            imageBag = imageBag.filter( function (item) {
+            imageBag = imageBag.filter(function (item) {
                 return item != $(e).data('imgpath');
             })
         }
 
-        function removeMedia (media) {
+        function removeMedia(media) {
             var item = $(media);
             PNotify.removeAll();
             new PNotify({
@@ -289,11 +309,11 @@
                     buttons: [{
                         text: 'Delete',
                         addClass: 'btn-primary',
-                        click: function(notice) {
+                        click: function (notice) {
                             $.ajax({
                                 url: "{{route('media_remove')}}",
                                 type: 'POST',
-                                data: {mediaId: item.attr('id') }
+                                data: {mediaId: item.attr('id')}
                             }).done(function (data) {
                                 notice.update({
                                     title: 'Success',
@@ -342,7 +362,7 @@
                         {
                             text: 'Cancel',
                             addClass: 'btn-primary',
-                            click: function(notice) {
+                            click: function (notice) {
                                 notice.update({
                                     title: 'Action Cancelled',
                                     text: 'That was close...',
@@ -370,7 +390,7 @@
             })
         };
 
-        function deactivate (id) {
+        function deactivate(id) {
             PNotify.removeAll();
 
             new PNotify({
@@ -384,10 +404,10 @@
                     buttons: [{
                         text: 'Deactivate',
                         addClass: 'btn-primary',
-                        click: function(notice) {
+                        click: function (notice) {
                             $.ajax({
                                 type: "GET",
-                                url: "{!! route('deactivate_product') !!}"+"/"+id
+                                url: "{!! route('deactivate_product') !!}" + "/" + id
                             }).done(function (data) {
                                 notice.update({
                                     title: 'Product deactivated',
@@ -436,7 +456,7 @@
                         {
                             text: 'Cancel',
                             addClass: 'btn-primary',
-                            click: function(notice) {
+                            click: function (notice) {
                                 notice.update({
                                     title: 'Action Cancelled',
                                     text: 'That was close...',
@@ -464,7 +484,62 @@
             })
         };
 
-        function activate (id) {
+        function updateProperties() {
+            PNotify.removeAll();
+            //Get product properties
+            var properties = [];
+            $.each($(".edit_property_values select"), function (i, value) {
+                if ($(value).val() != "null") {
+                    properties.push($(value).val())
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "{!! route('update_product_properties') !!}" + "/" + productId,
+                data: {properties: properties, product_id: productId},
+                dataType: "json",
+            }).done(function (data) {
+                new PNotify({
+                    title: 'Success!',
+                    text: data.message,
+                    addclass: 'custom_notification',
+                    type: 'success'
+                });
+                $("#update_property_btn").prop('disabled', false)
+                $("#update_property_btn > .process_indicator").addClass('off');
+                $('#property_edit_modal').modal('hide')
+                productstable.ajax.reload();
+            }).fail(function (response) {
+                PNotify.removeAll();
+                if (response.status == 500) {
+                    new PNotify({
+                        title: 'Oops!',
+                        text: 'An Error Occurred. Please try again.',
+                        type: 'error'
+                    });
+                    return false
+                }
+                if (response.status == 400) {
+                    new PNotify({
+                        title: 'Oops!',
+                        text: 'Failed to deactivate Product.',
+                        type: 'error'
+                    });
+                    return false
+                }
+                else {
+                    new PNotify({
+                        title: 'Oops!',
+                        text: 'An Error Occurred. Please try again.',
+                        type: 'error'
+                    });
+                    return false
+                }
+            })
+        };
+
+        function activate(id) {
             PNotify.removeAll();
 
             new PNotify({
@@ -478,10 +553,10 @@
                     buttons: [{
                         text: 'Activate',
                         addClass: 'btn-primary',
-                        click: function(notice) {
+                        click: function (notice) {
                             $.ajax({
                                 type: "GET",
-                                url: "{!! route('activate_product') !!}"+"/"+id
+                                url: "{!! route('activate_product') !!}" + "/" + id
                             }).done(function (data) {
                                 notice.update({
                                     title: 'Product activated',
@@ -530,7 +605,7 @@
                         {
                             text: 'Cancel',
                             addClass: 'btn-primary',
-                            click: function(notice) {
+                            click: function (notice) {
                                 notice.update({
                                     title: 'Action Cancelled',
                                     text: 'That was close...',
@@ -558,8 +633,8 @@
             })
         };
 
-        function destroy (id, catid) {
-            if(!catid){
+        function destroy(id, catid) {
+            if (!catid) {
                 catid = 0;
             }
             (new PNotify({
@@ -573,10 +648,10 @@
                     buttons: [{
                         text: 'Delete',
                         addClass: 'btn-primary',
-                        click: function(notice) {
+                        click: function (notice) {
                             $.ajax({
                                 type: "GET",
-                                url: "{!! route('destroy_product') !!}"+"/"+id+"/"+catid
+                                url: "{!! route('destroy_product') !!}" + "/" + id + "/" + catid
                             }).done(function (data) {
                                 productstable.ajax.reload();
                                 notice.update({
@@ -624,7 +699,7 @@
                         {
                             text: 'Cancel',
                             addClass: 'btn-primary',
-                            click: function(notice) {
+                            click: function (notice) {
                                 notice.update({
                                     title: 'Action Cancelled',
                                     text: 'That was close...',

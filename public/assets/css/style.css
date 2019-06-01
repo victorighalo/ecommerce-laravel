@@ -1,29 +1,4 @@
-/*------------------------------------------------------------------
-    Main Style Stylesheet
-    Project:        HTML5 Template
-    Version:        1.0
-    Author:         M_Adnan
-    Last change:    10/10/2018
-    Primary use:    Creative, Coporate, Business, Portfolio, Personal
--------------------------------------------------------------------*/
 
-/*------------------------------------------------------------------
-body 
- + WRAP
- + HEADER
- + NAVIGATION
- + BANNER
- + SERVICES
- + OUR FEATURED FOUNDERS
- + BLOG UPDATES 
- + APPOINMENT
- + NEWS FROM BLOG
- + PARTNERS / CLIENTS
- + FOOTER
- + SOCIAL ICONS
- + MEGA MENU
- + 3 MENU LEVEL 
--------------------------------------------------------------------*/
 /*=======================================================
       IMPORT FILE
 ========================================================*/
@@ -167,7 +142,7 @@ p.intro-small {
 	font-weight: bold !important;
 }
 a:hover, a:focus {
-	color: #ffe115;
+	color: #333;
 }
 .primary-color {
 	color: #171e27 !important;
@@ -232,12 +207,12 @@ a:hover, a:focus {
 	z-index: 1;
 }
 .btn:hover {
-	background: #ffe115;
-	color: #2d3a4b;
+	background: #fe351a;
+	color: #fff;
 }
 .btn-inverse {
-	background: #ffe115;
-	color: #2d3a4b;
+	background: #fe351a;
+	color: #fff;
 }
 .btn-inverse:hover {
 	background: #2d3a4b;
@@ -352,7 +327,7 @@ section {
 	width: 40px;
 	margin: 0 auto;
 	border: none;
-	background: #ffe115;
+	background: #fe351a;
 	border-radius: 6px;
 	position: relative;
 	margin-top: 15px;
@@ -362,7 +337,7 @@ section {
 	width: 10px;
 	margin: 0 auto;
 	border: none;
-	background: #ffe115;
+	background: #fe351a;
 	border-radius: 6px;
 	position: absolute;
 	left: 45px;
@@ -373,7 +348,7 @@ section {
 	width: 10px;
 	margin: 0 auto;
 	border: none;
-	background: #ffe115;
+	background: #fe351a;
 	border-radius: 6px;
 	position: absolute;
 	right: 45px;
@@ -413,7 +388,7 @@ section {
 	position: absolute;
 	bottom: 9px;
 	height: 4px;
-	background: #ffe115;
+	background: #fe351a;
 	height: 7px;
 	width: 100%;
 	z-index: -1;
@@ -526,7 +501,7 @@ header .navbar li a:before {
 	left: 0px;
 	bottom: 0px;
 	z-index: -1;
-	background: #ffe115;
+	background: #fe351a;
 	-webkit-transition: 0.2s ease-in-out;
 	-moz-transition: 0.2s ease-in-out;
 	-ms-transition: 0.2s ease-in-out;
@@ -545,7 +520,7 @@ header .navbar li.active a:before {
 	bottom: 0px;
 	left: 0px;
 	z-index: -1;
-	background: #ffe115;
+	background: #fe351a;
 	-webkit-transition: 0.2s ease-in-out;
 	-moz-transition: 0.2s ease-in-out;
 	-ms-transition: 0.2s ease-in-out;
@@ -631,7 +606,7 @@ header .navbar li.active a:before {
 	min-width: inherit;
 	padding: 30px 0;
 	margin-top: 0px;
-	border-top: 1px solid #ffe115;
+	border-top: 1px solid #fe351a;
 }
 .ownmenu .nav .dropdown-menu li a {
 	position: relative;
@@ -1099,10 +1074,10 @@ header .user-acc li a {
 	font-size: 12px;
 }
 header .user-acc .dropdown-menu>li>a:hover {
-	background: #ffe115;
+	background: #fe351a;
 }
 header .user-acc .dropdown-menu>li>a:focus {
-	background: #ffe115;
+	background: #fe351a;
 }
 header .navbar-right li a:before {
 	display: none;
@@ -1137,7 +1112,7 @@ header .user-basket .btn {
 	border: none;
 }
 header .user-basket .btn:hover {
-	background: #ffe115;
+	background: #fe351a;
 	color: #2d3a4b;
 }
 header .user-basket .media-heading {
@@ -1308,9 +1283,9 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	line-height: 40px;
 }
 .cd-nav .social_icons li a:hover {
-	background: #ffe115;
+	background: #fe351a;
 	color: #2d3a4b;
-	border: 1px solid #ffe115;
+	border: 1px solid #fe351a;
 }
 .cd-nav .well {
 	background: none;
@@ -1471,7 +1446,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	width: 100%;
 }
 .arrival-block .tab-content {
-	box-shadow: 0 0 50px rgba(0,0,0,0.1);
+	/*box-shadow: 0 0 50px rgba(0,0,0,0.1);*/
 	display: inline-block;
 }
 .arrival-block .item {
@@ -1650,14 +1625,14 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 .arrival-block .nav li a {
 	font-size: 16px;
 	margin: 0 20px;
-	border-bottom: 1px solid #ffe115;
+	border-bottom: 1px solid #fe351a;
 	border-color: transparent;
 	padding-bottom: 5px;
 	position: relative;
 }
 .arrival-block .nav li a.active {
-	border-bottom: 1px solid #ffe115;
-	color: #ffe115;
+	border-bottom: 1px solid #fe351a;
+	color: #fe351a;
 }
 .arrival-block.item-col-3 .item {
 	width: 33.33333%;
@@ -1760,7 +1735,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	overflow: hidden;
 }
 .arrival-block .stras {
-	color: #ffe115;
+	color: #fe351a;
 	display: inline-block;
 	width: 100%;
 	margin-top: 5px;
@@ -1781,7 +1756,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	list-style: none;
 }
 .arrival-block .list-style li:before {
-	background: #ffe115;
+	background: #fe351a;
 	height: 5px;
 	width: 5px;
 	border-radius: 50px;
@@ -2064,8 +2039,8 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	margin-top: 10px;
 }
 .new-arrival-list li .btn:hover {
-	background: #ffe115;
-	border-color: #ffe115;
+	background: #fe351a;
+	border-color: #fe351a;
 	color: #2d3a4b;
 }
 .new-arrival-list li article {
@@ -2278,16 +2253,16 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	color: #2d3a4b;
 }
 .papular-block .item-name a:hover {
-	color: #ffe115;
+	color: #fe351a;
 }
 .on-sale {
-	background: #ffe115;
+	background: #fe351a;
 	position: absolute;
 	top: 20px;
 	left: 20px;
 	z-index: 99;
 	text-align: center;
-	color: #000;
+	color: #fff;
 	height: 26px;
 	line-height: 26px;
 	padding: 0px 10px;
@@ -2513,6 +2488,8 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	padding-left: 0px;
 	padding-right: 0px;
 	width: 100%;
+}.shop-detail .some-info .btn:focus {
+color: #fff !important;
 }
 .shop-detail .some-info .quinty input {
 	width: 100%;
@@ -2576,14 +2553,15 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	line-height: 49px;
 }
 .shop-detail .rating-strs {
-	color: #ffe115;
+	color: #fe351a;
 }
 .shop-detail .rating-strs i {
 	margin: 0 1px;
 	font-size: 16px;
 }
 .shop-detail .some-info .btn:hover {
-	background: #ffe115;
+	background: #fe351a;
+	color: #fff;
 }
 .shop-detail .some-info .like-us {
 	font-size: 14px;
@@ -2674,7 +2652,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 }
 .item-decribe .nav-tabs>li.active>a {
 	border: none;
-	border-bottom: 2px solid #ffe115;
+	border-bottom: 2px solid #fe351a;
 }
 .item-decribe .nav-tabs>li {
 	margin: 0px;
@@ -2882,7 +2860,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	font-weight: bold;
 }
 .video-block a i {
-	color: #ffe115;
+	color: #fe351a;
 	float: left;
 	margin-top: 5px;
 	margin-right: 20px;
@@ -2980,7 +2958,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 }
 .fun-facts i {
 	font-size: 48px;
-	color: #ffe115;
+	color: #fe351a;
 	display: inline-block;
 	width: 100%;
 }
@@ -3024,7 +3002,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	font-size: 12px;
 }
 .blog-list article .btn:hover {
-	background: #ffe115;
+	background: #fe351a;
 }
 .blog-list .list-group {
 	margin-left: 20px;
@@ -3064,7 +3042,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	width: 100%;
 }
 .blog-list .post-tittle a.tittle:hover {
-	color: #ffe115;
+	color: #fe351a;
 }
 .blog-list .post-date {
 	width: 100px;
@@ -3323,7 +3301,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 }
 .huge-text {
 	font-size: 100px;
-	color: #ffe115;
+	color: #fe351a;
 	text-transform: uppercase;
 	position: absolute;
 	font-weight: bold;
@@ -3399,7 +3377,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	top: 17px;
 }
 .shop-cate a:hover {
-	color: #ffe115;
+	color: #fe351a;
 }
 .shop-tags li {
 	display: inline-block;
@@ -3466,7 +3444,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 }
 .side-bnr .bnr-text {
 	font-size: 42px;
-	color: #ffe115;
+	color: #fe351a;
 	max-width: 100px;
 	text-align: left;
 	font-weight: bold;
@@ -3722,7 +3700,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	width: 40px;
 	margin: 0 auto;
 	border: none;
-	background: #ffe115;
+	background: #fe351a;
 	border-radius: 6px;
 	position: absolute;
 	left: 0px;
@@ -3734,7 +3712,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	width: 10px;
 	margin: 0 auto;
 	border: none;
-	background: #ffe115;
+	background: #fe351a;
 	border-radius: 6px;
 	position: absolute;
 	left: 45px;
@@ -3905,7 +3883,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	font-size: 14px;
 }
 .shopping-cart .btn:hover {
-	background: #ffe115 !important;
+	background: #fe351a !important;
 }
 .small-cart .cart-ship-info form {
 	background: #eeeeee;
@@ -4069,7 +4047,7 @@ input[type=number] {
 	position: absolute;
 	right: -170px;
 	top: -75px;
-	background: #ffe115;
+	background: #fe351a;
 	-ms-transform: rotate(45deg); /* IE 9 */
 	-webkit-transform: rotate(45deg); /* Safari */
 	transform: rotate(45deg);
@@ -4185,12 +4163,12 @@ input[type=number] {
 	font-weight: 600;
 }
 .cate-list li a:hover {
-	color: #ffe115;
-	border-bottom: 2px solid #ffe115;
+	color: #fe351a;
+	border-bottom: 2px solid #fe351a;
 }
 .cate-list li.active a {
-	color: #ffe115;
-	border-bottom: 2px solid #ffe115;
+	color: #fe351a;
+	border-bottom: 2px solid #fe351a;
 }
 /*=======================================================
       Knowledge Share
@@ -4272,7 +4250,7 @@ input[type=number] {
 	margin-bottom: 10px;
 }
 .knowledge-share a:hover {
-	color: #ffe115;
+	color: #fe351a;
 }
 .news-letter {
 	background: #131920;
@@ -4569,7 +4547,7 @@ input[type=number] {
 	transition: all 0.4s ease-in-out;
 }
 .testimonial .owl-dots .owl-dot.active {
-	background: #ffe115;
+	background: #fe351a;
 	width: 20px;
 }
 .testimonial .owl-dots .owl-dot span {
@@ -4643,7 +4621,7 @@ input[type=number] {
 	border: 2px solid rgba(255,255,255,0.2);
 }
 .small-about .news-letter form button:hover {
-	background: #ffe115;
+	background: #fe351a;
 }
 /*=======================================================
       Shipment
@@ -5110,7 +5088,7 @@ footer .subscribe input {
 	margin-top: 15px;
 }
 #contact_form li .btn:hover {
-	background: #ffe115;
+	background: #fe351a;
 }
 .contact-form .tittle {
 	text-align: center;
@@ -5180,7 +5158,7 @@ footer .subscribe input {
 	font-weight: normal;
 }
 .contact-info {
-	border: 2px solid #ffe115;
+	border: 2px solid #fe351a;
 	padding: 40px;
 	margin-top: 0px;
 }
@@ -5456,7 +5434,7 @@ main {
 	height: 6px;
 	top: 48%;
 	z-index: -1;
-	background: #ffe115;
+	background: #fe351a;
 	-webkit-transition: 0.4s ease-in-out;
 	-moz-transition: 0.4s ease-in-out;
 	-ms-transition: 0.4s ease-in-out;
@@ -5471,7 +5449,7 @@ main {
 	height: 6px;
 	top: 48%;
 	z-index: -1;
-	background: #ffe115;
+	background: #fe351a;
 	-webkit-transition: 0.4s ease-in-out;
 	-moz-transition: 0.4s ease-in-out;
 	-ms-transition: 0.4s ease-in-out;
@@ -5687,7 +5665,7 @@ main {
 	border: none;
 }
 .top-bar .user-basket .btn:hover {
-	background: #ffe115;
+	background: #fe351a;
 	color: #2d3a4b;
 }
 .top-bar .user-basket .media-heading {
@@ -5787,7 +5765,7 @@ main {
 	padding-right: 20px;
 }
 .login-with li a:hover {
-	background: #ffe115;
+	background: #fe351a;
 }
 .cart-ship-info.register select {
 }
@@ -5827,7 +5805,7 @@ main {
 	transition: all 0.2s ease-in-out;
 }
 .owl-dots .owl-dot.active {
-	background: #ffe115;
+	background: #fe351a;
 	width: 20px;
 }
 .dark-bg {
@@ -5861,7 +5839,7 @@ main {
 	color: #ccc;
 }
 .dark-bg .papular-block .price {
-	color: #ffe115
+	color: #fe351a
 }
 /**
  * Fade-zoom animation for first dialog

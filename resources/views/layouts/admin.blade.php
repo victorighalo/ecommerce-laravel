@@ -15,33 +15,8 @@
     <link href="{{ asset('plugins/bootstrap-tagsinput.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/quill.snow.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/quill.bubble.css') }}" rel="stylesheet">
-    <style>
-        .bootstrap-tagsinput{
-            width: 100%;
-        }
-        .bootstrap-tagsinput .tag {
-            color: black;
-            background: silver;
-            padding: 3px;
-        }
-        .product_img_container{
-            display: inline-block;
-            position: relative;
-        }
-        .product_img_container:hover .product_img_container_delete{
-            display: block;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left:0;
-            background: rgba(000,000,000,0.7);
-            cursor: pointer;
-        }
-        .product_img_container_delete{
-            position: absolute;
-            padding: 10px;
-        }
-    </style>
+    <link href="{{ asset('admin/css/custom.css') }}" rel="stylesheet">
+
 </head>
 <body>
 <div id="app">
@@ -72,6 +47,10 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+    var s3Url = " https://s3.{{env('AWS_DEFAULT_REGION') }}.amazonaws.com/{{env('AWS_BUCKET')}}/images/thumbnail/";
+    var uploadUrl = "{{route('media_upload')}}";
+    var photoDriver = "{{config('app.PHOTO_DRIVER')}}";
 </script>
+
 @stack('script')
 </html>

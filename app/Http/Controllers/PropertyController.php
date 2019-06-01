@@ -24,7 +24,7 @@ class PropertyController extends Controller
             return response()->json([
                 'message' => 'Successfully created property',
                 'data' => $data
-            ], 200);
+            ]);
 
         }catch (\Exception $e){
             return response()->json(['message' => 'Failed to create property' . $e->getMessage()], 400);
@@ -32,16 +32,15 @@ class PropertyController extends Controller
     }
 
     public function createPropertyValue(Request $request){
+
         try{
-            $property = Property::findBySlug($request->property_slug);
-            $property->propertyValues()->create([
-                'title' => $request->property_title ? $request->property_title : '',
-                'value' => $request->property_value
+            Property::findBySlug($request->property_slug)->propertyValues()->create([
+                'value' => $request->property_value,
+                'title' => $request->property_title ? $request->property_title : ' '
             ]);
             return response()->json([
-                'message' => 'Successfully created property value',
-                'data' => []
-            ], 200);
+                'message' => 'Successfully created property value'
+            ]);
 
         }catch (\Exception $e){
             return response()->json(['message' => 'Failed to create property' . $e->getMessage()], 400);
@@ -56,9 +55,8 @@ class PropertyController extends Controller
         try{
             Property::findBySlug($request->id)->update(['name' => $request->value]);
             return response()->json([
-                'message' => 'Successfully updated property',
-                'data' => []
-            ], 200);
+                'message' => 'Successfully updated property'
+            ]);
         }catch (\Exception $e){
             return response()->json(['message' => 'Failed to create property' . $e->getMessage()], 400);
         }
@@ -66,13 +64,13 @@ class PropertyController extends Controller
 
     public function updateValue(Request $request){
         try{
-            $model = PropertyValue::where('id', $request->id)
+            PropertyValue::where('id', $request->id)
                 ->update([
                     'title' => $request->value
                 ]);
             return response()->json([
                 'message' => 'Successfully updated property'
-            ], 200);
+            ]);
         }catch (\Exception $e){
             return response()->json(['message' => 'Failed to create property' . $e->getMessage()], 400);
         }
@@ -80,15 +78,29 @@ class PropertyController extends Controller
 
     public function updateTitle(Request $request){
         try{
-            $model = PropertyValue::where('id', $request->id)
+            PropertyValue::where('id', $request->id)
                 ->update([
                     'title' => $request->value
                 ]);
             return response()->json([
                 'message' => 'Successfully updated property'
-            ], 200);
+            ]);
         }catch (\Exception $e){
             return response()->json(['message' => 'Failed to create property' . $e->getMessage()], 400);
         }
+    }
+
+    public function destroyPropVal($id){
+        PropertyValue::where('id', $id)->delete();
+        return response()->json([
+            'message' => 'Successfully deleted Property Value'
+        ]);
+    }
+
+    public function destroy($slug){
+        Property::findOneByName($slug)->delete();
+        return response()->json([
+            'message' => 'Successfully deleted Property'
+        ]);
     }
 }

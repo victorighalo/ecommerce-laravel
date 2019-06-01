@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DeliveryPrice;
 use App\Product;
 use App\User;
 use Illuminate\Http\Request;
@@ -33,11 +34,16 @@ class ProductsController extends BaseController
     public function create(Request $request)
     {
 
+
         try {
             //Parse query-string input
-            parse_str($request->form_data, $product_data);
+            parse_str(html_entity_decode($request->form_data), $product_data);
+
+            //Get Taxon
+            $taxon = Taxon::findBySlug($product_data['taxon_slug']);
+
             //Generate SKU
-            $sku = strtoupper(substr($product_data['name'], 0, 3)) . "-" . $product_data['category_id'];
+            $sku = strtoupper(substr($product_data['name'], 0, 3)) . "-" . $taxon->id;
 
             //Create Product
             $product = \App\Product::create([
@@ -50,34 +56,35 @@ class ProductsController extends BaseController
                 'state' => ProductState::ACTIVE
             ]);
 
-            //Get Taxon
-            $taxon = Taxon::where('id', $product_data['category_id'])->first();
-            $taxon = Taxon::findBySlug($taxon->slug);
 
-            $get_product = \App\Product::where('id', $product->id)->first();
             //Add Taxon to product
-            $get_product->taxons()->save($taxon);
+            $product->taxons()->save($taxon);
 
 
-            //Relate images to product
-            foreach ($request['images'] as $image) {
-                $product->addMedia($image)
-                    ->preservingOriginal()
-                    ->toMediaCollection('images');
+            //Add images to product
+            if($request['images']) {
+                foreach ($request['images'] as $image) {
+                $product->photos()->create([
+                    'link' => $image,
+                    'photoable_type' => get_class($product),
+                    'photoable_id' => $product->id,
+                ]);
+                }
             }
 
             //Create Delivery Price
-            if($product_data['delivery_price']) {
-                $product->first()->delivery_price()->create([
-                    'amount' => $product_data['delivery_price'],
-                    'delivery_price_type' => get_class($product),
-                    'delivery_price_id' => $product->id,
-                ]);
+            $delivery_price = new DeliveryPrice();
+            $delivery_price->amount = $product_data['delivery_price'];
+            $product->delivery_price()->save($delivery_price);
+
+            //Assign product to categories
+            if($request->has('properties')) {
+                $product->propertyValues()->sync($request->properties);
             }
 
             return response()->json(['status' => 200, 'message' => 'Product created'], 200);
         } catch (\Exception $e) {
-            return response()->json(['status' => 400, 'message' => 'Failed to create product'. $e->getMessage()], 400);
+            return response()->json(['status' => 400, 'message' => 'Failed to create product '. $e->getMessage()], 400);
         }
 
     }
@@ -89,18 +96,17 @@ class ProductsController extends BaseController
             //Parse query-string input
             parse_str($request->form_data, $product_data);
 
+            //Get Taxon
+            $taxon = Taxon::findBySlug($product_data['taxon_slug']);
+
+
             //Generate SKU
-            $sku = strtoupper(substr($product_data['name'], 0, 3)) . "-" . $product_data['category_id'];
+            $sku = strtoupper(substr($product_data['name'], 0, 3)) . "-" . $taxon->id;
 
             //Get Product
             $product = \App\Product::where('id', $product_data['id']);
 
-            //Get Selected Taxon
-            $getTaxon = Taxon::where('id',$product_data['category_id'])->first();
 
-
-//            //check if product has Taxon
-//            $hasTaxon = !is_null($product->first()->taxons);
             $hasSameTaxon = false;
             //Update product details
             $product->update([
@@ -108,40 +114,39 @@ class ProductsController extends BaseController
                 'sku' => $sku,
                 'slug' => str_slug($product_data['name'], '-'),
                 'price' => $product_data['price'],
-                'description' => $product_data['description'],
+                'meta_description' => $product_data['meta_description'],
+                'description' => $request->description,
                 'meta_keywords' => $product_data['tags']
             ]);
 
-            //Update Delivery Price
-            if($product_data['delivery_price']) {
-                $product->first()->delivery_price()->update([
-                    'amount' => $product_data['delivery_price']
-                ]);
-            }
-
 
             //Check if product already has same Taxon to prevent exception
-            if($product->first()->taxons()->count()) {
-                foreach ($product->first()->taxons as $item) {
-                    $taxon = Taxon::findBySlug($item->slug);
-                    $product->first()->taxons()->detach($taxon);
-                }
-            }
+//            if($product->first()->taxons()->count()) {
+//                foreach ($product->first()->taxons as $item) {
+//                    $taxon = Taxon::findBySlug($item->slug);
+//                    $product->first()->taxons()->detach($taxon);
+//                }
+//            }
 
-            //Add Taxon to product
-                $taxon = Taxon::findBySlug($getTaxon->slug);
-                $product->first()->taxons()->save($taxon);
+            //update Taxon to product
+             $product->first()->taxons()->detach();
+             $product->first()->taxons()->save($taxon);
 
-
-            //Relate images to product
-            if ($request['images']) {
+            //update images for product
+            if($request['images'] && count($request['images']) > 0) {
                 foreach ($request['images'] as $image) {
-                    $product->first()
-                        ->addMedia($image)
-                        ->preservingOriginal()
-                        ->toMediaCollection('images');
+                    $product->first()->photos()->create([
+                        'link' => $image,
+                        'photoable_type' => get_class($product->first()),
+                        'photoable_id' => $product_data['id'],
+                    ]);
                 }
             }
+
+            //update Delivery Price
+            DeliveryPrice::where('delivery_price_id', $product_data['id'])->update(
+               ['amount' => $product_data['delivery_price']]
+            );
 
 
             return response()->json(['status' => 200, 'message' => 'Product updated'], 200);
@@ -156,24 +161,28 @@ class ProductsController extends BaseController
         try {
             //Get product model
             $product = \App\Product::where('id', $product_id);
+            $name = $product->first()->name;
 
-            if (!$taxon_id == 0 && $product->exists()) {
-                //Get Taxon
-                $taxon = Taxon::where('id', $taxon_id)->first();
+//            if (!$taxon_id == 0 && $product->exists()) {
+//                //Get Taxon
+//                $taxon = Taxon::where('id', $taxon_id)->first();
+//
+//                //Unlink Taxon
+//                $product->first()->taxons()->detach($taxon);
+//            }
 
-                //Unlink Taxon
-                $product->first()->taxons()->detach($taxon);
-            }
+            //Remove from delivery prices table
+            DeliveryPrice::where('delivery_price_id', $product_id)->delete();
 
             //Delete product
             $product->delete();
-            return response()->json(['message' => 'Product Deleted', 'status' => 200], 200);
+            return response()->json(['message' => $name .' Deleted', 'status' => 200], 200);
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Failed to Delete' . $e->getMessage(), 'status' => 400], 400);
+            return response()->json(['message' => 'Failed to Delete ' . $e->getMessage(), 'status' => 400], 400);
         }
     }
 
-    public function getProductsData(Request $request)
+    public function getProductsData()
     {
 
         $products = \App\Product::all();
@@ -182,8 +191,8 @@ class ProductsController extends BaseController
             return $data->created_at ? with(new Carbon($data->created_at))->toDayDateTimeString() : '';
         })
             ->addColumn('image', function ($subdata) {
-                if ($subdata->getMedia('images')->count()) {
-                    return "<img src=" .env('APP_URL'). $subdata->getMedia('images')->first()->getUrl() . "  width='100px'>";
+                if ($subdata->hasPhoto()) {
+                    return "<img src=" . $subdata->firstThumb . "  width='100px'>";
                 } else {
                     return "None";
                 }
@@ -195,6 +204,15 @@ class ProductsController extends BaseController
             })->editColumn('price', function ($subdata) {
 
                 return "&#8358;".number_format($subdata->price, '0', '.', ',');
+            })->editColumn('delivery_price', function ($subdata) {
+
+                return "&#8358;".number_format($subdata->delivery_price ? $subdata->delivery_price->amount : 0, '0', '.', ',');
+            })->editColumn('state', function ($subdata) {
+                if($subdata->state == "active"){
+                    return  '<span class="badge badge-success">'.$subdata->state.'</span>';
+                    }else{
+                    return  '<span class="badge badge-danger">'.$subdata->state.'</span>';
+                }
             })
             ->editColumn('meta_description', function ($subdata) {
 
@@ -202,16 +220,16 @@ class ProductsController extends BaseController
             })
             ->addColumn('action', function ($subdata) {
                 return '      <td>
-                                                    <button class="btn btn-danger btn-sm dropdown-toggle" type="button" id="settingcol" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-cogs"></i> </button>
-                                                    <div class="dropdown-menu" aria-labelledby="settingcol">
-                    
-                                                        <a style="mrgin-bottom:25px; padding:15px 5px" class="dropdown-item activate_btn" href="#" id="' . $subdata->id . '" onclick="activate(' . $subdata->id . ')">Activate</a>
-                                                        <a style="mrgin-bottom:25px; padding:15px 5px" class="dropdown-item deactivate_btn" href="#" id="' . $subdata->id . '" onclick="deactivate(' . $subdata->id . ')">Deactivate</a>
-                                                        <a style="mrgin-bottom:25px; padding:15px 5px" class="dropdown-item" href="' . route('edit_product', ['id' => $subdata->id]) . '">Edit</a>
-                                                        <a style="mrgin-bottom:25px; padding:15px 5px" class="dropdown-item del_btn" href="#" id="' . $subdata->id . '" onclick="destroy(' . $subdata->id . ',' . ( ($subdata->taxons->count()) ? $subdata->taxons->first()->id : null) . ')">Delete </a>
+                                                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="settingcol" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-cogs"></i> </button>
+                                                    <div class="dropdown-menu" aria-labelledby="settingcol" style="padding: 10px;">
+                                                        <a style="padding:8px 5px" class="dropdown-item activate_btn" href="#" id="' . $subdata->id . '" onclick="activate(' . $subdata->id . ')">Activate <i class="fas fa-check float-right"></i></a>
+                                                        <a style="padding:8px 5px" class="dropdown-item deactivate_btn" href="#" id="' . $subdata->id . '" onclick="deactivate(' . $subdata->id . ')">Deactivate <i class="fas fa-ban float-right"></i></a>
+                                                        <a style="padding:8px 5px" class="dropdown-item" href="' . route('edit_product', ['id' => $subdata->id]) . '">Edit <i class="fas fa-edit float-right"></i></a>
+                                                        <a style="padding:8px 5px" class="dropdown-item edit_product_properties" href="#" onclick="editProperty(' . $subdata->id . ',' . 'this' .')" data-product_name="'.$subdata->name.'">Edit Properties <i class="fas fa-edit float-right"></i></a>
+                                                        <a style="padding:8px 5px" class="dropdown-item del_btn" href="#" id="' . $subdata->id . '" onclick="destroy(' . $subdata->id . ',' . ( ($subdata->taxons->count()) ? $subdata->taxons->first()->id : null) . ')"><span>Delete</span> <i class="fas fa-trash float-right"></i></a>
  </div></td>';
             })
-            ->rawColumns(['image', 'action', 'price'])
+            ->rawColumns(['image', 'action', 'price', 'delivery_price', 'state'])
             ->make(true);
     }
 
@@ -245,6 +263,9 @@ class ProductsController extends BaseController
 
     public function edit($id)
     {
+        if(! \App\Product::where('id', $id)->exists() ){
+            abort(404);
+        }
         $product = \App\Product::where('id', $id)->first();
         $categories = Taxon::all();
         return view('pages.admin.product_edit', compact('product', 'categories'));
@@ -280,6 +301,33 @@ class ProductsController extends BaseController
         $rating->user_id = $user;
         $product->ratings()->save($rating);
         return response()->json($product->averageRating);
+    }
+
+    public function removePhoto(Request $request){
+        try {
+            \App\Photo::find($request->imageid)->delete();
+            return response()->json(['message' => 'Product image removed', 'status' => 200], 200);
+
+        }catch(\Exception $e){
+            return response()->json(['message' => 'Failed to remove Product image ' . $e->getMessage(), 'status' => 400], 400);
+        }
+    }
+
+    public function updateProperties($id, Request $request){
+        //Assign product to categories
+        $request->validate( [
+            'properties' => 'required'
+        ]);
+
+        //Get product model
+        $product = \App\Product::where('id', $id)->first();
+
+        //Update properties
+        if($request->has('properties')) {
+            $product->propertyValues()->sync($request->properties);
+        }
+
+        return response()->json(['status' => 200, 'message' => 'Product properties updated'], 200);
     }
 
 }
