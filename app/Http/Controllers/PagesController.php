@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Vanilo\Cart\Facades\Cart;
 use App\Taxon;
+use Vanilo\Category\Models\Taxonomy;
 
 class PagesController extends BaseController
 {
@@ -18,10 +19,11 @@ class PagesController extends BaseController
     public function home()
     {
         $categories = Taxon::all()->take(12);
+        $brands = Taxonomy::all();
 
         $latest_products = \App\Product::active()->new()->get();
 
-        return view('pages.index', compact('categories', 'latest_products'));
+        return view('pages.index', compact('categories', 'latest_products', 'brands'));
     }
 
     public function getProductList($taxon_slug){
@@ -44,7 +46,7 @@ class PagesController extends BaseController
         $product = \App\Product::where('slug', $product_slug)->first();
         $title = $product ? $product->title() : '';
         $tags = $product->meta_keywords ? explode(",", $product->meta_keywords) : null;
-        $ratings = $product->ratingPercent() ;
+        $ratings = $product->ratingPercent();
         return view('pages.front.single_product', compact('product', 'tags', 'ratings', 'title'));
     }
 
@@ -54,5 +56,21 @@ class PagesController extends BaseController
 
     public function changePassword(){
         return view('auth.change_password');
+    }
+
+    public function getBrandProducts($slug){
+        $brand = Taxonomy::findBySlug($slug);
+
+        $categories = $brand->rootLevelTaxons();
+
+        if($brand) {
+            $now = Carbon::now();
+            $title = $brand->name;
+            return view('pages.front.products_by_brand', compact('products', 'now', 'taxon_slug', 'title', 'categories'));
+        }else{
+            abort(404);
+        }
+
+
     }
 }

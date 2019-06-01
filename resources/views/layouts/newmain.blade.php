@@ -117,6 +117,9 @@
             width: 100%;
         }
 
+        .brands_container{
+            height:300px;
+        }
     </style>
 
 

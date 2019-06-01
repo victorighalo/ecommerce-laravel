@@ -13,8 +13,12 @@
                                 </a></h4>
                             <div class="" id="form_collapse">
                                 <div class="row">
+                                    <div class="col-sm-4 p-4">
                                     @include('pages.admin.category._create_category')
+                                    </div>
+                                    <div class="col-sm-8 p-4">
                                     @include('pages.admin.category._view_categories')
+                                    </div>
                             </div>
                             </div>
                         </div>
@@ -163,6 +167,62 @@
                 taxon_id = $(this).data('taxon_id');
                 $('#parent_category_details').html(parent_category_details)
                 $('#child_category_modal').modal('show')
+            });
+
+            $(".edit_subcategory_image").on('click', function () {
+            $(this).prev().click();
+            });
+
+            // Upload Action
+            $(document).on('change', '.upload_cat_image', function (event) {
+
+                var uploaded_file = $(this).prop('files')[0];
+                var category_id = $(this).data('category_id');
+                var form_data = new FormData();
+
+                form_data.append('uploaded_file', uploaded_file);
+                form_data.append('category_id', category_id);
+
+                $.blockUI({message: '<h5>Uploading...</h5>'});
+                $.ajax({
+                    url: "{!! route('upload_category_image') !!}",
+                    data: form_data,
+                    type: 'POST',
+                    dataType: 'JSON',
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                })
+                    .done(function (data) {
+                        $.unblockUI();
+
+                        if (data.status == 0) {
+                            new PNotify({
+                                title: 'Oops!',
+                                text: 'An Error Occurred. Please try again.',
+                                addclass: 'custom_notification',
+                                type: 'error'
+                            });
+                        }
+                        else {
+                            new PNotify({
+                                title: 'Success!',
+                                text: data.message,
+                                addclass: 'custom_notification',
+                                type: 'success'
+                            });
+                        }
+                    }).fail(function (error) {
+                    $.unblockUI();
+
+                    new PNotify({
+                        title: 'Oops!',
+                        text: 'An Error Occurred. Please try again.',
+                        addclass: 'custom_notification',
+                        type: 'error'
+                    });
+                });
+
             });
 
             $("#save_child_category").on('click', function () {

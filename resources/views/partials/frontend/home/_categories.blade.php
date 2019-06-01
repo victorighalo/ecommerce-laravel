@@ -5,15 +5,22 @@
         <div class="acces-ser">
             <!-- Heading -->
             <div class="heading text-center">
-                <h4>Popular Categories</h4>
+                <h4>Brands</h4>
                 <hr>
             </div>
             <div class="row">
-                @foreach($categories as $category)
-                <div class="col-sm-2 col-xs-3 padding-10">
-                    <a href="{{route('get_category_content', ['taxon_slug' => $category->slug])}}" title="{{$category->name}}" class="btn by">{{str_limit($category->name, 10)}}</a>
-                </div>
-                    @endforeach
+                @foreach($brands as $brand)
+                    <div class="col-sm-3 margin-bottom-20" >
+                        <a href="{{route('get_brand', ['taxon_slug' => $brand->slug])}}" title="{{$brand->name}}">
+                        <div style="background: url({{$brand->image}})" class="brands_container">
+                    <p class="btn">
+                        {{$brand->name}}
+                    </p>
+                    </div>
+                        </a>
+                    </div>
+                @endforeach
+
             </div>
 
             <div class="row">
