@@ -23,11 +23,11 @@
 
             </div>
 
-            <div class="row">
-                <div class="col-sm-12 text-center mt-5">
-                    <a href="{{url('categories')}}" class="btn btn-primary">View More</a>
-                </div>
-            </div>
+            {{--<div class="row">--}}
+                {{--<div class="col-sm-12 text-center mt-5">--}}
+                    {{--<a href="{{url('categories')}}" class="btn btn-primary">View More</a>--}}
+                {{--</div>--}}
+            {{--</div>--}}
         </div>
     </div>
 </section>

@@ -3,9 +3,25 @@
 <form class="ps-form--search" action="{{url('search')}}" method="get">
     <div class="input-group mb-3">
     <input class="form-control" type="text" placeholder="Search for a Product" name="product">
-    <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="submit">Search</button>
-    </div>
+
+    {{--<div class="input-group-append">--}}
+        {{--<button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+            {{--<span>Select Category  <i class="fa fa-caret-down"></i></span>--}}
+        {{--</button>--}}
+        {{--<div class="dropdown-menu">--}}
+            {{--<a class="dropdown-item" href="#">All</a>--}}
+            {{--@foreach($brands as $brand)--}}
+                {{--<a class="dropdown-item" href="#">  {{$brand->name}}</a>--}}
+            {{--<div role="separator" class="dropdown-divider"></div>--}}
+                {{--@foreach($brand->rootLevelTaxons() as $category)--}}
+                    {{--<a href="{{route('get_category_content', ['taxon_slug' => $category->slug])}}" class="dropdown-item" title="{{$category->name}}">--}}
+                        {{--{{$category->name}}--}}
+                    {{--</a>--}}
+                    {{--@endforeach--}}
+                {{--@endforeach--}}
+        {{--</div>--}}
+        <button class="btn btn-outline-secondary" type="submit">Search <i class="fa fa-search"></i></button>
+
     </div>
 </form>
         <p style="color: #fff;"><i class="fa fa-search"></i> <strong>Are you looking for Auto parts?</strong>
