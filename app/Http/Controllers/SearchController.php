@@ -12,6 +12,9 @@ class SearchController extends Controller
 
     public function searchProduct(){
         $title = $q = Input::get ( 'product' );
+        if (str_word_count($title) < 1){
+            return back();
+        }
         $query = \App\Product::where([
             ['name', 'LIKE', '%' . $title . '%'],
         ]);

@@ -5,7 +5,6 @@
     <!--======= SUB BANNER =========-->
     @include('partials.frontend.sub_banner', ['title' => $title])
     <div id="content">
-    @include('partials.frontend._search')
     <!-- Products -->
         <section class="shop-page padding-top-100 padding-bottom-100">
             <div class="container">
@@ -16,6 +15,7 @@
 
                             <!-- Category -->
                             <h5 class="shop-tittle margin-bottom-30">categories</h5>
+
                             <ul class="shop-cate">
                                 @if($categories)
                                     @foreach($categories as $category)
@@ -29,12 +29,17 @@
                     <!-- Item Content -->
                     <div class="col-md-10">
                         <!-- Item -->
-                        <div id="products" class="arrival-block col-item-3 list-group">
+                        <div id="products" class="arrival-block col-item-3 list-group padding-40">
                                 @foreach($categories as $category)
-                                <div class="row">
-                                    <h5>{{$category->name}}</h5>
+                                <section class="margin-bottom-30">
+                                    <h5 class="border-bottom">
+                                        <a href="{{route('get_category_content', ['taxon_slug' => $category->slug])}}" title="{{$category->name}}">
+                                        {{$category->name}}
+                                        </a>
+                                    </h5>
+
                                 @if(count($category->products))
-                                @foreach($category->products as $product)
+                                @foreach($category->products->take(20) as $product)
                                     <!-- Item -->
                                         <div class="item">
                                             <div class="img-ser">
@@ -79,7 +84,7 @@
                                     @else
                                     <h6>Products unavailable for category</h6>
                                     @endif
-                                </div>
+                                </section>
                                 @endforeach
 
                         </div>
@@ -90,7 +95,7 @@
                 </div>
             </div>
         </section>
-
+        @include('partials.frontend._search')
         {{--Product request--}}
         @include('partials.frontend.product_request')
     </div>

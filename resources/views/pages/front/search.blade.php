@@ -5,7 +5,6 @@
     <!--======= SUB BANNER =========-->
     @include('partials.frontend.sub_banner', ['title' => 'Search'])
     <div id="content">
-    @include('partials.frontend._search')
         <!-- Products -->
         <section class="shop-page padding-top-100 padding-bottom-100">
             <div class="container">
@@ -13,6 +12,7 @@
                     <!-- Item Content -->
                     <div class="col-md-9">
                         <!-- Item -->
+                        <h5 class="mb-5">Search result for <em>{{$title}}</em></h5>
                         <div id="products" class="arrival-block col-item-3 list-group">
                             @if(count($products))
                                 <div class="row">
@@ -104,6 +104,7 @@
                 </div>
             </div>
         </section>
+        @include('partials.frontend._search')
 
         {{--Product request--}}
         @include('partials.frontend.product_request')

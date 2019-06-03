@@ -32,7 +32,7 @@
 
 @push('script')
     <script>
-        var taxonomy_id, taxon_id;
+        var taxonomy_id, taxon_id, selected_category_id;
         $(document).ready(function () {
             $("form#category_form").on('submit', function (e) {
                 e.preventDefault();
@@ -170,18 +170,18 @@
             });
 
             $(".edit_subcategory_image").on('click', function () {
-            $(this).prev().click();
+            $("input[class='upload_cat_image']").trigger('click');
+                selected_category_id = $(this).attr('id')
             });
 
             // Upload Action
-            $(document).on('change', '.upload_cat_image', function (event) {
+            $(document).on('input', 'input:file', function (event) {
 
                 var uploaded_file = $(this).prop('files')[0];
-                var category_id = $(this).data('category_id');
                 var form_data = new FormData();
 
                 form_data.append('uploaded_file', uploaded_file);
-                form_data.append('category_id', category_id);
+                form_data.append('category_id', selected_category_id);
 
                 $.blockUI({message: '<h5>Uploading...</h5>'});
                 $.ajax({
@@ -211,6 +211,9 @@
                                 addclass: 'custom_notification',
                                 type: 'success'
                             });
+                            setTimeout(function () {
+                                location.reload();
+                            }, 2000)
                         }
                     }).fail(function (error) {
                     $.unblockUI();

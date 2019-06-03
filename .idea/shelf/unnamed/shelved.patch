@@ -1,0 +1,769 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(date 1558211607583)
++++ .idea/workspace.xml	(date 1558211607583)
+@@ -0,0 +1,590 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ChangeListManager">
++    <list default="true" id="4070fdae-1b44-4251-994b-29e13d69d2d7" name="Default Changelist" comment="">
++      <change afterPath="$PROJECT_DIR$/.idea/shelf/PayStack_Integration__Added_Delivery_Price_for_each_product.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/shelf/PayStack_Integration__Added_Delivery_Price_for_each_product/shelved.patch" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++    </list>
++    <ignored path="$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server/" />
++    <ignored path="$PROJECT_DIR$/vendor/cocur/slugify/" />
++    <ignored path="$PROJECT_DIR$/vendor/composer/" />
++    <ignored path="$PROJECT_DIR$/vendor/cviebrock/eloquent-sluggable/" />
++    <ignored path="$PROJECT_DIR$/vendor/davejamesmiller/laravel-breadcrumbs/" />
++    <ignored path="$PROJECT_DIR$/vendor/dnoegel/php-xdg-base-dir/" />
++    <ignored path="$PROJECT_DIR$/vendor/doctrine/inflector/" />
++    <ignored path="$PROJECT_DIR$/vendor/doctrine/instantiator/" />
++    <ignored path="$PROJECT_DIR$/vendor/doctrine/lexer/" />
++    <ignored path="$PROJECT_DIR$/vendor/dragonmantank/cron-expression/" />
++    <ignored path="$PROJECT_DIR$/vendor/egulias/email-validator/" />
++    <ignored path="$PROJECT_DIR$/vendor/erusev/parsedown/" />
++    <ignored path="$PROJECT_DIR$/vendor/fideloper/proxy/" />
++    <ignored path="$PROJECT_DIR$/vendor/filp/whoops/" />
++    <ignored path="$PROJECT_DIR$/vendor/fzaninotto/faker/" />
++    <ignored path="$PROJECT_DIR$/vendor/guzzlehttp/guzzle/" />
++    <ignored path="$PROJECT_DIR$/vendor/guzzlehttp/promises/" />
++    <ignored path="$PROJECT_DIR$/vendor/guzzlehttp/psr7/" />
++    <ignored path="$PROJECT_DIR$/vendor/hamcrest/hamcrest-php/" />
++    <ignored path="$PROJECT_DIR$/vendor/intervention/image/" />
++    <ignored path="$PROJECT_DIR$/vendor/jakub-onderka/php-console-color/" />
++    <ignored path="$PROJECT_DIR$/vendor/jakub-onderka/php-console-highlighter/" />
++    <ignored path="$PROJECT_DIR$/vendor/konekt/acl/" />
++    <ignored path="$PROJECT_DIR$/vendor/konekt/address/" />
++    <ignored path="$PROJECT_DIR$/vendor/konekt/appshell/" />
++    <ignored path="$PROJECT_DIR$/vendor/konekt/concord/" />
++    <ignored path="$PROJECT_DIR$/vendor/konekt/customer/" />
++    <ignored path="$PROJECT_DIR$/vendor/konekt/enum/" />
++    <ignored path="$PROJECT_DIR$/vendor/konekt/enum-eloquent/" />
++    <ignored path="$PROJECT_DIR$/vendor/konekt/gears/" />
++    <ignored path="$PROJECT_DIR$/vendor/konekt/menu/" />
++    <ignored path="$PROJECT_DIR$/vendor/konekt/user/" />
++    <ignored path="$PROJECT_DIR$/vendor/laracasts/flash/" />
++    <ignored path="$PROJECT_DIR$/vendor/laravel/framework/" />
++    <ignored path="$PROJECT_DIR$/vendor/laravel/nexmo-notification-channel/" />
++    <ignored path="$PROJECT_DIR$/vendor/laravel/slack-notification-channel/" />
++    <ignored path="$PROJECT_DIR$/vendor/laravel/tinker/" />
++    <ignored path="$PROJECT_DIR$/vendor/laravelcollective/html/" />
++    <ignored path="$PROJECT_DIR$/vendor/lcobucci/jwt/" />
++    <ignored path="$PROJECT_DIR$/vendor/league/flysystem/" />
++    <ignored path="$PROJECT_DIR$/vendor/league/glide/" />
++    <ignored path="$PROJECT_DIR$/vendor/maennchen/zipstream-php/" />
++    <ignored path="$PROJECT_DIR$/vendor/mockery/mockery/" />
++    <ignored path="$PROJECT_DIR$/vendor/monolog/monolog/" />
++    <ignored path="$PROJECT_DIR$/vendor/myclabs/deep-copy/" />
++    <ignored path="$PROJECT_DIR$/vendor/nesbot/carbon/" />
++    <ignored path="$PROJECT_DIR$/vendor/nexmo/client/" />
++    <ignored path="$PROJECT_DIR$/vendor/nikic/php-parser/" />
++    <ignored path="$PROJECT_DIR$/vendor/nunomaduro/collision/" />
++    <ignored path="$PROJECT_DIR$/vendor/opis/closure/" />
++    <ignored path="$PROJECT_DIR$/vendor/paragonie/random_compat/" />
++    <ignored path="$PROJECT_DIR$/vendor/phar-io/manifest/" />
++    <ignored path="$PROJECT_DIR$/vendor/phar-io/version/" />
++    <ignored path="$PROJECT_DIR$/vendor/php-http/guzzle6-adapter/" />
++    <ignored path="$PROJECT_DIR$/vendor/php-http/httplug/" />
++    <ignored path="$PROJECT_DIR$/vendor/php-http/promise/" />
++    <ignored path="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common/" />
++    <ignored path="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock/" />
++    <ignored path="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver/" />
++    <ignored path="$PROJECT_DIR$/vendor/phpspec/prophecy/" />
++    <ignored path="$PROJECT_DIR$/vendor/phpunit/php-code-coverage/" />
++    <ignored path="$PROJECT_DIR$/vendor/phpunit/php-file-iterator/" />
++    <ignored path="$PROJECT_DIR$/vendor/phpunit/php-text-template/" />
++    <ignored path="$PROJECT_DIR$/vendor/phpunit/php-timer/" />
++    <ignored path="$PROJECT_DIR$/vendor/phpunit/php-token-stream/" />
++    <ignored path="$PROJECT_DIR$/vendor/phpunit/phpunit/" />
++    <ignored path="$PROJECT_DIR$/vendor/psr/container/" />
++    <ignored path="$PROJECT_DIR$/vendor/psr/http-message/" />
++    <ignored path="$PROJECT_DIR$/vendor/psr/log/" />
++    <ignored path="$PROJECT_DIR$/vendor/psr/simple-cache/" />
++    <ignored path="$PROJECT_DIR$/vendor/psy/psysh/" />
++    <ignored path="$PROJECT_DIR$/vendor/ralouphie/getallheaders/" />
++    <ignored path="$PROJECT_DIR$/vendor/ramsey/uuid/" />
++    <ignored path="$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup/" />
++    <ignored path="$PROJECT_DIR$/vendor/sebastian/comparator/" />
++    <ignored path="$PROJECT_DIR$/vendor/sebastian/diff/" />
++    <ignored path="$PROJECT_DIR$/vendor/sebastian/environment/" />
++    <ignored path="$PROJECT_DIR$/vendor/sebastian/exporter/" />
++    <ignored path="$PROJECT_DIR$/vendor/sebastian/global-state/" />
++    <ignored path="$PROJECT_DIR$/vendor/sebastian/object-enumerator/" />
++    <ignored path="$PROJECT_DIR$/vendor/sebastian/object-reflector/" />
++    <ignored path="$PROJECT_DIR$/vendor/sebastian/recursion-context/" />
++    <ignored path="$PROJECT_DIR$/vendor/sebastian/resource-operations/" />
++    <ignored path="$PROJECT_DIR$/vendor/sebastian/version/" />
++    <ignored path="$PROJECT_DIR$/vendor/spatie/image/" />
++    <ignored path="$PROJECT_DIR$/vendor/spatie/image-optimizer/" />
++    <ignored path="$PROJECT_DIR$/vendor/spatie/laravel-medialibrary/" />
++    <ignored path="$PROJECT_DIR$/vendor/spatie/pdf-to-image/" />
++    <ignored path="$PROJECT_DIR$/vendor/spatie/temporary-directory/" />
++    <ignored path="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer/" />
++    <ignored path="$PROJECT_DIR$/vendor/symfony/console/" />
++    <ignored path="$PROJECT_DIR$/vendor/symfony/contracts/" />
++    <ignored path="$PROJECT_DIR$/vendor/symfony/css-selector/" />
++    <ignored path="$PROJECT_DIR$/vendor/symfony/debug/" />
++    <ignored path="$PROJECT_DIR$/vendor/symfony/event-dispatcher/" />
++    <ignored path="$PROJECT_DIR$/vendor/symfony/finder/" />
++    <ignored path="$PROJECT_DIR$/vendor/symfony/http-foundation/" />
++    <ignored path="$PROJECT_DIR$/vendor/symfony/http-kernel/" />
++    <ignored path="$PROJECT_DIR$/vendor/symfony/polyfill-ctype/" />
++    <ignored path="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring/" />
++    <ignored path="$PROJECT_DIR$/vendor/symfony/polyfill-php72/" />
++    <ignored path="$PROJECT_DIR$/vendor/symfony/process/" />
++    <ignored path="$PROJECT_DIR$/vendor/symfony/routing/" />
++    <ignored path="$PROJECT_DIR$/vendor/symfony/translation/" />
++    <ignored path="$PROJECT_DIR$/vendor/symfony/var-dumper/" />
++    <ignored path="$PROJECT_DIR$/vendor/theseer/tokenizer/" />
++    <ignored path="$PROJECT_DIR$/vendor/tijsverkoyen/css-to-inline-styles/" />
++    <ignored path="$PROJECT_DIR$/vendor/vanilo/cart/" />
++    <ignored path="$PROJECT_DIR$/vendor/vanilo/category/" />
++    <ignored path="$PROJECT_DIR$/vendor/vanilo/checkout/" />
++    <ignored path="$PROJECT_DIR$/vendor/vanilo/contracts/" />
++    <ignored path="$PROJECT_DIR$/vendor/vanilo/framework/" />
++    <ignored path="$PROJECT_DIR$/vendor/vanilo/order/" />
++    <ignored path="$PROJECT_DIR$/vendor/vanilo/product/" />
++    <ignored path="$PROJECT_DIR$/vendor/vanilo/properties/" />
++    <ignored path="$PROJECT_DIR$/vendor/vanilo/support/" />
++    <ignored path="$PROJECT_DIR$/vendor/vlucas/phpdotenv/" />
++    <ignored path="$PROJECT_DIR$/vendor/webmozart/assert/" />
++    <ignored path="$PROJECT_DIR$/vendor/zendframework/zend-diactoros/" />
++    <ignored path="C:\wamp64\www\ecommerce-laravel\.idea\shelf/" />
++    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
++    <option name="SHOW_DIALOG" value="false" />
++    <option name="HIGHLIGHT_CONFLICTS" value="true" />
++    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
++    <option name="LAST_RESOLUTION" value="IGNORE" />
++  </component>
++  <component name="FileEditorManager">
++    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
++      <file pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/products.blade.php">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="1458">
++              <caret line="81" column="52" selection-start-line="81" selection-start-column="52" selection-end-line="81" selection-end-column="52" />
++            </state>
++          </provider>
++        </entry>
++      </file>
++      <file pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/_create_product.blade.php">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="738">
++              <caret line="41" column="81" selection-start-line="41" selection-start-column="67" selection-end-line="41" selection-end-column="81" />
++            </state>
++          </provider>
++        </entry>
++      </file>
++      <file pinned="false" current-in-tab="true">
++        <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/product_edit.blade.php">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="216">
++              <caret line="63" column="140" selection-start-line="63" selection-start-column="140" selection-end-line="63" selection-end-column="140" />
++              <folding>
++                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
++              </folding>
++            </state>
++          </provider>
++        </entry>
++      </file>
++      <file pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/.env">
++          <provider selected="true" editor-type-id="text-editor">
++            <state>
++              <caret column="21" selection-start-column="21" selection-end-column="21" />
++            </state>
++          </provider>
++        </entry>
++      </file>
++    </leaf>
++  </component>
++  <component name="Git.Settings">
++    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++  </component>
++  <component name="IdeDocumentHistory">
++    <option name="CHANGED_PATHS">
++      <list>
++        <option value="$PROJECT_DIR$/resources/views/pages/front/product_detail.blade.php" />
++        <option value="$PROJECT_DIR$/resources/js/app.js" />
++        <option value="$PROJECT_DIR$/resources/views/pages/front/cart.blade.php" />
++        <option value="$PROJECT_DIR$/resources/views/partials/footer.blade.php" />
++        <option value="$PROJECT_DIR$/resources/views/partials/header.blade.php" />
++        <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
++        <option value="$PROJECT_DIR$/app/Http/Controllers/CartController.php" />
++        <option value="$PROJECT_DIR$/resources/views/partials/sidebar.blade.php" />
++        <option value="$PROJECT_DIR$/config/concord.php" />
++        <option value="$PROJECT_DIR$/app/Http/Controllers/PagesController.php" />
++        <option value="$PROJECT_DIR$/resources/views/pages/admin/property.blade.php" />
++        <option value="$PROJECT_DIR$/resources/views/pages/admin/property/_create_property.blade.php" />
++        <option value="$PROJECT_DIR$/resources/views/pages/admin/property/property.blade.php" />
++        <option value="$PROJECT_DIR$/resources/views/pages/admin/property/_create_property_value.blade.php" />
++        <option value="$PROJECT_DIR$/resources/views/pages/admin/property/_view_properties.blade.php" />
++        <option value="$PROJECT_DIR$/resources/views/pages/admin/property/index.blade.php" />
++        <option value="$PROJECT_DIR$/app/Http/Controllers/PropertyController.php" />
++        <option value="$PROJECT_DIR$/routes/api.php" />
++        <option value="$PROJECT_DIR$/app/Http/Controllers/WebHook/WebHookController.php" />
++        <option value="$PROJECT_DIR$/app/Http/Proxy/IBaseProxy.php" />
++        <option value="$PROJECT_DIR$/config/app.php" />
++        <option value="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" />
++        <option value="$PROJECT_DIR$/database/migrations/2019_04_06_120114_create_transactions_table.php" />
++        <option value="$PROJECT_DIR$/database/migrations/2019_03_29_152649_create_customers_orders_table.php" />
++        <option value="$PROJECT_DIR$/routes/web.php" />
++        <option value="$PROJECT_DIR$/app/Http/Controllers/CheckoutController.php" />
++        <option value="$PROJECT_DIR$/database/migrations/2019_04_06_120235_create_transactions_table.php" />
++        <option value="$PROJECT_DIR$/resources/views/pages/front/checkout.blade.php" />
++        <option value="$PROJECT_DIR$/app/Http/Proxy/BaseProxy.php" />
++        <option value="$PROJECT_DIR$/app/Http/Proxy/PayStackProxy.php" />
++        <option value="$PROJECT_DIR$/app/Http/Controllers/Payment/PaymentController.php" />
++        <option value="$PROJECT_DIR$/database/migrations/2019_04_08_215350_create_delivery_prices_table.php" />
++        <option value="$PROJECT_DIR$/app/DeliveryPrice.php" />
++        <option value="$PROJECT_DIR$/resources/views/partials/new_products.blade.php" />
++        <option value="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" />
++        <option value="$PROJECT_DIR$/resources/views/auth/register.blade.php" />
++        <option value="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
++        <option value="$PROJECT_DIR$/app/Product.php" />
++        <option value="$PROJECT_DIR$/resources/views/pages/front/products_by_category.blade.php" />
++        <option value="$PROJECT_DIR$/resources/views/partials/frontend/header.blade.php" />
++        <option value="$PROJECT_DIR$/resources/views/partials/frontend/home/_categories.blade.php" />
++        <option value="$PROJECT_DIR$/resources/views/pages/admin/_create_product.blade.php" />
++        <option value="$PROJECT_DIR$/resources/views/pages/admin/products.blade.php" />
++        <option value="$PROJECT_DIR$/resources/views/pages/admin/_view_products.blade.php" />
++        <option value="$PROJECT_DIR$/resources/views/partials/footer_admin.blade.php" />
++        <option value="$PROJECT_DIR$/resources/views/partials/topnav.blade.php" />
++        <option value="$PROJECT_DIR$/.env" />
++        <option value="$PROJECT_DIR$/resources/views/partials/frontend/product_request.blade.php" />
++        <option value="$PROJECT_DIR$/public/assets/css/style.css" />
++        <option value="$PROJECT_DIR$/resources/views/partials/frontend/footer.blade.php" />
++        <option value="$PROJECT_DIR$/resources/views/pages/admin/product_edit.blade.php" />
++      </list>
++    </option>
++  </component>
++  <component name="PhpWorkspaceProjectConfiguration">
++    <include_path>
++      <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
++      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
++      <path value="$PROJECT_DIR$/vendor/jakub-onderka/php-console-color" />
++      <path value="$PROJECT_DIR$/vendor/jakub-onderka/php-console-highlighter" />
++      <path value="$PROJECT_DIR$/vendor/dragonmantank/cron-expression" />
++      <path value="$PROJECT_DIR$/vendor/tijsverkoyen/css-to-inline-styles" />
++      <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
++      <path value="$PROJECT_DIR$/vendor/nunomaduro/collision" />
++      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
++      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
++      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
++      <path value="$PROJECT_DIR$/vendor/fzaninotto/faker" />
++      <path value="$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server" />
++      <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
++      <path value="$PROJECT_DIR$/vendor/sebastian/version" />
++      <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
++      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
++      <path value="$PROJECT_DIR$/vendor/sebastian/resource-operations" />
++      <path value="$PROJECT_DIR$/vendor/sebastian/object-reflector" />
++      <path value="$PROJECT_DIR$/vendor/sebastian/object-enumerator" />
++      <path value="$PROJECT_DIR$/vendor/sebastian/recursion-context" />
++      <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
++      <path value="$PROJECT_DIR$/vendor/sebastian/environment" />
++      <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
++      <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
++      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
++      <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
++      <path value="$PROJECT_DIR$/vendor/fideloper/proxy" />
++      <path value="$PROJECT_DIR$/vendor/php-http/promise" />
++      <path value="$PROJECT_DIR$/vendor/php-http/httplug" />
++      <path value="$PROJECT_DIR$/vendor/php-http/guzzle6-adapter" />
++      <path value="$PROJECT_DIR$/vendor/lcobucci/jwt" />
++      <path value="$PROJECT_DIR$/vendor/hamcrest/hamcrest-php" />
++      <path value="$PROJECT_DIR$/vendor/doctrine/lexer" />
++      <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
++      <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
++      <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
++      <path value="$PROJECT_DIR$/vendor/symfony/http-foundation" />
++      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
++      <path value="$PROJECT_DIR$/vendor/symfony/translation" />
++      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
++      <path value="$PROJECT_DIR$/vendor/symfony/css-selector" />
++      <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher" />
++      <path value="$PROJECT_DIR$/vendor/symfony/routing" />
++      <path value="$PROJECT_DIR$/vendor/symfony/finder" />
++      <path value="$PROJECT_DIR$/vendor/symfony/contracts" />
++      <path value="$PROJECT_DIR$/vendor/symfony/http-kernel" />
++      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php72" />
++      <path value="$PROJECT_DIR$/vendor/symfony/var-dumper" />
++      <path value="$PROJECT_DIR$/vendor/symfony/debug" />
++      <path value="$PROJECT_DIR$/vendor/symfony/process" />
++      <path value="$PROJECT_DIR$/vendor/symfony/console" />
++      <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
++      <path value="$PROJECT_DIR$/vendor/phpunit/php-code-coverage" />
++      <path value="$PROJECT_DIR$/vendor/phpunit/php-token-stream" />
++      <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
++      <path value="$PROJECT_DIR$/vendor/phpunit/php-file-iterator" />
++      <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
++      <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
++      <path value="$PROJECT_DIR$/vendor/phar-io/version" />
++      <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
++      <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
++      <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
++      <path value="$PROJECT_DIR$/vendor/mockery/mockery" />
++      <path value="$PROJECT_DIR$/vendor/laravel/slack-notification-channel" />
++      <path value="$PROJECT_DIR$/vendor/laravel/nexmo-notification-channel" />
++      <path value="$PROJECT_DIR$/vendor/laravel/framework" />
++      <path value="$PROJECT_DIR$/vendor/laravel/tinker" />
++      <path value="$PROJECT_DIR$/vendor/egulias/email-validator" />
++      <path value="$PROJECT_DIR$/vendor/dnoegel/php-xdg-base-dir" />
++      <path value="$PROJECT_DIR$/vendor/vlucas/phpdotenv" />
++      <path value="$PROJECT_DIR$/vendor/ramsey/uuid" />
++      <path value="$PROJECT_DIR$/vendor/nesbot/carbon" />
++      <path value="$PROJECT_DIR$/vendor/league/flysystem" />
++      <path value="$PROJECT_DIR$/vendor/erusev/parsedown" />
++      <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
++      <path value="$PROJECT_DIR$/vendor/nexmo/client" />
++      <path value="$PROJECT_DIR$/vendor/opis/closure" />
++      <path value="$PROJECT_DIR$/vendor/filp/whoops" />
++      <path value="$PROJECT_DIR$/vendor/psy/psysh" />
++      <path value="$PROJECT_DIR$/vendor/psr/simple-cache" />
++      <path value="$PROJECT_DIR$/vendor/psr/log" />
++      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
++      <path value="$PROJECT_DIR$/vendor/psr/container" />
++      <path value="$PROJECT_DIR$/vendor/composer" />
++      <path value="$PROJECT_DIR$/vendor/zendframework/zend-diactoros" />
++      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
++      <path value="$PROJECT_DIR$/vendor/kalnoy/nestedset" />
++      <path value="$PROJECT_DIR$/vendor/faustbrian/laravel-commentable" />
++      <path value="$PROJECT_DIR$/vendor/willvincent/laravel-rateable" />
++      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-oracle" />
++      <path value="$PROJECT_DIR$/vendor/lecturize/laravel-addresses" />
++      <path value="$PROJECT_DIR$/vendor/webpatser/laravel-countries" />
++      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
++      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-iconv" />
++      <path value="$PROJECT_DIR$/vendor/konekt/enum-eloquent" />
++      <path value="$PROJECT_DIR$/vendor/konekt/enum" />
++      <path value="$PROJECT_DIR$/vendor/vanilo/support" />
++      <path value="$PROJECT_DIR$/vendor/vanilo/cart" />
++      <path value="$PROJECT_DIR$/vendor/konekt/concord" />
++      <path value="$PROJECT_DIR$/vendor/vanilo/contracts" />
++      <path value="$PROJECT_DIR$/vendor/vanilo/checkout" />
++      <path value="$PROJECT_DIR$/vendor/konekt/user" />
++      <path value="$PROJECT_DIR$/vendor/konekt/appshell" />
++      <path value="$PROJECT_DIR$/vendor/konekt/menu" />
++      <path value="$PROJECT_DIR$/vendor/konekt/address" />
++      <path value="$PROJECT_DIR$/vendor/konekt/customer" />
++      <path value="$PROJECT_DIR$/vendor/vanilo/framework" />
++      <path value="$PROJECT_DIR$/vendor/vanilo/order" />
++      <path value="$PROJECT_DIR$/vendor/konekt/gears" />
++      <path value="$PROJECT_DIR$/vendor/konekt/acl" />
++      <path value="$PROJECT_DIR$/vendor/vanilo/category" />
++      <path value="$PROJECT_DIR$/vendor/vanilo/properties" />
++      <path value="$PROJECT_DIR$/vendor/vanilo/product" />
++      <path value="$PROJECT_DIR$/vendor/league/glide" />
++      <path value="$PROJECT_DIR$/vendor/spatie/image" />
++      <path value="$PROJECT_DIR$/vendor/spatie/laravel-medialibrary" />
++      <path value="$PROJECT_DIR$/vendor/cocur/slugify" />
++      <path value="$PROJECT_DIR$/vendor/spatie/temporary-directory" />
++      <path value="$PROJECT_DIR$/vendor/cviebrock/eloquent-sluggable" />
++      <path value="$PROJECT_DIR$/vendor/laracasts/flash" />
++      <path value="$PROJECT_DIR$/vendor/spatie/image-optimizer" />
++      <path value="$PROJECT_DIR$/vendor/spatie/pdf-to-image" />
++      <path value="$PROJECT_DIR$/vendor/davejamesmiller/laravel-breadcrumbs" />
++      <path value="$PROJECT_DIR$/vendor/laravelcollective/html" />
++      <path value="$PROJECT_DIR$/vendor/maennchen/zipstream-php" />
++      <path value="$PROJECT_DIR$/vendor/intervention/image" />
++      <path value="$PROJECT_DIR$/vendor/laravel/scout" />
++      <path value="$PROJECT_DIR$/vendor/riimu/kit-phpencoder" />
++      <path value="$PROJECT_DIR$/vendor/algolia/scout-extended" />
++      <path value="$PROJECT_DIR$/vendor/algolia/algoliasearch-client-php" />
++      <path value="$PROJECT_DIR$/vendor/ghanem/rating" />
++      <path value="$PROJECT_DIR$/vendor/rennokki/rating" />
++      <path value="$PROJECT_DIR$/vendor/ixudra/curl" />
++    </include_path>
++  </component>
++  <component name="ProjectView">
++    <navigator proportions="" version="1">
++      <foldersAlwaysOnTop value="true" />
++    </navigator>
++    <panes>
++      <pane id="Scope" />
++      <pane id="ProjectPane">
++        <subPane>
++          <expand>
++            <path>
++              <item name="ecommerce-laravel" type="b2602c69:ProjectViewProjectNode" />
++              <item name="ecommerce-laravel" type="462c0819:PsiDirectoryNode" />
++            </path>
++          </expand>
++          <select />
++        </subPane>
++      </pane>
++    </panes>
++  </component>
++  <component name="RunDashboard">
++    <option name="ruleStates">
++      <list>
++        <RuleState>
++          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
++        </RuleState>
++        <RuleState>
++          <option name="name" value="StatusDashboardGroupingRule" />
++        </RuleState>
++      </list>
++    </option>
++  </component>
++  <component name="RunManager">
++    <configuration name="watch" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
++      <package-json value="$PROJECT_DIR$/package.json" />
++      <command value="run" />
++      <scripts>
++        <script value="watch" />
++      </scripts>
++      <node-interpreter value="project" />
++      <envs />
++      <method v="2" />
++    </configuration>
++    <recent_temporary>
++      <list>
++        <item itemvalue="npm.watch" />
++      </list>
++    </recent_temporary>
++  </component>
++  <component name="SvnConfiguration">
++    <configuration />
++  </component>
++  <component name="TaskManager">
++    <task active="true" id="Default" summary="Default task">
++      <changelist id="4070fdae-1b44-4251-994b-29e13d69d2d7" name="Default Changelist" comment="" />
++      <created>1552753235008</created>
++      <option name="number" value="Default" />
++      <option name="presentableId" value="Default" />
++      <updated>1552753235008</updated>
++      <workItem from="1552753236589" duration="2088000" />
++      <workItem from="1552762410161" duration="11417000" />
++      <workItem from="1552810614515" duration="16303000" />
++      <workItem from="1552968522223" duration="2454000" />
++      <workItem from="1553024441580" duration="2013000" />
++      <workItem from="1553049572113" duration="5641000" />
++      <workItem from="1553142260896" duration="245000" />
++      <workItem from="1553197952376" duration="4843000" />
++      <workItem from="1553352356755" duration="12764000" />
++      <workItem from="1553461019517" duration="204000" />
++      <workItem from="1553701550457" duration="885000" />
++      <workItem from="1554545922008" duration="17748000" />
++      <workItem from="1554654600305" duration="806000" />
++      <workItem from="1554759983148" duration="3833000" />
++      <workItem from="1554923479113" duration="5572000" />
++      <workItem from="1555015540155" duration="211000" />
++      <workItem from="1555279802265" duration="2155000" />
++      <workItem from="1555444201607" duration="606000" />
++      <workItem from="1558209650499" duration="1619000" />
++    </task>
++    <task id="LOCAL-00001" summary="Added yarnlock file">
++      <created>1552753416263</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1552753416263</updated>
++    </task>
++    <task id="LOCAL-00002" summary="Modified product images relationship structure. Added Quill Editor">
++      <created>1552829148680</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1552829148680</updated>
++    </task>
++    <task id="LOCAL-00003" summary="Completed property management admin section">
++      <created>1553369003967</created>
++      <option name="number" value="00003" />
++      <option name="presentableId" value="LOCAL-00003" />
++      <option name="project" value="LOCAL" />
++      <updated>1553369003967</updated>
++    </task>
++    <task id="LOCAL-00004" summary="fixed product not being saved to cart">
++      <created>1554546232356</created>
++      <option name="number" value="00004" />
++      <option name="presentableId" value="LOCAL-00004" />
++      <option name="project" value="LOCAL" />
++      <updated>1554546232357</updated>
++    </task>
++    <task id="LOCAL-00005" summary="PayStack Integration. Added Delivery Price for each product (Create and Update)">
++      <created>1554763289080</created>
++      <option name="number" value="00005" />
++      <option name="presentableId" value="LOCAL-00005" />
++      <option name="project" value="LOCAL" />
++      <updated>1554763289081</updated>
++    </task>
++    <task id="LOCAL-00006" summary="PayStack Integration. Added Delivery Price for each product">
++      <created>1554923924542</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1554923924542</updated>
++    </task>
++    <task id="LOCAL-00007" summary="Added delivery price for each product">
++      <created>1555281847774</created>
++      <option name="number" value="00007" />
++      <option name="presentableId" value="LOCAL-00007" />
++      <option name="project" value="LOCAL" />
++      <updated>1555281847774</updated>
++    </task>
++    <task id="LOCAL-00008" summary="Added delivery price for each product">
++      <created>1558210307560</created>
++      <option name="number" value="00008" />
++      <option name="presentableId" value="LOCAL-00008" />
++      <option name="project" value="LOCAL" />
++      <updated>1558210307560</updated>
++    </task>
++    <servers />
++  </component>
++  <component name="TimeTrackingManager">
++    <option name="totallyTimeSpent" value="253000" />
++  </component>
++  <component name="ToolWindowManager">
++    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
++    <editor active="true" />
++    <layout>
++      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49756098" visible="true" weight="0.26928896" />
++      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
++      <window_info id="npm" order="2" sideWeight="0.502439" side_tool="true" weight="0.26096824" />
++      <window_info id="Favorites" order="3" side_tool="true" />
++      <window_info anchor="bottom" id="Message" order="0" />
++      <window_info anchor="bottom" id="Find" order="1" />
++      <window_info anchor="bottom" id="Run" order="2" weight="0.3289689" />
++      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
++      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
++      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
++      <window_info anchor="bottom" id="TODO" order="6" weight="0.3289689" />
++      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
++      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4977307" weight="0.3289689" />
++      <window_info anchor="bottom" id="Database Changes" order="9" />
++      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50075644" side_tool="true" visible="true" weight="0.3289689" />
++      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49924356" visible="true" weight="0.3289689" />
++      <window_info anchor="bottom" id="Messages" order="12" />
++      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
++      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
++      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
++      <window_info anchor="right" id="Database" order="3" />
++    </layout>
++    <layout-to-restore>
++      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49756098" visible="true" weight="0.21633889" />
++      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
++      <window_info id="npm" order="2" sideWeight="0.502439" side_tool="true" weight="0.26096824" />
++      <window_info id="Favorites" order="3" side_tool="true" />
++      <window_info anchor="bottom" id="Message" order="0" />
++      <window_info anchor="bottom" id="Find" order="1" />
++      <window_info anchor="bottom" id="Run" order="2" weight="0.3289689" />
++      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
++      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
++      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
++      <window_info anchor="bottom" id="TODO" order="6" weight="0.3289689" />
++      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
++      <window_info anchor="bottom" id="Version Control" order="8" weight="0.3289689" />
++      <window_info anchor="bottom" id="Database Changes" order="9" />
++      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
++      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3289689" />
++      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
++      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
++      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
++      <window_info anchor="right" id="Database" order="3" />
++    </layout-to-restore>
++  </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State>
++              <option name="RECENTLY_FILTERED_USER_GROUPS">
++                <collection />
++              </option>
++              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
++                <collection />
++              </option>
++              <option name="COLUMN_ORDER">
++                <list>
++                  <option value="0" />
++                  <option value="1" />
++                  <option value="2" />
++                  <option value="3" />
++                </list>
++              </option>
++            </State>
++          </value>
++        </entry>
++      </map>
++    </option>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/shelf/PayStack_Integration__Added_Delivery_Price_for_each_product.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/shelf/PayStack_Integration__Added_Delivery_Price_for_each_product.xml	(date 1558209657746)
++++ .idea/shelf/PayStack_Integration__Added_Delivery_Price_for_each_product.xml	(date 1558209657746)
+@@ -0,0 +1,4 @@
++<changelist name="PayStack_Integration__Added_Delivery_Price_for_each_product" date="1554923924145" recycled="false">
++  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/PayStack_Integration__Added_Delivery_Price_for_each_product/shelved.patch" />
++  <option name="DESCRIPTION" value="PayStack Integration. Added Delivery Price for each product" />
++</changelist>
+\ No newline at end of file
+Index: .idea/shelf/PayStack_Integration__Added_Delivery_Price_for_each_product/shelved.patch
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/shelf/PayStack_Integration__Added_Delivery_Price_for_each_product/shelved.patch	(date 1554923924137)
++++ .idea/shelf/PayStack_Integration__Added_Delivery_Price_for_each_product/shelved.patch	(date 1554923924137)
+@@ -0,0 +1,149 @@
++Index: .idea/ecommerce-laravel.iml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
++<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"WEB_MODULE\" version=\"4\">\r\n  <component name=\"NewModuleRootManager\">\r\n    <content url=\"file://$MODULE_DIR$\">\r\n      <sourceFolder url=\"file://$MODULE_DIR$/app\" isTestSource=\"false\" packagePrefix=\"App\\\" />\r\n      <sourceFolder url=\"file://$MODULE_DIR$/tests\" isTestSource=\"true\" packagePrefix=\"Tests\\\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/beyondcode/laravel-dump-server\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/cocur/slugify\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/composer\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/cviebrock/eloquent-sluggable\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/davejamesmiller/laravel-breadcrumbs\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/dnoegel/php-xdg-base-dir\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/doctrine/inflector\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/doctrine/instantiator\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/doctrine/lexer\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/dragonmantank/cron-expression\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/egulias/email-validator\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/erusev/parsedown\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/faustbrian/laravel-commentable\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/fideloper/proxy\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/filp/whoops\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/fzaninotto/faker\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/ghanem/rating\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/guzzlehttp/guzzle\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/guzzlehttp/promises\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/guzzlehttp/psr7\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/hamcrest/hamcrest-php\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/intervention/image\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/jakub-onderka/php-console-color\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/jakub-onderka/php-console-highlighter\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/kalnoy/nestedset\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/konekt/acl\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/konekt/address\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/konekt/appshell\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/konekt/concord\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/konekt/customer\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/konekt/enum\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/konekt/enum-eloquent\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/konekt/gears\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/konekt/menu\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/konekt/user\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/laracasts/flash\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/laravel/framework\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/laravel/nexmo-notification-channel\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/laravel/slack-notification-channel\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/laravel/tinker\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/laravelcollective/html\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/lcobucci/jwt\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/league/flysystem\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/league/glide\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/lecturize/laravel-addresses\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/maennchen/zipstream-php\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/mockery/mockery\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/monolog/monolog\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/myclabs/deep-copy\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/nesbot/carbon\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/nexmo/client\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/nikic/php-parser\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/nunomaduro/collision\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/opis/closure\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/paragonie/random_compat\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/phar-io/manifest\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/phar-io/version\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/php-http/guzzle6-adapter\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/php-http/httplug\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/php-http/promise\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/phpdocumentor/reflection-common\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/phpdocumentor/reflection-docblock\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/phpdocumentor/type-resolver\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/phpspec/prophecy\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/phpunit/php-code-coverage\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/phpunit/php-file-iterator\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/phpunit/php-text-template\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/phpunit/php-timer\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/phpunit/php-token-stream\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/phpunit/phpunit\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/psr/container\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/psr/http-message\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/psr/log\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/psr/simple-cache\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/psy/psysh\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/ralouphie/getallheaders\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/ramsey/uuid\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/rennokki/rating\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/sebastian/code-unit-reverse-lookup\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/sebastian/comparator\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/sebastian/diff\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/sebastian/environment\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/sebastian/exporter\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/sebastian/global-state\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/sebastian/object-enumerator\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/sebastian/object-reflector\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/sebastian/recursion-context\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/sebastian/resource-operations\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/sebastian/version\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/spatie/image\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/spatie/image-optimizer\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/spatie/laravel-medialibrary\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/spatie/pdf-to-image\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/spatie/temporary-directory\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/swiftmailer/swiftmailer\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/symfony/console\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/symfony/contracts\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/symfony/css-selector\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/symfony/debug\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/symfony/event-dispatcher\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/symfony/finder\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/symfony/http-foundation\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/symfony/http-kernel\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/symfony/polyfill-ctype\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/symfony/polyfill-php72\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/symfony/process\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/symfony/routing\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/symfony/translation\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/symfony/var-dumper\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/theseer/tokenizer\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/tijsverkoyen/css-to-inline-styles\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/vanilo/cart\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/vanilo/category\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/vanilo/checkout\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/vanilo/contracts\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/vanilo/framework\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/vanilo/order\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/vanilo/product\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/vanilo/properties\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/vanilo/support\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/vlucas/phpdotenv\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/webmozart/assert\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/webpatser/laravel-countries\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/willvincent/laravel-rateable\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/yajra/laravel-datatables-oracle\" />\r\n      <excludeFolder url=\"file://$MODULE_DIR$/vendor/zendframework/zend-diactoros\" />\r\n    </content>\r\n    <orderEntry type=\"inheritedJdk\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n  </component>\r\n</module>
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- .idea/ecommerce-laravel.iml	(revision 1a143ea46e0dc4e37f811120169b8d0bcec6736a)
+++++ .idea/ecommerce-laravel.iml	(date 1554590950602)
++@@ -20,12 +20,12 @@
++       <excludeFolder url="file://$MODULE_DIR$/vendor/fideloper/proxy" />
++       <excludeFolder url="file://$MODULE_DIR$/vendor/filp/whoops" />
++       <excludeFolder url="file://$MODULE_DIR$/vendor/fzaninotto/faker" />
++-      <excludeFolder url="file://$MODULE_DIR$/vendor/ghanem/rating" />
++       <excludeFolder url="file://$MODULE_DIR$/vendor/guzzlehttp/guzzle" />
++       <excludeFolder url="file://$MODULE_DIR$/vendor/guzzlehttp/promises" />
++       <excludeFolder url="file://$MODULE_DIR$/vendor/guzzlehttp/psr7" />
++       <excludeFolder url="file://$MODULE_DIR$/vendor/hamcrest/hamcrest-php" />
++       <excludeFolder url="file://$MODULE_DIR$/vendor/intervention/image" />
+++      <excludeFolder url="file://$MODULE_DIR$/vendor/ixudra/curl" />
++       <excludeFolder url="file://$MODULE_DIR$/vendor/jakub-onderka/php-console-color" />
++       <excludeFolder url="file://$MODULE_DIR$/vendor/jakub-onderka/php-console-highlighter" />
++       <excludeFolder url="file://$MODULE_DIR$/vendor/kalnoy/nestedset" />
++@@ -81,7 +81,6 @@
++       <excludeFolder url="file://$MODULE_DIR$/vendor/psy/psysh" />
++       <excludeFolder url="file://$MODULE_DIR$/vendor/ralouphie/getallheaders" />
++       <excludeFolder url="file://$MODULE_DIR$/vendor/ramsey/uuid" />
++-      <excludeFolder url="file://$MODULE_DIR$/vendor/rennokki/rating" />
++       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
++       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/comparator" />
++       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/diff" />
++@@ -108,6 +107,8 @@
++       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/http-foundation" />
++       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/http-kernel" />
++       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-ctype" />
+++      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-iconv" />
+++      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-intl-idn" />
++       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
++       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-php72" />
++       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/process" />
++Index: .idea/inspectionProfiles/Project_Default.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- .idea/inspectionProfiles/Project_Default.xml	(date 1554546239673)
+++++ .idea/inspectionProfiles/Project_Default.xml	(date 1554546239673)
++@@ -0,0 +1,6 @@
+++<component name="InspectionProjectProfileManager">
+++  <profile version="1.0">
+++    <option name="myName" value="Project Default" />
+++    <inspection_tool class="JSHint" enabled="true" level="ERROR" enabled_by_default="true" />
+++  </profile>
+++</component>
++\ No newline at end of file
++Index: .idea/misc.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
++<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"JavaScriptSettings\">\r\n    <option name=\"languageLevel\" value=\"ES6\" />\r\n  </component>\r\n</project>
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- .idea/misc.xml	(revision 1a143ea46e0dc4e37f811120169b8d0bcec6736a)
+++++ .idea/misc.xml	(date 1554546239676)
++@@ -1,6 +1,6 @@
++ <?xml version="1.0" encoding="UTF-8"?>
++ <project version="4">
++   <component name="JavaScriptSettings">
++-    <option name="languageLevel" value="ES6" />
+++    <option name="languageLevel" value="JSX" />
++   </component>
++ </project>
++\ No newline at end of file
++Index: .idea/jsLinters/jshint.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- .idea/jsLinters/jshint.xml	(date 1554546239675)
+++++ .idea/jsLinters/jshint.xml	(date 1554546239675)
++@@ -0,0 +1,16 @@
+++<?xml version="1.0" encoding="UTF-8"?>
+++<project version="4">
+++  <component name="JSHintConfiguration" version="2.9.5" use-config-file="true" use-custom-config-file="true" custom-config-file-path="$PROJECT_DIR$/public/plugins/bootstrap/js/.jshintrc">
+++    <option bitwise="true" />
+++    <option browser="true" />
+++    <option curly="true" />
+++    <option eqeqeq="true" />
+++    <option forin="true" />
+++    <option maxerr="50" />
+++    <option noarg="true" />
+++    <option noempty="true" />
+++    <option nonew="true" />
+++    <option strict="true" />
+++    <option undef="true" />
+++  </component>
+++</project>
++\ No newline at end of file
++Index: tests/Feature/TestPages.php
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
++<+><?php\r\n\r\nnamespace Tests\\Feature;\r\n\r\nuse Tests\\TestCase;\r\nuse Illuminate\\Foundation\\Testing\\RefreshDatabase;\r\n\r\nclass TestPages extends TestCase\r\n{\r\n    /**\r\n     * A basic test example.\r\n     *\r\n     * @return void\r\n     */\r\n    public function testBasicTest()\r\n    {\r\n        $response = $this->get('/');\r\n\r\n        $response->assertStatus(200);\r\n    }\r\n}\r\n
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- tests/Feature/TestPages.php	(revision 1a143ea46e0dc4e37f811120169b8d0bcec6736a)
+++++ tests/Feature/TestPages.php	(date 1554546239692)
++@@ -12,10 +12,17 @@
++      *
++      * @return void
++      */
++-    public function testBasicTest()
+++    public function testHomeTest()
++     {
++         $response = $this->get('/');
++ 
+++        $response->assertStatus(200);
+++    }
+++
+++    public function testOffice()
+++    {
+++        $response = $this->get('/office/products');
+++
++         $response->assertStatus(200);
++     }
++ }
++Index: .idea/php.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
++<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"PhpIncludePathManager\">\r\n    <include_path>\r\n      <path value=\"$PROJECT_DIR$/vendor/phpdocumentor/type-resolver\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/jakub-onderka/php-console-color\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/jakub-onderka/php-console-highlighter\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/dragonmantank/cron-expression\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/tijsverkoyen/css-to-inline-styles\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/swiftmailer/swiftmailer\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/nunomaduro/collision\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/guzzlehttp/promises\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/guzzlehttp/psr7\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/guzzlehttp/guzzle\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/fzaninotto/faker\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/webmozart/assert\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/version\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/diff\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/resource-operations\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/object-reflector\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/object-enumerator\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/recursion-context\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/exporter\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/environment\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/comparator\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/sebastian/global-state\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/ralouphie/getallheaders\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/paragonie/random_compat\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/fideloper/proxy\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/php-http/promise\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/php-http/httplug\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/php-http/guzzle6-adapter\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/lcobucci/jwt\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/hamcrest/hamcrest-php\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/doctrine/lexer\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/doctrine/inflector\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/doctrine/instantiator\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/theseer/tokenizer\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/http-foundation\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/polyfill-mbstring\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/translation\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/polyfill-ctype\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/css-selector\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/event-dispatcher\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/routing\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/finder\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/contracts\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/http-kernel\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/polyfill-php72\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/var-dumper\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/debug\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/process\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/symfony/console\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpunit/phpunit\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpunit/php-code-coverage\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpunit/php-token-stream\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpunit/php-text-template\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpunit/php-file-iterator\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpunit/php-timer\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpspec/prophecy\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phar-io/version\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phar-io/manifest\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/myclabs/deep-copy\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/monolog/monolog\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/mockery/mockery\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/laravel/slack-notification-channel\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/laravel/nexmo-notification-channel\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/laravel/framework\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/laravel/tinker\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/egulias/email-validator\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/dnoegel/php-xdg-base-dir\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/vlucas/phpdotenv\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/ramsey/uuid\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/nesbot/carbon\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/league/flysystem\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/erusev/parsedown\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/nikic/php-parser\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/nexmo/client\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/opis/closure\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/filp/whoops\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/psy/psysh\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/psr/simple-cache\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/psr/log\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/psr/http-message\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/psr/container\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/composer\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/zendframework/zend-diactoros\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/phpdocumentor/reflection-common\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/league/glide\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/konekt/enum-eloquent\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/cocur/slugify\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/konekt/gears\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/konekt/enum\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/konekt/concord\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/konekt/appshell\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/konekt/acl\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/konekt/address\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/konekt/user\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/konekt/menu\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/spatie/pdf-to-image\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/spatie/image-optimizer\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/vanilo/framework\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/vanilo/product\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/spatie/temporary-directory\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/konekt/customer\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/spatie/laravel-medialibrary\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/spatie/image\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/vanilo/cart\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/vanilo/properties\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/cviebrock/eloquent-sluggable\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/vanilo/order\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/vanilo/contracts\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/vanilo/category\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/vanilo/support\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/vanilo/checkout\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/laravelcollective/html\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/maennchen/zipstream-php\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/laracasts/flash\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/davejamesmiller/laravel-breadcrumbs\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/intervention/image\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/kalnoy/nestedset\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/faustbrian/laravel-commentable\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/willvincent/laravel-rateable\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/yajra/laravel-datatables-oracle\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/ghanem/rating\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/rennokki/rating\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/lecturize/laravel-addresses\" />\r\n      <path value=\"$PROJECT_DIR$/vendor/webpatser/laravel-countries\" />\r\n    </include_path>\r\n  </component>\r\n  <component name=\"PhpProjectSharedConfiguration\" php_language_level=\"7.1\" />\r\n  <component name=\"PhpUnit\">\r\n    <phpunit_settings>\r\n      <PhpUnitSettings load_method=\"CUSTOM_LOADER\" custom_loader_path=\"$PROJECT_DIR$/vendor/autoload.php\" />\r\n    </phpunit_settings>\r\n  </component>\r\n</project>
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- .idea/php.xml	(revision 1a143ea46e0dc4e37f811120169b8d0bcec6736a)
+++++ .idea/php.xml	(date 1554590950614)
++@@ -125,10 +125,11 @@
++       <path value="$PROJECT_DIR$/vendor/faustbrian/laravel-commentable" />
++       <path value="$PROJECT_DIR$/vendor/willvincent/laravel-rateable" />
++       <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-oracle" />
++-      <path value="$PROJECT_DIR$/vendor/ghanem/rating" />
++-      <path value="$PROJECT_DIR$/vendor/rennokki/rating" />
++       <path value="$PROJECT_DIR$/vendor/lecturize/laravel-addresses" />
++       <path value="$PROJECT_DIR$/vendor/webpatser/laravel-countries" />
+++      <path value="$PROJECT_DIR$/vendor/ixudra/curl" />
+++      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-iconv" />
+++      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
++     </include_path>
++   </component>
++   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />
