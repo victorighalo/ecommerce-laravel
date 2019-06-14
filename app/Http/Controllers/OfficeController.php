@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Konekt\Acl\Models\Role;
+use Vanilo\Cart\Models\CartItem;
 use Yajra\DataTables\DataTables;
 
 class OfficeController extends Controller
@@ -56,9 +59,18 @@ class OfficeController extends Controller
             ->editColumn('amount', function ($item){
             return number_format($item->price, 0,'.', ',');
         })->addColumn('action', function ($item){
-            return "<button class='btn btn-md btn-link view_products'>Products</button>";
+            return "<button class='btn btn-md btn-link view_products' data-cart_id=".$item->cart_id.">Products</button>";
         })
             ->make(true);
+    }
+
+
+    public function ordersProducts(Request $request){
+        $products = CartItem::where('cart_id', $request->cart_id)
+            ->join('products', 'cart_items.product_id', 'products.id')
+            ->get();
+        return response()->json(['data' => $products]);
+
     }
 
 }

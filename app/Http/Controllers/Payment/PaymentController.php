@@ -13,6 +13,7 @@ use Illuminate\Support\Str;
 use Vanilo\Cart\Facades\Cart;
 use App\Http\Controllers\Controller;
 use App\Enums\TransactionStatus;
+use Vanilo\Cart\Models\CartItem;
 
 class PaymentController extends Controller
 {
@@ -42,6 +43,7 @@ class PaymentController extends Controller
             return back()->with(['error' => $initPayStack->message]);
         }
     }
+
     protected function createTransaction($amount, $trans_email,$user_id,$uuid, Request $request){
 
         $status = new TransactionStatus('pending');
@@ -64,5 +66,13 @@ class PaymentController extends Controller
         $trans->save();
 
         return $trans->reference;
+    }
+
+    public function successReport(){
+        $trans = Transactions::find(1);
+        $products = CartItem::where('cart_id', $trans->cart_id)
+            ->join('products', 'cart_items.product_id', 'products.id')
+            ->get();
+        return view('payment.success', compact('trans', 'products'));
     }
 }

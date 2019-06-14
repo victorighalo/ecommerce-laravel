@@ -29,6 +29,7 @@ Route::get('/checkout', 'CheckoutController@index');
 Route::get('/contact', 'CommonController@contact');
 Route::get('/about', 'CommonController@about');
 Route::post('/checkout', 'Payment\PaymentController@initializePayStackTrans');
+Route::get('/transaction/success', 'Payment\PaymentController@successReport');
 
 //Search Product
 Route::get('search', 'SearchController@searchProduct')->name('search_product');
@@ -56,6 +57,7 @@ Route::post('get_store_stats', 'OfficeController@getStoreStats')->name('get_stor
 //Orders
 Route::get('orders', 'OfficeController@orders');
 Route::get('orders/data', 'OfficeController@ordersData')->name('orders_data');
+Route::post('orders/products', 'OfficeController@ordersProducts')->name('order_products');
 
 //Products
 Route::get('/products', 'ProductsController@index');
