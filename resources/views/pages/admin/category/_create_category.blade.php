@@ -37,6 +37,7 @@
                 </span>
                     </div>
 
+
             <div class="col-12">
                 <label for="sub_category">{{ __('Sub category') }} (Second level)</label>
                 <input type="text" id="sub_category" class="form-control" name="sub_category"  required>
