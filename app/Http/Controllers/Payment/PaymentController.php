@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Payment;
 
-
 use App\Http\Requests\PaymentRequest;
 use App\Transactions;
 use App\User;
