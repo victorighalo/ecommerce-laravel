@@ -34,7 +34,7 @@
                     @endforeach
                 </select>
                 <span class="invalid-feedback errorshow" role="alert">
-                                        </span>
+                </span>
                     </div>
 
             <div class="col-12">
