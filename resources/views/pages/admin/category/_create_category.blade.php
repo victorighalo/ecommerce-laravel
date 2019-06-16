@@ -22,7 +22,6 @@
             </div>
 
             <div class="col-sm-12">
-
                 <form id="sub_category_form">
                     @csrf
                     <div class="row form-group">
@@ -36,8 +35,6 @@
                 <span class="invalid-feedback errorshow" role="alert">
                 </span>
                     </div>
-
-
             <div class="col-12">
                 <label for="sub_category">{{ __('Sub category') }} (Second level)</label>
                 <input type="text" id="sub_category" class="form-control" name="sub_category"  required>
