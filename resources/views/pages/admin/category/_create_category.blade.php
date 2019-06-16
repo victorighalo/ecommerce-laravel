@@ -20,7 +20,6 @@
                 </form>
 
             </div>
-
             <div class="col-sm-12">
                 <form id="sub_category_form">
                     @csrf
