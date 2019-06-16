@@ -1,5 +1,4 @@
-
-        <div class="row form-group">
+ <div class="row form-group">
 
             <div class="col-sm-12">
                 <form id="category_form">
