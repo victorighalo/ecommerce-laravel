@@ -28,8 +28,8 @@
                                                         <span>{{ucwords($subcategory->name)}} </span>
                                                     </button>
                                                     <div class="dropdown-menu">
-                                                        <a class="btn btn-sm dropdown-item delete_subcategory" id="{{$subcategory['id']}}"><i class="fas fa-trash"></i> Delete</a>
-                                                        <a class="btn btn-sm dropdown-item edit_subcategory" id="{{$subcategory['id']}}" data-category_id="{{$category->taxonomy_id}}"><i class="fas fa-edit"></i> Edit</a>
+                                                        <a class="btn btn-sm dropdown-item delete_subcategory" id="{{$subcategory->id}}"><i class="fas fa-trash"></i> Delete</a>
+                                                        <a class="btn btn-sm dropdown-item edit_subcategory" id="{{$subcategory->id}}" data-category_id="{{$category->id}}"><i class="fas fa-edit"></i> Edit</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a
                                                                 class="btn btn-sm dropdown-item add_child_category"
