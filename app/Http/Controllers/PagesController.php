@@ -18,7 +18,7 @@ class PagesController extends BaseController
 
     public function home()
     {
-        $categories = Taxon::all()->take(12);
+        $categories = Taxon::all()->take(4);
         $brands = Taxonomy::all();
 
         $latest_products = \App\Product::active()->new()->get();
