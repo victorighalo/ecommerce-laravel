@@ -121,7 +121,7 @@
             height:300px;
             background-position: center center !important;
             background-repeat: no-repeat !important;
-            background-size: cover !important;
+            background-size: contain !important;
         }
         .border-bottom{
             border-bottom: rgba(11, 11, 11, 0.51) 1px solid;
