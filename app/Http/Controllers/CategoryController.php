@@ -49,7 +49,7 @@ class CategoryController extends Controller
             $taxonomy = Taxonomy::where('id', $request->category_id)->first();
             $category = Taxon::create([
                 'taxonomy_id' => $request->category_id,
-                'name' => $request->sub_category . '-' . $taxonomy->slug
+                'name' => $request->sub_category
             ]);
             return response()->json([
                 'message' => 'Successfully crceated category',
