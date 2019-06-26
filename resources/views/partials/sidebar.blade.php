@@ -17,7 +17,7 @@
                 <i class="fas fa-chart-bar menu-icon"></i><span class="menu-title">Dashboard</span></a>
         </li>
         @if(Auth::check())
-        @if(Auth::user()->hasRole('admin'))
+        @if(Auth::user()->hasAnyRole(['admin', 'editor']))
         <li class="nav-item {{ Request::path() == 'office/category' ? 'active' : '' }}"><a class="nav-link" href="{{url('office/category')}}">
                 <i class="fas fa-boxes menu-icon"></i><span class="menu-title">Category</span></a>
         </li>
@@ -27,12 +27,17 @@
             <li class="nav-item {{ Request::path() == 'office/products' ? 'active' : '' }}"><a class="nav-link" href="{{url('office/products')}}">
                <i class="fas fa-store menu-icon"></i> <span class="menu-title">Products</span></a>
         </li>
+                @if(Auth::user()->hasRole('admin'))
             <li class="nav-item {{ Request::path() == 'orders' ? 'active' : '' }}"><a class="nav-link" href="{{url('office/orders')}}">
                     <i class="fas fa-money-check menu-icon"></i><span class="menu-title">Orders</span></a>
         </li>
                 <li class="nav-item {{ Request::path() == 'settings' ? 'active' : '' }}"><a class="nav-link" href="{{url('office/settings')}}">
                     <i class="fas fa-cogs menu-icon"></i><span class="menu-title">Settings</span></a>
         </li>
+                <li class="nav-item {{ Request::path() == 'users' ? 'active' : '' }}"><a class="nav-link" href="{{url('office/users')}}">
+                    <i class="fas fa-users menu-icon"></i><span class="menu-title">Users</span></a>
+        </li>
+                @endif
         <li class="nav-item purchase-button  d-xs-block d-sm-none" >
             <a class="nav-link" href="{{ route('logout') }}"
                style="background: #553d67;"

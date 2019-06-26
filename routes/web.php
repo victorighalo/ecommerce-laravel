@@ -103,6 +103,16 @@ Route::get('/properties/json', 'PropertyController@getPropertiesJson')->name('lo
 //App Settings
 Route::get('/settings', 'SettingController@index');
 Route::put('/settings/update', 'SettingController@update');
+
+//Users
+Route::post('get_users', 'UsersController@getUsersData')->name('get_users');
+Route::get('users/edit/{id}', 'UsersController@getUserData');
+Route::put('users/update', 'UsersController@update')->name('update_user');
+Route::put('users/deactivate/{id}', 'UsersController@deactivate');
+Route::put('users/activate/{id}', 'UsersController@activate');
+Route::put('users/destroy/{id}', 'UsersController@destroy');
+Route::put('users/password/change', 'UsersController@changePassword')->name('update_user_password');
+Route::resource('users', 'UsersController');
 });
 
 //Frontend

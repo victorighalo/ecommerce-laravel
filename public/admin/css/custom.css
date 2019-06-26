@@ -157,3 +157,7 @@ body {
 .brighttheme .ui-pnotify-action-button{
     color: #fff;
 }
+.loader_container{
+    padding: 20px;
+    text-align: center;
+}

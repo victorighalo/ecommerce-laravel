@@ -17,7 +17,7 @@ class User extends \Konekt\AppShell\Models\User
      *
      * @var array
      */
-    protected $fillable = ['firstname', 'lastname'];
+    protected $fillable = ['firstname', 'lastname', 'email', 'password'];
 
     /**
      * The attributes that should be hidden for arrays.
