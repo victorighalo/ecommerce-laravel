@@ -472,7 +472,7 @@
                             if (response.status == 400) {
                                 new PNotify({
                                     title: 'Oops!',
-                                    text: 'Failed to delete Store keeper.',
+                                    text: 'Failed to delete User.',
                                     type: 'error'
                                 });
                             }

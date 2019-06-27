@@ -6,6 +6,7 @@ use App\Http\Requests\NewUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Konekt\Acl\Models\Role;
 use Yajra\Datatables\Datatables;
@@ -93,7 +94,8 @@ class UsersController extends Controller
     public function destroy($id)
     {
         try {
-            User::find($id)->delete();
+            DB::table('users')->where('id', $id)->delete();
+//            User::find($id)->delete();
             return response()->json(['message' => 'Account deleted'], 200);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Failed to delete Account'], 400);
@@ -144,4 +146,6 @@ class UsersController extends Controller
             ->rawColumns([ 'action', 'is_active'])
             ->make(true);
     }
+
+
 }
