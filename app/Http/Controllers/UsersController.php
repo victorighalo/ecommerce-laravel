@@ -116,7 +116,7 @@ class UsersController extends Controller
     public function getUsersData(Request $request){
         $users = [];
         if($request->type == 1){
-            $users = User::all();
+            $users = User::where('type', 'client')->get();
         }
 
 

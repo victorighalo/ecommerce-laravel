@@ -65,14 +65,18 @@
                                                     <label>State<span>*</span>
                                                         <select name="state_id" id="state" class="form-control" required>
                                                             @foreach($states as $state)
-                                                                <option value="{{$state->state_id}}">{{$state->state_name}}</option>
-                                                            @endforeach
+                                                                @if($state->state_id == 7)
+                                                                <option value="{{$state->state_id}}" selected>{{$state->state_name}}</option>
+                                                                @else
+                                                                    <option value="{{$state->state_id}}">{{$state->state_name}}</option>
+                                                                @endif
+                                                                    @endforeach
                                                         </select>
                                                     </label>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label>City<span>*</span>
-                                                        <select name="city_id" id="city" class="form-control" required>
+                                                        <select name="city_id" id="city" class="form-control" data-city_id="" required>
                                                             <option value="" disabled="">Select state</option>
                                                         </select>
                                                     </label>
@@ -114,7 +118,7 @@
                                                 $delivery_cost += $item->product->delivery_cost;
                                             @endphp
                                         @endforeach
-                                            <p>Shipping <span>&#8358; {{$delivery_cost}} </span></p>
+                                            <p>Shipping <span>&#8358;</span><span class="delivery_cost">{{$delivery_cost}}</span></p>
                                         <!-- SUB TOTAL -->
                                             <p class="all-total">TOTAL COST <span>&#8358; {{number_format( Cart::total(), '0', '.', ',')}}</span></p>
                                     </div>
@@ -156,21 +160,43 @@
 @push('script')
     <script>
         $(document).ready(function () {
-            $("select[name='state_id']").on('change', function () {
-                stateid = $(this).val();
-                $("select[name='city_id']").empty();
-                $("select[name='city_id']").append('<option>Loading...</option>');
-                $("select[name='city_id']").prop('disabled', true);
-                $.post("{!! url('load_cities') !!}",{id: stateid})
-                    .done(function(msg) {
-                        $("select[name='city_id']").empty();
-                        $("select[name='city_id']").prop('disabled', false);
-                        $.each(msg, function (key, value) {
-                            $("select[name='city_id']").append('<option value="' + value.city_id + '">' + value.city_name + '</option>');
-                        });
-                    })
-            });
 
+            $("select[name='state_id']").on('change', function () {
+                loadCities($(this).val())
+            } );
+
+            $("select[name='city_id']").on('change', function () {
+                getDeliveryCost();
+            } );
+
+            loadCities($("select[name='state_id']").val())
         });
+        function loadCities(stateid) {
+            $("select[name='city_id']").empty();
+            $("select[name='city_id']").append('<option>Loading...</option>');
+            $("select[name='city_id']").prop('disabled', true);
+            $.post("{!! url('load_cities') !!}",{id: stateid})
+                .done(function(msg) {
+                    $("select[name='city_id']").empty();
+                    $("select[name='city_id']").prop('disabled', false);
+                    $.each(msg, function (key, value) {
+                        $("select[name='city_id']").append('<option value="' + value.city_id + '" data-city_id="' + value.city_id +'">' + value.city_name + '</option>');
+                    });
+                    getDeliveryCost();
+                })
+        }
+
+        function getDeliveryCost() {
+            console.log($("select[name='city_id'] option:selected").data('city_id'))
+            $.post("{!! url('get_delivery_cost') !!}",
+                {
+                    state_id: $("select[name='state_id']").val(),
+                    city_id: $("select[name='city_id']").children("option:selected").data('city_id'),
+                }
+                )
+                .done(function(res) {
+                $(".delivery_cost").html(res.data.cost)
+                })
+        }
     </script>
 @endpush

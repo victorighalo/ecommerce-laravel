@@ -31,6 +31,9 @@
             <li class="nav-item {{ Request::path() == 'orders' ? 'active' : '' }}"><a class="nav-link" href="{{url('office/orders')}}">
                     <i class="fas fa-money-check menu-icon"></i><span class="menu-title">Orders</span></a>
         </li>
+                    <li class="nav-item {{ Request::path() == 'delivery' ? 'active' : '' }}"><a class="nav-link" href="{{url('office/delivery')}}">
+                    <i class="fas fa-icon-shopping-cart menu-icon"></i><span class="menu-title">Delivery Settings</span></a>
+        </li>
                 <li class="nav-item {{ Request::path() == 'settings' ? 'active' : '' }}"><a class="nav-link" href="{{url('office/settings')}}">
                     <i class="fas fa-cogs menu-icon"></i><span class="menu-title">Settings</span></a>
         </li>

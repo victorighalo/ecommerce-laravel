@@ -43,7 +43,7 @@ Route::post('/cart/destroy/{cart_item?}', 'CartController@destroy')->name('destr
 //Common
 Route::post('/load_cities', 'CommonController@loadCities')->name('load_cities');
 Route::post('/add_address', 'CommonController@addAddress')->name('add_address');
-
+Route::post('get_delivery_cost', 'DeliverySettingsController@getDeliveryCost')->name('get_delivery_cost');
 
 //Office section
 Route::group(['prefix' => 'office', 'middleware' => ['role:admin']], function (){
@@ -103,6 +103,11 @@ Route::get('/properties/json', 'PropertyController@getPropertiesJson')->name('lo
 //App Settings
 Route::get('/settings', 'SettingController@index');
 Route::put('/settings/update', 'SettingController@update');
+
+//Delivery settings
+Route::get('delivery_data', 'DeliverySettingsController@getDeliveryCostData')->name('delivery_data');
+Route::post('delivery_update', 'DeliverySettingsController@update')->name('delivery_update');
+Route::resource('delivery', 'DeliverySettingsController');
 
 //Users
 Route::post('get_users', 'UsersController@getUsersData')->name('get_users');
