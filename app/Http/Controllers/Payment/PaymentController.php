@@ -25,9 +25,10 @@ class PaymentController extends Controller
     }
     
     public function initializePayStackTrans(PaymentRequest $request){
+        $delivery_cost = $this->calculateDelivery($request);
         $trans_email = Auth::guest() ? $request->email : Auth::user()->email;
         $user_id = Auth::guest() ? Auth::id() : null;
-        $amount = (Cart::total() * 100);
+        $amount = ( (Cart::total() + $delivery_cost) * 100);
         $uuid = bin2hex(random_bytes(10)) ;
         $ref = trim($uuid);
         $initPayStack = $this->payStackProxy->initializeTransaction($trans_email, $amount , $ref);
@@ -67,6 +68,19 @@ class PaymentController extends Controller
         return $trans->reference;
     }
 
+    private function calculateDelivery(Request $request){
+        $delivery_cost = 0;
+        foreach (Cart::getItems() as $item){
+            $delivery_cost += $item->product->delivery_cost;
+        }
+        $data = \App\DeliveryCharge::where('state_id', $request->state_id)->where('city_id', $request->city_id);
+
+        if($data->exists())
+        {
+            $delivery_cost += $data->first()->cost;
+        }
+        return $delivery_cost;
+    }
     public function successReport(){
         $trans = Transactions::find(1);
         $products = CartItem::where('cart_id', $trans->cart_id)

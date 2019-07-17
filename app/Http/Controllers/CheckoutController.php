@@ -16,7 +16,12 @@ class CheckoutController extends Controller
     public function index(){
         $states = DB::table('states')->get();
         $addresses = DeliveryAddress::where('user_id', Auth::id())->get();
-        return view('pages.front.checkout', compact(  'states', 'addresses'));
+        $delivery_cost = 0;
+        foreach (Cart::getItems() as $item){
+           $delivery_cost += $item->product->delivery_cost;
+        }
+        $total_cost = Cart::total() + $delivery_cost;
+        return view('pages.front.checkout', compact(  'states', 'addresses', 'delivery_cost', 'total_cost'));
     }
 
     public function checkout(CheckoutRequest $request)

@@ -109,42 +109,37 @@
                                 <h6>Your Order</h6>
                                 <div class="order-place">
                                     <div class="order-detail">
-                                        @php
-                                        $delivery_cost = 0;
-                                        @endphp
                                         @foreach(Cart::getItems() as $item)
                                             <p>{{$item->product->name}} <span>&#8358; {{number_format($item->price, '0', '.', ',')}} </span></p>
-                                            @php
-                                                $delivery_cost += $item->product->delivery_cost;
-                                            @endphp
                                         @endforeach
-                                            <p>Shipping <span>&#8358;</span><span class="delivery_cost">{{$delivery_cost}}</span></p>
+                                            <p>Shipping <span class="delivery_cost" data-delivery_cost="{{$delivery_cost}}">{{number_format( $delivery_cost, '0', '.', ',')}}</span><span>&#8358;</span></p>
                                         <!-- SUB TOTAL -->
-                                            <p class="all-total">TOTAL COST <span>&#8358; {{number_format( Cart::total(), '0', '.', ',')}}</span></p>
+                                            <p class="all-total">TOTAL COST <span class="total_cost" data-total_cost="{{$total_cost}}">{{number_format( $total_cost, '0', '.', ',')}}</span><span>&#8358;</span></p>
                                     </div>
+                                    <div class="loader off"></div>
                                     <div class="pay-meth">
-                                        <ul>
-                                            <li>
-                                                <div class="radio">
-                                                    <input type="radio" name="pay_type" id="radio2" value="option2">
-                                                    <label for="radio2"> CASH ON DELIVERY</label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="radio">
-                                                    <input type="radio" name="pay_type" id="radio4" value="option4">
-                                                    <label for="radio4"> DEBIT CART </label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="checkbox">
-                                                    <input id="checkbox3-4" class="styled" type="checkbox">
-                                                    <label for="checkbox3-4"> I’VE READ AND ACCEPT THE <span class="color"> TERMS & CONDITIONS </span> </label>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                        {{--<ul>--}}
+                                            {{--<li>--}}
+                                                {{--<div class="radio">--}}
+                                                    {{--<input type="radio" name="pay_type" id="radio2" value="option2">--}}
+                                                    {{--<label for="radio2"> CASH ON DELIVERY</label>--}}
+                                                {{--</div>--}}
+                                            {{--</li>--}}
+                                            {{--<li>--}}
+                                                {{--<div class="radio">--}}
+                                                    {{--<input type="radio" name="pay_type" id="radio4" value="option4">--}}
+                                                    {{--<label for="radio4"> DEBIT CART </label>--}}
+                                                {{--</div>--}}
+                                            {{--</li>--}}
+                                            {{--<li>--}}
+                                                {{--<div class="checkbox">--}}
+                                                    {{--<input id="checkbox3-4" class="styled" type="checkbox">--}}
+                                                    {{--<label for="checkbox3-4"> I’VE READ AND ACCEPT THE <span class="color"> TERMS & CONDITIONS </span> </label>--}}
+                                                {{--</div>--}}
+                                            {{--</li>--}}
+                                        {{--</ul>--}}
                                         <button href="" class="btn btn-small  btn-secondary pull-left margin-top-30" type="button"><i class="fa fa-phone"></i> CALL TO ORDER</button> </div>
-                                        <button href="" class="btn  btn-dark pull-right margin-top-30" type="submit"><i class="fa fa-credit-card"></i> PLACE ORDER</button> </div>
+                                        <button href="" class="btn  btn-dark pull-right margin-top-30 checkout" type="submit"><i class="fa fa-credit-card"></i> PLACE ORDER</button> </div>
                             </div>
 
                                     </form>
@@ -187,7 +182,8 @@
         }
 
         function getDeliveryCost() {
-            console.log($("select[name='city_id'] option:selected").data('city_id'))
+            $("button.checkout").attr("disabled", true);
+            $(".loader").removeClass("off");
             $.post("{!! url('get_delivery_cost') !!}",
                 {
                     state_id: $("select[name='state_id']").val(),
@@ -195,7 +191,17 @@
                 }
                 )
                 .done(function(res) {
-                $(".delivery_cost").html(res.data.cost)
+                    $("button.checkout").attr("disabled", false);
+                    $(".loader").addClass("off");
+                    var delivery_cost = new Intl.NumberFormat('en-GB').format(Math.ceil(res.delivery_cost));
+                    var total_cost = new Intl.NumberFormat('en-GB').format(Math.ceil(res.total_cost));
+
+                    $(".delivery_cost").html(delivery_cost)
+                    $(".total_cost").html(total_cost)
+                })
+                .fail(function (res) {
+                    $("button.checkout").attr("disabled", false);
+                    $(".loader").addClass("off");
                 })
         }
     </script>

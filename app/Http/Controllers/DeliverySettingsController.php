@@ -6,7 +6,7 @@ use App\DeliveryCharge;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
-
+use Vanilo\Cart\Facades\Cart;
 class DeliverySettingsController extends Controller
 {
     public function index(){
@@ -16,7 +16,7 @@ class DeliverySettingsController extends Controller
 
     public function store(Request $request){
         try{
-            DeliveryCharge::insert($request->except('_token'));
+            DeliveryCharge::updateOrCreate($request->except('_token'));
             return response()->json(['message' => 'Cost added']);
         }catch (\Exception $e){
             return response()->json(['message' => 'Failed to add cost', 'reason' => $e->getMessage()], 500);
@@ -65,13 +65,24 @@ class DeliverySettingsController extends Controller
     }
 
     public function getDeliveryCost(Request $request){
+        $delivery_cost = $this->calculateDelivery($request);
+        return response()->json([
+            'delivery_cost' => $delivery_cost,
+            'total_cost' => Cart::total() + $delivery_cost,
+        ]);
+    }
+
+    private function calculateDelivery(Request $request){
+        $delivery_cost = 0;
+        foreach (Cart::getItems() as $item){
+            $delivery_cost += $item->product->delivery_cost;
+        }
         $data = DeliveryCharge::where('state_id', $request->state_id)->where('city_id', $request->city_id);
 
         if($data->exists())
-            {
-               return response()->json(['data' => $data->first(), 'message' => 'Delivery cost calculated']);
-            }
-        return response()->json(['data' => [], 'message' => 'Delivery cost unavailable'], 400);
-
+        {
+            $delivery_cost += $data->first()->cost;
+        }
+        return $delivery_cost;
     }
 }
