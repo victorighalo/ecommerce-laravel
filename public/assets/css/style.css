@@ -4684,7 +4684,8 @@ input[type=number] {
 	min-height: 210px;
 	text-align: center;
 	position: relative;
-	background: #f5f5f5;
+	background: linear-gradient(335deg, #fed766, #e8c124);
+	background: #FFE066;
 }
 .sub-bnr h4 {
 	font-size: 34px;
