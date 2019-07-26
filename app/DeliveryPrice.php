@@ -12,6 +12,4 @@ class DeliveryPrice extends Model
     {
         return $this->morphTo();
     }
-
-
 }
