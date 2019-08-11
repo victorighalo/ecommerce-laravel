@@ -58,31 +58,28 @@
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span></span> </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="nav">
-                    <li> <a href="{{url('/')}}">Home</a></li>
-                    <li> <a href="{{url('about')}}">About </a> </li>
-                    <li> <a href="{{url('contact')}}"> contact</a> </li>
-                    <li class="dropdown megamenu"> <a href="#." class="dropdown-toggle" data-toggle="dropdown">Brands</a>
-                        <div class="dropdown-menu">
-                            <div class="row">
-                                @foreach($brands as $brand)
-                                    <div class="col-sm-3 margin-bottom-20" >
-                                    <h6>
-                                        {{$brand->name}}
-                                    </h6>
-                                        <ul class="col-2-li">
-                                            @foreach($brand->rootLevelTaxons() as $category)
+                    {{--<li> <a href="{{url('/')}}">Home</a></li>--}}
+                    <li class="dropdown"> <a href="#." class="dropdown-toggle" data-toggle="dropdown">Brands</a>
+                        <ul class="dropdown-menu">
+                            @foreach($brands as $brand)
+                                <li class="dropdown"> <a href="{{route('get_brand', ['taxon_slug' => $brand->slug])}}" title="{{$brand->name}}"> {{$brand->name}} </a>
+                                    @if($brand->rootLevelTaxons()->count())
+                                    <ul class="dropdown-menu animated-3s fadeInLeft">
+                                        @foreach($brand->rootLevelTaxons() as $category)
                                             <li>
                                                 <a href="{{route('get_category_content', ['taxon_slug' => $category->slug])}}" title="{{$category->name}}">
-                                                    {{$category->name}}
+                                                    {{str_limit($category->name, 13)}}
                                                 </a>
                                             </li>
-                                                @endforeach
-                                        </ul>
-                                    </div>
-                                    @endforeach
-                            </div>
-                        </div>
+                                        @endforeach
+                                    </ul>
+                                        @endif
+                                </li>
+                            @endforeach
+                        </ul>
                     </li>
+                    <li> <a href="{{url('about')}}">About </a> </li>
+                    <li> <a href="{{url('contact')}}"> contact</a> </li>
                 </ul>
             </div>
 
