@@ -44,6 +44,7 @@ class PagesController extends BaseController
     public function getProductList($taxon_slug){
 
         $taxon = Taxon::findBySlug($taxon_slug);
+
         $categories = Taxon::all();
         if($taxon) {
             $products = $taxon->products()->paginate(30)->onEachSide(2);
@@ -100,7 +101,8 @@ class PagesController extends BaseController
 
     public function getBrandProducts($slug){
         $brand = Taxonomy::findBySlug($slug);
-        $categories = $brand->rootLevelTaxons();
+
+        $categories = Taxon::roots()->byTaxonomy($brand)->get();
 
         if($brand) {
             $now = Carbon::now();
