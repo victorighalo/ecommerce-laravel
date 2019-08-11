@@ -68,7 +68,7 @@
                                         @foreach($brand->rootLevelTaxons() as $category)
                                             <li>
                                                 <a href="{{route('get_category_content', ['taxon_slug' => $category->slug])}}" title="{{$category->name}}">
-                                                    {{($category->name}}
+                                                    {{$category->name}}
                                                 </a>
                                             </li>
                                         @endforeach
