@@ -1,6 +1,6 @@
 <?php
 
-Route::get('/', 'PagesController@home');
+Route::get('/', 'PagesController@home')->name('home');
 Route::get('/home', 'PagesController@home');
 
 Route::get('install', 'SettingController@install')->name('install');
@@ -60,7 +60,8 @@ Route::get('orders/data', 'OfficeController@ordersData')->name('orders_data');
 Route::post('orders/products', 'OfficeController@ordersProducts')->name('order_products');
 
 //Products
-Route::get('/products', 'ProductsController@index');
+Route::get('/products/list', 'ProductsController@index');
+Route::get('/products/add', 'ProductsController@addProduct');
 Route::get('/products/activate/{id?}', 'ProductsController@activate')->name('activate_product');
 Route::get('/products/deactivate/{id?}', 'ProductsController@deactivate')->name('deactivate_product');
 Route::get('/products/destroy/{product_id?}/{taxon_id?}', 'ProductsController@destroy')->name('destroy_product');

@@ -13,6 +13,10 @@ class GuestUser extends Seeder
     public function run()
     {
 
+//        if(!Role::findByName('guest')){
+            Role::create(['name' => 'guest']);
+//        }
+
         $user = User::create([
             'firstname' => 'guest',
             'lastname' => 'guest',

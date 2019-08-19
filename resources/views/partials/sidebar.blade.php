@@ -3,7 +3,7 @@
         <li class="nav-item nav-profile">
             <div class="nav-link">
                 <div class="profile-image"><i class="far fa-user-circle" style="font-size: 70px; color: #333"></i> <span
-                            class="online-status online"></span></div>
+                        class="online-status online"></span></div>
                 <div class="profile-name">
                     @if(Auth::check())
                         <p class="name">{{Auth::user()->name}}</p>
@@ -13,46 +13,61 @@
                 </div>
             </div>
         </li>
-        <li class="nav-item {{ Request::path() == '/' ? 'active' : '' }}"><a class="nav-link" href="{{url('/')}}">
+        <li class="nav-item {{ Request::path() == 'office/dashboard' ? 'active' : '' }}"><a class="nav-link" href="{{url('office')}}">
                 <i class="fas fa-chart-bar menu-icon"></i><span class="menu-title">Dashboard</span></a>
         </li>
         @if(Auth::check())
-        @if(Auth::user()->hasAnyRole(['admin', 'editor']))
-        <li class="nav-item {{ Request::path() == 'office/category' ? 'active' : '' }}"><a class="nav-link" href="{{url('office/category')}}">
-                <i class="fas fa-boxes menu-icon"></i><span class="menu-title">Category</span></a>
-        </li>
+            @if(Auth::user()->hasAnyRole(['admin', 'editor']))
+                <li class="nav-item {{ Request::path() == 'office/category' ? 'active' : '' }}"><a class="nav-link" href="{{url('office/category')}}">
+                        <i class="fas fa-boxes menu-icon"></i><span class="menu-title">Category</span></a>
+                </li>
                 <li class="nav-item {{ Request::path() == 'office/properties' ? 'active' : '' }}"><a class="nav-link" href="{{url('office/properties')}}">
-                <i class="fas fa-boxes menu-icon"></i><span class="menu-title">Properties</span></a>
-        </li>
-            <li class="nav-item {{ Request::path() == 'office/products' ? 'active' : '' }}"><a class="nav-link" href="{{url('office/products')}}">
-               <i class="fas fa-store menu-icon"></i> <span class="menu-title">Products</span></a>
-        </li>
+                        <i class="fas fa-boxes menu-icon"></i><span class="menu-title">Properties</span></a>
+                </li>
+{{--                <li class="nav-item {{ Request::path() == 'office/products' ? 'active' : '' }}"><a class="nav-link" href="{{url('office/products')}}">--}}
+{{--                        <i class="fas fa-store menu-icon"></i> <span class="menu-title">Products</span></a>--}}
+{{--                </li>--}}
+                <li class="nav-item {{ Request::path() == 'office/products' ? 'active' : '' }}">
+                    <a class="nav-link collapsed" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                        <i class="fas fa-store menu-icon"></i>
+                        <span class="menu-title">Products</span>
+                    </a>
+                    <div class="collapse" id="ui-basic" style="">
+                        <ul class="nav flex-column sub-menu">
+                            <a class="nav-link" href="{{url('office/products/add')}}">
+                                <i class="fas fa-plus menu-icon"></i> <span class="menu-title">Add Item</span></a>
+
+                            <a class="nav-link" href="{{url('office/products/list')}}">
+                                <i class="fas fa-list menu-icon"></i> <span class="menu-title">View Items</span></a>
+                        </ul>
+                    </div>
+                </li>
                 @if(Auth::user()->hasRole('admin'))
-            <li class="nav-item {{ Request::path() == 'orders' ? 'active' : '' }}"><a class="nav-link" href="{{url('office/orders')}}">
-                    <i class="fas fa-money-check menu-icon"></i><span class="menu-title">Orders</span></a>
-        </li>
+                    <li class="nav-item {{ Request::path() == 'orders' ? 'active' : '' }}"><a class="nav-link" href="{{url('office/orders')}}">
+                            <i class="fas fa-money-check menu-icon"></i><span class="menu-title">Orders</span></a>
+                    </li>
                     <li class="nav-item {{ Request::path() == 'delivery' ? 'active' : '' }}"><a class="nav-link" href="{{url('office/delivery')}}">
-                    <i class="fas fa-truck menu-icon"></i><span class="menu-title">Delivery Settings</span></a>
-        </li>
-                <li class="nav-item {{ Request::path() == 'settings' ? 'active' : '' }}"><a class="nav-link" href="{{url('office/settings')}}">
-                    <i class="fas fa-cogs menu-icon"></i><span class="menu-title">Settings</span></a>
-        </li>
-                <li class="nav-item {{ Request::path() == 'users' ? 'active' : '' }}"><a class="nav-link" href="{{url('office/users')}}">
-                    <i class="fas fa-users menu-icon"></i><span class="menu-title">Users</span></a>
-        </li>
+                            <i class="fas fa-truck menu-icon"></i><span class="menu-title">Delivery Settings</span></a>
+                    </li>
+                    <li class="nav-item {{ Request::path() == 'settings' ? 'active' : '' }}"><a class="nav-link" href="{{url('office/settings')}}">
+                            <i class="fas fa-cogs menu-icon"></i><span class="menu-title">Settings</span></a>
+                    </li>
+                    <li class="nav-item {{ Request::path() == 'users' ? 'active' : '' }}"><a class="nav-link" href="{{url('office/users')}}">
+                            <i class="fas fa-users menu-icon"></i><span class="menu-title">Users</span></a>
+                    </li>
                 @endif
-        <li class="nav-item purchase-button  d-xs-block d-sm-none" >
-            <a class="nav-link" href="{{ route('logout') }}"
-               style="background: #553d67;"
-               onclick="event.preventDefault();
+                <li class="nav-item purchase-button  d-xs-block d-sm-none" >
+                    <a class="nav-link" href="{{ route('logout') }}"
+                       style="background: #553d67;"
+                       onclick="event.preventDefault();
                document.getElementById('logout-form').submit();">
-                {{ __('Logout') }}
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-        </li>
+                        {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>
             @endif
-            @endif
+        @endif
     </ul>
 </nav>

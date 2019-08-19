@@ -52,6 +52,7 @@
     var uploadUrl = "{{route('media_upload')}}";
     var photoDriver = "{{config('app.PHOTO_DRIVER')}}";
 
+
     $(document).ready(function () {
         $(".loader_container").hide();
     })

@@ -12,9 +12,9 @@ class AdminUserSeeder extends Seeder
      */
     public function run()
     {
-        if(!Role::findByName('admin')){
+//        if(!Role::findByName('admin')){
             Role::create(['name' => 'admin']);
-        }
+//        }
             $user = User::create([
            'firstname' => 'Admin',
            'lastname' => 'Admin',

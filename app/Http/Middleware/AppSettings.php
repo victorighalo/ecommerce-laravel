@@ -28,7 +28,7 @@ class AppSettings
         if ($request->path() == 'install') {
             $app_settings = DB::table('app_settings')->count();
             if ($app_settings) {
-                return response()->redirectToRoute('/');
+                return response()->redirectToRoute('home');
             }
             return $next($request);
         }

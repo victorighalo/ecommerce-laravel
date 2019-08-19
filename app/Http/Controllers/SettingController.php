@@ -25,9 +25,9 @@ class SettingController extends Controller
             $setting->store_phone = $request->store_phone;
             $setting->store_about = $request->store_about;
             $setting->save();
-            return back()->with('status', 'Settings updated');
+            return back()->with('status', 'Installation complete');
         }catch (\Exception $e){
-            return back()->with('error', 'Failed to update settings'. $e->getMessage());
+            return back()->with('error', 'Failed to install Application'. $e->getMessage());
         }
     }
 

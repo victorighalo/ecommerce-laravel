@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Taxon;
+use Illuminate\Support\Facades\Validator;
 use Vanilo\Product\Models\ProductState;
 use Vanilo\Properties\Models\Property;
 use Yajra\Datatables\Datatables;
@@ -26,7 +27,18 @@ class ProductsController extends BaseController
         $products = \App\Product::all();
         $properties = Property::all();
 
-        return view('pages.admin.products',
+        return view('pages.admin.products.list',
+            compact('categories', 'products', 'properties')
+        );
+    }
+
+    public function addProduct()
+    {
+        $categories = Taxon::all();
+        $products = \App\Product::all();
+        $properties = Property::all();
+
+        return view('pages.admin.products.create',
             compact('categories', 'products', 'properties')
         );
     }
@@ -34,10 +46,28 @@ class ProductsController extends BaseController
     public function create(Request $request)
     {
 
-
         try {
             //Parse query-string input
             parse_str(html_entity_decode($request->form_data), $product_data);
+
+            //validate form
+            $errormsgs = [
+              'name.min' => 'A product title has to be a minimum of 3 characters',
+              'price.numeric' => 'A product price has numeric',
+              'delivery_price.numeric' => 'A product price has numeric',
+              'taxon_slug.required' => 'Please select a category',
+            ];
+
+            $validator = Validator::make($product_data, [
+                'name' => 'required|min:3',
+                'taxon_slug' => 'required',
+                'price' => 'required|numeric',
+                'delivery_price' => 'numeric',
+//                'meta_description' => 'required|min:3',
+                ], $errormsgs);
+            if($validator->fails()){
+                return response()->json(['status' => 400, 'message' => $validator->errors(), 'error' => $validator->errors()->first()], 400);
+            }
 
             //Get Taxon
             $taxon = Taxon::findBySlug($product_data['taxon_slug']);

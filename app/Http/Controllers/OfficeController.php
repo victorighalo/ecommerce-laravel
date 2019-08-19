@@ -27,7 +27,7 @@ class OfficeController extends Controller
 //        Role::create(['name' => 'admin']);
 //        $user = User::find(1)->first();
 //        $user->assignRole('admin');
-        return redirect('office/products');
+        return redirect('office/dashboard');
     }
 
     public function dashboard(){
