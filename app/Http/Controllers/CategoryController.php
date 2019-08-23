@@ -195,7 +195,6 @@ class CategoryController extends Controller
                         'image' => $path . '/' . $filename . "." . $ext
                 ]);
 
-
                 return response()->json(['status' => 1, 'message' => 'Image Uploaded']);
             } catch (\Exception $e) {
                 return response()->json(['status' => 0, 'message' => $e->getMessage()], 400);

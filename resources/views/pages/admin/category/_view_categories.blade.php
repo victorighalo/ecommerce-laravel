@@ -63,7 +63,7 @@
                             <td>
                                 <a class="btn btn-sm btn-link delete_category" id="{{$category->id}}"><i class="fas fa-trash"></i></a>
                                 <a class="btn btn-sm btn-link edit_category" id="{{$category->id}}"><i class="fas fa-edit"></i></a>
-                                <a class="btn btn-sm btn-link edit_subcategory_image" id="{{$category->id}}" ><i class="fas fa-image" aria-hidden="true"></i></a>
+                                <a class="btn btn-sm btn-link edit_category_image" id="{{$category->id}}" ><i class="fas fa-image" aria-hidden="true"></i></a>
                             </td>
                         </tr>
                     @endforeach

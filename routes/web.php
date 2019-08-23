@@ -76,6 +76,8 @@ Route::post('/media/remove_product', 'ProductsController@removePhoto')->name('re
 Route::post('/media/upload', 'MediaController@UploadMedia')->name('media_upload');
 Route::get('/media/images/load', 'MediaController@loadImages')->name('load_images');
 Route::post('/media/remove', 'MediaController@destroyMedia')->name('media_remove');
+Route::post('/photo/remove', 'MediaController@destroyLocalPhoto')->name('photo_remove');
+Route::post('/slider/update/{id}/{status}', 'MediaController@toggleSlider');
 
 //Categories
 Route::get('/category', 'CategoryController@index');
@@ -104,6 +106,8 @@ Route::get('/properties/json', 'PropertyController@getPropertiesJson')->name('lo
 //App Settings
 Route::get('/settings', 'SettingController@index');
 Route::put('/settings/update', 'SettingController@update');
+Route::post('/settings/slider/upload', 'MediaController@uploadSliderImage')->name('upload_slider_image');
+
 
 //Delivery settings
 Route::get('delivery_data', 'DeliverySettingsController@getDeliveryCostData')->name('delivery_data');

@@ -34,7 +34,7 @@
     <div class="main-panel">
         <div class="content-wrapper">
             <div class="row">
-                <div class="col-12 grid-margin">
+                <div class="col-12 grid-margin mt-4">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title mb-4">Orders</h5>
@@ -48,10 +48,26 @@
                                         <th>Lastname</th>
                                         <th>State</th>
                                         <th>City</th>
+                                        <th>Address</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
+                                    <tbody>
+                                    @foreach($data as $item)
+                                        <tr>
+                                            <td>{{$item->created_at}}</td>
+                                            <td>&#8358;{{number_format($item->price, 0, '.', ',')}} </td>
+                                            <td>{{$item->firstname}}</td>
+                                            <td>{{$item->lastname}}</td>
+                                            <td>{{$item->state_name}}</td>
+                                            <td>{{$item->city_name}}</td>
+                                            <td>{{$item->address}}</td>
+                                            <td>{{$item->status}}</td>
+                                            <td><button class='btn btn-md btn-link view_products' data-cart_id="{{$item->cart_id}}">Products</button></td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -67,21 +83,22 @@
         $(document).ajaxStop($.unblockUI);
         $(document).ready(function () {
 
-            var table = $('#table').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: '{!! route('orders_data') !!}',
-                columns: [
-                    {data: 'created_at', name: 'created_at'},
-                    {data: 'amount', name: 'amount'},
-                    {data: 'firstname', name: 'Firstname'},
-                    {data: 'lastname', name: 'Lastname'},
-                    {data: 'state_name', name: 'State'},
-                    {data: 'city_name', name: 'City'},
-                    {data: 'status', name: 'status'},
-                    {data: 'action', name: 'Action', oderable:false},
-                ]
-            });
+            {{--var table = $('#table').DataTable({--}}
+            {{--    processing: true,--}}
+            {{--    serverSide: true,--}}
+            {{--    ajax: '{!! route('orders_data') !!}',--}}
+            {{--    columns: [--}}
+            {{--        {data: 'created_at', name: 'created_at'},--}}
+            {{--        {data: 'amount', name: 'amount'},--}}
+            {{--        {data: 'firstname', name: 'Firstname'},--}}
+            {{--        {data: 'lastname', name: 'Lastname'},--}}
+            {{--        {data: 'state_name', name: 'State'},--}}
+            {{--        {data: 'city_name', name: 'City'},--}}
+            {{--        {data: 'address', name: 'address'},--}}
+            {{--        {data: 'status', name: 'status'},--}}
+            {{--        {data: 'action', name: 'Action', oderable:false},--}}
+            {{--    ]--}}
+            {{--});--}}
 
             $("#table").on('click', '.view_products', function () {
                 $.blockUI();

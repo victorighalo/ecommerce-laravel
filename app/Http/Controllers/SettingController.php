@@ -8,7 +8,8 @@ class SettingController extends Controller
 {
     public function index(){
         $setting = \App\Setting::get();
-        return view('pages.admin.settings', compact('setting'));
+        $sliders = \App\Slider::all();
+        return view('pages.admin.settings', compact('setting', 'sliders'));
     }
 
     public function store(Request $request){

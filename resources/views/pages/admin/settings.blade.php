@@ -6,118 +6,29 @@
             <div class="row justify-content-center flex-grow mb-5 mt-5">
                 <div class="col-12">
                     <div class="card">
+                        <div class="card-header">
+                            <span uk-icon="settings"></span> Settings
+                        </div>
                         <div class="card-body">
-                                <div class="row justify-content-center">
-                                    <div class="col-sm-8 p-4 mb-5">
-                                        <h4 class="card-title font-weight-bold"> App Settings
-                                        </h4>
-                                        <div>
-                                            @if (session('status'))
-                                                <div class="alert alert-success">
-                                                    {{ session('status') }}
-                                                </div>
-                                            @endif
-                                            @if (session('error'))
-                                                <div class="alert alert-danger">
-                                                    {{ session('error') }}
-                                                </div>
-                                            @endif
-                                        <form id="product_form" action="{{action('SettingController@update')}}" method="post">
-                                            @csrf
-                                            @method('PUT')
-                                            <div class="row form-group">
-                                                <div class="col-sm-12 mb-3">
-                                                    <label for="store_name">{{ __('App name') }}</label>
-                                                    <input type="text" id="store_name" value="{{$app_settings->store_name}}" name="store_name" class="form-control" required>
-                                                    <span class="invalid-feedback errorshow" role="alert">
-                                                </span>
-                                                </div>
-
-                                                <div class="col-sm-12 mb-3">
-                                                    <label for="description">{{ __('Description') }}</label>
-                                                    <input type="text" id="description" value="{{$app_settings->store_description}}" name="store_description" class="form-control" name="description" required>
-                                                    <span class="invalid-feedback errorshow" role="alert">
-                                                </span>
-                                                </div>
-
-                                                <div class="col-sm-12 mb-3">
-                                                    <label for="store_address">{{ __('Address') }}</label>
-                                                    <input type="text" name="store_address" id="store_address" value="{{$app_settings->store_address}}" class="form-control">
-                                                    <span class="invalid-feedback errorshow" role="alert">
-                                                    </span>
-                                                </div>
-
-                                                <div class="col-sm-4 mb-3">
-                                                    <label for="store_email">{{ __('Email') }}</label>
-                                                    <input type="text" name="store_email" id="store_email" value="{{$app_settings->store_email}}" class="form-control">
-                                                    <span class="invalid-feedback errorshow" role="alert">
-                                                    </span>
-                                                </div>
-
-                                                <div class="col-sm-4">
-                                                    <label for="store_twitter">{{ __('Twitter') }}</label>
-                                                    <input type="url" name="store_twitter" value="{{$app_settings->store_twitter}}" id="store_twitter" class="form-control">
-                                                    <span class="invalid-feedback errorshow" role="alert">
-                                                    </span>
-                                                </div>
-
-                                                <div class="col-sm-4 mb-3">
-                                                    <label for="store_facebook">{{ __('Facebook') }}</label>
-                                                    <input type="url" name="store_facebook" id="store_facebook" value="{{$app_settings->store_facebook}}" class="form-control">
-                                                    <span class="invalid-feedback errorshow" role="alert">
-                                                    </span>
-                                                </div>
-
-                                                <div class="col-sm-4">
-                                                    <label for="store_instagram">{{ __('Instagram') }}</label>
-                                                    <input type="url" name="store_instagram" value="{{$app_settings->store_instagram}}" id="store_instagram" class="form-control">
-                                                    <span class="invalid-feedback errorshow" role="alert">
-                                                    </span>
-                                                </div>
-
-                                                <div class="col-sm-4 mb-3">
-                                                    <label for="store_linkedin">{{ __('Linkedin') }}</label>
-                                                    <input type="url" name="store_linkedin" id="store_linkedin" value="{{$app_settings->store_linkedin}}" class="form-control">
-                                                    <span class="invalid-feedback errorshow" role="alert">
-                                                    </span>
-                                                </div>
-
-                                                <div class="col-sm-4 mb-3">
-                                                    <label for="store_youtube">{{ __('YouTube') }}</label>
-                                                    <input type="url" name="store_youtube" id="store_youtube" value="{{$app_settings->store_youtube}}" class="form-control">
-                                                    <span class="invalid-feedback errorshow" role="alert">
-                                                    </span>
-                                                </div>
-
-                                                <div class="col-sm-6">
-                                                    <label for="phone">{{ __('Phone') }}</label>
-                                                    <input type="phone" value="{{$app_settings->store_phone}}" name="store_phone" id="phone" class="form-control">
-                                                    <span class="invalid-feedback errorshow" role="alert">
-                                                    </span>
-                                                </div>
-
-                                            </div>
-
-
-                                            <div class="row justify-content-center form-group">
-                                                <div class="col-sm-12">
-                                                    <label for="about">{{ __('About') }}</label>
-                                                    <textarea class="form-control" name="about" id="about" cols="30" rows="5">{{$app_settings->store_about}}</textarea>
-                                                    <span class="invalid-feedback errorshow" role="alert">
-                                        </span>
-                                                </div>
-
-
-                                            </div>
-                                            <div class="mt-1">
-                                                <button class="btn float-right btn-primary btn-lg font-weight-medium add_product_btn" type="submit">
-                                                    <i class="fas fa-spinner fa-spin off process_indicator"></i>
-                                                    <span>{{ __('Save') }}</span>
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general">
+                                        <span uk-icon="user"></span> General
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="slider-tab" data-toggle="tab" href="#slider">
+                                        <span uk-icon="image"></span> Slider
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" role="tabpanel" id="general" role="tabpanel">
+                                @include('pages.admin.settings.general')
+                            </div>
+                            <div class="tab-pane fade" role="tabpanel" id="slider" role="tabpanel">
+                            @include('pages.admin.settings.slider')
                             </div>
                         </div>
                     </div>
@@ -127,11 +38,70 @@
 
         </div>
     </div>
+
 @endsection
 
 @push('script')
     <script src="{{asset('plugins/bootstrap-tagsinput.min.js')}}"></script>
     <script>
+        var selected_category_id;
+        $(".edit_slider_image").on('click', function () {
+        $("input[class='upload_image']").trigger('click');
+        selected_category_id = $(this).attr('id')
+        });
 
+        // Upload Action
+        $(document).on('input', 'input:file', function (event) {
+
+            var uploaded_file = $(this).prop('files')[0];
+            var form_data = new FormData();
+
+            form_data.append('uploaded_file', uploaded_file);
+            form_data.append('category_id', selected_category_id);
+
+            $.blockUI({message: '<h5>Uploading...</h5>'});
+            $.ajax({
+                url: "{!! route('upload_slider_image') !!}",
+                data: form_data,
+                type: 'POST',
+                dataType: 'JSON',
+                contentType: false,
+                cache: false,
+                processData: false,
+            })
+                .done(function (data) {
+                    $.unblockUI();
+
+                    if (data.status == 0) {
+                        new PNotify({
+                            title: 'Oops!',
+                            text: 'An Error Occurred. Please try again.',
+                            addclass: 'custom_notification',
+                            type: 'error'
+                        });
+                    }
+                    else {
+                        new PNotify({
+                            title: 'Success!',
+                            text: data.message,
+                            addclass: 'custom_notification',
+                            type: 'success'
+                        });
+                        setTimeout(function () {
+                            location.reload();
+                        }, 2000)
+                    }
+                }).fail(function (error) {
+                $.unblockUI();
+
+                new PNotify({
+                    title: 'Oops!',
+                    text: 'An Error Occurred. Please try again.',
+                    addclass: 'custom_notification',
+                    type: 'error'
+                });
+            });
+
+        });
     </script>
 @endpush

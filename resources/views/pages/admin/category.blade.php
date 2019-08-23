@@ -144,7 +144,6 @@
                 })
             });
 
-
             $(".delete_subcategory").on('click', function () {
                 destroyTaxon($(this).attr('id'))
             });
@@ -169,7 +168,7 @@
                 $('#child_category_modal').modal('show')
             });
 
-            $(".edit_subcategory_image").on('click', function () {
+            $(".edit_category_image").on('click', function () {
             $("input[class='upload_cat_image']").trigger('click');
                 selected_category_id = $(this).attr('id')
             });

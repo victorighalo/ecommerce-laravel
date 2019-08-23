@@ -138,7 +138,7 @@
                                                 {{--</div>--}}
                                             {{--</li>--}}
                                         {{--</ul>--}}
-                                        <button href="" class="btn btn-small  btn-secondary pull-left margin-top-30" type="button"><i class="fa fa-phone"></i> CALL TO ORDER</button> </div>
+                                        <a href="tel:{{$app_settings->store_phone}}" class="btn btn-small  btn-secondary pull-left margin-top-30"><i class="fa fa-phone"></i> CALL TO ORDER</a> </div>
                                         <button href="" class="btn  btn-dark pull-right margin-top-30 checkout" type="submit"><i class="fa fa-credit-card"></i> PLACE ORDER</button> </div>
                             </div>
 

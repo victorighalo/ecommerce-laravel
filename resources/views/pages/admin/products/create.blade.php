@@ -373,6 +373,5 @@
             })
         };
 
-
     </script>
 @endpush

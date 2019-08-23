@@ -16,6 +16,7 @@
     <link href="{{ asset('admin/css/quill.snow.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/quill.bubble.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/css/uikit.css') }}" rel="stylesheet">
 
 </head>
 <body>
@@ -41,8 +42,11 @@
 <script src="{{ asset('admin/js/all.js') }}" ></script>
 <script src="{{ asset('admin/js/quill.min.js') }}" ></script>
 <script src="{{ asset('plugins/jquery.blockUI.js') }}" ></script>
+<script src="{{ asset('admin/js/uikit.js') }}" ></script>
+<script src="{{ asset('admin/js/uikit-icons.js') }}" ></script>
 <script>
-    $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+    $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI)
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

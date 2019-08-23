@@ -44,7 +44,13 @@ class OfficeController extends Controller
     }
 
     public function orders(){
-       return view('pages.admin.orders.index');
+        $data = \App\Transactions::join('cart_items', function ($join){
+            $join->on('transactions.cart_id', '=', 'cart_items.cart_id');
+        }
+        )->join('states', 'transactions.state_id', 'states.state_id')
+            ->join('cities', 'transactions.city_id', 'cities.city_id')
+            ->paginate();
+       return view('pages.admin.orders.index', compact('data'));
     }
 
     public function ordersData(){

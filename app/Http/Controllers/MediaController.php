@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PhotoUploadRequest;
 use App\Media;
+use App\Photo;
+use App\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -29,6 +31,8 @@ class MediaController extends Controller
             return $this->destroyS3($request);
         }
     }
+
+
 
     private function uploadLocal(Request $request)
     {
@@ -199,6 +203,47 @@ class MediaController extends Controller
         }
     }
 
+    public function destroyLocalPhoto(Request $request)
+    {
+        if(!Photo::where('id', $request->mediaId)->exists()){
+            return response()->json(['status' => 400, 'message' => 'Failed to delete Media. File does not exist'], 400);
+        }
+
+        $media_item = Photo::where('id', $request->mediaId);
+        $file = $media_item->first()->link;
+
+        try {
+            $path_file = public_path('/' . $file);
+            $thumb_path_file = public_path('thumbnail/' . $file);
+
+            if (File::exists($file)) {
+                File::delete($path_file);
+            }
+
+            if (File::exists('thumbnail/' . $file)) {
+                File::delete($thumb_path_file);
+            }
+            $media_item->delete();
+            return response()->json(['status' => 200, 'message' => 'Media deleted'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 400, 'message' => 'Failed to delete Media'], 400);
+        }
+    }
+
+    public function toggleSlider($id, $status)
+    {
+        if(!Slider::where('id', $id)->exists()){
+            return response()->json(['status' => 400, 'message' => 'Slider does not exist'], 400);
+        }
+
+        try {
+            Slider::where('id', $id)->update(['status' => $status]);
+            return response()->json(['status' => 200, 'message' => 'Slider updated'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 400, 'message' => 'Slider could not be updated'.$e->getMessage()], 400);
+        }
+    }
+
     private function destroyS3(Request $request)
     {
         if(!Media::where('id', $request->mediaId)->exists()){
@@ -230,6 +275,68 @@ class MediaController extends Controller
             return response()->json(['status' => 200, 'message' => 'Media deleted'], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 400, 'message' => 'Failed to delete Media'], 400);
+        }
+    }
+
+
+    public function uploadSliderImage(Request $request)
+    {
+        // Validate input
+        $validator = Validator::make($request->all(), [
+            'uploaded_file' => 'required|image|max:400'
+        ]);
+
+        if ($validator->fails()) {
+            response()->json(['message' => "Validation failed"], 400);
+        }
+
+        try {
+            $path = 'images/' . date('Y') . '/' . date('m');
+            $thumb_path = 'thumbnail/images/' . date('Y') . '/' . date('m');
+            $upload_path = public_path($path);
+            $thumb_upload_path = public_path($thumb_path);
+
+            //Find or create upload folder
+            if (!is_dir($upload_path)) {
+                if (!mkdir($upload_path, 0777, true)) {
+                    return response()->json(['status' => 0, 'message' => 'An Error occurred creating images part. Try again.'], 400);
+                }
+            }
+
+            if (!is_dir($thumb_upload_path)) {
+                if (!mkdir($thumb_upload_path, 0777, true)) {
+                    return response()->json(['status' => 0, 'message' => 'An Error occurred craeting thumnail path. Try again.'], 400);
+                }
+            }
+            //Get file name
+            $ext = $request->file('uploaded_file')->clientExtension();
+//                $filename = preg_replace('/\..+$/', '', $request->file('uploaded_file')->getClientOriginalName());
+            $filename = md5(uniqid());
+
+            try {
+
+                //Upload raw file
+                $request->file('uploaded_file')->move(
+                    $upload_path, $filename . '.' . $ext
+                );
+
+                // Resize to upload smaller size
+                $image_resize = Image::make($upload_path . '/' . $filename . "." . $ext)
+                    ->resize(400, 400, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                $image_resize->save($thumb_upload_path . '/' . $filename . "." . $ext);
+
+                $media = Slider::find(1);
+                $photo = new Photo();
+                $photo->link = $path . '/' . $filename . "." . $ext;
+                $media->photos()->save($photo);
+                return response()->json(['status' => 1, 'message' => 'Resource uploaded']);
+            } catch (\Exception $e) {
+                return response()->json(['status' => 0, 'message' => $e->getMessage()], 400);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => 0, 'message' => $e->getMessage()]);
         }
     }
 

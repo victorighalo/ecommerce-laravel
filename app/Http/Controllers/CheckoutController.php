@@ -18,9 +18,10 @@ class CheckoutController extends Controller
         $addresses = DeliveryAddress::where('user_id', Auth::id())->get();
         $delivery_cost = 0;
         foreach (Cart::getItems() as $item){
-           $delivery_cost += $item->product->delivery_cost;
+           $delivery_cost += $item->product->delivery_price->amount;
         }
         $total_cost = Cart::total() + $delivery_cost;
+
         return view('pages.front.checkout', compact(  'states', 'addresses', 'delivery_cost', 'total_cost'));
     }
 
