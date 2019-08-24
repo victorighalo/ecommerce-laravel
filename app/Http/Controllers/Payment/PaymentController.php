@@ -23,7 +23,7 @@ class PaymentController extends Controller
         $this->payStackProxy = $PayStackProxy;
         $this->middleware(['web']);
     }
-    
+
     public function initializePayStackTrans(PaymentRequest $request){
         $delivery_cost = $this->calculateDelivery($request);
         $trans_email = Auth::guest() ? $request->email : Auth::user()->email;
@@ -71,7 +71,7 @@ class PaymentController extends Controller
     private function calculateDelivery(Request $request){
         $delivery_cost = 0;
         foreach (Cart::getItems() as $item){
-            $delivery_cost += $item->product->delivery_cost;
+            $delivery_cost += $item->product->delivery_price->amount;
         }
         $data = \App\DeliveryCharge::where('state_id', $request->state_id)->where('city_id', $request->city_id);
 
