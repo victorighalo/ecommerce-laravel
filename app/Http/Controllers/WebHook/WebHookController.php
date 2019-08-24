@@ -18,7 +18,7 @@ class WebHookController extends Controller
 //        $body = @file_get_contents("php://input");
         //Log
         $log = new \App\Log();
-        $log->data = json_encode($request->data);
+        $log->data = "jhvjvjh";
         $log->save();
         exit();
 //        if ((strtoupper($request->getMethod()) != 'POST' )){
@@ -87,7 +87,7 @@ class WebHookController extends Controller
         }catch (\Exception $e) {
             //Log
             $log = new \App\Log();
-            $log->data = json_encode($e->getMessage());
+            $log->data = $e->getMessage();
             $log->save();
         }
 
