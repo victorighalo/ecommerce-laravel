@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 class WebHookController extends Controller
 {
     public function PaystackWebhook(Request $request){
+        try{
         //Log
         $log = new \App\Log();
         $log->data = "WebHook called";
@@ -20,7 +21,7 @@ class WebHookController extends Controller
         $body = @file_get_contents("php://input");
         //Log
         $log = new \App\Log();
-        $log->data = json_encode($body);
+        $log->data = $body;
         $log->save();
 
         if ((strtoupper($request->getMethod()) != 'POST' ) || $signature == '' ){
@@ -38,7 +39,7 @@ class WebHookController extends Controller
             $log->save();
         }
 
-        http_response_code(200);
+//        http_response_code(200);
 
         try{
             switch($request->event){
@@ -73,7 +74,7 @@ class WebHookController extends Controller
         }catch (\Exception $e){
             //Log
             $log = new \App\Log();
-            $log->data = json_encode($request->all());
+            $log->data = json_encode($e->getMessage());
             $log->save();
 //            $file = fopen(base_path()."/log.txt","a");
 //            fwrite($file, date('Y/m/d') . " Error Log Payment - \n");
@@ -84,6 +85,12 @@ class WebHookController extends Controller
 
         }
         exit();
+        }catch (\Exception $e) {
+            //Log
+            $log = new \App\Log();
+            $log->data = json_encode($e->getMessage());
+            $log->save();
+        }
 
     }
 }
