@@ -116,10 +116,10 @@ class PaymentController extends Controller
             ['status' => OrderStatus::COMPLETED]
         );
 
-        $trans_status = new TransactionStatus();
+        $trans_status = new TransactionStatus('complete');
 
         Transactions::where('reference', $ref)->update(
-            ['status' => $trans_status::COMPLETE]
+            ['status' => $trans_status->value()]
         );
 
         return view('payment.success', compact('trans','ref', 'products'));
