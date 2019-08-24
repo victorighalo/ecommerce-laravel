@@ -16,9 +16,13 @@ class WebHookController extends Controller
 
 //        $signature = isset($_SERVER['HTTP_X_PAYSTACK_SIGNATURE']) ? $_SERVER['HTTP_X_PAYSTACK_SIGNATURE'] : '';
         $body = @file_get_contents("php://input");
+
         //Log
             DB::table('logs')->insert([
-                'data' => null
+                'data' => @file_get_contents("php://input")
+            ]);
+            DB::table('logs')->insert([
+                'data' => $request->all()
             ]);
 
         exit();
