@@ -17,27 +17,29 @@ class WebHookController extends Controller
         $log->data = "WebHook called";
         $log->save();
 
-        $signature = (isset($_SERVER['HTTP_X_PAYSTACK_SIGNATURE']) ? $_SERVER['HTTP_X_PAYSTACK_SIGNATURE'] : '');
+        $signature = isset($_SERVER['HTTP_X_PAYSTACK_SIGNATURE']) ? $_SERVER['HTTP_X_PAYSTACK_SIGNATURE'] : '';
         $body = @file_get_contents("php://input");
         //Log
         $log = new \App\Log();
         $log->data = $body;
         $log->save();
 
-        if ((strtoupper($request->getMethod()) != 'POST' ) || $signature == '' ){
-            //Log
-            $log = new \App\Log();
-            $log->data = "Failed at first Validation";
-            $log->save();
-            exit();
-        }
-
-        if($signature !== hash_hmac('sha512', $body, config('app.ps_key'))){
-            //Log
-            $log = new \App\Log();
-            $log->data = "Failed at Checking signature";
-            $log->save();
-        }
+//        if ((strtoupper($request->getMethod()) != 'POST' ) || $signature == '' ){
+//            //Log
+//            $log = new \App\Log();
+//            $log->data = "Failed at first Validation";
+//            $log->save();
+//            exit();
+//        }else{
+//
+//        }
+//
+//        if($signature !== hash_hmac('sha512', $body, config('app.ps_key'))){
+//            //Log
+//            $log = new \App\Log();
+//            $log->data = "Failed at Checking signature";
+//            $log->save();
+//        }
 
 //        http_response_code(200);
 
@@ -84,7 +86,7 @@ class WebHookController extends Controller
 //            fclose($file);
 
         }
-        exit();
+//        exit();
         }catch (\Exception $e) {
             //Log
             $log = new \App\Log();
