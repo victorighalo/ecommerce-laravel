@@ -15,7 +15,7 @@
                   <h4 style="color: #fff;margin-top: 35px;">Transaction Successful</h4>
                 </div>
                     <div class="col-4 text-center p-4">
-                        <p>Transaction ID : <span>{{$trans->reference}}</span></p>
+                        <p>Transaction ID : <span>{{$ref}}</span></p>
                         <div>
                           <h6>Delivered to :</h6>
                           <p>Firstname : <span>{{$trans->firstname}}</span></p>
@@ -42,6 +42,23 @@
                                 </tr>
                             @endforeach
                             </tbody>
+                            <tfoot>
+{{--                                <tr>--}}
+{{--                                    <th>--}}
+{{--                                         Shipping cost--}}
+{{--                                    </th>--}}
+{{--                                    <th>--}}
+{{--                                        {{number_format($trans->amount, 0, '.', ',')}}--}}
+{{--                                    </th> --}}
+{{--                                <tr>--}}
+                                    <th>
+                                        Total cost (including shipping)
+                                    </th>
+                                    <th>
+                                        {{number_format($trans->amount, 0, '.', ',')}}
+                                    </th>
+                                </tr>
+                            </tfoot>
                         </table>
 
                     </div>

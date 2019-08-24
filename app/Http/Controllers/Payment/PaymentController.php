@@ -15,6 +15,7 @@ use App\Http\Controllers\Controller;
 use App\Enums\TransactionStatus;
 use Vanilo\Cart\Models\CartItem;
 use Vanilo\Order\Models\Order;
+use Vanilo\Order\Models\OrderItem;
 
 
 class PaymentController extends Controller
@@ -50,7 +51,7 @@ class PaymentController extends Controller
             ]);
 
         }
-//        dd('stop');
+
         $initPayStack = $this->payStackProxy->initializeTransaction($trans_email, $amount , $ref);
 
         if(!$initPayStack){
@@ -102,11 +103,14 @@ class PaymentController extends Controller
         }
         return $delivery_cost;
     }
-    public function successReport(){
-        $trans = Transactions::find(1);
-        $products = CartItem::where('cart_id', $trans->cart_id)
-            ->join('products', 'cart_items.product_id', 'products.id')
+    public function successReport(Request $request){
+        $ref = $request->get('reference');
+        $order = Order::where('number', $ref)->first();
+        $products = OrderItem::where('order_id', $order)
+            ->join('products', 'order_items.product_id', 'products.id')
             ->get();
-        return view('payment.success', compact('trans', 'products'));
+        $trans = Transactions::where('reference', $ref)->first();
+
+        return view('payment.success', compact('trans','ref', 'products'));
     }
 }

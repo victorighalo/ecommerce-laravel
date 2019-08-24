@@ -12,11 +12,12 @@ class WebHookController extends Controller
 {
     public function PaystackWebhook(Request $request){
         DB::table('logs')->insert([
-            'data' => $request->all()
-        ]);
-        DB::table('logs')->insert([
             'data' => 'here'
         ]);
+        DB::table('logs')->insert([
+            'data' => $request->all()
+        ]);
+
         try{
 
 
