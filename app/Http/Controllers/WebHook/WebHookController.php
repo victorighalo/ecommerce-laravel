@@ -6,11 +6,14 @@ namespace App\Http\Controllers;
 use App\Transactions;
 use App\User;
 use Illuminate\Http\Request;
-
+use DB;
 class WebHookController extends Controller
 {
     public function PaystackWebhook(Request $request){
-
+        //Log
+        DB:table('logs')->insert(
+            ['data' => json_encode($request->all())]
+        );
         $signature = (isset($_SERVER['HTTP_X_PAYSTACK_SIGNATURE']) ? $_SERVER['HTTP_X_PAYSTACK_SIGNATURE'] : '');
         $body = @file_get_contents("php://input");
 
@@ -58,12 +61,13 @@ class WebHookController extends Controller
                     break;
             }
         }catch (\Exception $e){
-            $file = fopen(base_path()."/log.txt","a");
-            fwrite($file, date('Y/m/d') . " Error Log Payment - \n");
-            fwrite($file,$e->getMessage());
-            fwrite($file,$e->getTraceAsString());
-            fwrite($file,$e->getLine() );
-            fclose($file);
+//            $file = fopen(base_path()."/log.txt","a");
+//            fwrite($file, date('Y/m/d') . " Error Log Payment - \n");
+//            fwrite($file,$e->getMessage());
+//            fwrite($file,$e->getTraceAsString());
+//            fwrite($file,$e->getLine() );
+//            fclose($file);
+
         }
         exit();
 
