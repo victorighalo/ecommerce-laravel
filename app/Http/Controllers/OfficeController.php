@@ -6,7 +6,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Konekt\Acl\Models\Role;
-use Vanilo\Cart\Models\CartItem;
+
+use Vanilo\Order\Models\OrderItem;
 use Yajra\DataTables\DataTables;
 
 class OfficeController extends Controller
@@ -31,7 +32,8 @@ class OfficeController extends Controller
     }
 
     public function dashboard(){
-        return view('pages.admin.dashboard.index');
+        $data = \App\Transactions::paginate();
+        return view('pages.admin.dashboard.index', compact('data'));
     }
 
     public function getStoreStats(){
@@ -44,8 +46,8 @@ class OfficeController extends Controller
     }
 
     public function orders(){
-        $data = \App\Transactions::join('cart_items', function ($join){
-            $join->on('transactions.cart_id', '=', 'cart_items.cart_id');
+        $data = \App\Transactions::join('order_items', function ($join){
+            $join->on('transactions.order_id', '=', 'order_items.order_id');
         }
         )->join('states', 'transactions.state_id', 'states.state_id')
             ->join('cities', 'transactions.city_id', 'cities.city_id')
@@ -72,9 +74,10 @@ class OfficeController extends Controller
 
 
     public function ordersProducts(Request $request){
-        $products = CartItem::where('cart_id', $request->cart_id)
-            ->join('products', 'cart_items.product_id', 'products.id')
+        $products = OrderItem::where('order_id', $request->input('order_id'))
+            ->join('products', 'order_items.product_id', 'products.id')
             ->get();
+
         return response()->json(['data' => $products]);
 
     }

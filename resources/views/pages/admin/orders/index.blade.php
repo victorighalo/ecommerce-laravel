@@ -42,6 +42,7 @@
                                 <table class="table table-bordered" id="table">
                                     <thead>
                                     <tr>
+                                        <th>ID</th>
                                         <th>Date</th>
                                         <th>Amount</th>
                                         <th>Firstname</th>
@@ -56,6 +57,7 @@
                                     <tbody>
                                     @foreach($data as $item)
                                         <tr>
+                                            <td>{{$item->order_id}}</td>
                                             <td>{{$item->created_at}}</td>
                                             <td>&#8358;{{number_format($item->price, 0, '.', ',')}} </td>
                                             <td>{{$item->firstname}}</td>
@@ -64,7 +66,7 @@
                                             <td>{{$item->city_name}}</td>
                                             <td>{{$item->address}}</td>
                                             <td>{{$item->status}}</td>
-                                            <td><button class='btn btn-md btn-link view_products' data-cart_id="{{$item->cart_id}}">Products</button></td>
+                                            <td><button class='btn btn-md btn-link view_products' data-order_id="{{$item->order_id}}">Products</button></td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -102,11 +104,11 @@
 
             $("#table").on('click', '.view_products', function () {
                 $.blockUI();
-                var cart_id = $(this).data('cart_id');
+                var order_id = $(this).data('order_id');
                 $.ajax({
                     url: "{!! route('order_products') !!}",
                     method: 'POST',
-                    data: {cart_id: cart_id},
+                    data: {order_id: order_id},
                 }).done( function(data){
 
                     var tr = "<tr>";

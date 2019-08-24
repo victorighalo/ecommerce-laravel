@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 class WebHookController extends Controller
 {
     public function PaystackWebhook(Request $request){
+
         $signature = (isset($_SERVER['HTTP_X_PAYSTACK_SIGNATURE']) ? $_SERVER['HTTP_X_PAYSTACK_SIGNATURE'] : '');
         $body = @file_get_contents("php://input");
 

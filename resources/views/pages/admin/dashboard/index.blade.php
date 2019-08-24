@@ -12,14 +12,31 @@
                             <table class="table table-bordered" id="users-table">
                                 <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Active</th>
                                     <th>Created At</th>
-                                    <th>Updated At</th>
-                                    <th>Setting</th>
+                                    <th>Order ID</th>
+                                    <th>Ref ID</th>
+                                    <th>Cost</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+
+                                    <th>Status</th>
                                 </tr>
                                 </thead>
+                                <tbody>
+                                @foreach($data as $item)
+                                    <tr>
+                                        <td>{{$item->created_at}}</td>
+                                        <td>{{$item->order_id}}</td>
+                                        <td>{{$item->reference}}</td>
+                                        <td>&#8358;{{number_format($item->amount, 0, '.', ',')}} </td>
+                                        <td>{{$item->firstname}}</td>
+                                        <td>{{$item->lastname}}</td>
+                                        <td>{{$item->user_email}}</td>
+                                        <td>{{$item->status}}</td>
+                                           </tr>
+                                @endforeach
+                                </tbody>
                             </table>
                         </div>
                         </div>
