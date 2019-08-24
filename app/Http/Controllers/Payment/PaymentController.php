@@ -38,6 +38,7 @@ class PaymentController extends Controller
         }
         if($initPayStack->status){
             $this->createTransaction($amount, $trans_email, $user_id,$uuid, $request);
+            Cart::destroy();
             return redirect()->away($initPayStack->data->authorization_url);
         }else{
             return back()->with(['error' => $initPayStack->message]);
