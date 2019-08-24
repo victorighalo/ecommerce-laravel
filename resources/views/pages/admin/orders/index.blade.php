@@ -71,7 +71,7 @@
                                         @endforeach
                                     </tbody>
                                     <tfoot>
-                                    {{ $users->links() }}
+                                    {{ $data->links() }}
                                     </tfoot>
                                 </table>
                             </div>
