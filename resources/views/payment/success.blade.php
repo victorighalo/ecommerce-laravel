@@ -38,7 +38,7 @@
                             @foreach($products as $item)
                                 <tr>
                                     <td>{{$item->name}}</td>
-                                    <td>{{number_format($item->price, 0, '.', ',')}}</td>
+                                    <td>&#8358;{{number_format($item->price, 0, '.', ',')}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -55,7 +55,7 @@
                                         Total cost (including shipping)
                                     </th>
                                     <th>
-                                        {{number_format($trans->amount, 0, '.', ',')}}
+                                        &#8358;{{number_format($trans->amount, 0, '.', ',')}}
                                     </th>
                                 </tr>
                             </tfoot>

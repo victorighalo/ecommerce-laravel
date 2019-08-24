@@ -54,7 +54,7 @@ class PaymentController extends Controller
 
         }
 
-        $initPayStack = $this->payStackProxy->initializeTransaction($trans_email, $amount , $ref);
+        $initPayStack = $this->payStackProxy->initializeTransaction($trans_email, $converted_amount , $ref);
 
         if(!$initPayStack){
             return back()->with(['error' => 'Network failure. Please try again.']);
