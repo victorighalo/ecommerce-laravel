@@ -2,6 +2,7 @@
 
 Route::get('/', 'PagesController@home')->name('home');
 Route::get('/home', 'PagesController@home');
+Route::post('/payment/paystack/verify', 'WebHook\WebHookController@PaystackWebhook');
 
 Route::get('install', 'SettingController@install')->name('install');
 Route::post('install', 'SettingController@store');
