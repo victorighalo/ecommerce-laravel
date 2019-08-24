@@ -18,7 +18,7 @@ class WebHookController extends Controller
         $body = @file_get_contents("php://input");
         //Log
             DB::table('logs')->insert([
-                'data' => $body
+                'data' => null
             ]);
 
         exit();
