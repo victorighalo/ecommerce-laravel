@@ -21,7 +21,7 @@
                           <p>Firstname : <span>{{$trans->firstname}}</span></p>
                           <p>Lastname : <span>{{$trans->lastname}}</span></p>
                           <p>Phone : <span>{{$trans->phone}}</span></p>
-                          <p>Email : <span>{{$trans->email}}</span></p>
+                          <p>Email : <span>{{$trans->user_email}}</span></p>
                         </div>
                     </div>
 

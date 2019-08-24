@@ -33,7 +33,8 @@ class PaymentController extends Controller
         $delivery_cost = $this->calculateDelivery($request);
         $trans_email = Auth::guest() ? $request->email : Auth::user()->email;
         $user_id = Auth::guest() ? Auth::id() : null;
-        $amount = ( (Cart::total() + $delivery_cost) * 100);
+        $amount = (Cart::total() + $delivery_cost) ;
+        $converted_amount = ( (Cart::total() + $delivery_cost) * 100);
         $uuid = bin2hex(random_bytes(4)) ;
         $ref = strtoupper(trim($uuid));
         $order = Order::create([
@@ -106,7 +107,7 @@ class PaymentController extends Controller
     public function successReport(Request $request){
         $ref = $request->get('reference');
         $order = Order::where('number', $ref)->first();
-        $products = OrderItem::where('order_id', $order)
+        $products = OrderItem::where('order_id', $order->id)
             ->join('products', 'order_items.product_id', 'products.id')
             ->get();
         $trans = Transactions::where('reference', $ref)->first();
