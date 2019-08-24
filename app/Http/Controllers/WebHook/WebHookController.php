@@ -12,10 +12,7 @@ class WebHookController extends Controller
 {
     public function PaystackWebhook(Request $request){
         try{
-        //Log
-        $log = new \App\Log();
-        $log->data = "WebHook called";
-        $log->save();
+
 
         $signature = isset($_SERVER['HTTP_X_PAYSTACK_SIGNATURE']) ? $_SERVER['HTTP_X_PAYSTACK_SIGNATURE'] : '';
         $body = @file_get_contents("php://input");
