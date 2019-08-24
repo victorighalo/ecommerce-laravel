@@ -18,7 +18,7 @@ class WebHookController extends Controller
         $body = @file_get_contents("php://input");
         //Log
         $log = new \App\Log();
-        $log->data = $body + 'Body is here';
+        $log->data = $body . 'Body is here';
         $log->save();
 
 //        if ((strtoupper($request->getMethod()) != 'POST' )){
