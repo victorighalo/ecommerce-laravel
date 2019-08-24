@@ -11,23 +11,28 @@ use App\Http\Controllers\Controller;
 class WebHookController extends Controller
 {
     public function PaystackWebhook(Request $request){
-        //Log
-        $log = new \App\Log();
-        $log->data = json_encode($request->all());
-        $log->save();
+
 
         $signature = (isset($_SERVER['HTTP_X_PAYSTACK_SIGNATURE']) ? $_SERVER['HTTP_X_PAYSTACK_SIGNATURE'] : '');
         $body = @file_get_contents("php://input");
+        //Log
+        $log = new \App\Log();
+        $log->data = json_encode($body);
+        $log->save();
 
         if ((strtoupper($request->getMethod()) != 'POST' ) || $signature == '' ){
+            //Log
+            $log = new \App\Log();
+            $log->data = "Failed at first Validation";
+            $log->save();
             exit();
         }
 
         if($signature !== hash_hmac('sha512', $body, config('app.ps_key'))){
-            $file = fopen(base_path()."/log.txt","w+");
-            fwrite($file, "Failed second");
-            fclose($file);
-            exit();
+            //Log
+            $log = new \App\Log();
+            $log->data = "Failed at Checking signature";
+            $log->save();
         }
 
         http_response_code(200);
