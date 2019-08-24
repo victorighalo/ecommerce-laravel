@@ -16,6 +16,7 @@ use App\Enums\TransactionStatus;
 use Vanilo\Cart\Models\CartItem;
 use Vanilo\Order\Models\Order;
 use Vanilo\Order\Models\OrderItem;
+use Vanilo\Order\Models\OrderStatus;
 
 
 class PaymentController extends Controller
@@ -111,7 +112,9 @@ class PaymentController extends Controller
             ->join('products', 'order_items.product_id', 'products.id')
             ->get();
         $trans = Transactions::where('reference', $ref)->first();
-
+        Order::where('number', $ref)->update(
+            ['status' => OrderStatus::COMPLETED]
+        );
         return view('payment.success', compact('trans','ref', 'products'));
     }
 }
