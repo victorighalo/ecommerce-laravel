@@ -7,7 +7,7 @@ use App\Transactions;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use DB;
 class WebHookController extends Controller
 {
     public function PaystackWebhook(Request $request){
@@ -17,9 +17,10 @@ class WebHookController extends Controller
 //        $signature = isset($_SERVER['HTTP_X_PAYSTACK_SIGNATURE']) ? $_SERVER['HTTP_X_PAYSTACK_SIGNATURE'] : '';
 //        $body = @file_get_contents("php://input");
         //Log
-        $log = new \App\Log();
-        $log->data = "jhvjvjh";
-        $log->save();
+            DB::table('logs')->insert([
+                'data' => $body
+            ]);
+
         exit();
 //        if ((strtoupper($request->getMethod()) != 'POST' )){
 //            //Log
