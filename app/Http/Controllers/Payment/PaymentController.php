@@ -112,6 +112,10 @@ class PaymentController extends Controller
             if ($verifyTrans) {
                 if(!$verifyTrans->status){
                     $message = $verifyTrans->message;
+                    $trans_status = new TransactionStatus('failed');
+                    Transactions::where('reference', $ref)->update(
+                        ['status' => $trans_status->value()]
+                    );
                     return view('payment.unsuccessful', compact('message'));
                 }elseif ($verifyTrans->data->status == 'success') {
                     $order = Order::where('number', $ref)->first();
@@ -132,8 +136,18 @@ class PaymentController extends Controller
                     return view('payment.success', compact('trans', 'ref', 'products'));
                 }
             }
+            $trans_status = new TransactionStatus('failed');
+
+            Transactions::where('reference', $ref)->update(
+                ['status' => $trans_status->value()]
+            );
             return view('payment.error');
         }
+        $trans_status = new TransactionStatus('failed');
+
+        Transactions::where('reference', $request->get('trxref'))->update(
+            ['status' => $trans_status->value()]
+        );
         return view('payment.error');
     }
 
