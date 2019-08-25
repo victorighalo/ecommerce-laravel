@@ -17,7 +17,16 @@ class PayStackProxy extends BaseProxy
         ];
 
         return $this->sendPost("https://api.paystack.co/transaction/initialize", $header, $payload);
+    }
 
+    public function verifyTransaction($ref){
+        $header = [
+            "Authorization: Bearer ".config('app.PAYSTACK_SECRET_KEY'),
+            "cache-control: no-cache",
+            "accept: application/json"
+        ];
+
+        return $this->sendGet("https://api.paystack.co/transaction/verify/". rawurlencode($ref), $header );
 
     }
 }

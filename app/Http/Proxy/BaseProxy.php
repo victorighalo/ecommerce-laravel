@@ -27,8 +27,20 @@ abstract class BaseProxy implements IBaseProxy
 
     }
 
-    public function sendGet($url){
+    public function sendGet($url,$header){
+        try {
         $response = Curl::to($url)
+            ->withHeaders($header)
+            ->withContentType('application/json')
+            ->asJsonResponse()
             ->get();
+            if($response){
+                return $response;
+            }else{
+                return false;
+            }
+        }catch (\Exception $e){
+            return false;
+        }
     }
 }

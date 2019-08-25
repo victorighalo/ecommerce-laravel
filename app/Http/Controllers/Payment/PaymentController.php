@@ -106,22 +106,36 @@ class PaymentController extends Controller
         return $delivery_cost;
     }
     public function successReport(Request $request){
-        $ref = $request->get('reference');
-        $order = Order::where('number', $ref)->first();
-        $products = OrderItem::where('order_id', $order->id)
-            ->join('products', 'order_items.product_id', 'products.id')
-            ->get();
-        $trans = Transactions::where('reference', $ref)->first();
-        Order::where('number', $ref)->update(
-            ['status' => OrderStatus::COMPLETED]
-        );
+        if($request->has('reference')) {
+            $ref = $request->get('reference');
+            $verifyTrans = $this->payStackProxy->verifyTransaction($ref);
+            if ($verifyTrans) {
+                if(!$verifyTrans->status){
+                    $message = $verifyTrans->message;
+                    return view('payment.unsuccessful', compact('message'));
+                }elseif ($verifyTrans->data->status == 'success') {
+                    $order = Order::where('number', $ref)->first();
+                    $products = OrderItem::where('order_id', $order->id)
+                        ->join('products', 'order_items.product_id', 'products.id')
+                        ->get();
+                    $trans = Transactions::where('reference', $ref)->first();
+                    Order::where('number', $ref)->update(
+                        ['status' => OrderStatus::COMPLETED]
+                    );
 
-        $trans_status = new TransactionStatus('complete');
+                    $trans_status = new TransactionStatus('complete');
 
-        Transactions::where('reference', $ref)->update(
-            ['status' => $trans_status->value()]
-        );
+                    Transactions::where('reference', $ref)->update(
+                        ['status' => $trans_status->value()]
+                    );
 
-        return view('payment.success', compact('trans','ref', 'products'));
+                    return view('payment.success', compact('trans', 'ref', 'products'));
+                }
+            }
+            return view('payment.error');
+        }
+        return view('payment.error');
     }
+
+
 }
