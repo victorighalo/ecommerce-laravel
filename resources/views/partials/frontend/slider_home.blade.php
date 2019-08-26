@@ -25,15 +25,15 @@
 {{--    </div>--}}
 {{--</section>--}}
 @if($sliders)
-<div class="owl-carousel">
+<div class="owl-carousel slick">
             @foreach($sliders as $image)
-        <img class="img-responsive" src="{{asset($image->link)}}">
+        <img src="{{asset($image->link)}}">
 
 {{--        <div style="--}}
 {{--                    background-image: url({{asset($image->link)}});--}}
 {{--                    background-size: contain;--}}
 {{--                    background-position: center center;--}}
-{{--                    height: 80vh;--}}
+{{--                    height: 100%;--}}
 {{--                    background-repeat: no-repeat;--}}
 {{--                    width: 100%;--}}
 {{--                    ">--}}

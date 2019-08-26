@@ -15,24 +15,32 @@
     </div>
     @endsection
 @push('script')
+    <script src="{{ asset('assets/js/slick.min.js')}}"></script>
+
     <script>
         $(document).ready(function(){
-            $(".owl-carousel").owlCarousel({
-                // loop:true,
-                nav:false,
-                autoHeight: true,
+            // $(".owl-carousel").owlCarousel({
+            //     // loop:true,
+            //     nav:false,
+            //     // autoHeight: true,
+            //     autoplay: true,
+            //     responsive:{
+            //         0:{
+            //             items:1
+            //         },
+            //         600:{
+            //             items:1
+            //         },
+            //         1000:{
+            //             items:1
+            //         }
+            //     }
+            // });
+            $('.slick').slick({
                 autoplay: true,
-                responsive:{
-                    0:{
-                        items:1
-                    },
-                    600:{
-                        items:1
-                    },
-                    1000:{
-                        items:1
-                    }
-                }
+                autoplaySpeed: 5000,
+                arrows:false,
+                // fade:true
             });
         });
     </script>

@@ -1,5 +1,8 @@
 <?php
 
+use App\Mail\TestAmazonSes;
+use Illuminate\Support\Facades\Mail;
+
 Route::get('/', 'PagesController@home')->name('home');
 Route::get('/home', 'PagesController@home');
 Route::post('/payment/paystack/verify', 'WebHook\WebHookController@PaystackWebhook');
@@ -22,6 +25,12 @@ Route::get('email-test', function(){
     \App\Jobs\SendEmailJob::dispatch($details);
 
 });
+
+Route::get('test', function () {
+    Mail::to('victorighalo@gmail.com')->send(new TestAmazonSes('It Works'));
+});
+
+
 
 Auth::routes();
 

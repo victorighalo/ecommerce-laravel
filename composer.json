@@ -12,6 +12,7 @@
         "ext-gd": "*",
         "algolia/scout-extended": "^1.6",
         "artesaos/seotools": "^0.14.0",
+        "aws/aws-sdk-php": "^3.110",
         "faustbrian/laravel-commentable": "^3.1",
         "fideloper/proxy": "^4.0",
         "ixudra/curl": "^6.16",

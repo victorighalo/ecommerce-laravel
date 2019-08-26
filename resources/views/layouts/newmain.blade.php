@@ -26,6 +26,8 @@
     <link href="{{asset('assets/css/main.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/responsive.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/slick.css')}}" rel="stylesheet">
+
     <link href="{{asset('assets/font/flaticon.css')}}" rel="stylesheet">
 
     <!-- JavaScripts -->
