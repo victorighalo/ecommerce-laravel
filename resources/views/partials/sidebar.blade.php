@@ -18,6 +18,9 @@
         </li>
         @if(Auth::check())
             @if(Auth::user()->hasAnyRole(['admin', 'editor']))
+                <li class="nav-item {{ Request::path() == 'office/transactions' ? 'active' : '' }}"><a class="nav-link" href="{{url('office/transactions')}}">
+                        <i class="fas fa-credit-card menu-icon"></i><span class="menu-title">Transactions</span></a>
+                </li>
                 <li class="nav-item {{ Request::path() == 'office/category' ? 'active' : '' }}"><a class="nav-link" href="{{url('office/category')}}">
                         <i class="fas fa-boxes menu-icon"></i><span class="menu-title">Category</span></a>
                 </li>

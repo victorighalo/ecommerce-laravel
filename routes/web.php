@@ -69,6 +69,9 @@ Route::get('orders', 'OfficeController@orders');
 Route::get('orders/data', 'OfficeController@ordersData')->name('orders_data');
 Route::post('orders/products', 'OfficeController@ordersProducts')->name('order_products');
 
+//Transactions
+    Route::get('transactions', 'OfficeController@transactions');
+
 //Products
 Route::get('/products/list', 'ProductsController@index');
 Route::get('/products/add', 'ProductsController@addProduct');

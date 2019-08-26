@@ -32,8 +32,13 @@ class OfficeController extends Controller
     }
 
     public function dashboard(){
-        $data = \App\Transactions::paginate();
+        $data = \App\Transactions::take(15)->get();
         return view('pages.admin.dashboard.index', compact('data'));
+    }
+
+    public function transactions(){
+        $data = \App\Transactions::paginate(20);
+        return view('pages.admin.transactions.index', compact('data'));
     }
 
     public function getStoreStats(){
@@ -51,7 +56,7 @@ class OfficeController extends Controller
         }
         )->join('states', 'transactions.state_id', 'states.state_id')
             ->join('cities', 'transactions.city_id', 'cities.city_id')
-            ->paginate();
+            ->paginate(20);
        return view('pages.admin.orders.index', compact('data'));
     }
 

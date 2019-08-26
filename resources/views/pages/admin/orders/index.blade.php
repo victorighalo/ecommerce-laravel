@@ -49,6 +49,7 @@
                                         <th>Lastname</th>
                                         <th>State</th>
                                         <th>City</th>
+                                        <th>Phone</th>
                                         <th>Address</th>
                                         <th>Status</th>
                                         <th>Action</th>
@@ -64,6 +65,7 @@
                                             <td>{{$item->lastname}}</td>
                                             <td>{{$item->state_name}}</td>
                                             <td>{{$item->city_name}}</td>
+                                            <td>{{$item->phone}}</td>
                                             <td>{{$item->address}}</td>
                                             <td>{{$item->status}}</td>
                                             <td><button class='btn btn-md btn-link view_products' data-order_id="{{$item->order_id}}">Products</button></td>
