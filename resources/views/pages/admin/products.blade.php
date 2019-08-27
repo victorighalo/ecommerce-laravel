@@ -122,6 +122,7 @@
                         `
                     )
                 })
+
                 $('#images-modal').modal('hide')
 
             });

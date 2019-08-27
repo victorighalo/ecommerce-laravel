@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Payment;
 
 use App\Http\Requests\PaymentRequest;
+use App\Mail\AmazonSes;
 use App\Product;
 use App\Transactions;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Proxy\PayStackProxy;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Vanilo\Cart\Facades\Cart;
 use App\Http\Controllers\Controller;
@@ -61,7 +63,7 @@ class PaymentController extends Controller
         }
         if($initPayStack->status){
             $this->createTransaction($amount, $trans_email, $user_id,$ref,$order->id, $request);
-            Cart::destroy();
+
             return redirect()->away($initPayStack->data->authorization_url);
         }else{
             return back()->with(['error' => $initPayStack->message]);
@@ -132,7 +134,8 @@ class PaymentController extends Controller
                     Transactions::where('reference', $ref)->update(
                         ['status' => $trans_status->value()]
                     );
-
+                    Mail::to($request->email)->send(new AmazonSes($products,$ref,$trans));
+                    Cart::destroy();
                     return view('payment.success', compact('trans', 'ref', 'products'));
                 }
             }

@@ -1,6 +1,6 @@
 <?php
 
-use App\Mail\TestAmazonSes;
+use App\Mail\AmazonSes;
 use Illuminate\Support\Facades\Mail;
 
 Route::get('/', 'PagesController@home')->name('home');
@@ -27,7 +27,7 @@ Route::get('email-test', function(){
 });
 
 Route::get('test', function () {
-    Mail::to('victorighalo@gmail.com')->send(new TestAmazonSes('It Works'));
+    Mail::to('victorighalo@gmail.com')->send(new AmazonSes('It Works'));
 });
 
 

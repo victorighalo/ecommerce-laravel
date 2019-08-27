@@ -12,6 +12,7 @@
 @push('script')
     <script src="{{asset('plugins/bootstrap-tagsinput.min.js')}}"></script>
     <script>
+        var imageBag = [];
         var toolbarOptions = [
             ['link', 'image'],
             ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
@@ -90,21 +91,49 @@
 
             // Add Images to product
             $("#add_images").click(function () {
-                imageBag = [];
+
                 $("form[name='add_images_form']").find('input:checkbox:checked').map(function (index, value) {
                     var img_path = $(value).data('image_path');
-                    imageBag.push(img_path)
-                    $(".chosen_images").append(
-                        `<div class="product_img_container">
+
+                    //Add image to imagebag array
+                    // check if image exists before adding to the images array
+
+                    if(imageBag.length) {//check if array is empty
+
+                            if (imageBag.indexOf(img_path) === -1) {
+
+                                imageBag.push(img_path)
+                                $(".chosen_images").append(
+                                    `<div class="product_img_container">
                             <div class="product_img_container_delete">
                             <span style="cursor:pointer;" class="badge badge-danger" data-imgpath="${img_path}" onclick="popImage(this)">x</span>
                             </div>
                             <img src="${$(value).data('image_link')}" width="100px" height="80px">
                         </div>
                         `
-                    )
+                                )
+                            }else{
+                                // console.log('exists')
+                            }
+
+                    }else{
+                        //if array is empty add the first image
+                        imageBag.push(img_path)
+                        $(".chosen_images").append(
+                            `<div class="product_img_container">
+                            <div class="product_img_container_delete">
+                            <span style="cursor:pointer;" class="badge badge-danger" data-imgpath="${img_path}" onclick="popImage(this)">x</span>
+                            </div>
+                            <img src="${$(value).data('image_link')}" width="100px" height="80px">
+                        </div>
+                        `
+                        )
+                    }
+
                 })
+
                 $('#images-modal').modal('hide')
+
 
             });
 
