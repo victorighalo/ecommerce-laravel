@@ -134,7 +134,7 @@ class PaymentController extends Controller
                     Transactions::where('reference', $ref)->update(
                         ['status' => $trans_status->value()]
                     );
-                    Mail::to($request->email)->send(new AmazonSes($products,$ref,$trans));
+                    Mail::to($trans->user_email)->send(new AmazonSes($products,$ref,$trans));
                     Cart::destroy();
                     return view('payment.success', compact('trans', 'ref', 'products'));
                 }

@@ -430,7 +430,13 @@
                                 <td class="content-cell">
                                     <div class="f-fallback">
                                         <p>Thanks for patronizing us. This email is the receipt for your purchase.</p>
-
+                                        <div>
+                                            <h6>Delivered to :</h6>
+                                            <p>Firstname : <span>{{$trans->firstname}}</span></p>
+                                            <p>Lastname : <span>{{$trans->lastname}}</span></p>
+                                            <p>Phone : <span>{{$trans->phone}}</span></p>
+                                            <p>Email : <span>{{$trans->user_email}}</span></p>
+                                        </div>
                                         <table class="purchase" width="100%" cellpadding="0" cellspacing="0" role="presentation">
                                             <tr>
                                                 <td>
