@@ -7,6 +7,7 @@ use App\Mail\AmazonSes;
 use App\Product;
 use App\Transactions;
 use App\User;
+use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Http\Request;
 use App\Http\Proxy\PayStackProxy;
 use Illuminate\Support\Facades\Auth;
@@ -134,6 +135,8 @@ class PaymentController extends Controller
                     Transactions::where('reference', $ref)->update(
                         ['status' => $trans_status->value()]
                     );
+                    SEOMeta::setTitle('Successful Transaction | '.config('app.name', ''), false);
+
                     Mail::to($trans->user_email)->send(new AmazonSes($products,$ref,$trans));
                     Cart::destroy();
                     return view('payment.success', compact('trans', 'ref', 'products'));

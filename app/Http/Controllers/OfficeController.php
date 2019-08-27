@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Konekt\Acl\Models\Role;
@@ -15,6 +16,8 @@ class OfficeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        SEOMeta::setTitle('Office | '.config('app.name', ''), false);
+
     }
 
     public function office()

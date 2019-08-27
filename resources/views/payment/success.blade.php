@@ -15,9 +15,9 @@
                   <h4 style="color: #fff;margin-top: 35px;">Transaction Successful</h4>
                 </div>
                     <div class="col-4 text-center p-4">
-                        <p>Transaction ID : <span>{{$ref}}</span></p>
+                        <h4>Transaction ID : <span>{{$ref}}</span></h4>
                         <div>
-                          <h6>Delivered to :</h6>
+                          <h4>The delivered will be made to :</h4>
                           <p>Firstname : <span>{{$trans->firstname}}</span></p>
                           <p>Lastname : <span>{{$trans->lastname}}</span></p>
                           <p>Phone : <span>{{$trans->phone}}</span></p>
