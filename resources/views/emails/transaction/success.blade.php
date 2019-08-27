@@ -434,7 +434,7 @@
                                         <div class="">
                                             <h4>Transaction ID : <span>{{$ref}}</span></h4>
                                             <div>
-                                                <h4>The delivered will be made to :</h4>
+                                                <h5>The delivery will be made to :</h5>
                                                 <p>Firstname : <span>{{$trans->firstname}}</span></p>
                                                 <p>Lastname : <span>{{$trans->lastname}}</span></p>
                                                 <p>Phone : <span>{{$trans->phone}}</span></p>
