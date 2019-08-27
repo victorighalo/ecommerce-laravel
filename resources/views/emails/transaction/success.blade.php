@@ -429,18 +429,22 @@
                             <tr>
                                 <td class="content-cell">
                                     <div class="f-fallback">
+                                        <h4 style="color: #fff;margin-top: 35px;">Transaction Successful</h4>
                                         <p>Thanks for patronizing us. This email is the receipt for your purchase.</p>
-                                        <div>
-                                            <h6>Delivered to :</h6>
-                                            <p>Firstname : <span>{{$trans->firstname}}</span></p>
-                                            <p>Lastname : <span>{{$trans->lastname}}</span></p>
-                                            <p>Phone : <span>{{$trans->phone}}</span></p>
-                                            <p>Email : <span>{{$trans->user_email}}</span></p>
+                                        <div class="">
+                                            <h4>Transaction ID : <span>{{$ref}}</span></h4>
+                                            <div>
+                                                <h4>The delivered will be made to :</h4>
+                                                <p>Firstname : <span>{{$trans->firstname}}</span></p>
+                                                <p>Lastname : <span>{{$trans->lastname}}</span></p>
+                                                <p>Phone : <span>{{$trans->phone}}</span></p>
+                                                <p>Email : <span>{{$trans->user_email}}</span></p>
+                                            </div>
                                         </div>
                                         <table class="purchase" width="100%" cellpadding="0" cellspacing="0" role="presentation">
                                             <tr>
                                                 <td>
-                                                    <h3>{{$ref}}</h3></td>
+                                                    <h3>Date</h3></td>
                                                 <td>
                                                     <h3 class="align-right">{{date('Y-m-d H:i')}}</h3></td>
                                             </tr>
