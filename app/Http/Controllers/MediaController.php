@@ -44,9 +44,10 @@ class MediaController extends Controller
         if ($validator->fails()) {
             response()->json(['message' => "Validation failed"], 400);
         }
+        $path = 'images/' . date('Y') . '/' . date('m');
+
 
         try {
-            $path = 'images/' . date('Y') . '/' . date('m');
             $thumb_path = 'thumbnail/images/' . date('Y') . '/' . date('m');
             $upload_path = public_path($path);
             $thumb_upload_path = public_path($thumb_path);
@@ -60,7 +61,7 @@ class MediaController extends Controller
 
             if (!is_dir($thumb_upload_path)) {
                 if (!mkdir($thumb_upload_path, 0777, true)) {
-                    return response()->json(['status' => 0, 'message' => 'An Error occurred craeting thumnail path. Try again.'], 400);
+                    return response()->json(['status' => 0, 'message' => 'An Error occurred creating thumbnail path. Try again.'], 400);
                 }
             }
             //Get file name
@@ -92,7 +93,7 @@ class MediaController extends Controller
                 return response()->json(['status' => 0, 'message' => $e->getMessage()], 400);
             }
         } catch (\Exception $e) {
-            return response()->json(['status' => 0, 'message' => $e->getMessage()]);
+            return response()->json(['status' => 0, 'message' => $e->getMessage(), 'path' => $path]);
         }
     }
 
