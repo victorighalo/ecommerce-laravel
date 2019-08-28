@@ -18,17 +18,17 @@ Route::post('/change_password', 'CommonController@changePassword')->middleware('
 
 Route::get('brand/{taxonomy_slug}', 'PagesController@getBrandProducts')->name('get_brand');
 
-Route::get('email-test', function(){
+//Route::get('email-test', function(){
+//
+//    $details['email'] = 'victorighalo@live.com';
+//
+//    \App\Jobs\SendEmailJob::dispatch($details);
+//
+//});
 
-    $details['email'] = 'victorighalo@live.com';
-
-    \App\Jobs\SendEmailJob::dispatch($details);
-
-});
-
-Route::get('test', function () {
-    Mail::to('victorighalo@gmail.com')->send(new AmazonSes('It Works'));
-});
+//Route::get('test', function () {
+//    Mail::to('victorighalo@gmail.com')->send(new AmazonSes('It Works'));
+//});
 
 
 
