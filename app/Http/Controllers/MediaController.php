@@ -44,10 +44,9 @@ class MediaController extends Controller
         if ($validator->fails()) {
             response()->json(['message' => "Validation failed"], 400);
         }
-        $path = 'images/' . date('Y') . '/' . date('m');
-
 
         try {
+            $path = 'images/' . date('Y') . '/' . date('m');
             $thumb_path = 'thumbnail/images/' . date('Y') . '/' . date('m');
             $upload_path = public_path($path);
             $thumb_upload_path = public_path($thumb_path);
@@ -93,7 +92,7 @@ class MediaController extends Controller
                 return response()->json(['status' => 0, 'message' => $e->getMessage()], 400);
             }
         } catch (\Exception $e) {
-            return response()->json(['status' => 0, 'message' => $e->getMessage(), 'path' => $path]);
+            return response()->json(['status' => 0, 'message' => $e->getMessage()]);
         }
     }
 
@@ -290,10 +289,9 @@ class MediaController extends Controller
         if ($validator->fails()) {
             response()->json(['message' => "Validation failed"], 400);
         }
-        $path = public_path('images/' . date('Y') . '/' . date('m'));
-
 
         try {
+            $path = 'images/' . date('Y') . '/' . date('m');
             $thumb_path = 'thumbnail/images/' . date('Y') . '/' . date('m');
             $upload_path = public_path($path);
             $thumb_upload_path = public_path($thumb_path);
@@ -335,10 +333,10 @@ class MediaController extends Controller
                 $media->photos()->save($photo);
                 return response()->json(['status' => 1, 'message' => 'Resource uploaded']);
             } catch (\Exception $e) {
-                return response()->json(['status' => 0, 'message' => $e->getMessage(), 'path' => $path], 400);
+                return response()->json(['status' => 0, 'message' => $e->getMessage()], 400);
             }
         } catch (\Exception $e) {
-            return response()->json(['status' => 0, 'message' => $e->getMessage(), 'path' => $path]);
+            return response()->json(['status' => 0, 'message' => $e->getMessage()]);
         }
     }
 
