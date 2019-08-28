@@ -53,7 +53,7 @@ class MediaController extends Controller
 
             //Find or create upload folder
             if (!is_dir($upload_path)) {
-                if (!mkdir($upload_path, 0777, true)) {
+                if (!mkdir($upload_path, 0755, true)) {
                     return response()->json(['status' => 0, 'message' => 'An Error occurred creating images part. Try again.'], 400);
                 }
             }
