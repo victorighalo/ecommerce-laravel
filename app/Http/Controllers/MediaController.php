@@ -290,7 +290,7 @@ class MediaController extends Controller
         if ($validator->fails()) {
             response()->json(['message' => "Validation failed"], 400);
         }
-        $path = 'images/' . date('Y') . '/' . date('m');
+        $path = public_path('images/' . date('Y') . '/' . date('m'));
 
 
         try {
