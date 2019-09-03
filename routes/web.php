@@ -30,8 +30,6 @@ Route::get('brand/{taxonomy_slug}', 'PagesController@getBrandProducts')->name('g
 //    Mail::to('victorighalo@gmail.com')->send(new AmazonSes('It Works'));
 //});
 
-
-
 Auth::routes();
 
 //Checkout
