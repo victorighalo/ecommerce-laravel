@@ -20,7 +20,7 @@
                         <input type="text" placeholder="Product name" required>
                         <label for="" style="color: #fff; margin-top: 10px;">Message</label>
                         <textarea name="message" id="" rows="10" style="width:100%; "></textarea>
-                        <button type="submit">Send</button>
+                        <button type="submit" class="btn">Send</button>
                     </form>
                 </div>
             </div>

@@ -21,6 +21,9 @@ body {
 	font-family: 'Merriweather', serif;
 	font-family: 'Poppins', sans-serif;
 }
+.theme-color-bg{
+    background: rgb(65,98,187);
+}
 /*=======================================================
       WRAPPER
 ========================================================*/
@@ -202,12 +205,12 @@ a:hover, a:focus {
 	font-size: 14px;
 	border-radius: 0px;
 	font-family: 'Poppins', sans-serif;
-	background: #2d3a4b;
+	background: #52489C;
 	position: relative;
 	z-index: 1;
 }
 .btn:hover {
-	background: #fe351a;
+	background: #52489C;
 	color: #fff;
 }
 .btn-inverse {
@@ -327,7 +330,7 @@ section {
 	width: 40px;
 	margin: 0 auto;
 	border: none;
-	background: #fe351a;
+	background: #F86624;
 	border-radius: 6px;
 	position: relative;
 	margin-top: 15px;
@@ -3180,7 +3183,7 @@ color: #fff !important;
 	letter-spacing: -2px;
 	font-weight: 700;
 	padding: 10px 20px;
-	background: rgba(0,0,0,0.5);
+	/*background: rgba(0,0,0,0.5);*/
 	font-family: 'Montserrat', sans-serif;
 }
 .insta-g li img {
@@ -4253,7 +4256,7 @@ input[type=number] {
 	color: #fe351a;
 }
 .news-letter {
-	background: #131920;
+	background: #4062BB;
 }
 .small-about {
 	margin: 67px 0;
@@ -4600,9 +4603,9 @@ input[type=number] {
 }
 .small-about .news-letter form input {
 	width: 100%;
-	background: rgba(0,0,0,0.1);
+	/*background: rgba(0,0,0,0.1);*/
 	color: #fff;
-	border: 2px solid rgba(0,0,0,0.9);
+	/*border: 2px solid rgba(0,0,0,0.9);*/
 }
 .small-about .news-letter form {
 	position: relative;
@@ -4613,7 +4616,7 @@ input[type=number] {
 	top: 0px;
 	right: 0px;
 	border: none;
-	background: rgba(255,255,255,0.1);
+	background: #52489C;
 	cursor: pointer;
 }
 .small-about .news-letter form input:focus {
@@ -4621,7 +4624,8 @@ input[type=number] {
 	border: 2px solid rgba(255,255,255,0.2);
 }
 .small-about .news-letter form button:hover {
-	background: #fe351a;
+	background: #52489C;
+    color: #fff;
 }
 /*=======================================================
       Shipment
@@ -4756,7 +4760,7 @@ footer h6 {
 footer {
 	padding: 120px 0;
 	padding-bottom: 30px;
-	background: #131313;
+	background: rgb(4, 17, 53);
 	position: relative;
 	z-index: 1;
 }
@@ -5170,8 +5174,8 @@ footer .subscribe input {
 	-webkit-transform: scale3d(1.1, 1.1, 1);
 	transform: scale3d(1.1, 1.1, 1);
 }
-/* -------------------------------- 
-	Main Components 
+/* --------------------------------
+	Main Components
 -------------------------------- */
 main {
 	position: relative;
@@ -5529,8 +5533,8 @@ main {
 	transform: translateX(0);
 }
 .top-bar {
-	background: rgba(0,0,0,0.95);
-	height: 50px;
+    background: rgba(65,98,187,0.95);
+    height: 50px;
 }
 .curency {
 	border-left: 1px solid rgba(0,0,0,0.1);

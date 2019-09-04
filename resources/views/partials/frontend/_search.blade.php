@@ -1,4 +1,4 @@
-<section class="clients padding-top-60 padding-bottom-80" style="background: #44566d !important;">
+<section class="clients padding-top-60 padding-bottom-60 theme-color-bg">
     <div class="container">
 <form class="ps-form--search" action="{{url('search')}}" method="get">
     <div class="input-group mb-3">
@@ -24,9 +24,9 @@
 
     </div>
 </form>
-        <p style="color: #fff;"><i class="fa fa-search"></i> <strong>Are you looking for Auto parts?</strong>
+        <p style="color: #fff;"><i class="fa fa-search"></i> <strong>Are you looking for a specific product?</strong>
         <br>Search for it using by typing in the product name in the search box above.
-        <br>Examples : Rims, Clutches, Mirrors, Compressors, Horns, Batteries.
+{{--        <br>Examples : Rims, Clutches, Mirrors, Compressors, Horns, Batteries.--}}
         </p>
 </div>
 </section>
