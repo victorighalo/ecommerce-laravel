@@ -1,3 +1,40 @@
+<?php
+function nav_menu($array){
+
+$ul = " <ul class=\"dropdown-menu animated-3s fadeInLeft\">";
+      foreach($array as $category){
+        $ul .= "<li>";
+        $ul .= "<a href=\"route('get_category_content', ['taxon_slug' => $category->slug])\" title=\"$category->name\" style='text-decoration: underline !important; font-weight: bold'>";
+        $ul .= $category->name;
+        $ul .= "</a>";
+        if(count($category->children)){
+            $ul .= sub_menu($category->children);
+        }
+        $ul .= "</li>";
+      }
+$ul .= "</ul>";
+return $ul;
+}
+
+function sub_menu($array){
+
+    $ul = " <ul class=\"\">";
+    foreach($array as $category){
+        $ul .= "<li>";
+        $ul .= "<a href=\"route('get_category_content', ['taxon_slug' => $category->slug])\" title=\"$category->name\">";
+        $ul .= $category->name;
+        $ul .= "</a>";
+        if(count($category->children)){
+            $ul .= nav_menu($category->children);
+        }
+        $ul .= "</li>";
+    }
+    $ul .= "</ul>";
+    return $ul;
+}
+
+?>
+
 <div class="top-bar">
     <div class="container-full">
         <p><i class="icon-map-pin"></i> {{$app_settings->store_address ? $app_settings->store_address : ""}} </p>
@@ -51,7 +88,9 @@
 </div>
 <header class="sticky">
     <div class="container">
-
+{{--        <pre>--}}
+{{--        @php(var_dump($brands[0]->rootLevelTaxons()[0]->children ))--}}
+{{--</pre>--}}
         <!-- Logo -->
         <div class="logo"> <a href="{{url('/')}}"><img class="img-responsive" src="{{asset('assets/images/big-stan-logo.png')}}" alt="logo" style="width: 50%" ></a> </div>
         <nav class="navbar ownmenu navbar-expand-lg">
@@ -64,15 +103,17 @@
                             @foreach($brands as $brand)
                                 <li class="dropdown"> <a href="{{route('get_brand', ['taxon_slug' => $brand->slug])}}" title="{{$brand->name}}"> {{$brand->name}} </a>
                                     @if($brand->rootLevelTaxons()->count())
-                                    <ul class="dropdown-menu animated-3s fadeInLeft">
-                                        @foreach($brand->rootLevelTaxons() as $category)
-                                            <li>
-                                                <a href="{{route('get_category_content', ['taxon_slug' => $category->slug])}}" title="{{$category->name}}">
-                                                    {{$category->name}}
-                                                </a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
+                                        <?php
+                                        echo nav_menu($brand->rootLevelTaxons());
+                                        ?>
+{{--                                        @foreach($brand->rootLevelTaxons() as $category)--}}
+{{--                                            <li>--}}
+{{--                                                <a href="{{route('get_category_content', ['taxon_slug' => $category->slug])}}" title="{{$category->name}}">--}}
+{{--                                                    {{$category->name}}--}}
+{{--                                                </a>--}}
+{{--                                            </li>--}}
+{{--                                        @endforeach--}}
+
                                         @endif
                                 </li>
                             @endforeach
