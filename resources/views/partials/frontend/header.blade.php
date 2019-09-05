@@ -7,9 +7,9 @@ $ul = " <ul class=\"dropdown-menu animated-3s fadeInLeft\">";
         $ul .= "<a href=\"route('get_category_content', ['taxon_slug' => $category->slug])\" title=\"$category->name\" style='text-decoration: underline !important; font-weight: bold'>";
         $ul .= $category->name;
         $ul .= "</a>";
-        if(count($category->children)){
-            $ul .= sub_menu($category->children);
-        }
+//        if(count($category->children)){
+//            $ul .= sub_menu($category->children);
+//        }
         $ul .= "</li>";
       }
 $ul .= "</ul>";
