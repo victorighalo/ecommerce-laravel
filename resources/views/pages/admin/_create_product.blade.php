@@ -85,7 +85,8 @@
                                             width: auto;">
                                                 <option value="null">None</option>
                                             @foreach($property->values() as $value)
-                                                    <option value="{{$value->id}}">{{$value->value}} {{$value->title}}</option>
+                                                    <option value="{{$value->id}}">{{$value->value}}</option>
+{{--                                                    <option value="{{$value->id}}">{{$value->value}} {{$value->title}}</option>--}}
                                         @endforeach
                                             </select>
                                             </label>

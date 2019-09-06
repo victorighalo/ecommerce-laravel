@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="eb2349c8-f2b2-4acb-b3f6-e1ac82b2095e" name="Default" comment="added staging env">
-      <change beforePath="$PROJECT_DIR$/.idea/ecommerce-laravel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ecommerce-laravel.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="eb2349c8-f2b2-4acb-b3f6-e1ac82b2095e" name="Default" comment="updated webhook logs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/DeliveryPrice.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/DeliveryPrice.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PagesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PagesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Payment/PaymentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Payment/PaymentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Proxy/BaseProxy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Proxy/BaseProxy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Proxy/PayStackProxy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Proxy/PayStackProxy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Log.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Log.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/newmain.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/newmain.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/_create_product.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/_create_product.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/front/checkout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/front/checkout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/front/product_detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/front/product_detail.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/front/single_product.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/front/single_product.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/partials/property_edit_modal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/property_edit_modal.blade.php" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/.idea/shelf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,104 +22,9 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <executablePath>composer</executablePath>
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/DeliveryPrice.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/app.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-630">
-              <caret line="182" column="60" lean-forward="true" selection-start-line="182" selection-start-column="60" selection-end-line="182" selection-end-column="60" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/layouts/newmain.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2538">
-              <caret line="12" column="36" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/partials/frontend/header.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="86">
-              <caret line="55" column="83" lean-forward="true" selection-start-line="55" selection-start-column="83" selection-end-line="55" selection-end-column="127" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PagesController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="52" column="48" selection-start-line="52" selection-start-column="48" selection-end-line="52" selection-end-column="48" />
-              <folding>
-                <element signature="e#40#56#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/artesaos/seotools/src/resources/config/seotools.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="8" column="41" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/category/_view_categories.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="97" selection-start-column="81" selection-end-column="97" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/category.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3870">
-              <caret line="215" column="35" selection-start-line="215" selection-start-column="35" selection-end-line="215" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SearchController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/pages/front/search.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="54" selection-start-line="14" selection-start-column="54" selection-end-line="14" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <execution>
+      <executable path="composer" />
+    </execution>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -126,101 +33,14 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>theme-banner-two</find>
-      <find>theme-banner-one</find>
-      <find>formD</find>
-      <find>image</find>
-      <find>cart</find>
-      <find>barr</find>
-      <find>rating</find>
-      <find>product</find>
-      <find>form</find>
-      <find>#ffe115</find>
-      <find>.btn-inverse</find>
-      <find>tab-content</find>
-      <find>BA3636</find>
-      <find>.brighttheme .ui-pnotify-action-button</find>
-      <find>focus</find>
-      <find>Med</find>
-      <find>removeProductMedia</find>
-      <find>validate</find>
-      <find>.btn</find>
-      <find>taxono</find>
-      <find>taxonomy_id</find>
-      <find>get_delivery_cost</find>
-      <find>900</find>
-      <find>9000</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>#D7DBF0</replace>
-      <replace>#fe351a</replace>
-    </replaceStrings>
-    <dirStrings>
-      <dir>C:\wamp64\www\ecommerce-laravel\vendor\artesaos</dir>
-    </dirStrings>
-  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" />
-        <option value="$PROJECT_DIR$/resources/views/pages/admin/product_edit.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/partials/frontend/home/_products_by_category.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/partials/frontend/home/_categories.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/errors/404.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/partials/frontend/product_request.blade.php" />
-        <option value="$PROJECT_DIR$/app/Product.php" />
-        <option value="$PROJECT_DIR$/resources/views/partials/frontend/categories_slider.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/pages/front/single_product.blade.php" />
-        <option value="$PROJECT_DIR$/public/assets/css/style.css" />
-        <option value="$PROJECT_DIR$/resources/views/partials/frontend/sub_banner.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/CheckoutController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/PaymentRequest.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/OfficeController.php" />
-        <option value="$PROJECT_DIR$/resources/views/pages/admin/orders/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/payment/success.blade.php" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/resources/views/pages/admin/category/_create_category.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Proxy/PayStackProxy.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Payment/PaymentController.php" />
-        <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" />
-        <option value="$PROJECT_DIR$/resources/views/pages/admin/category/_view_categories.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/pages/admin/category.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/pages/admin/products.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/NewUserRequest.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" />
-        <option value="$PROJECT_DIR$/resources/views/pages/admin/users/_create_user.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/UpdateUserRequest.php" />
-        <option value="$PROJECT_DIR$/resources/views/pages/admin/users/_edit_modal.blade.php" />
-        <option value="$PROJECT_DIR$/public/admin/css/custom.css" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/pages/admin/users/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/pages/admin/users/_password_edit_modal.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/pages/admin/users/script.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" />
-        <option value="$PROJECT_DIR$/app/User.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" />
-        <option value="$PROJECT_DIR$/resources/views/partials/sidebar.blade.php" />
-        <option value="$PROJECT_DIR$/app/DeliveryCharge.php" />
-        <option value="$PROJECT_DIR$/resources/views/pages/admin/delivery/_create.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/pages/admin/delivery/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/pages/admin/delivery/script.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/DeliverySettingsController.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/resources/views/pages/front/checkout.blade.php" />
-        <option value="$PROJECT_DIR$/app/DeliveryPrice.php" />
-        <option value="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
-        <option value="$PROJECT_DIR$/config/app.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/newmain.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/PagesController.php" />
-      </list>
-    </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -362,86 +182,27 @@
       <path value="$PROJECT_DIR$/vendor/artesaos/seotools" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-12" />
-    <option name="width" value="1386" />
-    <option name="height" value="735" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="ecommerce-laravel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ecommerce-laravel" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ecommerce-laravel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ecommerce-laravel" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ecommerce-laravel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ecommerce-laravel" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ecommerce-laravel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ecommerce-laravel" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ecommerce-laravel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ecommerce-laravel" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ecommerce-laravel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ecommerce-laravel" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ecommerce-laravel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ecommerce-laravel" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="partials" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ecommerce-laravel" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ecommerce-laravel" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="partials" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
-  </component>
+  <component name="ProjectId" id="1PVwXQ20eSESyP7FYqX1V7H5pXB" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/css" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_package_manager_path" value="yarn" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public/assets/images" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/css" />
+      <recent name="$PROJECT_DIR$/public/js" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/public/assets/images" />
       <recent name="$PROJECT_DIR$/public/assets/js" />
-      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Http/Controllers" />
+      <recent name="$PROJECT_DIR$/public/admin/css" />
+      <recent name="$PROJECT_DIR$/public/admin/js" />
+      <recent name="$PROJECT_DIR$/public/assets/images" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -455,6 +216,28 @@
         </RuleState>
       </list>
     </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="watch" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="watch" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.watch" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="StructuralSearchPlugin">
+    <searchConfiguration name="user defined" created="1566306527300" text="ImageUrl" recursive="true" caseInsensitive="true" type="PHP" scope_type="PROJECT" scope_descriptor="" history="1">
+      <constraint name="__context__" within="" contains="" />
+    </searchConfiguration>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -532,403 +315,373 @@
       <workItem from="1563202543333" duration="707000" />
       <workItem from="1563277402525" duration="8132000" />
       <workItem from="1564127669486" duration="8474000" />
+      <workItem from="1565972616003" duration="11537000" />
+      <workItem from="1566222121623" duration="267000" />
+      <workItem from="1566227931413" duration="14478000" />
+      <workItem from="1566371929173" duration="998000" />
+      <workItem from="1566404090562" duration="3422000" />
+      <workItem from="1566467286609" duration="229000" />
+      <workItem from="1566467606073" duration="356000" />
+      <workItem from="1566514911613" duration="1968000" />
+      <workItem from="1566579222600" duration="793000" />
+      <workItem from="1566648208305" duration="549000" />
+      <workItem from="1566650423649" duration="17332000" />
+      <workItem from="1566838940634" duration="2651000" />
+      <workItem from="1566907419938" duration="846000" />
+      <workItem from="1566922522931" duration="7825000" />
+      <workItem from="1566989529474" duration="2013000" />
+      <workItem from="1567172559318" duration="292000" />
+      <workItem from="1567418146643" duration="1562000" />
+      <workItem from="1567463335027" duration="1524000" />
+      <workItem from="1567518675644" duration="497000" />
+      <workItem from="1567529137977" duration="465000" />
+      <workItem from="1567598331338" duration="13254000" />
     </task>
-    <task id="LOCAL-00068" summary="Fixed photo update for products">
-      <created>1555606409495</created>
+    <task id="LOCAL-00030" summary="Added webhook support">
+      <created>1566650726909</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1566650726910</updated>
+    </task>
+    <task id="LOCAL-00031" summary="corrected total price at checkout">
+      <created>1566651068190</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1566651068190</updated>
+    </task>
+    <task id="LOCAL-00032" summary="corrected cart delete after redirecting to PayStack">
+      <created>1566651202956</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1566651202956</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Orders and transactions updates">
+      <created>1566674327073</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1566674327073</updated>
+    </task>
+    <task id="LOCAL-00034" summary="added logs">
+      <created>1566675111894</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1566675111894</updated>
+    </task>
+    <task id="LOCAL-00035" summary="updated webhook logs">
+      <created>1566676249739</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1566676249739</updated>
+    </task>
+    <task id="LOCAL-00036" summary="updated webhook logs">
+      <created>1566676586846</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1566676586846</updated>
+    </task>
+    <task id="LOCAL-00037" summary="updated webhook logs">
+      <created>1566676686092</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1566676686093</updated>
+    </task>
+    <task id="LOCAL-00038" summary="updated webhook logs">
+      <created>1566676972742</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1566676972742</updated>
+    </task>
+    <task id="LOCAL-00039" summary="updated webhook logs">
+      <created>1566677246313</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1566677246313</updated>
+    </task>
+    <task id="LOCAL-00040" summary="updated webhook logs">
+      <created>1566677544955</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1566677544955</updated>
+    </task>
+    <task id="LOCAL-00041" summary="updated webhook logs">
+      <created>1566678088499</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1566678088499</updated>
+    </task>
+    <task id="LOCAL-00042" summary="updated webhook logs">
+      <created>1566678167486</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1566678167486</updated>
+    </task>
+    <task id="LOCAL-00043" summary="updated webhook logs">
+      <created>1566678625741</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1566678625741</updated>
+    </task>
+    <task id="LOCAL-00044" summary="updated webhooks logs">
+      <created>1566678707486</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1566678707486</updated>
+    </task>
+    <task id="LOCAL-00045" summary="updated webhook logs">
+      <created>1566678842804</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1566678842804</updated>
+    </task>
+    <task id="LOCAL-00046" summary="updated webhook logs">
+      <created>1566679685150</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1566679685151</updated>
+    </task>
+    <task id="LOCAL-00047" summary="updated webhook logs">
+      <created>1566679738391</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1566679738391</updated>
+    </task>
+    <task id="LOCAL-00048" summary="updated webhook logs">
+      <created>1566679805545</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1566679805545</updated>
+    </task>
+    <task id="LOCAL-00049" summary="updated webhook logs">
+      <created>1566679961380</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1566679961380</updated>
+    </task>
+    <task id="LOCAL-00050" summary="updated webhook logs">
+      <created>1566680036049</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1566680036049</updated>
+    </task>
+    <task id="LOCAL-00051" summary="updated webhook logs">
+      <created>1566681812326</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1566681812326</updated>
+    </task>
+    <task id="LOCAL-00052" summary="updated webhook logs">
+      <created>1566682031802</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1566682031802</updated>
+    </task>
+    <task id="LOCAL-00053" summary="completed order process. remains email">
+      <created>1566682555678</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1566682555678</updated>
+    </task>
+    <task id="LOCAL-00054" summary="added pagination navigation">
+      <created>1566682754397</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1566682754397</updated>
+    </task>
+    <task id="LOCAL-00055" summary="updated webhook logs">
+      <created>1566682788033</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1566682788033</updated>
+    </task>
+    <task id="LOCAL-00056" summary="updated webhook logs">
+      <created>1566683148525</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1566683148525</updated>
+    </task>
+    <task id="LOCAL-00057" summary="updated webhook logs">
+      <created>1566683269423</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1566683269423</updated>
+    </task>
+    <task id="LOCAL-00058" summary="updated webhook logs">
+      <created>1566683375418</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1566683375418</updated>
+    </task>
+    <task id="LOCAL-00059" summary="updated webhook logs">
+      <created>1566683500729</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1566683500729</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Added payment verification">
+      <created>1566722665474</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1566722665474</updated>
+    </task>
+    <task id="LOCAL-00061" summary="updated webhook logs">
+      <created>1566723146710</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1566723146710</updated>
+    </task>
+    <task id="LOCAL-00062" summary="updated slider plugin and installed AWS SDK">
+      <created>1566840707667</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1566840707667</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Added phone to orders table">
+      <created>1566841375787</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1566841375787</updated>
+    </task>
+    <task id="LOCAL-00064" summary="fixed images add for products and transaction email">
+      <created>1566939424552</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1566939424552</updated>
+    </task>
+    <task id="LOCAL-00065" summary="updated email template">
+      <created>1566939811032</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1566939811032</updated>
+    </task>
+    <task id="LOCAL-00066" summary="updated email template">
+      <created>1566941459656</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1566941459656</updated>
+    </task>
+    <task id="LOCAL-00067" summary="updated webhook logs">
+      <created>1566941733560</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1566941733560</updated>
+    </task>
+    <task id="LOCAL-00068" summary="updated email">
+      <created>1566941863488</created>
       <option name="number" value="00068" />
       <option name="presentableId" value="LOCAL-00068" />
       <option name="project" value="LOCAL" />
-      <updated>1555606409495</updated>
+      <updated>1566941863488</updated>
     </task>
-    <task id="LOCAL-00069" summary="Modified the design">
-      <created>1555652988303</created>
+    <task id="LOCAL-00069" summary="added folder creation permission">
+      <created>1566990891136</created>
       <option name="number" value="00069" />
       <option name="presentableId" value="LOCAL-00069" />
       <option name="project" value="LOCAL" />
-      <updated>1555652988304</updated>
+      <updated>1566990891136</updated>
     </task>
-    <task id="LOCAL-00070" summary="Limit category string and add logo">
-      <created>1555654538156</created>
+    <task id="LOCAL-00070" summary="file permission">
+      <created>1566991590960</created>
       <option name="number" value="00070" />
       <option name="presentableId" value="LOCAL-00070" />
       <option name="project" value="LOCAL" />
-      <updated>1555654538156</updated>
+      <updated>1566991590960</updated>
     </task>
-    <task id="LOCAL-00071" summary="Redirect to 404 for product edit page when product unavailable">
-      <created>1555654752377</created>
+    <task id="LOCAL-00071" summary="folder permission">
+      <created>1566991758117</created>
       <option name="number" value="00071" />
       <option name="presentableId" value="LOCAL-00071" />
       <option name="project" value="LOCAL" />
-      <updated>1555654752377</updated>
+      <updated>1566991758117</updated>
     </task>
-    <task id="LOCAL-00072" summary="changed file name for upload">
-      <created>1555662784875</created>
+    <task id="LOCAL-00072" summary="folder permission">
+      <created>1566991969677</created>
       <option name="number" value="00072" />
       <option name="presentableId" value="LOCAL-00072" />
       <option name="project" value="LOCAL" />
-      <updated>1555662784876</updated>
+      <updated>1566991969677</updated>
     </task>
-    <task id="LOCAL-00073" summary="Updated Admin theme design">
-      <created>1555665380552</created>
+    <task id="LOCAL-00073" summary="folder security">
+      <created>1566992247103</created>
       <option name="number" value="00073" />
       <option name="presentableId" value="LOCAL-00073" />
       <option name="project" value="LOCAL" />
-      <updated>1555665380552</updated>
+      <updated>1566992247103</updated>
     </task>
-    <task id="LOCAL-00074" summary="Updated image upload validation">
-      <created>1555666603937</created>
+    <task id="LOCAL-00074" summary="updated webhook logs">
+      <created>1567529723889</created>
       <option name="number" value="00074" />
       <option name="presentableId" value="LOCAL-00074" />
       <option name="project" value="LOCAL" />
-      <updated>1555666603940</updated>
+      <updated>1567529723889</updated>
     </task>
-    <task id="LOCAL-00075" summary="Updated product creaeting - adding category">
-      <created>1555671884609</created>
+    <task id="LOCAL-00075" summary="started UI changes on MMSTORE">
+      <created>1567601636980</created>
       <option name="number" value="00075" />
       <option name="presentableId" value="LOCAL-00075" />
       <option name="project" value="LOCAL" />
-      <updated>1555671884613</updated>
+      <updated>1567601636980</updated>
     </task>
-    <task id="LOCAL-00076" summary="Updated product state indication colors">
-      <created>1555672666221</created>
+    <task id="LOCAL-00076" summary="updated ui">
+      <created>1567614505702</created>
       <option name="number" value="00076" />
       <option name="presentableId" value="LOCAL-00076" />
       <option name="project" value="LOCAL" />
-      <updated>1555672666222</updated>
+      <updated>1567614505702</updated>
     </task>
-    <task id="LOCAL-00077" summary="Filtered landding page to display onyl active products with images">
-      <created>1555675193409</created>
+    <task id="LOCAL-00077" summary="added child menu to nav">
+      <created>1567704879663</created>
       <option name="number" value="00077" />
       <option name="presentableId" value="LOCAL-00077" />
       <option name="project" value="LOCAL" />
-      <updated>1555675193413</updated>
+      <updated>1567704879663</updated>
     </task>
-    <task id="LOCAL-00078" summary="Fixed delivery price and category update for product">
-      <created>1555679786636</created>
+    <task id="LOCAL-00078" summary="removed submenu">
+      <created>1567705007589</created>
       <option name="number" value="00078" />
       <option name="presentableId" value="LOCAL-00078" />
       <option name="project" value="LOCAL" />
-      <updated>1555679786648</updated>
+      <updated>1567705007589</updated>
     </task>
-    <task id="LOCAL-00079" summary="Updated product edit design">
-      <created>1555681373281</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1555681373296</updated>
-    </task>
-    <task id="LOCAL-00080" summary="Added 404 page">
-      <created>1555683182314</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1555683182319</updated>
-    </task>
-    <task id="LOCAL-00081" summary="Added Autoslide for new products">
-      <created>1555683695207</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1555683695217</updated>
-    </task>
-    <task id="LOCAL-00082" summary="Added Profile and Password change.">
-      <created>1555691523792</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1555691523793</updated>
-    </task>
-    <task id="LOCAL-00083" summary="Added Profile and Password change.">
-      <created>1555920263214</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1555920263215</updated>
-    </task>
-    <task id="LOCAL-00084" summary="Added delete delivery price when delete product">
-      <created>1555922126292</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1555922126296</updated>
-    </task>
-    <task id="LOCAL-00085" summary="Added delete delivery price when delete product">
-      <created>1555922469278</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1555922469278</updated>
-    </task>
-    <task id="LOCAL-00086" summary="Added delete delivery price when delete product">
-      <created>1555940549965</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1555940549966</updated>
-    </task>
-    <task id="LOCAL-00087" summary="Added uploads to S3 and local switch">
-      <created>1555940625820</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1555940625820</updated>
-    </task>
-    <task id="LOCAL-00088" summary="Added delete delivery price when delete product">
-      <created>1555951001615</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1555951001616</updated>
-    </task>
-    <task id="LOCAL-00089" summary="Revert &quot;Added delete delivery price when delete product&quot;&#10;&#10;This reverts commit 0dd8413">
-      <created>1555951031689</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1555951031689</updated>
-    </task>
-    <task id="LOCAL-00090" summary="Completed S3 integration into front-end and backend">
-      <created>1555951150497</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1555951150497</updated>
-    </task>
-    <task id="LOCAL-00001" summary="Refactored photos uploads and read to be flexible">
-      <created>1555953449442</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1555953449443</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Changes from project1 branch&#10;&#10;# Conflicts:&#10;#&#9;app/Traits/HasPhotoTrait.php">
-      <created>1555953852087</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1555953852088</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Fixed product update sending wrong category slug">
-      <created>1555961030429</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1555961030435</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Changed frontend products_by_category to use slugs for IDs">
-      <created>1556009527437</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1556009527437</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Test CodeShip">
-      <created>1559571075724</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1559571075731</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Fix deleting first level category">
-      <created>1560515962571</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1560515962573</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Added Env testing file">
-      <created>1560588309027</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1560588309028</updated>
-    </task>
-    <task id="LOCAL-00008" summary="added staging env">
-      <created>1560697989631</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1560697989632</updated>
-    </task>
-    <task id="LOCAL-00009" summary="added staging env">
-      <created>1560701116066</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1560701116066</updated>
-    </task>
-    <task id="LOCAL-00010" summary="added staging env">
-      <created>1560701239595</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1560701239595</updated>
-    </task>
-    <task id="LOCAL-00011" summary="added staging env">
-      <created>1560701325472</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1560701325472</updated>
-    </task>
-    <task id="LOCAL-00012" summary="added staging env">
-      <created>1560701715891</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1560701715891</updated>
-    </task>
-    <task id="LOCAL-00013" summary="added staging env">
-      <created>1560701789369</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1560701789369</updated>
-    </task>
-    <task id="LOCAL-00014" summary="added staging env">
-      <created>1560702033279</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1560702033279</updated>
-    </task>
-    <task id="LOCAL-00015" summary="added staging env">
-      <created>1560702180447</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1560702180448</updated>
-    </task>
-    <task id="LOCAL-00016" summary="added staging env">
-      <created>1560702382110</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1560702382110</updated>
-    </task>
-    <task id="LOCAL-00017" summary="added staging env">
-      <created>1560702650601</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1560702650602</updated>
-    </task>
-    <task id="LOCAL-00018" summary="added staging env">
-      <created>1560705660483</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1560705660484</updated>
-    </task>
-    <task id="LOCAL-00019" summary="added staging env">
-      <created>1560709173893</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1560709173893</updated>
-    </task>
-    <task id="LOCAL-00020" summary="updated env file for live">
-      <created>1560718848807</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1560718848807</updated>
-    </task>
-    <task id="LOCAL-00021" summary="change categories background image size to contain">
-      <created>1560755263675</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1560755263676</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Limit homepage top categories to only 4">
-      <created>1560755470348</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1560755470349</updated>
-    </task>
-    <task id="LOCAL-00023" summary="Update subcategory name">
-      <created>1560756763869</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1560756763869</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Fixed editing subcategory">
-      <created>1560757651749</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1560757651749</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Added user management">
-      <created>1561573279106</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1561573279108</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Prevent user login if inactive">
-      <created>1561638244955</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1561638244956</updated>
-    </task>
-    <option name="localTasksCounter" value="27" />
+    <option name="localTasksCounter" value="79" />
     <servers />
-  </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135489000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="-12" y="0" width="1386" height="735" extended-state="0" />
-    <editor active="true" />
-    <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49556214" visible="true" weight="0.33861238" />
-      <window_info id="Structure" order="1" sideWeight="0.50443786" side_tool="true" weight="0.35622317" />
-      <window_info id="npm" order="2" side_tool="true" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32904148" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32969698" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49472097" visible="true" weight="0.18272425" />
-      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.48793364" weight="0.23089701" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.51206636" side_tool="true" weight="0.23206107" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" weight="0.3297568" />
-    </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49756098" visible="true" weight="0.21633889" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="npm" order="2" sideWeight="0.502439" side_tool="true" weight="0.26096824" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3289689" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.3289689" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.3289689" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3289689" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -939,20 +692,7 @@
         <entry key="MAIN">
           <value>
             <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
-              <option name="COLUMN_ORDER">
-                <list>
-                  <option value="0" />
-                  <option value="1" />
-                  <option value="2" />
-                  <option value="3" />
-                </list>
-              </option>
+              <option name="COLUMN_ORDER" />
             </State>
           </value>
         </entry>
@@ -976,405 +716,31 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Filtered landding page to display onyl active products with images" />
-    <MESSAGE value="Fixed delivery price and category update for product" />
-    <MESSAGE value="Updated product edit design" />
-    <MESSAGE value="Added 404 page" />
-    <MESSAGE value="Added Autoslide for new products" />
-    <MESSAGE value="Added Profile and Password change." />
-    <MESSAGE value="Added uploads to S3 and local switch" />
-    <MESSAGE value="Added delete delivery price when delete product" />
-    <MESSAGE value="Revert &quot;Added delete delivery price when delete product&quot;&#10;&#10;This reverts commit 0dd8413" />
-    <MESSAGE value="Completed S3 integration into front-end and backend" />
-    <MESSAGE value="Refactored photos uploads and read to be flexible" />
-    <MESSAGE value="Changes from project1 branch&#10;&#10;# Conflicts:&#10;#&#9;app/Traits/HasPhotoTrait.php" />
-    <MESSAGE value="Fixed product update sending wrong category slug" />
-    <MESSAGE value="Changed frontend products_by_category to use slugs for IDs" />
-    <MESSAGE value="Test CodeShip" />
-    <MESSAGE value="Fix deleting first level category" />
-    <MESSAGE value="Added Env testing file" />
-    <MESSAGE value="added staging env" />
-    <MESSAGE value="updated env file for live" />
-    <MESSAGE value="change categories background image size to contain" />
-    <MESSAGE value="Limit homepage top categories to only 4" />
-    <MESSAGE value="Update subcategory name" />
-    <MESSAGE value="Fixed editing subcategory" />
-    <MESSAGE value="Added user management" />
-    <MESSAGE value="Prevent user login if inactive" />
-    <option name="LAST_COMMIT_MESSAGE" value="Prevent user login if inactive" />
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/NewUserRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="10" lean-forward="true" selection-start-line="14" selection-start-column="7" selection-end-line="20" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/PaymentRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="10" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="19" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/UpdateUserRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="29" column="60" selection-start-line="29" selection-start-column="60" selection-end-line="29" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/admin/css/custom.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="161" column="23" selection-start-line="161" selection-start-column="23" selection-end-line="161" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/admin.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="55" column="7" selection-start-line="55" selection-start-column="7" selection-end-line="55" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/users/_edit_modal.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="44" selection-end-line="58" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Payment/PaymentController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-535">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WebHook/WebHookController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="59" column="6" selection-start-line="59" selection-start-column="6" selection-end-line="64" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/users/_password_edit_modal.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="46" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/konekt/acl/src/Traits/HasRoles.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-635">
-          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="44" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="49" column="9" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="19" column="78" selection-start-line="19" selection-start-column="78" selection-end-line="19" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/users/_create_user.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="71" column="22" lean-forward="true" selection-end-line="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/users/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="12" lean-forward="true" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/users/script.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="35" selection-end-line="519" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/partials/sidebar.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="33" column="141" selection-start-line="33" selection-start-column="141" selection-end-line="33" selection-end-column="141" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/delivery/_create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="37" column="92" selection-start-line="37" selection-start-column="92" selection-end-line="37" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/delivery/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="50" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UsersController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="145" column="12" lean-forward="true" selection-start-line="145" selection-start-column="12" selection-end-line="145" selection-end-column="50" />
-          <folding>
-            <element signature="e#40#77#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CommonController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-114" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CheckoutController.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/OfficeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="58" column="11" selection-start-line="58" selection-start-column="11" selection-end-line="60" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/products.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1274">
-          <caret line="190" column="61" selection-start-line="190" selection-start-column="61" selection-end-line="190" selection-end-column="61" />
-          <folding>
-            <element signature="e#2724#4356#0#HTML" />
-            <element signature="e#4444#5317#0#HTML" />
-            <element signature="e#5402#7917#0#HTML" />
-            <element signature="e#8011#11207#0#HTML" />
-            <element signature="e#12178#16347#0#HTML" />
-            <element signature="e#16382#20509#0#HTML" />
-            <element signature="e#20548#22590#0#HTML" />
-            <element signature="e#22623#26738#0#HTML" />
-            <element signature="e#26777#30819#0#HTML" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/property/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="346" column="8" selection-start-line="346" selection-start-column="8" selection-end-line="431" selection-end-column="9" />
-          <folding>
-            <element signature="e#7620#11564#0#HTML" />
-            <element signature="e#11609#15553#0#HTML" />
-            <element signature="e#15590#18601#0#HTML" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/delivery/script.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="176" selection-start-line="176" selection-end-line="189" selection-end-column="11" />
-          <folding>
-            <element signature="e#959#3179#0#HTML" />
-            <element signature="e#3239#5484#0#HTML" />
-            <element signature="e#5553#7321#0#HTML" />
-            <element signature="e#7893#10904#0#HTML" />
-            <element signature="e#17427#20928#0#HTML" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/front/checkout.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="197" column="41" selection-start-line="197" selection-start-column="41" selection-end-line="197" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/partials/frontend/_search.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/partials/frontend/home/_categories.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DeliverySettingsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1242">
-          <caret line="73" selection-start-line="73" selection-end-line="73" />
-          <folding>
-            <element signature="e#40#63#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/DeliveryCharge.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/category/_view_categories.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="97" selection-start-column="81" selection-end-column="97" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/admin/category.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3870">
-          <caret line="215" column="35" selection-start-line="215" selection-start-column="35" selection-end-line="215" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SearchController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/pages/front/search.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="54" selection-start-line="14" selection-start-column="54" selection-end-line="14" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/DeliveryPrice.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="38" column="1" lean-forward="true" selection-start-line="38" selection-start-column="1" selection-end-line="43" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-630">
-          <caret line="182" column="60" lean-forward="true" selection-start-line="182" selection-start-column="60" selection-end-line="182" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/artesaos/seotools/src/SEOTools/SEOMeta.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/artesaos/seotools/src/SEOTools/SEOTools.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-25" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/artesaos/seotools/src/SEOTools/Traits/SEOTools.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-207" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/artesaos/seotools/src/SEOTools/Facades/SEOMeta.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/artesaos/seotools/src/SEOTools/Facades/SEOTools.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/artesaos/seotools/src/SEOTools/Contracts/SEOTools.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1107" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/artesaos/seotools/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="146">
-            <caret line="399" column="24" selection-start-line="399" selection-start-column="24" selection-end-line="399" selection-end-column="24" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/artesaos/seotools/src/resources/config/seotools.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="41" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/newmain.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2538">
-          <caret line="12" column="36" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/partials/frontend/header.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="86">
-          <caret line="55" column="83" lean-forward="true" selection-start-line="55" selection-start-column="83" selection-end-line="55" selection-end-column="127" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PagesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="52" column="48" selection-start-line="52" selection-start-column="48" selection-end-line="52" selection-end-column="48" />
-          <folding>
-            <element signature="e#40#56#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <MESSAGE value="Updated orders page, fixed wrong delivery cost" />
+    <MESSAGE value="Fixed slider issue where i wasn't checking if the slider exists" />
+    <MESSAGE value="Added webhook support" />
+    <MESSAGE value="corrected total price at checkout" />
+    <MESSAGE value="corrected cart delete after redirecting to PayStack" />
+    <MESSAGE value="Orders and transactions updates" />
+    <MESSAGE value="added logs" />
+    <MESSAGE value="updated webhooks logs" />
+    <MESSAGE value="completed order process. remains email" />
+    <MESSAGE value="added pagination navigation" />
+    <MESSAGE value="Added payment verification" />
+    <MESSAGE value="updated slider plugin and installed AWS SDK" />
+    <MESSAGE value="Added phone to orders table" />
+    <MESSAGE value="fixed images add for products and transaction email" />
+    <MESSAGE value="updated email template" />
+    <MESSAGE value="updated email" />
+    <MESSAGE value="added folder creation permission" />
+    <MESSAGE value="file permission" />
+    <MESSAGE value="folder permission" />
+    <MESSAGE value="folder security" />
+    <MESSAGE value="updated webhook logs" />
+    <MESSAGE value="started UI changes on MMSTORE" />
+    <MESSAGE value="updated ui" />
+    <MESSAGE value="added child menu to nav" />
+    <MESSAGE value="removed submenu" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed submenu" />
   </component>
 </project>
