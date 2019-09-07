@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="eb2349c8-f2b2-4acb-b3f6-e1ac82b2095e" name="Default" comment="updated webhook logs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/property/_view_properties.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/property/_view_properties.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/emails/transaction/success.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/emails/transaction/success.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -208,7 +208,10 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JavaScript Debug.success.blade.php">
+    <configuration name="success.blade.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/ecommerce-laravel/resources/views/emails/transaction/success.blade.php" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="watch" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -221,6 +224,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.success.blade.php" />
         <item itemvalue="npm.watch" />
       </list>
     </recent_temporary>
@@ -733,5 +737,8 @@
     <MESSAGE value="added child menu to nav" />
     <MESSAGE value="removed submenu" />
     <option name="LAST_COMMIT_MESSAGE" value="removed submenu" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ecommerce_laravel$success_blade_php.dat" NAME="success.blade.php Coverage Results" MODIFIED="1567860907230" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="WipCoverageRunner" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

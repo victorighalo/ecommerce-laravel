@@ -79,7 +79,7 @@
         ul,
         ol,
         blockquote {
-            margin: .4em 0 1.1875em;
+            margin: .4em;
             font-size: 16px;
             line-height: 1.625;
         }
@@ -430,8 +430,14 @@
                                 <td class="content-cell">
                                     <div class="f-fallback">
                                         <h4 style="color: #fff;margin-top: 35px;">Transaction Successful</h4>
-                                        <p>Thanks for patronizing us. This email is the receipt for your purchase.</p>
-                                        <div class="">
+                                        <p>Thank you for patronizing us.</p>
+                                        <p>This email is the receipt for your purchase.</p>
+                                        <div style="
+                                        background: rgb(65,98,187);
+                                        color: #fff;
+                                        text-align: center;
+                                            padding: 3em 2em;"
+                                        >
                                             <h4>Transaction ID : <span>{{$ref}}</span></h4>
                                             <div>
                                                 <h5>The delivery will be made to :</h5>
@@ -453,7 +459,7 @@
                                                     <table class="purchase_content" width="100%" cellpadding="0" cellspacing="0">
                                                         <tr>
                                                             <th class="purchase_heading" align="left">
-                                                                <p class="f-fallback">Description</p>
+                                                                <p class="f-fallback">Product</p>
                                                             </th>
                                                             <th class="purchase_heading" align="right">
                                                                 <p class="f-fallback">Amount</p>
