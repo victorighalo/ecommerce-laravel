@@ -3,16 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="eb2349c8-f2b2-4acb-b3f6-e1ac82b2095e" name="Default" comment="updated webhook logs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Payment/PaymentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Payment/PaymentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Proxy/BaseProxy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Proxy/BaseProxy.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Proxy/PayStackProxy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Proxy/PayStackProxy.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Log.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Log.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/newmain.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/newmain.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/_create_product.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/_create_product.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/front/checkout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/front/checkout.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/front/product_detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/front/product_detail.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/front/single_product.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/front/single_product.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/property_edit_modal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/property_edit_modal.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/property/_view_properties.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/property/_view_properties.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

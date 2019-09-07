@@ -12,14 +12,16 @@
                                 </a></h4>
                             <div class="" id="form_collapse">
                                 <div class="row">
-                                    <div class="col-sm-12 p-4">
+                                    <div class="col-sm-6 p-2">
+                                        @include('pages.admin.property._view_properties')
+                                    </div>
+
+                                    <div class="col-sm-6 p-4">
                                         @include('pages.admin.property._create_property')
                                         @include('pages.admin.property._create_property_value')
                                     </div>
 
-                                    <div class="col-sm-12 p-2">
-                                        @include('pages.admin.property._view_properties')
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
