@@ -66,6 +66,12 @@ class DeliverySettingsController extends Controller
 
     public function getDeliveryCost(Request $request){
         $delivery_cost = $this->calculateDelivery($request);
+        if(!$delivery_cost){
+            return response()->json([
+                'delivery_cost' => 0,
+                'total_cost' => 0,
+            ]);
+        }
         return response()->json([
             'delivery_cost' => $delivery_cost,
             'total_cost' => Cart::total() + $delivery_cost,
@@ -76,6 +82,9 @@ class DeliverySettingsController extends Controller
         $delivery_cost = 0;
         foreach (Cart::getItems() as $item){
             $delivery_cost += $item->product->delivery_price->amount;
+        }
+        if($delivery_cost == 0){
+            return null;
         }
         $data = DeliveryCharge::where('state_id', $request->state_id)->where('city_id', $request->city_id);
 

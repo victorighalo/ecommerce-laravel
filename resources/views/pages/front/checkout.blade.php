@@ -192,7 +192,18 @@
                 }
                 )
                 .done(function(res) {
-                    $("button.checkout").attr("disabled", false);
+                    if (res.total_cost > 0){
+                        $("button.checkout").attr("disabled", false);
+                    }else{
+                        Snackbar.show({
+                            showAction: false,
+                            text: "Sorry! Your cart is empty",
+                            actionTextColor: '#ffffff',
+                            backgroundColor:"rgb(65,98,187)",
+                            actionText: 'Close!',
+                            pos: 'top-right'
+                        });
+                    }
                     $(".loader").addClass("off");
                     var delivery_cost = new Intl.NumberFormat('en-GB').format(Math.ceil(res.delivery_cost));
                     var total_cost = new Intl.NumberFormat('en-GB').format(Math.ceil(res.total_cost));

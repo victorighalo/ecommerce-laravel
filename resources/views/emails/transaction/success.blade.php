@@ -439,13 +439,13 @@
                                             padding: 3em 2em;"
                                         >
                                             <h4>Transaction ID : <span>{{$ref}}</span></h4>
-                                            <div>
+
                                                 <h5>The delivery will be made to :</h5>
                                                 <p>Firstname : <span>{{$trans->firstname}}</span></p>
                                                 <p>Lastname : <span>{{$trans->lastname}}</span></p>
                                                 <p>Phone : <span>{{$trans->phone}}</span></p>
                                                 <p>Email : <span>{{$trans->user_email}}</span></p>
-                                            </div>
+
                                         </div>
                                         <table class="purchase" width="100%" cellpadding="0" cellspacing="0" role="presentation">
                                             <tr>
@@ -485,7 +485,7 @@
                                                 </td>
                                             </tr>
                                         </table>
-                                        <p>If you have any questions about this receipt, simply reply to this email or reach out to our support team</a> for help at support@ {{env('APP_URL')}}</p>
+                                        <p>If you have any questions about this receipt, kindly reply to this email or reach out to our support team</a> for help at support@ {{env('APP_URL')}}</p>
                                         <p>Cheers,
                                             <br>The Product Team</p>
 
