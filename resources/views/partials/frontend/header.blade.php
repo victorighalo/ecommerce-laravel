@@ -1,24 +1,43 @@
 <?php
 function nav_menu($array){
 
-$ul = " <ul class=\"dropdown-menu animated-3s fadeInLeft\">";
+$ul = "<ul class='dropdown-menu'>";
       foreach($array as $category){
         $ul .= "<li>";
-        $ul .= "<a href=".route('get_category_content', ['taxon_slug' => $category->slug])." title=".$category->name." style='text-decoration: underline !important; font-weight: bold'>";
+        $ul .= "<a href=".route('get_category_content', ['taxon_slug' => $category->slug])." title=".$category->name." class='dropdown-toggle' data-toggle='dropdown'>";
         $ul .= $category->name;
         $ul .= "</a>";
-//        if(count($category->children)){
-//            $ul .= sub_menu($category->children);
-//        }
+        if(count($category->children)){
+            $ul .= sub_menu($category->children);
+        }
         $ul .= "</li>";
       }
 $ul .= "</ul>";
 return $ul;
 }
 
+//function nav_menu($array){
+//
+//$ul = " <ul class=\"dropdown-menu animated-3s fadeInLeft\">";
+//      foreach($array as $category){
+//        $ul .= "<li>";
+//        $ul .= "<a href=".route('get_category_content', ['taxon_slug' => $category->slug])." title=".$category->name." style='text-decoration: underline !important; font-weight: bold'>";
+//        $ul .= $category->name;
+//        $ul .= "</a>";
+////        if(count($category->children)){
+////            $ul .= sub_menu($category->children);
+////        }
+//        $ul .= "</li>";
+//      }
+//$ul .= "</ul>";
+//return $ul;
+//}
+
 function sub_menu($array){
 
-    $ul = " <ul class=\"\">";
+    $ul = " <div class='dropdown-menu'>";
+    $ul .= " <div class='row'>";
+    $ul .= " <ul class='col-sm-6'>";
     foreach($array as $category){
         $ul .= "<li>";
         $ul .= "<a href=".route('get_category_content', ['taxon_slug' => $category->slug])." title=".$category->name.">";
@@ -30,6 +49,8 @@ function sub_menu($array){
         $ul .= "</li>";
     }
     $ul .= "</ul>";
+    $ul .= "</div>";
+    $ul .= "</div>";
     return $ul;
 }
 
@@ -82,6 +103,8 @@ function sub_menu($array){
                         </form>
                     </li>
                 @endguest
+                <li> <a href="{{url('about')}}">ABOUT US </a> </li>
+                <li> <a href="{{url('contact')}}"> CONTACT</a> </li>
             </ul>
         </div>
     </div>
@@ -99,29 +122,16 @@ function sub_menu($array){
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="nav">
                     {{--<li> <a href="{{url('/')}}">Home</a></li>--}}
-                    <li class="dropdown"> <a href="#." class="dropdown-toggle" data-toggle="dropdown">Categories</a>
-                        <ul class="dropdown-menu">
-                            @foreach($brands as $brand)
-                                <li class="dropdown"> <a href="{{route('get_brand', ['taxon_slug' => $brand->slug])}}" title="{{$brand->name}}"> {{$brand->name}} </a>
-                                    @if($brand->rootLevelTaxons()->count())
-                                        <?php
-                                        echo nav_menu($brand->rootLevelTaxons());
-                                        ?>
-{{--                                        @foreach($brand->rootLevelTaxons() as $category)--}}
-{{--                                            <li>--}}
-{{--                                                <a href="{{route('get_category_content', ['taxon_slug' => $category->slug])}}" title="{{$category->name}}">--}}
-{{--                                                    {{$category->name}}--}}
-{{--                                                </a>--}}
-{{--                                            </li>--}}
-{{--                                        @endforeach--}}
+                    @foreach($brands as $brand)
+                        <li class="dropdown"> <a href="{{route('get_brand', ['taxon_slug' => $brand->slug])}}" title="{{$brand->name}}"> {{$brand->name}} </a>
+                    @if($brand->rootLevelTaxons()->count())
+                            <?php
+                            echo nav_menu($brand->rootLevelTaxons());
+                            ?>
+                        @endif
+                        </li>
+                        @endforeach
 
-                                        @endif
-                                </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                    <li> <a href="{{url('about')}}">About </a> </li>
-                    <li> <a href="{{url('contact')}}"> contact</a> </li>
                 </ul>
             </div>
 
