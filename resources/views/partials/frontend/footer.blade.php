@@ -30,7 +30,9 @@
         <div class="row">
             <!-- ABOUT Location -->
             <div class="col-md-4">
-                <div class="about-footer"> <img class="margin-bottom-30" src="{{asset('assets/images/big-stan-logo.png')}}" alt="logo" style="width: 50%" >
+                <div class="about-footer">
+                    <h4 class="text-white">{{$app_settings->store_name}}</h4>
+{{--                    <img class="margin-bottom-30" src="{{asset('assets/images/big-stan-logo.png')}}" alt="logo" style="width: 50%" >--}}
                     <p><i class="icon-pointer"></i> {{$app_settings->store_address ? $app_settings->store_address : ""}}</p>
                     <p><i class="icon-call-end"></i> {{$app_settings->store_phone ? $app_settings->store_phone : ""}}</p>
                     <p><i class="icon-envelope"></i>  {{$app_settings->store_email ? $app_settings->store_email : ""}}</p>
