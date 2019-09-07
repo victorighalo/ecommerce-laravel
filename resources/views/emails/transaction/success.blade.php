@@ -282,9 +282,6 @@
             color: #333;
         }
 
-        p {
-            color: #333;
-        }
 
         .email-wrapper {
             width: 100%;
@@ -405,6 +402,9 @@
                 text-shadow: none !important;
             }
         }
+        .pickup_person p{
+            color: #fff;
+        }
     </style>
     <!--[if mso]>
     <style type="text/css">
@@ -429,16 +429,16 @@
                             <tr>
                                 <td class="content-cell">
                                     <div class="f-fallback">
-                                        <h4 style="color: #fff;margin-top: 35px;">Transaction Successful</h4>
-                                        <p>Thank you for patronizing us.</p>
-                                        <p>This email is the receipt for your purchase.</p>
+                                        <div class="col-4" style="padding: 10px;  background: #fff;text-align: center;color: #333">
+                                            <h4>Transaction Successful</h4>
+                                            <h4>Transaction ID : <span>{{$ref}}</span></h4>
+                                        </div>
                                         <div style="
                                         background: rgb(65,98,187);
                                         color: #fff;
                                         text-align: center;
-                                            padding: 3em 2em;"
+                                            padding: 1em 2em;"
                                         >
-                                            <h4>Transaction ID : <span>{{$ref}}</span></h4>
 
                                                 <h5>The delivery will be made to :</h5>
                                                 <p>Firstname : <span>{{$trans->firstname}}</span></p>
@@ -452,7 +452,7 @@
                                                 <td>
                                                     <h3>Date</h3></td>
                                                 <td>
-                                                    <h3 class="align-right">{{date('Y-m-d H:i')}}</h3></td>
+                                                    <h3 class="align-right">{{date('l jS \\of F Y h:i:s A')}}</h3></td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2">
