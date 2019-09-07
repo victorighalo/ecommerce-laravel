@@ -3,7 +3,7 @@
 
     <!-- Modal -->
     <div class="modal fade" id="products_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog  modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="products_modal">Order Products</h5>
@@ -12,17 +12,17 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Price</th>
-                    </tr>
-                    </thead>
-                    <tbody>
+{{--                <table class="table table-bordered">--}}
+{{--                    <thead>--}}
+{{--                    <tr>--}}
+{{--                        <th>Name</th>--}}
+{{--                        <th>Price</th>--}}
+{{--                    </tr>--}}
+{{--                    </thead>--}}
+{{--                    <tbody>--}}
 
-                    </tbody>
-                </table>
+{{--                    </tbody>--}}
+{{--                </table>--}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -68,7 +68,11 @@
                                             <td>{{$item->phone}}</td>
                                             <td>{{$item->address}}</td>
                                             <td>{{$item->status}}</td>
-                                            <td><button class='btn btn-md btn-link view_products' data-order_id="{{$item->order_id}}">Products</button></td>
+                                            <td><button class='btn btn-md btn-link view_products'
+                                                        data-order_id="{{$item->order_id}}"
+                                                        data-state_id="{{$item->state_id}}"
+                                                        data-city_id="{{$item->city_id}}"
+                                                >Products</button></td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -88,6 +92,15 @@
 @push('script')
     <script>
         $(document).ajaxStop($.unblockUI);
+        var mediaUrl = "";
+        (function setMediaUrl() {
+            if (photoDriver == 'local') {
+                mediaUrl = "{{asset('')}}"
+            }
+            else if (photoDriver == 's3') {
+                mediaUrl = s3Url;
+            }
+        })();
         $(document).ready(function () {
 
             {{--var table = $('#table').DataTable({--}}
@@ -110,21 +123,44 @@
             $("#table").on('click', '.view_products', function () {
                 $.blockUI();
                 var order_id = $(this).data('order_id');
+                var state_id = $(this).data('state_id');
+                var city_id = $(this).data('city_id');
                 $.ajax({
                     url: "{!! route('order_products') !!}",
                     method: 'POST',
-                    data: {order_id: order_id},
+                    data: {
+                        order_id: order_id,
+                        state_id: state_id,
+                        city_id: city_id,
+                    },
                 }).done( function(data){
 
-                    var tr = "<tr>";
+                    var rows = "<div class='row'>";
                     $.each(data.data, function(index, item){
-                    var price = new Intl.NumberFormat().format(item.price)
-                    tr += "<td>"+item.name+"</td>";
-                    tr += "<td>&#8358;"+price+"</td>";
-                    tr += "</tr>";
+                    var price = new Intl.NumberFormat().format(item.price);
+                    var delivery_price = new Intl.NumberFormat().format(item.delivery_price);
+                    var delivery_price_location = new Intl.NumberFormat().format(item.delivery_price_location);
+                    var image = mediaUrl + item.images[0].link;
+                        rows += "<div class='col-sm-6' style='background: url("+image+") #f5f5f5; background-repeat: no-repeat; background-position: center center;background-size: cover;'></div>";
+                        rows += "<div class='col-sm-6 padding-20'>"
+                        rows += "<h2>"+item.name+"</h2>";
+                        rows += "<h5 class='m-1'>Description</h5>";
+                        rows += "<p class='m-1 font-weight-bold'>"+item.description+"</p>";
+                        rows += "<h5 class='m-1'>Cost</h5>";
+                        rows += "<p class='m-1 font-weight-bold'>Price - &#8358;"+price+"</p>";
+                        rows += "<p class='m-1 font-weight-bold'>Delivery - &#8358;"+delivery_price+"</p>";
+                        rows += "<p class='m-1 font-weight-bold'>Delivery location - &#8358;"+delivery_price_location+"</p>";
+                        if(item.properties){
+                            rows += "<h5 class='m-1'>Properties</h5>";
+                            $.each(item.properties, function (index, item) {
+                                rows += "<p class='m-1 font-weight-bold'>"+item.name+" - "+item.value+"</p>";
+                            })
+                        }
+                        rows += "</div>";
+                        rows += "</div>";
                     });
 
-                    $(".modal-body tbody").empty().append(tr)
+                    $(".modal-body").empty().append(rows)
                     $('#products_modal').modal('show');
 
 

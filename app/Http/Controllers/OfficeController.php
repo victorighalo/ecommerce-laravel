@@ -59,7 +59,7 @@ class OfficeController extends Controller
         }
         )->join('states', 'transactions.state_id', 'states.state_id')
             ->join('cities', 'transactions.city_id', 'cities.city_id')
-            ->paginate(20);
+            ->paginate(2);
        return view('pages.admin.orders.index', compact('data'));
     }
 
@@ -82,12 +82,50 @@ class OfficeController extends Controller
 
 
     public function ordersProducts(Request $request){
-        $products = OrderItem::where('order_id', $request->input('order_id'))
-            ->join('products', 'order_items.product_id', 'products.id')
-            ->get();
+        $products = [];
+        $order = OrderItem::where('order_id', $request->input('order_id'))->select('product_id')->first();
+
+        $data = \App\Product::where('id', $order->product_id)->get();
+
+        foreach ($data as $product){
+            $products[] = (object)[
+                'price' => $product->price,
+                'name' => $product->name,
+                'delivery_price' => $product->delivery_price ? $product->delivery_price->amount : 0,
+                'delivery_price_location' => $this->calculateDelivery($request->state_id, $request->city_id),
+                'properties' => isset($product->propertyValues) ? $this->getProperties($product->propertyValues) : null,
+                'category' => $product->taxons->first()->name,
+                'description' => $product->meta_description,
+                'overview' => $product->description,
+                'images' => $product->hasPhoto() ? $product->photos : null
+            ];
+        }
 
         return response()->json(['data' => $products]);
 
+    }
+
+    private function getProperties($props){
+        $data = [];
+        foreach ($props as $prop){
+            $data[] = [
+                'name' => $prop->property->name,
+                'value' => $prop->value,
+            ];
+        }
+        return $data;
+    }
+
+    private function calculateDelivery($state_id, $city_id){
+        $delivery_cost = 0;
+
+        $data = \App\DeliveryCharge::where('state_id', $state_id)->where('city_id', $city_id);
+
+        if($data->exists())
+        {
+            $delivery_cost += $data->first()->cost;
+        }
+        return $delivery_cost;
     }
 
 }

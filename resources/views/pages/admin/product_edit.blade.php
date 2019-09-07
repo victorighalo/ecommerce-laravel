@@ -9,8 +9,7 @@
                         <div class="card-body">
                             <div style="border-bottom: #8c8c8c 1px solid; padding-bottom: 20px">
                                 <button
-                                    id="update_product"
-                                    class="btn float-right btn-primary btn-lg font-weight-medium add_product_btn"
+                                    class="btn float-right btn-primary btn-lg font-weight-medium add_product_btn update_product"
                                     type="submit">
                                     <i class="fas fa-spinner fa-spin off process_indicator"></i>
                                     <span><i class="fas fa-save"></i> {{ __('Update') }}</span>
@@ -197,8 +196,7 @@
                                                     </div>
                                                     <div class="mt-5">
                                                         <button
-                                                            id="update_product"
-                                                            class="btn float-right btn-primary btn-lg btn-block font-weight-medium add_product_btn"
+                                                            class="btn float-right btn-primary btn-lg btn-block font-weight-medium add_product_btn update_product"
                                                             type="submit">
                                                             <i class="fas fa-spinner fa-spin off process_indicator"></i>
                                                             <span><i class="fas fa-save"></i> {{ __('Update') }}</span>
@@ -382,7 +380,7 @@
             });
 
             //Update product
-            $("#update_product").on('click', function (e) {
+            $(".update_product").on('click', function (e) {
                 e.preventDefault();
                 $(".add_product_btn").prop('disabled', true)
                 $(".add_product_btn > .process_indicator").removeClass('off');

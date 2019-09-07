@@ -53,7 +53,8 @@
     <div class="container">
 
         <!-- Logo -->
-        <div class="logo"> <a href="{{url('/')}}"><img class="img-responsive" src="{{asset('assets/images/big-stan-logo.png')}}" alt="logo" style="width: 50%" ></a> </div>
+{{--        <div class="logo"> <a href="{{url('/')}}"><img class="img-responsive" src="{{asset('assets/images/big-stan-logo.png')}}" alt="logo" style="width: 50%" ></a> </div>--}}
+        <div class="logo"> <a href="{{url('/')}}">M&MONLINESTORE</a> </div>
         <nav class="navbar ownmenu navbar-expand-lg">
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span></span> </button>
             <div class="collapse navbar-collapse" id="navbarNav">

@@ -24,7 +24,8 @@
 {{--        </div>--}}
 {{--    </div>--}}
 {{--</section>--}}
-@if($sliders)
+
+@if($sliders && count($sliders))
 <div class="owl-carousel slick">
             @foreach($sliders as $image)
         <img src="{{asset($image->link)}}">
