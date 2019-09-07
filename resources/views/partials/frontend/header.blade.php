@@ -37,7 +37,7 @@ function sub_menu($array){
 
     $ul = " <div class='dropdown-menu'>";
     $ul .= " <div class='row'>";
-    $ul .= " <ul class='col-sm-6'>";
+    $ul .= " <ul>";
     foreach($array as $category){
         $ul .= "<li>";
         $ul .= "<a href=".route('get_category_content', ['taxon_slug' => $category->slug])." title=".$category->name.">";
