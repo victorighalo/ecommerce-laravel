@@ -114,6 +114,21 @@ class PaymentController extends Controller
             $ref = $request->get('reference');
             $verifyTrans = $this->payStackProxy->verifyTransaction($ref);
             if ($verifyTrans) {
+                $trans_status_complete = new TransactionStatus('complete');
+                if(Transactions::where('reference', $ref)->where('status', $trans_status_complete->value())->exists()){
+                    $order = Order::where('number', $ref)->first();
+                    $products = OrderItem::where('order_id', $order->id)
+                        ->join('products', 'order_items.product_id', 'products.id')
+                        ->get();
+                    $trans = Transactions::where('reference', $ref)->first();
+                    Order::where('number', $ref)->update(
+                        ['status' => OrderStatus::COMPLETED]
+                    );
+
+                    SEOMeta::setTitle('Successful Transaction | '.config('app.name', ''), false);
+
+                    return view('payment.success', compact('trans', 'ref', 'products'));
+                }
                 if(!$verifyTrans->status){
                     $message = $verifyTrans->message;
                     $trans_status = new TransactionStatus('failed');
