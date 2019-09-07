@@ -59,7 +59,7 @@ class OfficeController extends Controller
         }
         )->join('states', 'transactions.state_id', 'states.state_id')
             ->join('cities', 'transactions.city_id', 'cities.city_id')
-            ->paginate(2);
+            ->paginate(20);
        return view('pages.admin.orders.index', compact('data'));
     }
 
