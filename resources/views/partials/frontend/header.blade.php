@@ -86,11 +86,13 @@ function sub_menu($array){
                     </ul>
                 </li>
 
+                <li> <a href="{{url('about')}}">ABOUT US </a> </li>
+                <li> <a href="{{url('contact')}}"> CONTACT</a> </li>
                 @guest
                 <li><a href="{{url('login')}}">LOGIN</a></li>
                 <li><a href="{{url('register')}}">REGISTER</a></li>
                 @else
-                    <li><a href="#."> MY ACCOUNT </a></li>
+                    <li><a href="{{url('profile')}}"> MY ACCOUNT </a></li>
                     <li>
                         <a href="{{ route('logout') }}"
                            onclick="event.preventDefault();
@@ -103,8 +105,6 @@ function sub_menu($array){
                         </form>
                     </li>
                 @endguest
-                <li> <a href="{{url('about')}}">ABOUT US </a> </li>
-                <li> <a href="{{url('contact')}}"> CONTACT</a> </li>
             </ul>
         </div>
     </div>
@@ -139,7 +139,7 @@ function sub_menu($array){
             <div class="nav-right">
                 <ul class="navbar-right">
                     <!-- USER INFO -->
-                    <li> <a href="{{url('profile')}}"><i class="lnr lnr-user"></i> </a></li>
+{{--                    <li> <a href="{{url('profile')}}"><i class="lnr lnr-user"></i> </a></li>--}}
                     <!-- USER BASKET -->
                     <li> <a href="{{url('cart')}}"><span class="c-no">{{Cart::itemCount()}}</span><i class="lnr lnr-cart"></i> </a> </li>
                     <!-- SEARCH BAR -->
