@@ -204,10 +204,12 @@
 @endsection
 
 @push('script')
+    <script src="{{ asset('admin/js/uikit.js') }}" ></script>
+    <script src="{{ asset('admin/js/uikit-icons.js') }}" ></script>
     <script>
 
         $(document).ready(function () {
-
+            UIkit.modal.alert('UIkit alert!')
             $("#add_to_cart").click(function () {
                 $(".processing").removeClass('off')
                 $("#add_to_cart").prop('disabled', true)
@@ -286,3 +288,7 @@
         });
     </script>
     @endpush
+
+@push('style')
+    <link href="{{ asset('admin/css/uikit.css') }}" rel="stylesheet">
+@endpush

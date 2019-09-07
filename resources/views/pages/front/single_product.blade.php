@@ -9,6 +9,17 @@
 <div id="content">
 
     <!-- Popular Products -->
+    <div id="modal-center" class="uk-flex-top product-to-cart" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+
+            <button class="uk-modal-close-default" type="button" uk-close></button>
+            <h4 class="text-center"><span class="text-bold">{{$product->title()}}</span> <span class="cart-msg"></span></h4>
+            <div class="text-center">
+            <a class="uk-button uk-button-default close-modal" href="#">CONTINUE SHOPPING</a>
+            <a class="uk-button uk-button-primary" href="{{url('cart')}}">VIEW CART AND CHECKOUT</a>
+            </div>
+        </div>
+    </div>
     <section class="padding-top-100 padding-bottom-100">
         <div class="container">
 
@@ -94,7 +105,7 @@
                                 @if(isset($product->propertyValues))
                                     @foreach($product->propertyValues as $propertyValue)
                                         {{ $propertyValue->property->name }}: <span class="font-weight-bold text-white"
-                                        style="color: #000 !important;padding-right: 10px;font-size: 14px">{{ ucfirst($propertyValue->value) }} {{$propertyValue->title ? ucfirst($propertyValue->title) : ''}}</span>
+                                        style="color: #000 !important;padding-right: 10px;font-size: 14px">{{ ucfirst($propertyValue->value) }}</span>
                                     @endforeach
                                 @endif
                             </li>
@@ -241,17 +252,23 @@
 @endsection
 
 @push('script')
+    <script src="{{ asset('admin/js/uikit.js') }}" ></script>
+    <script src="{{ asset('admin/js/uikit-icons.js') }}" ></script>
     <script>
 
         $(document).ready(function () {
+            var modal = $(".product-to-cart")
 
+            $(".close-modal").click(function(){
+                UIkit.modal(modal).hide();
+            })
             $("#add_to_cart").click(function () {
                 $(".processing").removeClass('off')
                 $("#add_to_cart").prop('disabled', true)
                 var slug = $(this).data('slug');
                 var qty = $("input[name='item_qty']").val();
                 if(qty < 1){
-                    alert('Qty less than 1')
+                    UIkit.alert('Qty less than 1');
                     return false;
                 }
                 $.ajax({
@@ -263,12 +280,12 @@
                         $(".processing").addClass('off')
                         $("#add_to_cart").prop('disabled', false)
                         $(".c-no").html("<i>"+data.cart_count+"</i>")
-                        Snackbar.show({
-                            showAction: true,
-                            text: 'Cart updated.',
-                            actionTextColor: '#ffffff',
-                            backgroundColor:"#53A6E8"
-                        });
+                        if(data.cart_count > 1){
+                            $(".cart-msg").html("updated in cart")
+                        }else{
+                            $(".cart-msg").html("added to cart")
+                        }
+                        UIkit.modal(modal).show();
 
                     }).fail(function (error) {
                     $(".processing").addClass('off')
@@ -326,4 +343,8 @@
             });
         });
     </script>
+@endpush
+
+@push('style')
+    <link href="{{ asset('admin/css/uikit.css') }}" rel="stylesheet">
 @endpush

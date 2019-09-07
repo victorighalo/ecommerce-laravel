@@ -26,9 +26,6 @@ Route::get('brand/{taxonomy_slug}', 'PagesController@getBrandProducts')->name('g
 //
 //});
 
-//Route::get('test', function () {
-//    Mail::to('victorighalo@gmail.com')->send(new AmazonSes('It Works'));
-//});
 
 Auth::routes();
 

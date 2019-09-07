@@ -83,7 +83,8 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label>Email Address<span>*</span>
-                                                        <input type="email" name="email" value="{{Auth::guest() ? '' : Auth::user()->email}}" required {{Auth::guest() ? '' : 'disabled'}}>
+{{--                                                        <input type="email" name="email" value="{{Auth::guest() ? '' : Auth::user()->email}}" required {{Auth::guest() ? '' : 'disabled'}}>--}}
+                                                        <input type="email" name="email">
                                                     </label>
                                                 </div>
                                                 <div class="col-md-6">

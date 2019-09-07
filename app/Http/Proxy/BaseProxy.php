@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Proxy;
 
+use App\Log;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Client;
 use Ixudra\Curl\Facades\Curl;
@@ -9,12 +10,17 @@ abstract class BaseProxy implements IBaseProxy
 
     public function sendPost($url, $header, $payload){
         try {
+
+
             $response = Curl::to($url)
                 ->withHeaders($header)
-                ->withContentType('application/json')
+//                ->withContentType('application/json')
                 ->withData($payload)
-                ->asJson()
+                ->asJsonResponse()
                 ->post();
+
+
+
             if($response){
                 return $response;
             }else{

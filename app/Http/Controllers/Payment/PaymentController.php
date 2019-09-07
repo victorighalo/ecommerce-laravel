@@ -33,9 +33,10 @@ class PaymentController extends Controller
     }
 
     public function initializePayStackTrans(PaymentRequest $request){
-
+//        dd($request->all());
         $delivery_cost = $this->calculateDelivery($request);
-        $trans_email = Auth::guest() ? $request->email : Auth::user()->email;
+        $trans_email = $request->email;
+//        $trans_email = Auth::guest() ? $request->email : Auth::user()->email;
         $user_id = Auth::guest() ? Auth::id() : null;
         $amount = (Cart::total() + $delivery_cost) ;
         $converted_amount = ( (Cart::total() + $delivery_cost) * 100);
