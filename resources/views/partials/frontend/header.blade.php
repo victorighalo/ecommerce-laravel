@@ -4,7 +4,7 @@ function nav_menu($array){
 $ul = " <ul class=\"dropdown-menu animated-3s fadeInLeft\">";
       foreach($array as $category){
         $ul .= "<li>";
-        $ul .= "<a href=\"route('get_category_content', ['taxon_slug' => $category->slug])\" title=\"$category->name\" style='text-decoration: underline !important; font-weight: bold'>";
+        $ul .= "<a href=".route('get_category_content', ['taxon_slug' => $category->slug])." title=".$category->name." style='text-decoration: underline !important; font-weight: bold'>";
         $ul .= $category->name;
         $ul .= "</a>";
 //        if(count($category->children)){
@@ -21,7 +21,7 @@ function sub_menu($array){
     $ul = " <ul class=\"\">";
     foreach($array as $category){
         $ul .= "<li>";
-        $ul .= "<a href=\"route('get_category_content', ['taxon_slug' => $category->slug])\" title=\"$category->name\">";
+        $ul .= "<a href=".route('get_category_content', ['taxon_slug' => $category->slug])." title=".$category->name.">";
         $ul .= $category->name;
         $ul .= "</a>";
         if(count($category->children)){
@@ -93,13 +93,13 @@ function sub_menu($array){
 {{--</pre>--}}
         <!-- Logo -->
 {{--        <div class="logo"> <a href="{{url('/')}}"><img class="img-responsive" src="{{asset('assets/images/big-stan-logo.png')}}" alt="logo" style="width: 50%" ></a> </div>--}}
-        <div class="logo"> <a href="{{url('/')}}">M&MONLINESTORE</a> </div>
+        <div class="logo"> <a href="{{url('/')}}">{{$app_settings->store_name}}</a> </div>
         <nav class="navbar ownmenu navbar-expand-lg">
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span></span> </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="nav">
                     {{--<li> <a href="{{url('/')}}">Home</a></li>--}}
-                    <li class="dropdown"> <a href="#." class="dropdown-toggle" data-toggle="dropdown">Brands</a>
+                    <li class="dropdown"> <a href="#." class="dropdown-toggle" data-toggle="dropdown">Categories</a>
                         <ul class="dropdown-menu">
                             @foreach($brands as $brand)
                                 <li class="dropdown"> <a href="{{route('get_brand', ['taxon_slug' => $brand->slug])}}" title="{{$brand->name}}"> {{$brand->name}} </a>

@@ -4,8 +4,8 @@
         <!-- About Sec -->
         <div class="acces-ser">
             <!-- Heading -->
-            <div class="heading text-center">
-                <h4>Brands</h4>
+            <div class="heading text-center text-uppercase">
+                <h4>Shop by category</h4>
                 <hr>
             </div>
             <div class="row">

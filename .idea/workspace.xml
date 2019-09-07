@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="eb2349c8-f2b2-4acb-b3f6-e1ac82b2095e" name="Default" comment="updated webhook logs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/emails/transaction/success.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/emails/transaction/success.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/partials/frontend/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/frontend/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/partials/frontend/home/_categories.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/frontend/home/_categories.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/partials/frontend/home/_newproducts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/frontend/home/_newproducts.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/partials/frontend/home/_products_by_category.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/frontend/home/_products_by_category.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

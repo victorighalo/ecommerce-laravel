@@ -2,7 +2,7 @@
     <div class="container">
 
         <!-- Main Heading -->
-        <div class="heading text-center">
+        <div class="heading text-center text-uppercase">
             <h4>Newly Added Products</h4>
             <hr>
         </div>

@@ -2,7 +2,7 @@
     <div class="container-full">
 
         <!-- Main Heading -->
-        <div class="heading text-center">
+        <div class="heading text-center text-uppercase">
             <h4>Top Product Categories</h4>
         </div>
 
