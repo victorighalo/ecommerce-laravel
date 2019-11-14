@@ -65,7 +65,7 @@ Route::get('orders/data', 'OfficeController@ordersData')->name('orders_data');
 Route::post('orders/products', 'OfficeController@ordersProducts')->name('order_products');
 
 //Transactions
-    Route::get('transactions', 'OfficeController@transactions');
+Route::get('transactions', 'OfficeController@transactions');
 
 //Products
 Route::get('/products/list', 'ProductsController@index');
@@ -101,6 +101,7 @@ Route::post('/category/upload/image', 'CategoryController@addTaxonImage')->name(
 
 //Properties
 Route::get('/properties', 'PropertyController@index');
+Route::get('/properties.json', 'PropertyController@indexJson');
 Route::post('/properties/create', 'PropertyController@create')->name('create_property');
 Route::post('/properties/update', 'PropertyController@update')->name('update_property');
 Route::get('/properties/destroy/{id?}', 'PropertyController@destroy')->name('destroy_property');

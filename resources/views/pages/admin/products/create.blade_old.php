@@ -11,7 +11,7 @@
 
 @push('script')
     <script src="{{asset('plugins/bootstrap-tagsinput.min.js')}}"></script>
-{{--    <script src="{{asset('js/angular.min.js')}}"></script>--}}
+    <script src="{{asset('js/angular.min.js')}}"></script>
 
     <script>
         var imageBag = [];
@@ -58,108 +58,143 @@
         })();
 
 
-        function isDuplicate(item) {
-            var status = 0;
-            $.map(variants, function (val, index) {
-                item
-            })
-        }
-        function getVariantString(variant) {
-            var variant_combo = "";
-            $.map(variant, function (val, index) {
-                if(index > 0){
-                    variant_combo += "/"  + val.property_value
-                }else{
-                    variant_combo += val.property_value
-                }
-            })
-            return variant_combo;
-        }
-        function displayVariants(variants, index){
-            var row = "<div class='col-sm-12 mb-3 variant-container'>";
+        function displayVariants(variants){
+            var row = "<div class='col-sm-6 mb-3 variant-container'>";
             row += "<div class='variant-box d-flex justify-content-around'>";
             row += "<div class='variant-desc text-center'>";
-            row += "<div style='padding: 8px;'><strong>"+getVariantString(variants.variant_properties)+"</strong></div>";
+            row += "<div><p class=''>"+variants+"</p></div>";
             row += "</div>"
+            row += "<div class='variant-box'>";
             row += "<div class='variant-price text-center'>";
-            row += "<div><input class='form-control variants-price-input-value' data-prop-id='"+index+"' type='number' value='"+variants.variant_price+"'></div>"
+            row += "<div><input class='form-control' type='number'></div>"
             row += "</div>"
-            row += "<div class='variant-desc text-center'>";
-            row += "<i title='Remove' class=\"fas fa-times variant-icon\" onclick='removeVariant(this)' data-prop-id='"+index+"'></i>"
-            row += "</div>";
-
+            // row += "<i class=\"fas fa-trash variant-icon\"></i>"
             row += "</div></div>";
             $(".variants_preview").append(row)
         }
 
-        function updateVariant(element){
-            variants[$(element).data('prop-id')].variant_price = $(element).val();
+        function updateOrCreateVariant(element){
+            //Check if variant exists in variants array
+            var empty = 0;
+            var itemExists = variants.some(function (val) {
+                return  val.property_id == $(element.target).data('property_id')
+            })
+
+            if(itemExists) {
+                //if item exists, update item in variants array
+                variants.map(function (val, index) {
+                    if (val.property_id == $(element.target).data('property_id')) {
+                        val.variant_value = val.variant_value + "," +element.item
+                    }
+                })
+            }else{
+                //item does not exist, so add an item
+                variants.push({
+                    property_id: $(element.target).data('property_id'),
+                    property_name: $(element.target).data('property_name'),
+                    variant_value: element.target.value
+                })
+            }
+
+            variants.map(function (val, index) {
+                if (val.variant_value.length > 0) {
+                    empty = 1;
+                } else {
+                    empty = 0
+                }
+            });
+            if(empty == 1){
+                return true
+            }else{
+                return false
+            }
         }
 
         function removeVariant(element){
-            //remove item from variants array
-            $(element).parent().parent().parent().fadeOut()
-            delete variants[$(element).data('prop-id')]
+                //remove item from variants array
+            var empty = 0;
+                variants.map(function (val, index) {
+                    if (val.property_id == $(element.target).data('property_id')) {
+                        var new_value = val.variant_value.split(",").filter(function (item) {
+                            return item !== element.item
+                        })
+                        val.variant_value = new_value.join()
+                    }
+                });
+
+            variants.map(function (val, index) {
+                if (val.variant_value.length > 0) {
+                    empty = 1;
+                } else {
+                    empty = 0
+                }
+            });
+
+                if(empty == 1){
+                    return true
+                }else{
+                    return false
+                }
         }
 
         $(document).ready(function () {
-
-            $(".add-variant").on('click', function () {
-                var variant_props = [],
-                empty = true;
-
-                //validate price
-             if(!$("#variant-property-price").val()){
-                    new PNotify({
-                        title: 'Oops!',
-                        text: 'You must add a price value for the variant',
-                        addclass: 'custom_notification',
-                        type: 'error'
-                    });
-                    return false;
+            $(".variants").on('itemAdded itemRemoved', function(event) {
+                var proceed = true;
+                if(event.type == 'itemAdded'){
+                    proceed = updateOrCreateVariant(event)
+                }else{
+                    proceed = removeVariant(event)
                 }
 
-             //Get properties
-                var temp_variant_item = {};
-                $.each($("#variant-properties select.variant-property"), function (index, item) {
-                    if($(item).val() !== ""){
-                        empty = false;
-                        variants_props = [];
-                        temp_variant_item = {
-                            property_id: $(item).data('prop_id'),
-                            property_name: $(item).data('prop_name'),
-                            property_value: $(item).val(),
-                            property_value_id: $(item).find(':selected').data('valueid')
-                        };
-                        variant_props.push(temp_variant_item)
-                    }else{
+                // var variants_length = $("input.variants").length
+                // var combo = "";
+                // // $(".variants_preview").empty();
+                // for (var i = 0; i < variants_length; i++){
+                //
+                //     $.each($("input.variants")[i].value.split(","), function (index, item) {
+                //         if(item !== "" ){
+                //             combo += item + "/"
+                //             // var current_property = $(event.target)
+                //         }
+                //     })
+                // }
+                $(".variants_preview").empty()
+                // console.log(variants.length)
+                console.log(variants)
+                console.log(proceed)
+                if(proceed) {
+                    if (variants.length > 1) {
+                        console.log('show variants')
+                        // for (var i = 0; i < variants.length; i++){
+                        $.each(variants[0].variant_value.split(","), function (index, first_variant) {
+                            try {
 
+                                $.each(variants[1].variant_value.split(","), function (index, second_variant) {
+                                    displayVariants(first_variant + "/" + second_variant)
+                                })
+
+                            } catch (e) {
+                                // console.log("Err" + e)
+                            }
+                        })
+
+                        // }
+                    } else {
+                        $.each(variants[0].variant_value.split(","), function (index, item) {
+                            displayVariants(item)
+                        })
+                        // console.log(variants[0].variant_value.split(","))
                     }
-
-                });
-
-                if(empty){
-                    new PNotify({
-                        title: 'Oops!',
-                        text: 'You must add at least one variant',
-                        addclass: 'custom_notification',
-                        type: 'error'
-                    });
-                    return false;
                 }
 
-                variants.push({
-                    variant_properties: variant_props,
-                    variant_price:$("#variant-property-price").val()
-                })
 
-                    displayVariants(variants[variants.length - 1], variants.length - 1)
+                // dissplayVariants(combo)
+
+                // console.log($("input.variants")[0].value.split(","))
+                // console.log($("input.variants")[1].value)
 
             });
 
-            $(".variants_preview").on('change','.variants-price-input-value', function () {
-                updateVariant($(this))
-            })
 
             $(".show_variants_toggle").on("click", function (e) {
                 if($(this).is(":checked")){
@@ -213,21 +248,21 @@
 
                     if(imageBag.length) {//check if array is empty
 
-                        if (imageBag.indexOf(img_path) === -1) {
+                            if (imageBag.indexOf(img_path) === -1) {
 
-                            imageBag.push(img_path)
-                            $(".chosen_images").append(
-                                `<div class="product_img_container">
+                                imageBag.push(img_path)
+                                $(".chosen_images").append(
+                                    `<div class="product_img_container">
                             <div class="product_img_container_delete">
                             <span style="cursor:pointer;" class="badge badge-danger" data-imgpath="${img_path}" onclick="popImage(this)">x</span>
                             </div>
                             <img src="${$(value).data('image_link')}" width="100px" height="80px">
                         </div>
                         `
-                            )
-                        }else{
-                            // console.log('exists')
-                        }
+                                )
+                            }else{
+                                // console.log('exists')
+                            }
 
                     }else{
                         //if array is empty add the first image
@@ -346,8 +381,7 @@
                         form_data: $("form#product_form").serialize(),
                         images: imageBag,
                         description: $(description_container).find('.ql-editor').html(),
-                        properties: properties,
-                        variants: variants
+                        properties: properties
                     }
                 }).done(function (data) {
                     $(".add_product_btn").prop('disabled', false)
@@ -371,17 +405,17 @@
                             type: 'error'
                         });
                     }
-                    // if (response.status == 400) {
-                    //     $.each(response.responseJSON.message, function (key, item) {
-                    //         $("input[name=" + key + "] + span.errorshow").html(item[0]).slideDown("slow")
-                    //         $("select[name=" + key + "] + span.errorshow").html(item[0]).slideDown("slow")
-                    //     });
-                    //     new PNotify({
-                    //         title: 'Oops!',
-                    //         text: "Form validation error. <br>" + response.responseJSON.error,
-                    //         type: 'error'
-                    //     });
-                    // }
+                    if (response.status == 400) {
+                        $.each(response.responseJSON.message, function (key, item) {
+                            $("input[name=" + key + "] + span.errorshow").html(item[0]).slideDown("slow")
+                            $("select[name=" + key + "] + span.errorshow").html(item[0]).slideDown("slow")
+                        });
+                        new PNotify({
+                            title: 'Oops!',
+                            text: "Form validation error. <br>" + response.responseJSON.error,
+                            type: 'error'
+                        });
+                    }
                     else {
                         new PNotify({
                             title: 'Oops!',

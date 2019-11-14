@@ -18,6 +18,21 @@ class PropertyController extends Controller
         return view('pages.admin.property.index', compact('properties'));
     }
 
+    public function indexJson(){
+        $data = [];
+        $properties = Property::all();
+
+        foreach ($properties as $item){
+            $data[] = [
+              'id' => $item->id,
+              'name' => $item->name,
+              'slug' => $item->slug,
+              'values' => $item->values(),
+            ];
+        }
+        return response()->json(['data' => $data]);
+    }
+
     public function create(Request $request){
         try{
             $data = Property::create(['name' => $request->name, 'type' => $request->property_type]);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Attribute;
 use App\DeliveryPrice;
 use App\Product;
 use App\User;
@@ -9,10 +10,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Taxon;
+use App\ProductVariant;
+use App\ProductOption;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Vanilo\Product\Models\ProductState;
 use Vanilo\Properties\Models\Property;
 use Yajra\Datatables\Datatables;
+use function Aws\map;
 
 class ProductsController extends BaseController
 {
@@ -34,9 +39,11 @@ class ProductsController extends BaseController
 
     public function addProduct()
     {
+
         $categories = Taxon::all();
         $products = \App\Product::all();
-        $properties = Property::all();
+        $properties = ProductOption::all();
+//        $attributes = Attribute::all();
 
         return view('pages.admin.products.create',
             compact('categories', 'products', 'properties')
@@ -47,70 +54,90 @@ class ProductsController extends BaseController
     {
 
         try {
-            //Parse query-string input
-            parse_str(html_entity_decode($request->form_data), $product_data);
+            DB::transaction(function () use ($request) {
+                //Parse query-string input
+                parse_str(html_entity_decode($request->form_data), $product_data);
 
-            //validate form
-            $errormsgs = [
-              'name.min' => 'A product title has to be a minimum of 3 characters',
-              'price.numeric' => 'A product price has numeric',
-              'delivery_price.numeric' => 'A product price has numeric',
-              'taxon_slug.required' => 'Please select a category',
-            ];
+                //validate form
+                $errormsgs = [
+                    'name.min' => 'A product title has to be a minimum of 3 characters',
+                    'price.numeric' => 'A product price has numeric',
+                    'delivery_price.numeric' => 'A product price has numeric',
+                    'taxon_slug.required' => 'Please select a category',
+                ];
 
-            $validator = Validator::make($product_data, [
-                'name' => 'required|min:3',
-                'taxon_slug' => 'required',
-                'price' => 'required|numeric',
-                'delivery_price' => 'numeric',
+                $validator = Validator::make($product_data, [
+                    'name' => 'required|min:3',
+                    'taxon_slug' => 'required',
+                    'price' => 'required|numeric',
+                    'delivery_price' => 'numeric',
 //                'meta_description' => 'required|min:3',
                 ], $errormsgs);
-            if($validator->fails()){
-                return response()->json(['status' => 400, 'message' => $validator->errors(), 'error' => $validator->errors()->first()], 400);
-            }
-
-            //Get Taxon
-            $taxon = Taxon::findBySlug($product_data['taxon_slug']);
-
-            //Generate SKU
-            $sku = strtoupper(substr($product_data['name'], 0, 3)) . "-" . $taxon->id;
-
-            //Create Product
-            $product = \App\Product::create([
-                'name' => $product_data['name'],
-                'sku' => $sku,
-                'price' => $product_data['price'],
-                'meta_description' => $product_data['meta_description'],
-                'description' => $request->description,
-                'meta_keywords' => $product_data['tags'],
-                'state' => ProductState::ACTIVE
-            ]);
-
-
-            //Add Taxon to product
-            $product->taxons()->save($taxon);
-
-
-            //Add images to product
-            if($request['images']) {
-                foreach ($request['images'] as $image) {
-                $product->photos()->create([
-                    'link' => $image,
-                    'photoable_type' => get_class($product),
-                    'photoable_id' => $product->id,
-                ]);
+                if ($validator->fails()) {
+                    return response()->json(['status' => 400, 'message' => $validator->errors(), 'error' => $validator->errors()->first()], 400);
                 }
-            }
 
-            //Create Delivery Price
-            $delivery_price = new DeliveryPrice();
-            $delivery_price->amount = $product_data['delivery_price'];
-            $product->delivery_price()->save($delivery_price);
+                //Get Taxon
+                $taxon = Taxon::findBySlug($product_data['taxon_slug']);
 
-            //Assign product to categories
-            if($request->has('properties')) {
-                $product->propertyValues()->sync($request->properties);
-            }
+                //Generate SKU
+                $sku = strtoupper(substr($product_data['name'], 0, 3)) . "-" . $taxon->id;
+
+                //Create Product
+                $product = \App\Product::create([
+                    'name' => $product_data['name'],
+                    'sku' => $sku,
+                    'price' => $product_data['price'],
+                    'meta_description' => $product_data['meta_description'],
+                    'description' => $request->description,
+                    'meta_keywords' => $product_data['tags'],
+                    'state' => ProductState::ACTIVE
+                ]);
+
+
+                //Add Taxon to product
+                $product->taxons()->save($taxon);
+
+
+                //Add images to product
+                if ($request['images']) {
+                    foreach ($request['images'] as $image) {
+                        $product->photos()->create([
+                            'link' => $image,
+                            'photoable_type' => get_class($product),
+                            'photoable_id' => $product->id,
+                        ]);
+                    }
+                }
+
+                //Create Delivery Price
+                $delivery_price = new DeliveryPrice();
+                $delivery_price->amount = $product_data['delivery_price'];
+                $product->delivery_price()->save($delivery_price);
+
+                //Assign product to categories
+                if ($request->has('properties')) {
+                    $product->propertyValues()->sync($request->properties);
+                }
+
+                //Create Variants
+                $product_variants_filtered = collect($request->variants)->filter(function ($item) {
+                    return $item != null;
+                });
+                foreach ($product_variants_filtered->toArray() as $product_variants) {
+                    $variant = $product->addVariant($product_variants['variant_price'], $taxon->id);
+                    foreach ($product_variants['variant_properties'] as $item) {
+                        $variant_object = (object)[
+                            'option_id' => $item['property_id'],
+                            'option_name' => $item['property_name'],
+                            'option_value' => $item['property_value'],
+                            'option_value_id' => $item['property_value_id'],
+                        ];
+                        $product->addVariantOption($variant_object, $variant->id);
+                    }
+                };
+
+            });
 
             return response()->json(['status' => 200, 'message' => 'Product created'], 200);
         } catch (\Exception $e) {

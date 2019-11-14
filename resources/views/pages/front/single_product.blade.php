@@ -116,8 +116,28 @@
 
                         <!-- Short By -->
                         <div class="some-info">
+                            <div class="row margin-top-30 padding-10 justify-content-center">
+                                    @foreach($product->variants() as $variant)
+                                    <div class="col-sm-3" id="product_variants">
+                                        <select name="{{$variant['option_slug']}}" id="" class="form-control">
+                                            <option value="null" selected>{{$variant['option_name']}}</option>
+                                            @foreach($variant['option_values'] as $option_value)
+                                                <option
+                                                    value="{{$option_value['option_value_id']}}"
+                                                    data-option_id="{{$variant['option_id']}}"
+                                                    data-option_name="{{$variant['option_name']}}"
+                                                    data-option_value_id="{{$option_value['option_value_id']}}"
+                                                    data-option_value_name="{{$option_value['option_value_name']}}"
+                                                >
+                                                    {{$option_value['option_value_name']}}
+                                                </option>
+                                            @endforeach
+                                    </select>
+                                    </div>
+                                    @endforeach
+                            </div>
                             <ul class="row margin-top-30">
-                                <li class="col-sm-6">
+                                <li class="col-sm-12">
                                     <!-- Quantity -->
                                     <div class="quinty">
                                         <button type="button" class="quantity-left-minus"  data-type="minus" data-field=""> <span>-</span> </button>
@@ -127,7 +147,7 @@
                                 </li>
 
                                 <!-- ADD TO CART -->
-                                <li class="col-sm-6"> <a href="#." class="btn" data-slug="{{$product->slug}}" id="add_to_cart"> <i class="fa fa-circle-o-notch fa-spin processing off" aria-hidden="true"></i> ADD TO CART</a> </li>
+                                <li class="col-sm-12"> <button href="" class="btn" data-slug="{{$product->slug}}" id="add_to_cart"> <i class="fa fa-circle-o-notch fa-spin processing off" aria-hidden="true"></i> ADD TO CART</button> </li>
                             </ul>
 
                             <!-- INFOMATION -->
@@ -262,7 +282,50 @@
             $(".close-modal").click(function(){
                 UIkit.modal(modal).hide();
             })
+
+            function validateAddToCart(){
+                var status = true;
+                $("#product_variants select").map(function (index, item) {
+
+                    if($(item).val() == 'null'){
+                        status = false;
+                        Snackbar.show({
+                            showAction: false,
+                            text: 'Please select a ' + $(item).data('option_name'),
+                            actionTextColor: '#ffffff',
+                            backgroundColor:"#FE970D"
+                        });
+                    }
+                });
+
+                if (status){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+
+            function getCustomerVariant(){
+                var customer_variants = [];
+                $("#product_variants select").map(function (index, item) {
+                    var selected_option = $(item).find(":selected");
+                    customer_variants.push({
+                        option_id:selected_option.data('option_id'),
+                        option_name:selected_option.data('option_name'),
+                        option_value_id:selected_option.data('option_value_id'),
+                        option_value_name:selected_option.data('option_value_name'),
+                    })
+                })
+                return customer_variants;
+            }
+
             $("#add_to_cart").click(function () {
+                if(!validateAddToCart()){
+                    return false;
+                }
+
+                console.log(getCustomerVariant());
+                return
                 $(".processing").removeClass('off')
                 $("#add_to_cart").prop('disabled', true)
                 var slug = $(this).data('slug');

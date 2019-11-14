@@ -161,3 +161,55 @@ body {
     padding: 20px;
     text-align: center;
 }
+
+.uipanel{
+    box-shadow:0 0 0 1px rgba(63,63,68,.05), 0 1px 3px 0 rgba(63,63,68,.15);
+    padding: .8em 1em;
+    border-radius: 5px;
+}
+#editor {
+    height: 175px;
+}
+.show_variants{
+    display: none;
+}
+.variant-icon{
+    font-size: 16px;
+    padding: 10px;
+    cursor: pointer;
+}
+.add-property-check{
+    position: absolute;
+    right: 0;
+    top: 25%;
+}
+.variant-item{
+     flex-basis: 0;
+     flex-grow: 2 ;
+     padding: 5px;
+ }
+.variant-item-button{
+    flex-basis: 0;
+    flex-grow: 1;
+    padding: 22px 5px;
+}
+.variant-desc{
+    flex-basis: 0;
+    flex-grow: 2;
+}
+.variant-price{
+    flex-basis: 0;
+    flex-grow: 1;
+}
+.variant-box{
+    background: #f9f8f8;
+}
+.variant-container{
+padding: 5px;
+}
+.form-group label {
+    width: 100%;
+}
+.form-group label > select, .form-group label > input {
+   padding-top: 5px;
+}

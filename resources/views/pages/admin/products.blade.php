@@ -4,8 +4,8 @@
     @include('partials.property_edit_modal')
     <div class="main-panel">
         <div class="content-wrapper">
-            @include('pages.admin._create_product')
-            @include('pages.admin._view_products')
+            @include('pages.admin.products._create_product')
+            @include('pages.admin.products._view_products')
         </div>
     </div>
 @endsection

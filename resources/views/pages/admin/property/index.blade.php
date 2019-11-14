@@ -34,6 +34,7 @@
 @endsection
 
 @push('script')
+
     <script>
         $(document).ready(function () {
             $("form#property_form").on('submit', function (e) {

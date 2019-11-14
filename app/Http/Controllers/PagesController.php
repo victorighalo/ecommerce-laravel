@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\ProductOption;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Vanilo\Cart\Facades\Cart;
@@ -77,6 +78,9 @@ class PagesController extends BaseController
         $title = $product ? $product->title() : '';
         $tags = $product->meta_keywords ? explode(",", $product->meta_keywords) : null;
         $ratings = $product->ratingPercent();
+
+//        dd($product->variants());
+
 
         SEOMeta::setTitle($title . ' | Spare parts and Autos for sale in Nigeria | '.config('app.name', ''), false);
         SEOMeta::setDescription('Buy original ' .$title.', top quality spare parts and Autos from trusted distributors. Place your orders and inquiries today for great value across Nigeria. | '.config('app.name', ''));
