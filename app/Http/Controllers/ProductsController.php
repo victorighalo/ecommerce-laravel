@@ -57,7 +57,7 @@ class ProductsController extends BaseController
             DB::transaction(function () use ($request) {
                 //Parse query-string input
                 parse_str(html_entity_decode($request->form_data), $product_data);
-
+                dd($request->form_data);
                 //validate form
                 $errormsgs = [
                     'name.min' => 'A product title has to be a minimum of 3 characters',
@@ -91,7 +91,8 @@ class ProductsController extends BaseController
                     'meta_description' => $product_data['meta_description'],
                     'description' => $request->description,
                     'meta_keywords' => $product_data['tags'],
-                    'state' => ProductState::ACTIVE
+                    'state' => ProductState::ACTIVE,
+                    'is_variant' => $product_data['is_variant'] ? 1 : 0
                 ]);
 
 

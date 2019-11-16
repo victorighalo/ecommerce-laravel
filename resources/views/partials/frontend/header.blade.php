@@ -65,7 +65,13 @@ function sub_menu($array){
         <div class="login-info">
             <ul>
                 <li><a href="{{url('cart')}}">MY CART</a></li>      <!-- USER BASKET -->
-                <li class="dropdown user-basket"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> {{Cart::itemCount()}} Items <i class="icon-basket-loaded"></i> </a>
+                <li class="dropdown user-basket"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                        @if (Cart::isNotEmpty())
+                            {{ Cart::itemCount() }} Items
+                            @else
+                            0 items
+                        @endif
+                        <i class="icon-basket-loaded"></i> </a>
                     <ul class="dropdown-menu">
                         @foreach(Cart::getItems() as $item)
                         <li>
@@ -141,7 +147,12 @@ function sub_menu($array){
                     <!-- USER INFO -->
 {{--                    <li> <a href="{{url('profile')}}"><i class="lnr lnr-user"></i> </a></li>--}}
                     <!-- USER BASKET -->
-                    <li> <a href="{{url('cart')}}"><span class="c-no">{{Cart::itemCount()}}</span><i class="lnr lnr-cart"></i> </a> </li>
+                    <li> <a href="{{url('cart')}}"><span class="c-no">
+                                   @if (Cart::isNotEmpty())
+                                    {{ Cart::itemCount() }}
+                                @endif
+{{--                                {{Cart::itemCount()}}--}}
+                            </span><i class="lnr lnr-cart"></i> </a> </li>
                     <!-- SEARCH BAR -->
                     <li> <a href="javascript:void(0);" class="search-open"><i class="lnr lnr-magnifier"></i></a>
                         <div class="search-inside animated bounceInUp"> <i class="icon-close search-close"></i>

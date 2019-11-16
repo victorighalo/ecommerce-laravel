@@ -116,10 +116,12 @@
 
                         <!-- Short By -->
                         <div class="some-info">
+                            @if($product->is_variant)
                             <div class="row margin-top-30 padding-10 justify-content-center">
                                     @foreach($product->variants() as $variant)
                                     <div class="col-sm-3" id="product_variants">
-                                        <select name="{{$variant['option_slug']}}" id="" class="form-control">
+                                        <select name="{{$variant['option_slug']}}" id="" class="form-control"  data-option_id="{{$variant['option_id']}}"
+                                                data-option_name="{{$variant['option_name']}}">
                                             <option value="null" selected>{{$variant['option_name']}}</option>
                                             @foreach($variant['option_values'] as $option_value)
                                                 <option
@@ -136,6 +138,7 @@
                                     </div>
                                     @endforeach
                             </div>
+                            @endif
                             <ul class="row margin-top-30">
                                 <li class="col-sm-12">
                                     <!-- Quantity -->
@@ -320,12 +323,12 @@
             }
 
             $("#add_to_cart").click(function () {
-                if(!validateAddToCart()){
-                    return false;
+                if ("{!! $product->is_variant !!}" == 1){
+                    if (!validateAddToCart()) {
+                        return false;
+                    }
                 }
 
-                console.log(getCustomerVariant());
-                return
                 $(".processing").removeClass('off')
                 $("#add_to_cart").prop('disabled', true)
                 var slug = $(this).data('slug');
@@ -337,7 +340,8 @@
                 $.ajax({
                     url: "{{route('add_to_cart')}}",
                     type: 'POST',
-                    data: {qty: qty, slug:slug}
+                    datatype:'json',
+                    data: {qty: qty, slug:slug, variant:getCustomerVariant()}
                 })
                     .done(function (data) {
                         $(".processing").addClass('off')

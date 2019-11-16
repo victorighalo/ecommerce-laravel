@@ -338,6 +338,12 @@
                     }
                 });
 
+                //Validate variants
+                // console.log($("input[name='is_variant']:checked").length)
+                //
+                // console.log( ($.isEmptyObject(variants) && Object.values(variants).length === variants.length))
+                //
+                //
 
                 $.ajax({
                     type: "POST",

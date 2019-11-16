@@ -123,7 +123,7 @@
 
                                             <div class="col-sm-12 mt-3">
                                                 <label for="">
-                                                    <input type="checkbox" class="show_variants_toggle">
+                                                    <input type="checkbox" class="show_variants_toggle" name="is_variant">
                                                     This product has multiple options, like different sizes or colors
                                                 </label>
 
@@ -161,7 +161,7 @@
                                                             <div class="variant-item">
                                                         <label for="">
                                                             Price
-                                                            <input type="text" class="form-control" id="variant-property-price">
+                                                            <input value="0" type="text" class="form-control" id="variant-property-price">
                                                         </label>
                                                             </div>
                                                             <div class="variant-item-button">

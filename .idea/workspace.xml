@@ -2,34 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eb2349c8-f2b2-4acb-b3f6-e1ac82b2095e" name="Default" comment="updated webhook logs">
-      <change afterPath="$PROJECT_DIR$/app/Attribute.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/ProductOption.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/ProductOptionsValue.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/ProductVariant.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/ProductVariantOptions.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Traits/Variants.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/admin/js/rxjs.umd.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/angular.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/pages/admin/products/_create_product.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/pages/admin/products/_create_product_old.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/pages/admin/products/create.blade_old.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Cart.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/CartItemVariant.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PagesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PagesController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PropertyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PropertyController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/admin/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/admin/css/custom.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/plugins/bootstrap-tagsinput.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/plugins/bootstrap-tagsinput.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/_create_product.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/_view_products.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/products/_view_products.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/product_edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/products/product_edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/products.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/products.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/products/_create_product.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/products/_create_product.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/products/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/products/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/products/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/products/list.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/property/_view_properties.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/property/_view_properties.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/property/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/property/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/pages/front/single_product.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/front/single_product.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/partials/frontend/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/frontend/header.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -378,7 +360,9 @@
       <workItem from="1572375996654" duration="8444000" />
       <workItem from="1572764108133" duration="93000" />
       <workItem from="1572769509871" duration="12000" />
-      <workItem from="1573533467100" duration="17778000" />
+      <workItem from="1573533467100" duration="23493000" />
+      <workItem from="1573793129419" duration="1359000" />
+      <workItem from="1573889858285" duration="2869000" />
     </task>
     <task id="LOCAL-00030" summary="Added webhook support">
       <created>1566650726909</created>
