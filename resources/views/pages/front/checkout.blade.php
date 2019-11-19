@@ -194,6 +194,7 @@
                         console.log(close) /*transaction close*/
                     })
                 }catch (e) {
+                    console.log(e)
                     Snackbar.show({
                         showAction: false,
                         text: "An Error Occurred processing your request",
