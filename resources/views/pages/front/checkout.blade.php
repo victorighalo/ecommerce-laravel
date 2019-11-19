@@ -193,7 +193,6 @@
                     }, close = (close) => {
                         console.log(close) /*transaction close*/
                     })
-
                 }catch (e) {
                     Snackbar.show({
                         showAction: false,
