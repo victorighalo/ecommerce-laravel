@@ -207,7 +207,6 @@
         });
 
 
-
         function loadCities(stateid) {
             $("select[name='city_id']").empty();
             $("select[name='city_id']").append('<option>Loading...</option>');
