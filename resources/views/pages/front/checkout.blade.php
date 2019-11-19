@@ -222,6 +222,7 @@
                 })
         }
 
+
         function getDeliveryCost() {
             $("button.checkout").attr("disabled", true);
             $(".loader").removeClass("off");
