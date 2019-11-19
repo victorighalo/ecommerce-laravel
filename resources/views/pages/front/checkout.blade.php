@@ -158,7 +158,7 @@
 @endsection
 
 @push('script')
-    <script src="http://checkout.seerbitapi.com/api/v1/seerbit.js"></script>
+    <script src="https://checkout.seerbitapi.com/api/v1/seerbit.js"></script>
 
     <script>
         var d_cost = 0;
