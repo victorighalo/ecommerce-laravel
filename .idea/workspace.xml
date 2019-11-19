@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="eb2349c8-f2b2-4acb-b3f6-e1ac82b2095e" name="Default" comment="updated webhook logs">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/front/cart.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/front/cart.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/front/checkout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/front/checkout.blade.php" afterDir="false" />
-    </list>
+    <list default="true" id="eb2349c8-f2b2-4acb-b3f6-e1ac82b2095e" name="Default" comment="updated webhook logs" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,23 +174,21 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/admin/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="settings.editor.selected.configurable" value="Settings.Markdown" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views/pages/admin/products" />
       <recent name="$PROJECT_DIR$/app/Http/Controllers" />
       <recent name="$PROJECT_DIR$/public/admin/css" />
       <recent name="$PROJECT_DIR$/public/admin/js" />
       <recent name="$PROJECT_DIR$/public/assets/images" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public/admin/js" />
-      <recent name="$PROJECT_DIR$/public/js" />
+      <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/public/css" />
+      <recent name="$PROJECT_DIR$/public/js" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/public/assets/images" />
     </key>
@@ -213,10 +205,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.success.blade.php">
-    <configuration name="success.blade.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/ecommerce-laravel/resources/views/emails/transaction/success.blade.php" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
+  <component name="RunManager">
     <configuration name="watch" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -229,7 +218,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.success.blade.php" />
         <item itemvalue="npm.watch" />
       </list>
     </recent_temporary>
@@ -336,29 +324,7 @@
       <workItem from="1567518675644" duration="497000" />
       <workItem from="1567529137977" duration="465000" />
       <workItem from="1567598331338" duration="13254000" />
-      <workItem from="1568019326276" duration="201000" />
-      <workItem from="1568019721720" duration="13918000" />
-      <workItem from="1568454054778" duration="9000" />
-      <workItem from="1568457752330" duration="4444000" />
-      <workItem from="1568985179909" duration="715000" />
-      <workItem from="1569268080499" duration="124000" />
-      <workItem from="1569426912194" duration="216000" />
-      <workItem from="1569600542821" duration="140000" />
-      <workItem from="1569920380430" duration="9611000" />
-      <workItem from="1570368601153" duration="134000" />
-      <workItem from="1570373152522" duration="276000" />
-      <workItem from="1570628258902" duration="23687000" />
-      <workItem from="1571323987294" duration="16000" />
-      <workItem from="1571578010294" duration="2428000" />
-      <workItem from="1572124251779" duration="2865000" />
-      <workItem from="1572372688978" duration="367000" />
-      <workItem from="1572375996654" duration="8444000" />
-      <workItem from="1572764108133" duration="93000" />
-      <workItem from="1572769509871" duration="12000" />
-      <workItem from="1573533467100" duration="23493000" />
-      <workItem from="1573793129419" duration="1359000" />
-      <workItem from="1573889858285" duration="5625000" />
-      <workItem from="1574149642301" duration="2804000" />
+      <workItem from="1574155195082" duration="4633000" />
     </task>
     <task id="LOCAL-00030" summary="Added webhook support">
       <created>1566650726909</created>
@@ -712,31 +678,6 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
-        <entry key="1">
-          <value>
-            <State>
-              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="HEAD" />
-                      </list>
-                    </value>
-                  </entry>
-                  <entry key="structure">
-                    <value>
-                      <list>
-                        <option value="dir:/Applications/MAMP/htdocs/ecommerce-laravel/app" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
         <entry key="MAIN">
           <value>
             <State>
@@ -745,11 +686,6 @@
           </value>
         </entry>
       </map>
-    </option>
-    <option name="OPEN_TABS">
-      <set>
-        <option value="1" />
-      </set>
     </option>
     <option name="RECENT_FILTERS">
       <map>
@@ -795,8 +731,5 @@
     <MESSAGE value="added child menu to nav" />
     <MESSAGE value="removed submenu" />
     <option name="LAST_COMMIT_MESSAGE" value="removed submenu" />
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ecommerce_laravel$success_blade_php.dat" NAME="success.blade.php Coverage Results" MODIFIED="1567860907230" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="WipCoverageRunner" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

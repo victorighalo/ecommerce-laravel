@@ -27,11 +27,13 @@ class CartController extends BaseController
               'product_id' => $item->product_id,
               'quantity' => $item->quantity,
               'price' => $item->price,
-                'variants'=> $this->getCartItemVariant($item->id,$item->product_id)
+              'variants'=> $this->getCartItemVariant($item->id,$item->product_id),
+              'product'=> $item->product,
             ];
         }
-//        dd($cart_with_variants);
-
+//        dd($cart_with_variants[0]['product']->FirstImage);
+//        dd($cart[0]->product);
+        $cart = $cart_with_variants;
         return view('pages.front.cart', compact('cart', 'cart_count'));
     }
 
