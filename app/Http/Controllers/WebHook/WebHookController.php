@@ -78,8 +78,6 @@ class WebHookController extends Controller
                     $user_data = $trans->select('user_id')->first();
                     $user = User::where('id', $user_data->user_id)->first();
                     $user->deposit( ($request->data['amount'] / 100), 'deposit');
-
-
                     break;
             }
         }catch (\Exception $e){

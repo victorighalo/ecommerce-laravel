@@ -176,8 +176,8 @@
 
             $("form[name='checkout']").on('submit', function (e) {
                 e.preventDefault();
-
-
+                var full_name = $("input[name='firstname']").val() + " " +$("input[name='lastname']").val();
+                var email = $("input[name='email']").val();
                 try {
                     SeerbitPay({
                         "tranref": new Date().getTime(),
@@ -185,6 +185,8 @@
                         "description": "Transaction from BigStanAutos",
                         "country": "NG",
                         "amount": d_cost,
+                        "full_name": full_name,
+                        "email": email,
                         "callbackurl": "http://yourdomain.com",
                         "public_key": "tNUFstIHrE", //replace this with your own public key
                     }, callback = (response) => {
