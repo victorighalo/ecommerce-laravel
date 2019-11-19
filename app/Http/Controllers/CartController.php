@@ -27,10 +27,18 @@ class CartController extends BaseController
               'product_id' => $item->product_id,
               'quantity' => $item->quantity,
               'price' => $item->price,
+                'variants'=> $this->getCartItemVariant($item->id,$item->product_id)
             ];
         }
-        dd($cart_with_variants);
+//        dd($cart_with_variants);
+
         return view('pages.front.cart', compact('cart', 'cart_count'));
+    }
+
+    private function getCartItemVariant($cart_item_id,$product_id){
+        return CartItemVariant::where('cart_item_id', $cart_item_id)
+            ->where('product_id',$product_id)
+            ->get();
     }
 
     public function add(Request $request){

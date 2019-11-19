@@ -34,7 +34,15 @@
                                 </a>
                                 <!-- Item Name -->
                                 <div class="media-body">
-                                    <span>{{$item->product->name}}</span>
+                                    <h5>{{$item->product->name}}</h5>
+
+                                    @if($item->product->cartItemVariant)
+                                    @foreach($item->product->cartItemVariant as $variant)
+{{--                                        <pre>@php(var_dump($variant))</pre>--}}
+                                        <small>{{$variant['option_name']}} : {{$variant['option_value_name']}}</small>
+                                        @endforeach
+                                        @endif
+
                                 </div>
                             </th>
                             <td><span class="price"> <small>&#8358;</small> {{number_format($item->price, '0', '.', ',')}}</span></td>

@@ -118,6 +118,7 @@
                                             <p class="all-total">TOTAL COST <span class="total_cost" data-total_cost="{{$total_cost}}">{{number_format( $total_cost, '0', '.', ',')}}</span><span>&#8358;</span></p>
                                     </div>
                                     <div class="loader off"></div>
+                                    @if (Cart::isNotEmpty())
                                     <div class="pay-meth">
                                         {{--<ul>--}}
                                             {{--<li>--}}
@@ -139,9 +140,11 @@
                                                 {{--</div>--}}
                                             {{--</li>--}}
                                         {{--</ul>--}}
-                                        <a href="tel:{{$app_settings->store_phone}}" class="btn btn-small  btn-secondary pull-left margin-top-30"><i class="fa fa-phone"></i> CALL TO ORDER</a> </div>
+                                        <a href="tel:{{$app_settings->store_phone}}" class="btn btn-small  btn-secondary pull-left margin-top-30"><i class="fa fa-phone"></i> CALL TO ORDER</a>
+                                        </div>
                                         <button href="" class="btn  btn-dark pull-right margin-top-30 checkout" type="submit"><i class="fa fa-credit-card"></i> PLACE ORDER</button> </div>
-                            </div>
+                                        </div>
+                                        @endif
 
                                     </form>
                             </div>
@@ -154,6 +157,8 @@
     @endsection
 
 @push('script')
+    <script src="https://checkout.seerbitapi.com/api/v1/seerbit.js"></script>
+
     <script>
         $(document).ready(function () {
 
@@ -166,7 +171,11 @@
             } );
 
             loadCities($("select[name='state_id']").val())
+
+
         });
+
+
         function loadCities(stateid) {
             $("select[name='city_id']").empty();
             $("select[name='city_id']").append('<option>Loading...</option>');
@@ -197,7 +206,7 @@
                     }else{
                         Snackbar.show({
                             showAction: false,
-                            text: "Sorry! Your cart is empty",
+                            text: "Your cart is empty",
                             actionTextColor: '#ffffff',
                             backgroundColor:"rgb(65,98,187)",
                             actionText: 'Close!',

@@ -44,6 +44,10 @@ class Product extends BaseProduct implements Buyable
         return $this->morphOne('App\DeliveryPrice', 'delivery_price');
     }
 
+    public function cartItemVariant(){
+        return $this->hasMany(CartItemVariant::class, 'product_id', 'id');
+    }
+
 
     public function variants(){
         $product_variant_options = ProductVariantOptions::where('product_id', $this->id)
