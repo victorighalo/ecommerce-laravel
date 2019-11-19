@@ -171,7 +171,6 @@
             $("select[name='city_id']").on('change', function () {
                 getDeliveryCost();
             } );
-
             loadCities($("select[name='state_id']").val())
 
             $("form[name='checkout']").on('submit', function (e) {
@@ -207,7 +206,6 @@
                 }
             })
         });
-
 
         function loadCities(stateid) {
             $("select[name='city_id']").empty();
