@@ -186,7 +186,7 @@
                         "amount": d_cost,
                         "full_name": full_name,
                         "email": email,
-                        "callbackurl": "http://yourdomain.com",
+                        "callbackurl": "{!! base_url('orders/receipt') !!}}",
                         "public_key": "tNUFstIHrE", //replace this with your own public key
                     }, callback = (response) => {
                         console.log(response) /*response of transaction*/
@@ -194,7 +194,6 @@
                         console.log(close) /*transaction close*/
                     })
                 }catch (e) {
-                    console.log(e)
                     Snackbar.show({
                         showAction: false,
                         text: "An Error Occurred processing your request",

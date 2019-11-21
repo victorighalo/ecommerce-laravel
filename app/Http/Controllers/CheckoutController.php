@@ -35,4 +35,9 @@ class CheckoutController extends Controller
     protected function userHasTempAddress(){
         return DeliveryAddress::where('session_id', session()->getId())->exists();
     }
+
+    public function orderReceipt(Request $request){
+        var_dump($request->all());
+        echo "<h3>Successful Transaction</h3>";
+    }
 }

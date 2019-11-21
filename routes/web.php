@@ -61,8 +61,10 @@ Route::post('get_store_stats', 'OfficeController@getStoreStats')->name('get_stor
 
 //Orders
 Route::get('orders', 'OfficeController@orders');
+Route::get('orders', 'OfficeController@orders');
 Route::get('orders/data', 'OfficeController@ordersData')->name('orders_data');
 Route::post('orders/products', 'OfficeController@ordersProducts')->name('order_products');
+    Route::get('orders/receipt', 'CheckoutController@orderReceipt');
 
 //Transactions
     Route::get('transactions', 'OfficeController@transactions');
