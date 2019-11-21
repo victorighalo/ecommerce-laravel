@@ -50,6 +50,9 @@ Route::post('/load_cities', 'CommonController@loadCities')->name('load_cities');
 Route::post('/add_address', 'CommonController@addAddress')->name('add_address');
 Route::post('get_delivery_cost', 'DeliverySettingsController@getDeliveryCost')->name('get_delivery_cost');
 
+//Orders
+Route::get('orders/receipt', 'CheckoutController@orderReceipt');
+
 //Office section
 Route::group(['prefix' => 'office', 'middleware' => ['role:admin']], function (){
 
@@ -64,7 +67,7 @@ Route::get('orders', 'OfficeController@orders');
 Route::get('orders', 'OfficeController@orders');
 Route::get('orders/data', 'OfficeController@ordersData')->name('orders_data');
 Route::post('orders/products', 'OfficeController@ordersProducts')->name('order_products');
-    Route::get('orders/receipt', 'CheckoutController@orderReceipt');
+
 
 //Transactions
     Route::get('transactions', 'OfficeController@transactions');
