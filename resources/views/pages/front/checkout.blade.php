@@ -186,7 +186,7 @@
                         "amount": d_cost,
                         "full_name": full_name,
                         "email": email,
-                        "callbackurl": "{!! url('orders/receipt') !!}",
+                        "callbackurl": "bhjikbj.asdn7n sd",
                         "public_key": "tNUFstIHrE", //replace this with your own public key
                     }, callback = (response) => {
                         console.log(response) /*response of transaction*/
