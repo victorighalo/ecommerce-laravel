@@ -186,7 +186,7 @@
                         "amount": d_cost,
                         "full_name": full_name,
                         "email": email,
-                        "callbackurl": "bhjikbj.asdn7n sd",
+                        // "callbackurl": "",
                         "public_key": "tNUFstIHrE", //replace this with your own public key
                     }, callback = (response) => {
                         console.log(response) /*response of transaction*/
