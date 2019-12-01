@@ -111,7 +111,8 @@
                                 <div class="order-place">
                                     <div class="order-detail">
                                         @foreach(Cart::getItems() as $item)
-                                            <p>{{$item->product->name}} <span>&#8358; {{number_format($item->price, '0', '.', ',')}} </span></p>
+{{--                                            <pre>@php(var_dump($item))</pre>--}}
+                                            <p>{{$item->product->name}} ({{$item->quantity}}) <span>&#8358; {{number_format($item->price, '0', '.', ',')}} </span></p>
                                         @endforeach
                                             <p>Shipping <span class="delivery_cost" data-delivery_cost="{{$delivery_cost}}">{{number_format( $delivery_cost, '0', '.', ',')}}</span><span>&#8358;</span></p>
                                         <!-- SUB TOTAL -->
