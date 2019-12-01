@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     @include('partials.image-modal')
-    @include('partials.property_edit_modal')
+{{--    @include('partials.property_edit_modal')--}}
     <div class="main-panel">
         <div class="content-wrapper">
             @include('pages.admin.products._create_product')

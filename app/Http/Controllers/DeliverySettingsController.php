@@ -69,7 +69,7 @@ class DeliverySettingsController extends Controller
         if(!$delivery_cost){
             return response()->json([
                 'delivery_cost' => 0,
-                'total_cost' => 0,
+                'total_cost' => Cart::total(),
             ]);
         }
         return response()->json([

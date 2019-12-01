@@ -48,6 +48,10 @@ class Product extends BaseProduct implements Buyable
         return $this->hasMany(CartItemVariant::class, 'product_id', 'id');
     }
 
+    public function variantOptions(){
+        return $this->hasMany(ProductVariantOptions::class, 'product_id', 'id');
+    }
+
 
     public function variants(){
         $product_variant_options = ProductVariantOptions::where('product_id', $this->id)

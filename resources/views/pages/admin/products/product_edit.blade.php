@@ -22,47 +22,147 @@
                                     <div class="col-sm-12 p-4">
                                         <form id="product_form">
                                             @csrf
-                                            <div class="row">
-                                                <div class="col-sm-8">
+                                            <div class="row justify-content-center">
+                                                <div class="col-sm-6">
                                                     <div class="row form-group">
-                                                        <input type="hidden" name="id" value="{{$product->id}}">
-                                                        <div class="col-sm-8">
-                                                            <label for="name">{{ __('Product name') }}</label>
+                                                        <div class="uipanel">
+                                                            <div class="col-sm-12">
+                                                                <input type="hidden" name="id" value="{{$product->id}}">
+                                                                <label for="name">{{ __('Product name') }}</label>
                                                             <input type="text" id="name" class="form-control"
                                                                    name="name" value="{{$product->title}}" required>
                                                             <span class="invalid-feedback errorshow" role="alert">
                                                             </span>
                                                         </div>
-                                                            <div class="col-sm-4">
-                                                                <label
-                                                                    for="category_id">{{ __('Product Category') }}</label>
-                                                                <select class="form-control" name="taxon_slug"
-                                                                        id="category_id">
-                                                                    @foreach($categories as $category)
-                                                                        @if(count($product->taxons))
-                                                                            {{--@if(!count($category->children))--}}
-                                                                            @if($product->taxons->first()->slug == $category->slug)
-                                                                                <option value="{{$category->slug}}"
-                                                                                        selected>{{$category->taxonomy->name}} {{$category->parent ? ' - ' . $category->parent->name : '' }}
-                                                                                    - {{$category->name}}</option>
-                                                                            @else
-                                                                                <option
-                                                                                    value="{{$category->slug}}">{{$category->taxonomy->name}} {{$category->parent ? ' - ' .$category->parent->name : '' }}
-                                                                                    - {{$category->name}}</option>
-                                                                            @endif
-                                                                        @else
-                                                                        @endif
-                                                                    @endforeach
-                                                                </select>
-                                                                <span class="invalid-feedback errorshow"
-                                                                      role="alert">
-                                                                </span>
+                                                            <div class="col-sm-12 pt-4">
+                                                                <div class="text-left">
+                                                                    <label
+                                                                        for="description">{{ __('Product Description') }}</label>
+                                                                    <textarea class="form-control" name="meta_description" id=""
+                                                                              cols="30"
+                                                                              rows="5">{{$product->meta_description}}</textarea>
+                                                                    <span class="invalid-feedback errorshow" role="alert">
+                                                            </span>
+                                                                </div>
+                                                                </div>
+                                                            <div class="col-sm-12 pt-4">
+                                                                <div class="text-left">
+                                                                    <label
+                                                                        for="overview">{{ __('Product Overview') }}</label>
+
+                                                                    <div id="editor">
+                                                                        {!! $product->description !!}
+                                                                    </div>
+                                                                    <span class="invalid-feedback errorshow" role="alert">
+                                                                    </span>
+                                                                </div>
                                                             </div>
                                                         </div>
 
+                                                        <div class="col-sm-12 pt-4">
+                                                            <div class="row">
+                                                                <div class="col-sm-12 uipanel">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-6">
+                                                                <label
+                                                                    for="category_id">{{ __('Product Category') }}</label>
+                                                                            <select class="form-control" name="taxon_slug"
+                                                                                    id="category_id">
+                                                                                @foreach($categories as $category)
+                                                                                    @if(count($product->taxons))
+                                                                                        {{--@if(!count($category->children))--}}
+                                                                                        @if($product->taxons->first()->slug == $category->slug)
+                                                                                            <option value="{{$category->slug}}"
+                                                                                                    selected>{{$category->taxonomy->name}} {{$category->parent ? ' - ' . $category->parent->name : '' }}
+                                                                                                - {{$category->name}}</option>
+                                                                                        @else
+                                                                                            <option
+                                                                                                value="{{$category->slug}}">{{$category->taxonomy->name}} {{$category->parent ? ' - ' .$category->parent->name : '' }}
+                                                                                                - {{$category->name}}</option>
+                                                                                        @endif
+                                                                                    @else
+                                                                                    @endif
+                                                                                @endforeach
+                                                                            </select>
+                                                                            <span class="invalid-feedback errorshow"
+                                                                                  role="alert">
+                                                                        </span>
+                                                                        </div>
 
-                                                    <div class="row pt-2">
-                                                        <div class="col-sm-4">
+                                                                        <div class="col-sm-6">
+                                                                            <label for="name">{{ __('Product Tags') }}</label>
+                                                                            <input type="text" id="tags" class="form-control"
+                                                                                   name="tags" data-role="tagsinput"
+                                                                                   value="{{$product->meta_keywords}}" required>
+                                                                            <span class="invalid-feedback errorshow"
+                                                                                  role="alert">
+                                                                    </span>
+                                                                        </div>
+
+
+                                                            </div>
+                                                            </div>
+
+                                                                <div class="col-sm-12 pt-3 pb-3 mt-3 uipanel">
+                                                                    <h4>Images</h4>
+                                                                    <div class="form-group row">
+                                                                        <div class="col-sm-12">
+                                                                            <label>File upload</label>
+                                                                            <input type="file" name="img[]"
+                                                                                   class="file-upload-default">
+                                                                            <div class="input-group col-xs-12">
+                                                                                <input type="file"
+                                                                                       class="form-control file-upload-info"
+                                                                                       id="files_upload"
+                                                                                       placeholder="Upload Image">
+                                                                                <span class="input-group-append">
+                                                        <button class="file-upload-browse btn custom_button_color"
+                                                                type="button" id="upload_btn"><i
+                                                                class="fas fa-upload"></i> Upload</button>
+                                                        </span>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-sm-12 mt-5">
+                                                                            <label>Select images for the product</label><br>
+                                                                            <a href="#" class="btn custom_button_color"
+                                                                               id="load_images_btn"><i class="fas fa-image"></i>
+                                                                                Choose images</a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="chosen_images mt-3">
+                                                                        @if($product->hasPhoto())
+                                                                            @foreach($product->photos as $image)
+                                                                                <div class="product_img_container">
+                                                                                    <div class="product_img_container_delete">
+                                                                                <span style="cursor:pointer;"
+                                                                                      class="badge badge-danger"
+                                                                                      data-imageid="{{$image->id}}"
+                                                                                      data-productslug="{{$product->slug}}"
+                                                                                      onclick="removeProductMedia(this)">x</span>
+                                                                                    </div>
+                                                                                    @if(config('app.PHOTO_DRIVER') == 'local')
+                                                                                        <img
+                                                                                            src="{{asset('thumbnail/'.$image->link)}}"
+                                                                                            value="{{$image->id}}"
+                                                                                            style="width:100px; height:100px">
+                                                                                    @elseif(config('app.PHOTO_DRIVER') == 's3')
+                                                                                        <img
+                                                                                            src="https://s3.{{env('AWS_DEFAULT_REGION') }}.amazonaws.com/{{env('AWS_BUCKET')}}/images/thumbnail/{{$image->link}}"
+                                                                                            value="{{$image->id}}"
+                                                                                            style="width:100px; height:100px">
+                                                                                    @endif
+                                                                                    {{--<span style="cursor:pointer;" class="badge badge-danger" onclick="removeSpatieMedia({{$image->id}})">x</span>--}}
+                                                                                </div>
+                                                                            @endforeach
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="uipanel row mb-4">
+                                                        <div class="col-sm-6">
                                                             <label for="price">{{ __('Price') }} </label>
                                                             <input type="number" name="price" class="form-control"
                                                                    value="{{$product->price}}" required>
@@ -70,7 +170,7 @@
                                                             </span>
                                                         </div>
 
-                                                        <div class="col-sm-4">
+                                                        <div class="col-sm-6">
                                                             <label
                                                                 for="delivery_price">{{ __('Delivery Price') }}</label>
                                                             <input type="number" name="delivery_price"
@@ -78,132 +178,82 @@
                                                                    class="form-control" required>
                                                             <span class="invalid-feedback errorshow" role="alert">
                                                     </span>
-                                                        </div>
-                                                    </div>
-
-                                                        <div class="row">
-                                                            <div class="col-sm-8 pt-4">
-                                                                <label for="name">{{ __('Product Tags') }}</label>
-                                                                <input type="text" id="tags" class="form-control"
-                                                                       name="tags" data-role="tagsinput"
-                                                                       value="{{$product->meta_keywords}}" required>
-                                                                <span class="invalid-feedback errorshow"
-                                                                      role="alert">
-                                                                    </span>
-                                                            </div>
-                                                        </div>
-
-                                                    <div class="row pt-4">
-                                                        <div class="col-sm-12">
-                                                            <label for="price">{{ __('Properties') }} </label><br>
-                                                            @if(isset($product->propertyValues))
-                                                                @foreach($product->propertyValues as $propertyValue)
-                                                                    {{ $propertyValue->property->name }}: <span
-                                                                        class="font-weight-bold text-white"
-                                                                        style="color: #000 !important;padding-right: 10px;font-size: 14px">{{ ucfirst($propertyValue->value) }} {{$propertyValue->title ? ucfirst($propertyValue->title) : ''}} | </span>
-                                                                @endforeach
-                                                            @endif
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row justify-content-center form-group">
-                                                        <div class="col-sm-12 pt-4">
-                                                            <label
-                                                                for="description">{{ __('Product Description') }}</label>
-                                                            <textarea class="form-control" name="meta_description" id=""
-                                                                      cols="30"
-                                                                      rows="5">{{$product->meta_description}}</textarea>
-                                                            <span class="invalid-feedback errorshow" role="alert">
-                                        </span>
-                                                        </div>
-
-                                                        <div class="col-sm-12 pt-4">
-                                                            <div class=" text-left">
-                                                                <label
-                                                                    for="overview">{{ __('Product Overview') }}</label>
-
-                                                                <div id="editor">
-                                                                    {!! $product->description !!}
-                                                                </div>
-                                                                <span class="invalid-feedback errorshow" role="alert">
-                                        </span>
-                                                            </div>
-                                                        </div>
-
 
                                                     </div>
-                                                </div>
+                                                    </div>
 
-                                                <div class="col-sm-4">
-                                                    <div class="card text-left">
-                                                        <div class="card-header">
-                                                            <label for="description">{{ __('Product Images') }}</label>
-                                                        </div>
-                                                        <div class="card-body">
-                                                            <div class="form-group row">
+{{--                                                        <div class="col-sm-12">--}}
+{{--                                                            <label for="price">{{ __('Properties') }} </label><br>--}}
+{{--                                                            @if(isset($product->propertyValues))--}}
+{{--                                                                @foreach($product->propertyValues as $propertyValue)--}}
+{{--                                                                    {{ $propertyValue->property->name }}: <span--}}
+{{--                                                                        class="font-weight-bold text-white"--}}
+{{--                                                                        style="color: #000 !important;padding-right: 10px;font-size: 14px">{{ ucfirst($propertyValue->value) }} {{$propertyValue->title ? ucfirst($propertyValue->title) : ''}} | </span>--}}
+{{--                                                                @endforeach--}}
+{{--                                                            @endif--}}
+{{--                                                        </div>--}}
+
+                                                            @if($product->is_variant)
+                                                            <div class="row form-group uipanel">
                                                                 <div class="col-sm-12">
-                                                                    <label>File upload</label>
-                                                                    <input type="file" name="img[]"
-                                                                           class="file-upload-default">
-                                                                    <div class="input-group col-xs-12">
-                                                                        <input type="file"
-                                                                               class="form-control file-upload-info"
-                                                                               id="files_upload"
-                                                                               placeholder="Upload Image">
-                                                                        <span class="input-group-append">
-                                                        <button class="file-upload-browse btn custom_button_color"
-                                                                type="button" id="upload_btn"><i
-                                                                class="fas fa-upload"></i> Upload</button>
-                                                        </span>
+                                                                    <div class="container">
+                                                                        <h5>{{ __('Add Variants') }}</h5>
+                                                                        <div class="d-flex justify-content-around" id="variant-properties">
+                                                                            @foreach($variants as $index => $property)
+                                                                                <div class="variant-item">
+                                                                                    <label for="">
+                                                                                        {{$property->name}}
+                                                                                        <select
+                                                                                            class="form-control variant-property"
+                                                                                            data-prop_id="{{$property->id}}"
+                                                                                            data-prop_name="{{$property->name}}"
+                                                                                        >
+                                                                                            <option value="">None</option>
+                                                                                            @foreach($property->values() as $value)
+                                                                                                <option value="{{$value->value}}" data-valueid="{{$value->id}}">{{$value->value}}</option>
+                                                                                            @endforeach
+                                                                                        </select>
+                                                                                        {{--                                                                <input type="text"--}}
+                                                                                        {{--                                                                       class="form-control variant-property"--}}
+                                                                                        {{--                                                                       data-prop_id="{{$property->id}}"--}}
+                                                                                        {{--                                                                       data-prop_name="{{$property->name}}"--}}
+                                                                                        {{--                                                                >--}}
+                                                                                    </label>
+                                                                                </div>
+                                                                            @endforeach
+                                                                            <div class="variant-item">
+                                                                                <label for="">
+                                                                                    Price
+                                                                                    <input value="0" type="text" class="form-control" id="variant-property-price">
+                                                                                </label>
+                                                                            </div>
+                                                                            <div class="variant-item-button">
+                                                                                <button class="btn btn-primary btn-sm add-variant" type="button">Add</button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-12 pt-4">
+                                                                            <h5>Variants</h5>
+                                                                            <div class="row variants_preview">
+
+                                                                            </div>
+                                                                        </div>
+
                                                                     </div>
                                                                 </div>
-
-                                                                <div class="col-sm-12 mt-5">
-                                                                    <label>Select images for the product</label><br>
-                                                                    <a href="#" class="btn custom_button_color"
-                                                                       id="load_images_btn"><i class="fas fa-image"></i>
-                                                                        Choose images</a>
-                                                                </div>
                                                             </div>
-                                                            <div class="chosen_images mt-3">
-                                                                @if($product->hasPhoto())
-                                                                    @foreach($product->photos as $image)
-                                                                        <div class="product_img_container">
-                                                                            <div class="product_img_container_delete">
-                                                                                <span style="cursor:pointer;"
-                                                                                      class="badge badge-danger"
-                                                                                      data-imageid="{{$image->id}}"
-                                                                                      data-productslug="{{$product->slug}}"
-                                                                                      onclick="removeProductMedia(this)">x</span>
-                                                                            </div>
-                                                                            @if(config('app.PHOTO_DRIVER') == 'local')
-                                                                                <img
-                                                                                    src="{{asset('thumbnail/'.$image->link)}}"
-                                                                                    value="{{$image->id}}"
-                                                                                    style="width:100px; height:100px">
-                                                                            @elseif(config('app.PHOTO_DRIVER') == 's3')
-                                                                                <img
-                                                                                    src="https://s3.{{env('AWS_DEFAULT_REGION') }}.amazonaws.com/{{env('AWS_BUCKET')}}/images/thumbnail/{{$image->link}}"
-                                                                                    value="{{$image->id}}"
-                                                                                    style="width:100px; height:100px">
-                                                                            @endif
-                                                                            {{--<span style="cursor:pointer;" class="badge badge-danger" onclick="removeSpatieMedia({{$image->id}})">x</span>--}}
-                                                                        </div>
-                                                                    @endforeach
                                                                 @endif
-                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="mt-5">
-                                                        <button
-                                                            class="btn float-right btn-primary btn-lg btn-block font-weight-medium add_product_btn update_product"
-                                                            type="submit">
-                                                            <i class="fas fa-spinner fa-spin off process_indicator"></i>
-                                                            <span><i class="fas fa-save"></i> {{ __('Update') }}</span>
-                                                        </button>
-                                                    </div>
+
+                                                <div class="mt-5">
+                                                    <button
+                                                        class="btn float-right btn-primary btn-lg font-weight-medium add_product_btn update_product"
+                                                        type="submit">
+                                                        <i class="fas fa-spinner fa-spin off process_indicator"></i>
+                                                        <span><i class="fas fa-save"></i> {{ __('Update') }}</span>
+                                                    </button>
                                                 </div>
-                                            </div>
+
                                         </form>
 
                                     </div>
@@ -225,7 +275,6 @@
         var bsmodal = $('#images-modal');
         var imageBag = [];
         var mediaUrl = "{{asset('')}}/";
-
 
         var toolbarOptions = [
             ['link', 'image'],
@@ -252,7 +301,7 @@
         };
         var description_container = $('#editor').get(0);
         var quill = new Quill(description_container, options);
-
+        var variants = [];
         $(document).ajaxStop($.unblockUI);
 
         (function setMediaUrl() {
@@ -264,7 +313,152 @@
         })();
 
 
+        function isDuplicate(item) {
+            var status = 0;
+            $.map(variants, function (val, index) {
+                item
+            })
+        }
+        function getVariantString(variant) {
+            var variant_combo = "";
+            $.map(variant, function (val, index) {
+                if(index > 0){
+                    variant_combo += "/"  + val.property_value
+                }else{
+                    variant_combo += val.property_value
+                }
+            })
+            return variant_combo;
+        }
+        function displayVariants(variants, index){
+            var row = "<div class='col-sm-12 mb-3 variant-container'>";
+            row += "<div class='variant-box d-flex justify-content-around'>";
+            row += "<div class='variant-desc text-center'>";
+            row += "<div style='padding: 8px;'><strong>"+getVariantString(variants.variant_properties)+"</strong></div>";
+            row += "</div>"
+            row += "<div class='variant-price text-center'>";
+            row += "<div><input class='form-control variants-price-input-value' data-prop-id='"+index+"' type='number' value='"+variants.variant_price+"'></div>"
+            row += "</div>"
+            row += "<div class='variant-desc text-center'>";
+            row += "<i title='Remove' class=\"fas fa-times variant-icon\" onclick='removeVariant(this)' data-prop-id='"+index+"'></i>"
+            row += "</div>";
+
+            row += "</div></div>";
+            $(".variants_preview").append(row)
+        }
+
+        function updateVariant(element){
+            variants[$(element).data('prop-id')].variant_price = $(element).val();
+        }
+
+        function removeVariant(element){
+            //remove item from variants array
+            $(element).parent().parent().parent().fadeOut()
+            delete variants[$(element).data('prop-id')]
+        }
+
+
         $(document).ready(function () {
+            {{--console.log({!! $product->variantOptions !!})--}}
+
+            {{--(function(){--}}
+            {{--var variant_props = [];--}}
+            {{--var product_options = {!! $product->variantOptions !!}--}}
+            {{--if("{!! $product->is_variant !!}"){--}}
+            {{--    //Get properties--}}
+            {{--    var temp_variant_item = {};--}}
+            {{--    $.each(product_options, function (index, item) {--}}
+            {{--        if(item){--}}
+            {{--            var variants_props = [];--}}
+            {{--            temp_variant_item = {--}}
+            {{--                property_id: item.option_id,--}}
+            {{--                property_name: item.option_name,--}}
+            {{--                property_value: item.option_value,--}}
+            {{--                property_value_id: item.option_value_id--}}
+            {{--            };--}}
+            {{--            variant_props.push(temp_variant_item)--}}
+            {{--        }else{--}}
+
+            {{--        }--}}
+
+            {{--    });--}}
+
+            {{--    variants.push({--}}
+            {{--        variant_properties: variant_props,--}}
+            {{--        variant_price:$("#variant-property-price").val()--}}
+            {{--    })--}}
+
+            {{--    displayVariants(variants[variants.length - 1], variants.length - 1)--}}
+            {{--}--}}
+            {{--})()--}}
+
+
+            $(".add-variant").on('click', function () {
+                var variant_props = [],
+                    empty = true;
+
+                //validate price
+                if(!$("#variant-property-price").val()){
+                    new PNotify({
+                        title: 'Oops!',
+                        text: 'You must add a price value for the variant',
+                        addclass: 'custom_notification',
+                        type: 'error'
+                    });
+                    return false;
+                }
+
+                //Get properties
+                var temp_variant_item = {};
+                $.each($("#variant-properties select.variant-property"), function (index, item) {
+                    if($(item).val() !== ""){
+                        empty = false;
+                        var variants_props = [];
+                        temp_variant_item = {
+                            property_id: $(item).data('prop_id'),
+                            property_name: $(item).data('prop_name'),
+                            property_value: $(item).val(),
+                            property_value_id: $(item).find(':selected').data('valueid')
+                        };
+                        variant_props.push(temp_variant_item)
+                    }else{
+
+                    }
+
+                });
+
+                if(empty){
+                    new PNotify({
+                        title: 'Oops!',
+                        text: 'You must add at least one variant',
+                        addclass: 'custom_notification',
+                        type: 'error'
+                    });
+                    return false;
+                }
+
+                variants.push({
+                    variant_properties: variant_props,
+                    variant_price:$("#variant-property-price").val()
+                })
+
+                displayVariants(variants[variants.length - 1], variants.length - 1)
+
+            });
+
+            $(".variants_preview").on('change','.variants-price-input-value', function () {
+                updateVariant($(this))
+            })
+
+            $(".show_variants_toggle").on("click", function (e) {
+                if($(this).is(":checked")){
+                    $(".show_variants").toggle()
+                }else{
+                    $(".show_variants").toggle()
+                }
+            })
+
+
             //load images to modal
             $("#load_images_btn").click(function () {
                 $('#images-modal').modal('show')
@@ -395,7 +589,8 @@
                     data: {
                         form_data: $("form#product_form").serialize(),
                         images: imageBag,
-                        description: $(description_container).find('.ql-editor').html()
+                        description: $(description_container).find('.ql-editor').html(),
+                        variants: variants
                     }
                 }).done(function (data) {
                     $(".add_product_btn").prop('disabled', false)

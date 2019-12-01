@@ -42,11 +42,11 @@ class ProductsController extends BaseController
 
         $categories = Taxon::all();
         $products = \App\Product::all();
-        $properties = ProductOption::all();
-//        $attributes = Attribute::all();
+        $variants = ProductOption::all();
+        $properties = Property::all();
 
         return view('pages.admin.products.create',
-            compact('categories', 'products', 'properties')
+            compact('categories', 'products', 'variants', 'properties')
         );
     }
 
@@ -57,7 +57,7 @@ class ProductsController extends BaseController
             DB::transaction(function () use ($request) {
                 //Parse query-string input
                 parse_str(html_entity_decode($request->form_data), $product_data);
-                dd($request->form_data);
+
                 //validate form
                 $errormsgs = [
                     'name.min' => 'A product title has to be a minimum of 3 characters',
@@ -151,34 +151,35 @@ class ProductsController extends BaseController
     {
         $hasSameTaxon = null;
         try {
-            //Parse query-string input
-            parse_str($request->form_data, $product_data);
+            DB::transaction(function () use ($request) {
+                //Parse query-string input
+                parse_str($request->form_data, $product_data);
 
-            //Get Taxon
-            $taxon = Taxon::findBySlug($product_data['taxon_slug']);
-
-
-            //Generate SKU
-            $sku = strtoupper(substr($product_data['name'], 0, 3)) . "-" . $taxon->id;
-
-            //Get Product
-            $product = \App\Product::where('id', $product_data['id']);
+                //Get Taxon
+                $taxon = Taxon::findBySlug($product_data['taxon_slug']);
 
 
-            $hasSameTaxon = false;
-            //Update product details
-            $product->update([
-                'name' => $product_data['name'],
-                'sku' => $sku,
-                'slug' => str_slug($product_data['name'], '-'),
-                'price' => $product_data['price'],
-                'meta_description' => $product_data['meta_description'],
-                'description' => $request->description,
-                'meta_keywords' => $product_data['tags']
-            ]);
+                //Generate SKU
+                $sku = strtoupper(substr($product_data['name'], 0, 3)) . "-" . $taxon->id;
+
+                //Get Product
+                $product = \App\Product::where('id', $product_data['id']);
 
 
-            //Check if product already has same Taxon to prevent exception
+                $hasSameTaxon = false;
+                //Update product details
+                $product->update([
+                    'name' => $product_data['name'],
+                    'sku' => $sku,
+                    'slug' => str_slug($product_data['name'], '-'),
+                    'price' => $product_data['price'],
+                    'meta_description' => $product_data['meta_description'],
+                    'description' => $request->description,
+                    'meta_keywords' => $product_data['tags']
+                ]);
+
+
+                //Check if product already has same Taxon to prevent exception
 //            if($product->first()->taxons()->count()) {
 //                foreach ($product->first()->taxons as $item) {
 //                    $taxon = Taxon::findBySlug($item->slug);
@@ -186,25 +187,45 @@ class ProductsController extends BaseController
 //                }
 //            }
 
-            //update Taxon to product
-             $product->first()->taxons()->detach();
-             $product->first()->taxons()->save($taxon);
+                //update Taxon to product
+                $product->first()->taxons()->detach();
+                $product->first()->taxons()->save($taxon);
 
-            //update images for product
-            if($request['images'] && count($request['images']) > 0) {
-                foreach ($request['images'] as $image) {
-                    $product->first()->photos()->create([
-                        'link' => $image,
-                        'photoable_type' => get_class($product->first()),
-                        'photoable_id' => $product_data['id'],
-                    ]);
+                //update images for product
+                if ($request['images'] && count($request['images']) > 0) {
+                    foreach ($request['images'] as $image) {
+                        $product->first()->photos()->create([
+                            'link' => $image,
+                            'photoable_type' => get_class($product->first()),
+                            'photoable_id' => $product_data['id'],
+                        ]);
+                    }
                 }
-            }
 
-            //update Delivery Price
-            DeliveryPrice::where('delivery_price_id', $product_data['id'])->update(
-               ['amount' => $product_data['delivery_price']]
-            );
+                //update Delivery Price
+                DeliveryPrice::where('delivery_price_id', $product_data['id'])->update(
+                    ['amount' => $product_data['delivery_price']]
+                );
+
+
+
+                //Create Variants
+                $product_variants_filtered = collect($request->variants)->filter(function ($item) {
+                    return $item != null;
+                });
+                foreach ($product_variants_filtered->toArray() as $product_variants) {
+                    $variant = $product->first()->addVariant($product_variants['variant_price'], $taxon->id);
+                    foreach ($product_variants['variant_properties'] as $item) {
+                        $variant_object = (object)[
+                            'option_id' => $item['property_id'],
+                            'option_name' => $item['property_name'],
+                            'option_value' => $item['property_value'],
+                            'option_value_id' => $item['property_value_id'],
+                        ];
+                        $product->first()->addVariantOption($variant_object, $variant->id);
+                    }
+                };
+            });
 
 
             return response()->json(['status' => 200, 'message' => 'Product updated'], 200);
@@ -326,7 +347,8 @@ class ProductsController extends BaseController
         }
         $product = \App\Product::where('id', $id)->first();
         $categories = Taxon::all();
-        return view('pages.admin.product_edit', compact('product', 'categories'));
+        $variants = ProductOption::all();
+        return view('pages.admin.products.product_edit', compact('product', 'categories','variants'));
     }
 
     public function addComment($product_id, Request $request){

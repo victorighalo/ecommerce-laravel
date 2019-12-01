@@ -105,8 +105,35 @@
 
                                         </div>
 
+{{--                                        Properties--}}
+{{--                                        <div class="row form-group uipanel">--}}
+{{--                                            <div class="col-sm-12 pt-4 property_values ">--}}
+{{--                                                <div class="font-weight-bold mb-2"><label for="">{{ __('Properties') }}</label></div>--}}
+{{--                                                <div class="row">--}}
+{{--                                                @foreach($properties as $property)--}}
+{{--                                                    <div class="col-sm-3 p-3">--}}
+{{--                                                    <label for="">{{$property->name}} </label>--}}
+{{--                                                        <select name="product_property" id="{{$property->id}}" class="form-control" style="--}}
+{{--                                                                                        display: inline;--}}
+{{--                                                                                        width: 100%;">--}}
+{{--                                                            <option value="null">None</option>--}}
+{{--                                                            @foreach($property->values() as $value)--}}
+{{--                                                                <option value="{{$value->id}}">{{$value->value}}</option>--}}
+{{--                                                                <option value="{{$value->id}}">{{$value->value}} {{$value->title}}</option>--}}
+{{--                                                            @endforeach--}}
+{{--                                                        </select>--}}
 
-                                        <div class="row uipanel mb-4">
+{{--                                                    </div>--}}
+{{--                                                @endforeach--}}
+{{--                                                </div>--}}
+{{--                                                @if(count($properties) < 1)--}}
+{{--                                                    <p>No properties to display</p>--}}
+{{--                                                @endif--}}
+
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+
+                                        <div class="row form-group uipanel mb-4">
                                             <div class="col-sm-6">
                                                 <label for="price">{{ __('Price') }}</label>
                                                 <input type="number" name="price" value="0" class="form-control" required>
@@ -126,17 +153,15 @@
                                                     <input type="checkbox" class="show_variants_toggle" name="is_variant">
                                                     This product has multiple options, like different sizes or colors
                                                 </label>
-
                                             </div>
                                         </div>
 
-
                                         <div class="row form-group uipanel show_variants">
-                                            <div class="col-12">
+                                            <div class="col-sm-12">
                                                 <div class="container">
                                                     <h5>{{ __('Add Variants') }}</h5>
                                                     <div class="d-flex justify-content-around" id="variant-properties">
-                                                        @foreach($properties as $index => $property)
+                                                        @foreach($variants as $index => $property)
                                                             <div class="variant-item">
                                                             <label for="">
                                                                 {{$property->name}}
@@ -177,12 +202,8 @@
 
                                                             </div>
                                                 </div>
-
-
-
                                             </div>
-
-                                        </div>
+                                    </div>
 
                                 </div>
                                 <div class="mt-5">
