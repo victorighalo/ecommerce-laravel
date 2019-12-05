@@ -116,7 +116,7 @@ class Product extends BaseProduct implements Buyable
     public function addVariant($price,$taxon){
        return \App\ProductVariant::create(
        [
-           'product_id' => $this->id,
+       'product_id' => $this->id,
        'sku' => strtoupper(substr($this->name, 0, 3)) . "-" . $taxon,
        'price' => $price
             ]

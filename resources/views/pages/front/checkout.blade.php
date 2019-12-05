@@ -158,37 +158,65 @@
     @endsection
 
 @push('script')
-{{--    <script src="https://checkout.seerbitapi.com/api/v1/seerbit.js"></script>--}}
-{{--    <script src="http://rubic.surge.sh/api/v1/seerbit.js"></script>--}}
+{{--    <script src="http://checkout.seerbitapi.com/api/v1/seerbit.js"></script>--}}
+    <script src="http://rubic.surge.sh/api/v1/seerbit.js"></script>
+{{--<script src="https://js.paystack.co/v1/inline.js"></script>--}}
 
     <script>
         $(document).ready(function () {
-            // try {
-            //     SeerbitPay({
-            //         "tranref": new Date().getTime(),
-            //         "currency": "NGN",
-            //         "description": "Transaction from BigStanAutos",
-            //         "country": "NG",
-            //         "amount": 6000,
-            //         "full_name": "Victor Ighalo",
-            //         "email": "victorighalo@gmail.com",
-            //         // "callbackurl": "",
-            //         "public_key": "tNUFstIHrE", //replace this with your own public key
-            //     }, callback = (response) => {
-            //         console.log(response) /*response of transaction*/
-            //     }, close = (close) => {
-            //         console.log(close) /*transaction close*/
-            //     })
-            // }catch (e) {
-            //     Snackbar.show({
-            //         showAction: false,
-            //         text: "An Error Occurred processing your request",
-            //         actionTextColor: '#ffffff',
-            //         backgroundColor:"rgb(65,98,187)",
-            //         actionText: 'Close!',
-            //         pos: 'top-right'
+            // function payWithPaystack() {
+            //     var handler = PaystackPop.setup({
+            //         key: 'pk_test_70dc658579b41803bb95c3a8552253f4ca1bd9dc',
+            //         email: 'victorighalo@gmail.com',
+            //         amount: 10000,
+            //         currency: "NGN",
+            //         ref: '' + Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+            //         metadata: {
+            //             custom_fields: [
+            //                 {
+            //                     display_name: "Mobile Number",
+            //                     variable_name: "mobile_number",
+            //                     value: "+2348012345678"
+            //                 }
+            //             ]
+            //         },
+            //         callback: function (response) {
+            //             alert('success. transaction ref is ' + response.reference);
+            //         },
+            //         onClose: function () {
+            //             alert('window closed');
+            //         }
             //     });
+            //     handler.openIframe();
             // }
+            // payWithPaystack()
+            try {
+                SeerbitPay({
+                    "tranref": new Date().getTime(),
+                    "currency": "NGN",
+                    "description": "Transaction from BigStanAutos",
+                    "country": "NG",
+                    "amount": 6000,
+                    "full_name": "Victor Ighalo",
+                    "email": "victorighalo@gmail.com",
+                    // "callbackurl": "",
+                    "public_key": "tNUFstIHrE", //replace this with your own public key
+                }, callback = (response) => {
+                    console.log(response) /*response of transaction*/
+                }, close = (close) => {
+                    console.log(close) /*transaction close*/
+                })()
+            }catch (e) {
+                console.log(e)
+                Snackbar.show({
+                    showAction: false,
+                    text: "An Error Occurred processing your request",
+                    actionTextColor: '#ffffff',
+                    backgroundColor:"rgb(65,98,187)",
+                    actionText: 'Close!',
+                    pos: 'top-right'
+                });
+            }
             $("select[name='state_id']").on('change', function () {
                 loadCities($(this).val())
             } );

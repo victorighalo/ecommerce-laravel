@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="eb2349c8-f2b2-4acb-b3f6-e1ac82b2095e" name="Default" comment="updated webhook logs" />
+    <list default="true" id="eb2349c8-f2b2-4acb-b3f6-e1ac82b2095e" name="Default" comment="updated webhook logs">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/front/checkout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/front/checkout.blade.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -325,6 +328,8 @@
       <workItem from="1567529137977" duration="465000" />
       <workItem from="1567598331338" duration="13254000" />
       <workItem from="1574155195082" duration="4633000" />
+      <workItem from="1575160093394" duration="2687000" />
+      <workItem from="1575453519329" duration="380000" />
     </task>
     <task id="LOCAL-00030" summary="Added webhook support">
       <created>1566650726909</created>
