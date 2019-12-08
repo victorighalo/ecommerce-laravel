@@ -425,12 +425,13 @@ class ProductsController extends BaseController
         return response()->json(['status' => 200, 'message' => 'Product properties updated'], 200);
     }
 
-    public function removeVariant(){
+    public function removeVariant(Request $request){
         try {
+            ProductVariant::destroy($request->id);
             return response()->json(['message' => 'Successful']);
         }
         catch (\Exception $e){
-            return response()->json(['message' => 'Failed to update variant', 'reason'=> $e->getMessage(), 400 ]);
+            return response()->json(['message' => 'Failed to delete variant', 'reason'=> $e->getMessage()], 400 );
         }
     }
 

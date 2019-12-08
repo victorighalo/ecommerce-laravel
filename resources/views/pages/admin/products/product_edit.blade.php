@@ -329,7 +329,7 @@
             row += "<div><input class='form-control variants-price-input-value' data-variant_id='"+variants.variant_id+"' data-prop-id='"+index+"' type='number' value='"+variants.variant_price+"'></div>"
             row += "</div>"
             row += "<div class='variant-desc text-center'>";
-            row += "<i title='Remove' class=\"fas fa-times variant-icon\" onclick='removeRawVariant(this)' data-prop-id='"+index+"'></i>"
+            row += "<i title='Remove' class=\"fas fa-times variant-icon\" onclick='removeRawVariant(this)' data-prop-id='"+index+"' data-variant_id='"+variants.variant_id+"' ></i>"
             row += "</div>";
 
             row += "</div></div>";
@@ -702,7 +702,7 @@
                             $.ajax({
                                 url: "{{route('variant_remove')}}",
                                 type: 'POST',
-                                data: {id: item.attr('variant_id')}
+                                data: {id: item.data('variant_id')}
                             }).done(function (data) {
                                 notice.update({
                                     title: 'Success',
@@ -780,7 +780,7 @@
 
         function updateRawVariant(variant) {
             var item = $(variant);
-            console.log($(item).data('variant_id'))
+
             PNotify.removeAll();
             new PNotify({
                 title: 'Confirm Update',

@@ -5,12 +5,12 @@ namespace App;
 
 
 use Illuminate\Database\Eloquent\Model;
-use App\ProductVariantOptions;
 
 class ProductVariant extends Model
 {
 
-    protected $guarded = ['id', 'created_at', 'updated_at'];
+    protected $guarded = [];
+    protected $table = "product_variants";
 
     public static function addVariants(array $variants, $product){
 
