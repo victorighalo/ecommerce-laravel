@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Attribute;
 use App\DeliveryPrice;
 use App\Product;
+use App\ProductVariantOptions;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -348,7 +349,21 @@ class ProductsController extends BaseController
         $product = \App\Product::where('id', $id)->first();
         $categories = Taxon::all();
         $variants = ProductOption::all();
-        return view('pages.admin.products.product_edit', compact('product', 'categories','variants'));
+        $variants_raw = [];
+        if($product->is_variant){
+//            dd($product->variantsRaw->first()->options );
+        foreach($product->variantsRaw as $raw_variant){
+        $variants_raw[] = [
+          'variant_id' => $raw_variant->id,
+          'product_id' => $raw_variant->product_id,
+          'sku' => $raw_variant->sku,
+          'price' => $raw_variant->price,
+          'options' => $this->getVariantOptions($raw_variant->options),
+        ];
+        }
+        }
+        $variants_raw = collect($variants_raw);
+      return view('pages.admin.products.product_edit', compact('product', 'categories','variants', 'variants_raw'));
     }
 
     public function addComment($product_id, Request $request){
@@ -409,5 +424,43 @@ class ProductsController extends BaseController
 
         return response()->json(['status' => 200, 'message' => 'Product properties updated'], 200);
     }
+
+    public function removeVariant(){
+        try {
+            return response()->json(['message' => 'Successful']);
+        }
+        catch (\Exception $e){
+            return response()->json(['message' => 'Failed to update variant', 'reason'=> $e->getMessage(), 400 ]);
+        }
+    }
+
+    public function updateVariant(Request $request){
+        try {
+           $variant =  ProductVariant::find($request->id);
+           $variant->price = $request->price;
+           $variant->save();
+            return response()->json(['message' => 'Successful']);
+        }catch (\Exception $e){
+            return response()->json(['message' => 'Failed', 'reason' => $e->getMessage()], 400);
+        }
+    }
+
+    private function getVariantOptions($options){
+        $variant_options = [];
+        foreach ($options as $option){
+            $variant_options[] = [
+            'id' => $option->id,
+            'product_id' => $option->product_id,
+            'product_option_id' => $option->option_id,
+            'product_option_name' => $option->option_name,
+            'product_option_value' => $option->option_value,
+            'product_option_value_id' => $option->option_value_id,
+            'variant_id' => $option->variant_id,
+            ];
+        }
+        return $variant_options;
+    }
+
+
 
 }

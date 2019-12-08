@@ -75,6 +75,8 @@ Route::get('/products/deactivate/{id?}', 'ProductsController@deactivate')->name(
 Route::get('/products/destroy/{product_id?}/{taxon_id?}', 'ProductsController@destroy')->name('destroy_product');
 Route::get('/products/json', 'ProductsController@getProductsData')->name('get_products');
 Route::post('/products/create', 'ProductsController@create')->name('create_products');
+Route::post('/products/variants/remove', 'ProductsController@removeVariant')->name('variant_remove');
+Route::post('/products/variants/update', 'ProductsController@updateVariant')->name('variant_update');
 Route::get('/product/{id}/edit', 'ProductsController@edit')->name('edit_product');
 Route::post('/product/update', 'ProductsController@update')->name('update_product');
 Route::post('/product/properties/update/{id?}', 'ProductsController@updateProperties')->name('update_product_properties');

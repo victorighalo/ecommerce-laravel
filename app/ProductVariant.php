@@ -5,7 +5,7 @@ namespace App;
 
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\ProductVariantOptions;
 
 class ProductVariant extends Model
 {
@@ -31,5 +31,9 @@ class ProductVariant extends Model
             }
         });
         return $product_variants_filtered;
+    }
+
+    public function options(){
+        return $this->hasMany(ProductVariantOptions::class, 'variant_id', 'id');
     }
 }

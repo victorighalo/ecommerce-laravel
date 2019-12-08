@@ -233,6 +233,10 @@
                                                                         </div>
                                                                         <div class="col-sm-12 pt-4">
                                                                             <h5>Variants</h5>
+                                                                            <div class="row variants_raw_preview">
+
+                                                                            </div>
+
                                                                             <div class="row variants_preview">
 
                                                                             </div>
@@ -270,13 +274,13 @@
 
 @push('script')
     <script src="{{asset('plugins/bootstrap-tagsinput.min.js')}}"></script>
-
+    <script src="{{ asset('assets/js/lodash.min.js')}}"></script>
     <script>
-        var bsmodal = $('#images-modal');
-        var imageBag = [];
-        var mediaUrl = "{{asset('')}}/";
+        var bsmodal = $('#images-modal'),
+        imageBag = [],
+        mediaUrl = "{{asset('')}}/",
 
-        var toolbarOptions = [
+        toolbarOptions = [
             ['link', 'image'],
             ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
             ['blockquote', 'code-block'],
@@ -291,17 +295,19 @@
             [{'align': []}],
 
             ['clean']
-        ];
-        var options = {
+        ],
+        options = {
             readOnly: false,
             theme: 'snow',
             modules: {
                 toolbar: toolbarOptions
             }
-        };
-        var description_container = $('#editor').get(0);
-        var quill = new Quill(description_container, options);
-        var variants = [];
+        },
+        description_container = $('#editor').get(0),
+        quill = new Quill(description_container, options),
+        variants = [],
+        variants_raw = [];
+
         $(document).ajaxStop($.unblockUI);
 
         (function setMediaUrl() {
@@ -311,6 +317,24 @@
                 mediaUrl = s3Url;
             }
         })();
+
+        //raw variant
+        function displayRawVariants(variants, index){
+            var row = "<div class='col-sm-12 mb-3 variant-container'>";
+            row += "<div class='variant-box d-flex justify-content-around'>";
+            row += "<div class='variant-desc text-center'>";
+            row += "<div style='padding: 8px;'><strong>"+getVariantString(variants.variant_properties)+"</strong></div>";
+            row += "</div>"
+            row += "<div class='variant-price text-center'>";
+            row += "<div><input class='form-control variants-price-input-value' data-variant_id='"+variants.variant_id+"' data-prop-id='"+index+"' type='number' value='"+variants.variant_price+"'></div>"
+            row += "</div>"
+            row += "<div class='variant-desc text-center'>";
+            row += "<i title='Remove' class=\"fas fa-times variant-icon\" onclick='removeRawVariant(this)' data-prop-id='"+index+"'></i>"
+            row += "</div>";
+
+            row += "</div></div>";
+            $(".variants_raw_preview").append(row)
+        }
 
 
         function isDuplicate(item) {
@@ -357,40 +381,53 @@
             delete variants[$(element).data('prop-id')]
         }
 
+        function removeVariantRaw(element){
+            //remove item from variants array
+            $(element).parent().parent().parent().fadeOut()
+            delete variants_raw[$(element).data('prop-id')]
+        }
+
 
         $(document).ready(function () {
             {{--console.log({!! $product->variantOptions !!})--}}
 
-            {{--(function(){--}}
-            {{--var variant_props = [];--}}
-            {{--var product_options = {!! $product->variantOptions !!}--}}
-            {{--if("{!! $product->is_variant !!}"){--}}
-            {{--    //Get properties--}}
-            {{--    var temp_variant_item = {};--}}
-            {{--    $.each(product_options, function (index, item) {--}}
-            {{--        if(item){--}}
-            {{--            var variants_props = [];--}}
-            {{--            temp_variant_item = {--}}
-            {{--                property_id: item.option_id,--}}
-            {{--                property_name: item.option_name,--}}
-            {{--                property_value: item.option_value,--}}
-            {{--                property_value_id: item.option_value_id--}}
-            {{--            };--}}
-            {{--            variant_props.push(temp_variant_item)--}}
-            {{--        }else{--}}
+                //Load product variants
+            (function(){
 
-            {{--        }--}}
+            var product_options = {!! $product->variants() !!}
+            var product_variants_raw = {!! $variants_raw !!}
 
-            {{--    });--}}
+            if({!! $product->is_variant !!}){
+                $.each(product_variants_raw, function (index, option) {
+                    var variant_props = [];
+                    //Get properties
+                    var temp_variant_item = {};
+                    $.each(option.options, function (index, item) {
+                        if (item) {
+                            var variants_props = [];
+                            temp_variant_item = {
+                                property_id: item.product_option_id,
+                                property_name: item.product_option_name,
+                                property_value: item.product_option_value,
+                                property_value_id: item.product_option_value_id
+                            };
+                            variant_props.push(temp_variant_item)
+                        } else {
 
-            {{--    variants.push({--}}
-            {{--        variant_properties: variant_props,--}}
-            {{--        variant_price:$("#variant-property-price").val()--}}
-            {{--    })--}}
+                        }
 
-            {{--    displayVariants(variants[variants.length - 1], variants.length - 1)--}}
-            {{--}--}}
-            {{--})()--}}
+                    });
+
+                    variants_raw.push({
+                        variant_properties: variant_props,
+                        variant_price: option.price,
+                        variant_id: option.variant_id,
+                    })
+
+                    displayRawVariants(variants_raw[variants_raw.length - 1], variants_raw.length - 1)
+                });
+            }
+            })()
 
 
             $(".add-variant").on('click', function () {
@@ -448,7 +485,13 @@
 
             $(".variants_preview").on('change','.variants-price-input-value', function () {
                 updateVariant($(this))
-            })
+            });
+
+            $(".variants_raw_preview").on('change','.variants-price-input-value',
+                _.debounce(function () {
+                    updateRawVariant($(this))
+                }, 1000)
+            )
 
             $(".show_variants_toggle").on("click", function (e) {
                 if($(this).is(":checked")){
@@ -640,6 +683,195 @@
                 return item != $(e).data('imgpath');
             })
         }
+
+        function removeRawVariant(variant) {
+            var item = $(variant);
+            PNotify.removeAll();
+            new PNotify({
+                title: 'Confirm Removal',
+                text: 'Are you sure?',
+                icon: 'glyphicon glyphicon-question-sign',
+                addclass: 'custom_notification',
+                hide: false,
+                confirm: {
+                    confirm: true,
+                    buttons: [{
+                        text: 'Delete',
+                        addClass: 'btn-primary',
+                        click: function (notice) {
+                            $.ajax({
+                                url: "{{route('variant_remove')}}",
+                                type: 'POST',
+                                data: {id: item.attr('variant_id')}
+                            }).done(function (data) {
+                                notice.update({
+                                    title: 'Success',
+                                    text: 'Removal successful.',
+                                    icon: true,
+                                    type: 'success',
+                                    hide: true,
+                                    confirm: {
+                                        confirm: false
+                                    },
+                                    buttons: {
+                                        closer: true,
+                                        sticker: true
+                                    }
+                                });
+                                removeVariantRaw(item)
+                            }).fail(function (response) {
+                                PNotify.removeAll();
+                                if (response.status == 500) {
+                                    new PNotify({
+                                        title: 'Oops!',
+                                        text: 'An Error Occurred. Please try again.',
+                                        type: 'error'
+                                    });
+                                    return false
+                                }
+                                if (response.status == 400) {
+                                    new PNotify({
+                                        title: 'Oops!',
+                                        text: 'Failed to delete variant.',
+                                        type: 'error'
+                                    });
+                                    return false
+                                } else {
+                                    new PNotify({
+                                        title: 'Oops!',
+                                        text: 'An Error Occurred. Please try again.',
+                                        type: 'error'
+                                    });
+                                    return false
+                                }
+                            })
+                        }
+                    },
+                        {
+                            text: 'Cancel',
+                            addClass: 'btn-primary',
+                            click: function (notice) {
+                                notice.update({
+                                    title: 'Action Cancelled',
+                                    text: 'That was close...',
+                                    icon: true,
+                                    type: 'danger',
+                                    hide: true,
+                                    confirm: {
+                                        confirm: false
+                                    },
+                                    buttons: {
+                                        closer: true,
+                                        sticker: true
+                                    }
+                                });
+                            }
+                        }]
+                },
+                buttons: {
+                    closer: true,
+                    sticker: true
+                },
+                history: {
+                    history: false
+                }
+            })
+        };
+
+        function updateRawVariant(variant) {
+            var item = $(variant);
+            console.log($(item).data('variant_id'))
+            PNotify.removeAll();
+            new PNotify({
+                title: 'Confirm Update',
+                text: 'Are you sure?',
+                icon: 'glyphicon glyphicon-question-sign',
+                addclass: 'custom_notification',
+                hide: false,
+                confirm: {
+                    confirm: true,
+                    buttons: [{
+                        text: 'Update',
+                        addClass: 'btn-primary',
+                        click: function (notice) {
+                            $.ajax({
+                                url: "{{route('variant_update')}}",
+                                type: 'POST',
+                                data: {id: item.data('variant_id'), price:$(item).val()}
+                            }).done(function (data) {
+                                notice.update({
+                                    title: 'Success',
+                                    text: 'Update successful.',
+                                    icon: true,
+                                    type: 'success',
+                                    hide: true,
+                                    confirm: {
+                                        confirm: false
+                                    },
+                                    buttons: {
+                                        closer: true,
+                                        sticker: true
+                                    }
+                                });
+                                variants_raw[$(item).data('prop-id')].variant_price = $(item).val();
+                            }).fail(function (response) {
+                                PNotify.removeAll();
+                                if (response.status == 500) {
+                                    new PNotify({
+                                        title: 'Oops!',
+                                        text: 'An Error Occurred. Please try again.',
+                                        type: 'error'
+                                    });
+                                    return false
+                                }
+                                if (response.status == 400) {
+                                    new PNotify({
+                                        title: 'Oops!',
+                                        text: 'Failed to update variant.',
+                                        type: 'error'
+                                    });
+                                    return false
+                                } else {
+                                    new PNotify({
+                                        title: 'Oops!',
+                                        text: 'An Error Occurred. Please try again.',
+                                        type: 'error'
+                                    });
+                                    return false
+                                }
+                            })
+                        }
+                    },
+                        {
+                            text: 'Cancel',
+                            addClass: 'btn-primary',
+                            click: function (notice) {
+                                notice.update({
+                                    title: 'Action Cancelled',
+                                    text: 'That was close...',
+                                    icon: true,
+                                    type: 'danger',
+                                    hide: true,
+                                    confirm: {
+                                        confirm: false
+                                    },
+                                    buttons: {
+                                        closer: true,
+                                        sticker: true
+                                    }
+                                });
+                            }
+                        }]
+                },
+                buttons: {
+                    closer: true,
+                    sticker: true
+                },
+                history: {
+                    history: false
+                }
+            })
+        };
 
         function removeMedia(media) {
             var item = $(media);
