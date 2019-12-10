@@ -169,7 +169,7 @@ class ProductsController extends BaseController
 
 
                 $hasSameTaxon = false;
-                $is_variant = $request->has('variants') ? 1 : $product->is_variant == 0 ? 0 : 1;
+                $is_variant = $request->has('variants') == true ? 1 : $product->is_variant == 1 ? 1 : 0;
                 dd($is_variant);
                 //Update product details
                 $product->update([
