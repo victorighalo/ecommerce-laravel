@@ -71,6 +71,7 @@ function sub_menu($array){
                             @else
                             0 items
                         @endif
+                            @if (Cart::isNotEmpty())
                         <i class="icon-basket-loaded"></i> </a>
                     <ul class="dropdown-menu">
                         @foreach(Cart::getItems() as $item)
@@ -83,6 +84,7 @@ function sub_menu($array){
                                 <span class="price"><small>&#8358;</small> {{number_format($item->price, '0', '.', ',')}}</span> <span class="qty">QTY: {{$item->quantity}}</span> </div>
                         </li>
                         @endforeach
+                        @endif
                         <li class="margin-0">
                             <div class="row">
                                 <div class="col-sm-6"> <a href="{{url('cart')}}" class="btn">VIEW CART</a></div>
