@@ -67,11 +67,11 @@ function sub_menu($array){
                 <li><a href="{{url('cart')}}">MY CART</a></li>      <!-- USER BASKET -->
                 <li class="dropdown user-basket"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
                         @if (Cart::isNotEmpty())
-                            {{ Cart::itemCount() }} Items
-                            @else
+                            {{ Cart::itemCount() }} Items <i class="icon-basket-loaded"></i>
+                        @else
                             0 items
                         @endif
-                        <i class="icon-basket-loaded"></i> </a>
+                        </a>
                     @if (Cart::isNotEmpty())
                     <ul class="dropdown-menu">
                         @foreach(Cart::getItems() as $item)
@@ -149,12 +149,12 @@ function sub_menu($array){
                     <!-- USER INFO -->
 {{--                    <li> <a href="{{url('profile')}}"><i class="lnr lnr-user"></i> </a></li>--}}
                     <!-- USER BASKET -->
-                    <li> <a href="{{url('cart')}}"><span class="c-no">
+                    <li> <a href="{{url('cart')}}">
                                    @if (Cart::isNotEmpty())
-                                    {{ Cart::itemCount() }}
+                                <span class="c-no"> {{ Cart::itemCount() }}</span>
                                 @endif
 {{--                                {{Cart::itemCount()}}--}}
-                            </span><i class="lnr lnr-cart"></i> </a> </li>
+                            <i class="lnr lnr-cart"></i> </a> </li>
                     <!-- SEARCH BAR -->
                     <li> <a href="javascript:void(0);" class="search-open"><i class="lnr lnr-magnifier"></i></a>
                         <div class="search-inside animated bounceInUp"> <i class="icon-close search-close"></i>
