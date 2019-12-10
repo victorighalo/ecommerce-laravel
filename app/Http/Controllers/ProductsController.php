@@ -151,7 +151,7 @@ class ProductsController extends BaseController
     public function update(Request $request)
     {
         $hasSameTaxon = null;
-        $isv
+        $isv = null;
         try {
             DB::transaction(function () use ($request) {
                 //Parse query-string input
