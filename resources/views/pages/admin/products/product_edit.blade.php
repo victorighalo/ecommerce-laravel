@@ -193,7 +193,7 @@
 {{--                                                            @endif--}}
 {{--                                                        </div>--}}
 
-                                                            @if($product->is_variant)
+
                                                             <div class="row form-group uipanel">
                                                                 <div class="col-sm-12">
                                                                     <div class="container">
@@ -245,7 +245,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                                @endif
+
                                                         </div>
                                                     </div>
 
