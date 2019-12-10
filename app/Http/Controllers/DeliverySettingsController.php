@@ -81,7 +81,7 @@ class DeliverySettingsController extends Controller
     private function calculateDelivery(Request $request){
         $delivery_cost = 0;
         foreach (Cart::getItems() as $item){
-            $delivery_cost += $item->product->delivery_price->amount;
+            $delivery_cost += $item->product->delivery_price->amount * $item->quantity;
         }
         if($delivery_cost == 0){
             return null;

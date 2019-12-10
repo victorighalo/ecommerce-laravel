@@ -35,12 +35,12 @@ class OfficeController extends Controller
     }
 
     public function dashboard(){
-        $data = \App\Transactions::take(15)->get();
+        $data = \App\Transactions::complete()->take(15)->get();
         return view('pages.admin.dashboard.index', compact('data'));
     }
 
     public function transactions(){
-        $data = \App\Transactions::paginate(20);
+        $data = \App\Transactions::complete()->paginate(20);
         return view('pages.admin.transactions.index', compact('data'));
     }
 
@@ -54,7 +54,7 @@ class OfficeController extends Controller
     }
 
     public function orders(){
-        $data = \App\Transactions::join('order_items', function ($join){
+        $data = \App\Transactions::complete()->join('order_items', function ($join){
             $join->on('transactions.order_id', '=', 'order_items.order_id');
         }
         )->join('states', 'transactions.state_id', 'states.state_id')

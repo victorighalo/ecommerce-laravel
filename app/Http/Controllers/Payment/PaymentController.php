@@ -42,21 +42,6 @@ class PaymentController extends Controller
         $converted_amount = ( (Cart::total() + $delivery_cost) * 100);
         $uuid = bin2hex(random_bytes(4)) ;
         $ref = strtoupper(trim($uuid));
-        $order = Order::create([
-            'number' => $ref
-        ]);
-        $cart = Cart::getItems();
-
-        foreach ($cart as $item){
-            $order->items()->create([
-                'product_type' => 'App\Product',
-                'product_id'   => $item->product->id,
-                'price'        => $item->product->price,
-                'name'         => $item->product->name,
-                'quantity'     => 1,
-            ]);
-
-        }
 
         $initPayStack = $this->payStackProxy->initializeTransaction($trans_email, $converted_amount , $ref);
 
@@ -64,6 +49,23 @@ class PaymentController extends Controller
             return back()->with(['error' => 'Network failure. Please try again.']);
         }
         if($initPayStack->status){
+            $order = Order::create([
+                'number' => $ref
+            ]);
+
+            $cart = Cart::getItems();
+
+            foreach ($cart as $item){
+                $order->items()->create([
+                    'product_type' => 'App\Product',
+                    'product_id'   => $item->product->id,
+                    'price'        => $item->product->price,
+                    'delivery_price' => $item->product->delivery_price->amount,
+                    'name'         => $item->product->name,
+                    'quantity'     => $item->quantity,
+                ]);
+            }
+
             $this->createTransaction($amount, $trans_email, $user_id,$ref,$order->id, $request);
 
             return redirect()->away($initPayStack->data->authorization_url);
@@ -99,7 +101,7 @@ class PaymentController extends Controller
     private function calculateDelivery(Request $request){
         $delivery_cost = 0;
         foreach (Cart::getItems() as $item){
-            $delivery_cost += $item->product->delivery_price->amount;
+            $delivery_cost += $item->product->delivery_price->amoun * $item->quantity;
         }
         $data = \App\DeliveryCharge::where('state_id', $request->state_id)->where('city_id', $request->city_id);
 
@@ -109,6 +111,7 @@ class PaymentController extends Controller
         }
         return $delivery_cost;
     }
+
     public function successReport(Request $request){
         if($request->has('reference')) {
             $ref = $request->get('reference');

@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="eb2349c8-f2b2-4acb-b3f6-e1ac82b2095e" name="Default" comment="updated webhook logs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ProductVariant.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/ProductVariant.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/products/product_edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/products/product_edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OfficeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OfficeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Payment/PaymentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Payment/PaymentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Transactions.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Transactions.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="office-backend-ui" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -224,6 +224,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.watch" />
+        <item itemvalue="npm.watch" />
+        <item itemvalue="npm.watch" />
       </list>
     </recent_temporary>
   </component>
@@ -332,6 +334,8 @@
       <workItem from="1574155195082" duration="4633000" />
       <workItem from="1575160093394" duration="2687000" />
       <workItem from="1575453519329" duration="380000" />
+      <workItem from="1575988807066" duration="30000" />
+      <workItem from="1576003408945" duration="1483000" />
     </task>
     <task id="LOCAL-00030" summary="Added webhook support">
       <created>1566650726909</created>

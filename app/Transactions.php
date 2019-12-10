@@ -13,4 +13,12 @@ class Transactions extends Model
     protected $enums = [
         'status' => TransactionStatus::class
     ];
+
+    public function scopeComplete($query){
+        return $query->where('status','=', 'complete');
+    }
+
+    public function scopePending($query){
+        return $query->where('status','=', 'pending');
+    }
 }
