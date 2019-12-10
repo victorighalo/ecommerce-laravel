@@ -151,7 +151,7 @@ class ProductsController extends BaseController
     public function update(Request $request)
     {
         $hasSameTaxon = null;
-        $isv = null;
+
         try {
             DB::transaction(function () use ($request) {
                 //Parse query-string input
@@ -170,7 +170,7 @@ class ProductsController extends BaseController
 
                 $hasSameTaxon = false;
                 $is_variant = $request->has('variants') ? 1 : $product->is_variant == 0 ? 0 : 1;
-                $isv = $request->has('variants') ? 1 : $product->is_variant == 0 ? 0 : 1;
+                dd($is_variant);
                 //Update product details
                 $product->update([
                     'name' => $product_data['name'],
@@ -233,7 +233,7 @@ class ProductsController extends BaseController
             });
 
 
-            return response()->json(['status' => 200, 'message' => 'Product updated', 'extra' => $request->has('variants')], 200);
+            return response()->json(['status' => 200, 'message' => 'Product updated'], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 400, 'message' => 'Failed to update product '.$e->getMessage()], 400);
         }
