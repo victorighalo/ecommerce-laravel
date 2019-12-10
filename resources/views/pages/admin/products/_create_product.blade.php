@@ -186,7 +186,7 @@
                                                             <div class="variant-item">
                                                         <label for="">
                                                             Price
-                                                            <input value="0" type="text" class="form-control" id="variant-property-price">
+                                                            <input value="0" type="number" min="0" class="form-control" id="variant-property-price">
                                                         </label>
                                                             </div>
                                                             <div class="variant-item-button">
