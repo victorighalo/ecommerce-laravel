@@ -57,7 +57,7 @@
                                                                 <label for="category_id">{{ __('Category') }}</label>
                                                                 <select class="form-control" name="taxon_slug" id="taxon_slug">
                                                                     @foreach($categories as $category)
-                                                                        <option value="{{$category->slug}}">{{$category->taxonomy->name}} - {{$category->name}} </option>
+{{--                                                                        <option value="{{$category->slug}}">{{$category->taxonomy->name}} - {{$category->name}} </option>--}}
                                                                         @foreach($category->children as $child_category)
                                                                             <option value="{{$child_category->slug}}">{{$category->taxonomy->name}} - {{$category->name}} - {{$child_category->name}} </option>
                                                                         @endforeach
@@ -136,7 +136,7 @@
                                         <div class="row form-group uipanel mb-4">
                                             <div class="col-sm-6">
                                                 <label for="price">{{ __('Price') }}</label>
-                                                <input type="number" name="price" value="0" class="form-control" required>
+                                                <input type="number" min="50" name="price" value="50" class="form-control" required>
                                                 <span class="invalid-feedback errorshow" role="alert">
                                                     </span>
                                             </div>

@@ -70,7 +70,7 @@ class ProductsController extends BaseController
                 $validator = Validator::make($product_data, [
                     'name' => 'required|min:3',
                     'taxon_slug' => 'required',
-                    'price' => 'required|numeric',
+                    'price' => 'required|numeric:min:50',
                     'delivery_price' => 'numeric',
 //                'meta_description' => 'required|min:3',
                 ], $errormsgs);
@@ -93,7 +93,7 @@ class ProductsController extends BaseController
                     'description' => $request->description,
                     'meta_keywords' => $product_data['tags'],
                     'state' => ProductState::ACTIVE,
-                    'is_variant' => $product_data['is_variant'] ? 1 : 0
+                    'is_variant' => array_key_exists("is_variant",$product_data) ? $product_data['is_variant'] : 0
                 ]);
 
 
@@ -143,7 +143,7 @@ class ProductsController extends BaseController
 
             return response()->json(['status' => 200, 'message' => 'Product created'], 200);
         } catch (\Exception $e) {
-            return response()->json(['status' => 400, 'message' => 'Failed to create product '. $e->getMessage()], 400);
+            return response()->json(['status' => 400, 'message' => 'Failed to create product', 'reason'=> $e->getMessage()], 400);
         }
 
     }
