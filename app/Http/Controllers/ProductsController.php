@@ -233,7 +233,7 @@ class ProductsController extends BaseController
             });
 
 
-            return response()->json(['status' => 200, 'message' => 'Product updated', 'extra' => $is_variant], 200);
+            return response()->json(['status' => 200, 'message' => 'Product updated', 'extra' => $isv], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 400, 'message' => 'Failed to update product '.$e->getMessage()], 400);
         }
