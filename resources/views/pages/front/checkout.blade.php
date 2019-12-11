@@ -159,7 +159,7 @@
 
 @push('script')
 {{--    <script src="http://checkout.seerbitapi.com/api/v1/seerbit.js"></script>--}}
-    <script src="http://rubic.surge.sh/api/v1/seerbit.js"></script>
+{{--    <script src="http://rubic.surge.sh/api/v1/seerbit.js"></script>--}}
 {{--<script src="https://js.paystack.co/v1/inline.js"></script>--}}
 
     <script>
@@ -190,33 +190,33 @@
             //     handler.openIframe();
             // }
             // payWithPaystack()
-            try {
-                SeerbitPay({
-                    "tranref": new Date().getTime(),
-                    "currency": "NGN",
-                    "description": "Transaction from BigStanAutos",
-                    "country": "NG",
-                    "amount": 6000,
-                    "full_name": "Victor Ighalo",
-                    "email": "victorighalo@gmail.com",
-                    // "callbackurl": "",
-                    "public_key": "tNUFstIHrE", //replace this with your own public key
-                }, callback = (response) => {
-                    console.log(response) /*response of transaction*/
-                }, close = (close) => {
-                    console.log(close) /*transaction close*/
-                })()
-            }catch (e) {
-                console.log(e)
-                Snackbar.show({
-                    showAction: false,
-                    text: "An Error Occurred processing your request",
-                    actionTextColor: '#ffffff',
-                    backgroundColor:"rgb(65,98,187)",
-                    actionText: 'Close!',
-                    pos: 'top-right'
-                });
-            }
+            // try {
+            //     SeerbitPay({
+            //         "tranref": new Date().getTime(),
+            //         "currency": "NGN",
+            //         "description": "Transaction from BigStanAutos",
+            //         "country": "NG",
+            //         "amount": 6000,
+            //         "full_name": "Victor Ighalo",
+            //         "email": "victorighalo@gmail.com",
+            //         // "callbackurl": "",
+            //         "public_key": "tNUFstIHrE", //replace this with your own public key
+            //     }, callback = (response) => {
+            //         console.log(response) /*response of transaction*/
+            //     }, close = (close) => {
+            //         console.log(close) /*transaction close*/
+            //     })()
+            // }catch (e) {
+            //     console.log(e)
+            //     Snackbar.show({
+            //         showAction: false,
+            //         text: "An Error Occurred processing your request",
+            //         actionTextColor: '#ffffff',
+            //         backgroundColor:"rgb(65,98,187)",
+            //         actionText: 'Close!',
+            //         pos: 'top-right'
+            //     });
+            // }
             $("select[name='state_id']").on('change', function () {
                 loadCities($(this).val())
             } );
