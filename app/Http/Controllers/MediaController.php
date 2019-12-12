@@ -150,7 +150,7 @@ class MediaController extends Controller
     public function loadImages()
     {
         if(config('app.PHOTO_DRIVER') == 'local') {
-            $photos = Media::where('driver', 'local')->latest()->limit(40)->get();
+            $photos = Media::where('driver', 'local')->latest()->limit(10)->get();
             $data = [];
             foreach ($photos as $item) {
                 $data[] = (object)[
@@ -162,7 +162,7 @@ class MediaController extends Controller
             }
             return $data;
         }else if( config('app.PHOTO_DRIVER') == 's3' ){
-            $photos = Media::where('driver', 's3')->latest()->limit(40)->get();
+            $photos = Media::where('driver', 's3')->latest()->limit(10)->get();
             $data = [];
             foreach ($photos as $item) {
                 $data[] = (object)[
