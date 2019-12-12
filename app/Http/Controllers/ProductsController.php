@@ -93,7 +93,7 @@ class ProductsController extends BaseController
                     'description' => $request->description,
                     'meta_keywords' => $product_data['tags'],
                     'state' => ProductState::ACTIVE,
-                    'is_variant' => array_key_exists("is_variant",$product_data) ? $product_data['is_variant'] : 0
+                    'is_variant' => ($request->has('variants') && array_key_exists("is_variant",$product_data)) ? 1 : 0
                 ]);
 
 
@@ -123,21 +123,23 @@ class ProductsController extends BaseController
                 }
 
                 //Create Variants
-                $product_variants_filtered = collect($request->variants)->filter(function ($item) {
-                    return $item != null;
-                });
-                foreach ($product_variants_filtered->toArray() as $product_variants) {
-                    $variant = $product->addVariant($product_variants['variant_price'], $taxon->id);
-                    foreach ($product_variants['variant_properties'] as $item) {
-                        $variant_object = (object)[
-                            'option_id' => $item['property_id'],
-                            'option_name' => $item['property_name'],
-                            'option_value' => $item['property_value'],
-                            'option_value_id' => $item['property_value_id'],
-                        ];
-                        $product->addVariantOption($variant_object, $variant->id);
-                    }
-                };
+                if(($request->has('variants') && array_key_exists("is_variant",$product_data))) {
+                    $product_variants_filtered = collect($request->variants)->filter(function ($item) {
+                        return $item != null;
+                    });
+                    foreach ($product_variants_filtered->toArray() as $product_variants) {
+                        $variant = $product->addVariant($product_variants['variant_price'], $taxon->id);
+                        foreach ($product_variants['variant_properties'] as $item) {
+                            $variant_object = (object)[
+                                'option_id' => $item['property_id'],
+                                'option_name' => $item['property_name'],
+                                'option_value' => $item['property_value'],
+                                'option_value_id' => $item['property_value_id'],
+                            ];
+                            $product->addVariantOption($variant_object, $variant->id);
+                        }
+                    };
+                }
 
             });
 
