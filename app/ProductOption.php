@@ -22,4 +22,8 @@ class ProductOption extends Model
     {
         return $this->hasMany(\App\ProductOptionsValue::class, 'product_option_id', 'id');
     }
+
+    public static function findBySlug($slug){
+        return static::where('slug',$slug)->first();
+    }
 }

@@ -11,4 +11,10 @@ class ProductOptionsValue extends Model
 
     protected $table = "product_options_values";
 
+    protected $guarded = [];
+
+    public function scopeSort($query)
+    {
+        return $query->orderBy('value');
+    }
 }

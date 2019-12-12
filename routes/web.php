@@ -114,6 +114,14 @@ Route::post('/properties/value/create', 'PropertyController@createPropertyValue'
 Route::get('/properties/json', 'PropertyController@getPropertiesJson')->name('load_properties');
 
 
+//Variants
+Route::get('/variants', 'VariantsController@index');
+Route::get('/variants.json', 'VariantsController@indexJson');
+Route::post('/variants/create', 'VariantsController@create')->name('create_variant');
+Route::post('/variants/value/create', 'VariantsController@createVariantValue')->name('create_variants_value');
+Route::post('/variants/update', 'VariantsController@updateValue')->name('update_variant_value');
+Route::get('/variants/value/destroy/{id?}', 'VariantsController@destroyVariantVal')->name('destroy_variant_value');
+
 //App Settings
 Route::get('/settings', 'SettingController@index');
 Route::put('/settings/update', 'SettingController@update');

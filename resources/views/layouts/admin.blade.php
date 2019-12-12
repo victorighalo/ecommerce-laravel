@@ -18,7 +18,7 @@
     <link href="{{ asset('admin/css/quill.bubble.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/custom.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/uikit.css') }}" rel="stylesheet">
-
+    @stack('style')
 </head>
 <body>
 <div id="app">

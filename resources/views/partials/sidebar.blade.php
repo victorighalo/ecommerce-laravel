@@ -27,6 +27,7 @@
                 <li class="nav-item {{ Request::path() == 'office/properties' ? 'active' : '' }}"><a class="nav-link" href="{{url('office/properties')}}">
                         <i class="fas fa-boxes menu-icon"></i><span class="menu-title">Properties</span></a>
                 </li>
+
 {{--                <li class="nav-item {{ Request::path() == 'office/products' ? 'active' : '' }}"><a class="nav-link" href="{{url('office/products')}}">--}}
 {{--                        <i class="fas fa-store menu-icon"></i> <span class="menu-title">Products</span></a>--}}
 {{--                </li>--}}
@@ -42,6 +43,9 @@
 
                             <a class="nav-link" href="{{url('office/products/list')}}">
                                 <i class="fas fa-list menu-icon"></i> <span class="menu-title">View Items</span></a>
+
+                            <a class="nav-link" href="{{url('office/variants')}}">
+                                <i class="fas fa-random menu-icon"></i> <span class="menu-title">Variants</span></a>
                         </ul>
                     </div>
                 </li>
