@@ -84,7 +84,6 @@ class DeliverySettingsController extends Controller
         foreach (Cart::getItems() as $item){
             $delivery_cost += $item->product->delivery_price->amount * $item->quantity;
         }
-
         $data = DeliveryCharge::where('state_id', $request->state_id)->where('city_id', $request->city_id);
 
         if($data->exists())
