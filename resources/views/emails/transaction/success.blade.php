@@ -443,8 +443,8 @@
                                                 <h5>The delivery will be made to :</h5>
                                                 <p>Firstname : <span>{{$trans->firstname}}</span></p>
                                                 <p>Lastname : <span>{{$trans->lastname}}</span></p>
-                                                <p>Phone : <span>{{$trans->phone}}</span></p>
-                                                <p>Email : <span>{{$trans->user_email}}</span></p>
+                                                <p>Phone : <span style="color:white">{{$trans->phone}}</span></p>
+                                                <p>Email : <span style="color:white">{{$trans->user_email}}</span></p>
                                                 <p>State : <span>{{$trans->state->state_name}}</span></p>
                                                 <p>City : <span>{{$trans->city->city_name}}</span></p>
                                                 <p>Address : <span>{{$trans->address}}</span></p>

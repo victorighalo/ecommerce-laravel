@@ -33,7 +33,10 @@ class AmazonSes extends Mailable
      */
     public function build()
     {
-        return $this->from('support@bigstanautos.com', env('APP_NAME'))->subject('Transaction Receipt - MandMOnlineStore.com')->view('emails.transaction.success',
+        return $this->from('support@bigstanautos.com', env('APP_NAME'))
+            ->cc(['sales@mandmonlinestore.com'])
+            ->subject('Transaction Receipt - MandMOnlineStore.com')
+            ->view('emails.transaction.success',
             ['ref' => $this->ref, 'trans' => $this->trans, 'cart' => $this->cart]
         );
     }
