@@ -22,7 +22,7 @@ class CartController extends BaseController
             $cart_with_variants = [];
         //Build cart
         foreach ($cart as $item){
-            $cart_with_variants[] = [
+            $cart_with_variants[] = (object)[
               'id' => $item->id,
               'product_id' => $item->product_id,
               'quantity' => $item->quantity,
@@ -33,7 +33,8 @@ class CartController extends BaseController
         }
 //        dd($cart_with_variants[0]['product']->FirstImage);
 //        dd($cart[0]->product);
-        $cart = $cart_with_variants;
+        $cart = collect($cart_with_variants);
+
         return view('pages.front.cart', compact('cart', 'cart_count'));
     }
 

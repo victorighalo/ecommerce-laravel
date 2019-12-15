@@ -28,16 +28,16 @@
                         <tr>
                             <th class="text-left"> <!-- Media Image -->
                                 <a href="#." class="item-img">
-                                    @if($item['product']->hasPhoto())
-                                    <img class="media-object" src="{{$item['product']->FirstImage}}" alt="">
+                                    @if($item->product->hasPhoto())
+                                    <img class="media-object" src="{{$item->product->FirstImage}}" alt="">
                                     @endif
                                 </a>
                                 <!-- Item Name -->
                                 <div class="media-body">
-                                    <h5>{{$item['product']->name}}</h5>
+                                    <h5>{{$item->product->name}}</h5>
 
-                                    @if($item['variants'])
-                                    @foreach($item['variants'] as $variant)
+                                    @if(isset($item->variants))
+                                    @foreach($item->variants as $variant)
 {{--                                        <pre>@php(var_dump($variant))</pre>--}}
                                             <small class="font-weight-bold">{{$variant['option_name']}}:</small> <small>{{$variant['option_value_name']}}</small>
                                         @endforeach
@@ -45,14 +45,14 @@
 
                                 </div>
                             </th>
-                            <td><span class="price"> <small>&#8358;</small> {{number_format($item['price'], '0', '.', ',')}}</span></td>
+                            <td><span class="price"> <small>&#8358;</small> {{number_format($item->price, '0', '.', ',')}}</span></td>
                             <td>
                                 <div class="quantity">
-                                    <input type="number" min="1" max="100" step="1" value="{{$item['quantity']}}" class="form-control qty" data-cart_id="{{$item['id']}}">
+                                    <input type="number" min="1" max="100" step="1" value="{{$item->quantity}}" class="form-control qty" data-cart_id="{{$item->id}}">
                                 </div>
                             </td>
-                            <td><span class="price"> <small>&#8358;</small> {{number_format( ($item['price'] * $item['quantity']), '0', '.', ',')}}</span></td>
-                            <td><a href="#." data-cart_id="{{$item['id']}}" class="destroy"><i class="icon-close"></i></a></td>
+                            <td><span class="price"> <small>&#8358;</small> {{number_format( ($item->price * $item->quantity), '0', '.', ',')}}</span></td>
+                            <td><a href="#." data-cart_id="{{$item->id}}" class="destroy"><i class="icon-close"></i></a></td>
                         </tr>
                         @endforeach
                         </tbody>
@@ -96,7 +96,7 @@
                             <div class="grand-total">
                                 <div class="order-detail">
                                     @foreach($cart as $item)
-                                    <p>{{$item['product']->name}} <span>&#8358; {{number_format($item['price'], '0', '.', ',')}} </span></p>
+                                    <p>{{$item->product->name}} <span>&#8358; {{number_format($item->price, '0', '.', ',')}} </span></p>
                                     @endforeach
 
                                     <!-- SUB TOTAL -->

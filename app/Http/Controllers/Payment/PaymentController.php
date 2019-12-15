@@ -163,16 +163,18 @@ class PaymentController extends Controller
                     $cart_with_variants = [];
 
                     foreach (Cart::getItems() as $item){
-                        $cart_with_variants[] = (Object)[
+                        $cart_with_variants[] = (object)[
                             'quantity' => $item->quantity,
                             'price' => $item->price,
                             'variants'=> $this->getCartItemVariant($item->id,$item->product_id),
-                            'product'=> $item->product,
+                            'product'=> $item->product
                         ];
                     }
 
                     Mail::to($trans->user_email)->send(new AmazonSes($ref,$trans,$cart_with_variants));
                     Cart::destroy();
+
+                    $cart_with_variants = collect($cart_with_variants);
                     return view('payment.success', compact('trans', 'ref', 'cart_with_variants'));
                 }
             }

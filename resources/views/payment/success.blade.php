@@ -40,6 +40,7 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @if(isset($cart_with_variants))
                             @foreach($cart_with_variants as $item)
                                 <tr>
                                     <td>
@@ -57,6 +58,7 @@
                                     <td>&#8358;{{number_format($item->price * $item->quantity, 0, '.', ',')}}</td>
                                 </tr>
                             @endforeach
+                                @endif
                             </tbody>
                             <tfoot>
 {{--                                <tr>--}}
