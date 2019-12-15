@@ -445,6 +445,9 @@
                                                 <p>Lastname : <span>{{$trans->lastname}}</span></p>
                                                 <p>Phone : <span>{{$trans->phone}}</span></p>
                                                 <p>Email : <span>{{$trans->user_email}}</span></p>
+                                                <p>State : <span>{{$trans->state->state_name}}</span></p>
+                                                <p>City : <span>{{$trans->city->city_name}}</span></p>
+                                                <p>Address : <span>{{$trans->address}}</span></p>
 
                                         </div>
                                         <table class="purchase" width="100%" cellpadding="0" cellspacing="0" role="presentation">
@@ -462,14 +465,21 @@
                                                                 <p class="f-fallback">Product</p>
                                                             </th>
                                                             <th class="purchase_heading" align="right">
+                                                                <p class="f-fallback">Qty</p>
+                                                            </th>
+                                                            <th class="purchase_heading" align="right">
                                                                 <p class="f-fallback">Amount</p>
+                                                            </th>
+                                                            <th class="purchase_heading" align="right">
+                                                                <p class="f-fallback">Total</p>
                                                             </th>
                                                         </tr>
 
-                                                        @foreach($cart->products as $item)
+                                                        @if(isset($cart_with_variants))
+                                                            @foreach($cart_with_variants as $item)
                                                             <tr>
-                                                                <td width="80%" class="purchase_item">
-                                                                    <span class="f-fallback">{{$item->name}}</span>
+                                                                <td width="40%" class="purchase_item">
+                                                                    <span class="f-fallback">{{$item->product->name}}</span>
                                                                     @if($item->product->is_variant)
                                                                     @if(isset($item->variants))
                                                                         @foreach($item->variants as $variant)
@@ -478,9 +488,12 @@
                                                                     @endif
                                                                     @endif
                                                                 </td>
-                                                                <td class="align-right purchase_item" width="20%"><span class="f-fallback">&#8358;{{number_format($item->price, 0, '.', ',')}}</span></td>
+                                                                <td class="align-right purchase_item" width="20%">{{$item->quantity}}</td>
+                                                                <td class="align-right purchase_item" width="20%">&#8358;{{number_format($item->price, 0, '.', ',')}}</td>
+                                                                <td class="align-right purchase_item" width="20%"><span class="f-fallback">&#8358;{{number_format($item->price * $item->quantity, 0, '.', ',')}}</span></td>
                                                             </tr>
                                                         @endforeach
+                                                        @endif
 
                                                         <tr>
                                                             <td width="80%" class="purchase_footer" valign="middle">
