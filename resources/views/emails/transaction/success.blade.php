@@ -463,27 +463,13 @@
                                             <tr>
                                                 <td colspan="2">
                                                     <table class="purchase_content" width="100%" cellpadding="0" cellspacing="0">
-                                                        <thead>
-                                                        <tr>
-                                                            <th>
-                                                                <p>Product</p>
-                                                            </th>
-                                                            <th>
-                                                                <p>Qty</p>
-                                                            </th>
-                                                            <th>
-                                                                <p>Amount</p>
-                                                            </th>
-                                                            <th>
-                                                                <p>Total</p>
-                                                            </th>
-                                                        </tr>
-                                                        </thead>
                                                         <tbody>
                                                         @if(isset($cart))
                                                             @foreach($cart as $item)
                                                             <tr class="purchase_item">
                                                                 <td>
+                                                                    <div>
+                                                                        <span>Product: </span>
                                                                     <span>{{$item->product->name}}</span>
                                                                     @if($item->product->is_variant)
                                                                     @if(isset($item->variants))
@@ -492,10 +478,20 @@
                                                                         @endforeach
                                                                     @endif
                                                                     @endif
+                                                                    </div>
+                                                                    <div>
+                                                                        <span>Quantity: </span>
+                                                                        <span>{{$item->quantity}}</span>
+                                                                    </div>
+                                                                    <div>
+                                                                        <span>Amount: </span>
+                                                                        <span>&#8358;{{number_format($item->price, 0, '.', ',')}}</span>
+                                                                    </div>
+                                                                    <div>
+                                                                        <span>Total: </span>
+                                                                <span class="f-fallback">&#8358;{{number_format($item->price * $item->quantity, 0, '.', ',')}}</span>
+                                                                </div>
                                                                 </td>
-                                                                <td>{{$item->quantity}}</td>
-                                                                <td>&#8358;{{number_format($item->price, 0, '.', ',')}}</td>
-                                                                <td><span class="f-fallback">&#8358;{{number_format($item->price * $item->quantity, 0, '.', ',')}}</span></td>
                                                             </tr>
                                                         @endforeach
                                                         @endif
