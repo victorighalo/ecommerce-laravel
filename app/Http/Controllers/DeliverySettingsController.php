@@ -70,6 +70,7 @@ class DeliverySettingsController extends Controller
             return response()->json([
                 'delivery_cost' => 0,
                 'total_cost' => Cart::total(),
+                'extra' => $delivery_cost
             ]);
         }
         return response()->json([
