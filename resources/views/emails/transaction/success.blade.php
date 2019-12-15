@@ -405,6 +405,9 @@
         .pickup_person p{
             color: #fff;
         }
+        href{
+            color:#fff !important;
+        }
     </style>
     <!--[if mso]>
     <style type="text/css">
@@ -460,6 +463,7 @@
                                             <tr>
                                                 <td colspan="2">
                                                     <table class="purchase_content" width="100%" cellpadding="0" cellspacing="0">
+                                                        <thead>
                                                         <tr>
                                                             <th class="purchase_heading" align="left">
                                                                 <p class="f-fallback">Product</p>
@@ -474,9 +478,10 @@
                                                                 <p class="f-fallback">Total</p>
                                                             </th>
                                                         </tr>
-
-                                                        @if(isset($cart_with_variants))
-                                                            @foreach($cart_with_variants as $item)
+                                                        </thead>
+                                                        <tbody>
+                                                        @if(isset($cart))
+                                                            @foreach($cart as $item)
                                                             <tr>
                                                                 <td class="purchase_item">
                                                                     <span class="f-fallback">{{$item->product->name}}</span>
@@ -494,6 +499,7 @@
                                                             </tr>
                                                         @endforeach
                                                         @endif
+                                                        </tbody>
 
                                                         <tr>
                                                             <td width="80%" class="purchase_footer" valign="middle">
