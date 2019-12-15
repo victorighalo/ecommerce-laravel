@@ -456,7 +456,7 @@
                                         <table class="purchase" width="100%" cellpadding="0" cellspacing="0" role="presentation">
                                             <tr>
                                                 <td>
-                                                    <h3>Date</h3></td>
+                                                    <h3>Date</h3>
                                                 <td>
                                                     <h3 class="align-right">{{date('l jS \\of F Y h:i:s A')}}</h3></td>
                                             </tr>
@@ -465,26 +465,26 @@
                                                     <table class="purchase_content" width="100%" cellpadding="0" cellspacing="0">
                                                         <thead>
                                                         <tr>
-                                                            <th class="purchase_heading" align="left">
-                                                                <p class="f-fallback">Product</p>
+                                                            <th>
+                                                                <p>Product</p>
                                                             </th>
-                                                            <th class="purchase_heading" align="right">
-                                                                <p class="f-fallback">Qty</p>
+                                                            <th>
+                                                                <p>Qty</p>
                                                             </th>
-                                                            <th class="purchase_heading" align="right">
-                                                                <p class="f-fallback">Amount</p>
+                                                            <th>
+                                                                <p>Amount</p>
                                                             </th>
-                                                            <th class="purchase_heading" align="right">
-                                                                <p class="f-fallback">Total</p>
+                                                            <th>
+                                                                <p>Total</p>
                                                             </th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
                                                         @if(isset($cart))
                                                             @foreach($cart as $item)
-                                                            <tr>
-                                                                <td class="purchase_item">
-                                                                    <span class="f-fallback">{{$item->product->name}}</span>
+                                                            <tr class="purchase_item">
+                                                                <td>
+                                                                    <span>{{$item->product->name}}</span>
                                                                     @if($item->product->is_variant)
                                                                     @if(isset($item->variants))
                                                                         @foreach($item->variants as $variant)
@@ -493,9 +493,9 @@
                                                                     @endif
                                                                     @endif
                                                                 </td>
-                                                                <td class="align-right purchase_item">{{$item->quantity}}</td>
-                                                                <td class="align-right purchase_item">&#8358;{{number_format($item->price, 0, '.', ',')}}</td>
-                                                                <td class="align-right purchase_item"><span class="f-fallback">&#8358;{{number_format($item->price * $item->quantity, 0, '.', ',')}}</span></td>
+                                                                <td>{{$item->quantity}}</td>
+                                                                <td>&#8358;{{number_format($item->price, 0, '.', ',')}}</td>
+                                                                <td><span class="f-fallback">&#8358;{{number_format($item->price * $item->quantity, 0, '.', ',')}}</span></td>
                                                             </tr>
                                                         @endforeach
                                                         @endif
