@@ -6,6 +6,7 @@ use App\Enums\TransactionStatus;
 use Illuminate\Database\Eloquent\Model;
 use Konekt\Enum\Eloquent\CastsEnums;
 
+
 class Transactions extends Model
 {
     use CastsEnums;
@@ -20,5 +21,13 @@ class Transactions extends Model
 
     public function scopePending($query){
         return $query->where('status','=', 'pending');
+    }
+
+    public function state(){
+        return $this->hasOne(State::class, 'state_id');
+    }
+
+    public function city(){
+        return $this->hasOne(City::class, 'city_id');
     }
 }

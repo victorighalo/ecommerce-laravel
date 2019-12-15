@@ -14,14 +14,17 @@
                 <div class="col-4" style="height: 100px; background: #54b342;">
                   <h4 style="color: #fff;margin-top: 35px;">Transaction Successful</h4>
                 </div>
-                    <div class="col-4 text-center p-4">
-                        <h4>Transaction ID : <span>{{$ref}}</span></h4>
+                    <div class="col-4 text-left p-4">
+                        <h4 class="text-left">Transaction ID : <span>{{$ref}}</span></h4>
                         <div>
                           <h5>The delivery will be made to :</h5>
                           <p>Firstname : <span>{{$trans->firstname}}</span></p>
                           <p>Lastname : <span>{{$trans->lastname}}</span></p>
                           <p>Phone : <span>{{$trans->phone}}</span></p>
                           <p>Email : <span>{{$trans->user_email}}</span></p>
+                          <p>State : <span>{{$trans->state->state_name}}</span></p>
+                          <p>City : <span>{{$trans->city->city_name}}</span></p>
+                          <p>Address : <span>{{$trans->address}}</span></p>
                         </div>
                     </div>
 
