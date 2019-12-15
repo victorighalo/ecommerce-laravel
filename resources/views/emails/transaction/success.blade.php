@@ -466,10 +466,17 @@
                                                             </th>
                                                         </tr>
 
-                                                        @foreach($products as $item)
+                                                        @foreach($cart->products as $item)
                                                             <tr>
-                                                                <td width="80%" class="purchase_item"><span class="f-fallback">{{$item->name}}</span></td>
-                                                                <td class="align-right" width="20%" class="purchase_item"><span class="f-fallback">&#8358;{{number_format($item->price, 0, '.', ',')}}</span></td>
+                                                                <td width="80%" class="purchase_item">
+                                                                    <span class="f-fallback">{{$item->name}}</span>
+                                                                    @if(isset($item->variants))
+                                                                        @foreach($item->variants as $variant)
+                                                                            <small class="font-weight-bold">{{$variant->option_name}}:</small> <small>{{$variant->option_value_name}}</small>
+                                                                        @endforeach
+                                                                    @endif
+                                                                </td>
+                                                                <td class="align-right purchase_item" width="20%"><span class="f-fallback">&#8358;{{number_format($item->price, 0, '.', ',')}}</span></td>
                                                             </tr>
                                                         @endforeach
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Payment;
 
+use App\CartItemVariant;
 use App\Http\Requests\PaymentRequest;
 use App\Mail\AmazonSes;
 use App\Product;
@@ -40,13 +41,13 @@ class PaymentController extends Controller
         $user_id = Auth::guest() ? Auth::id() : null;
         $amount = (Cart::total() + $delivery_cost) ;
         $converted_amount = ( (Cart::total() + $delivery_cost) * 100);
-        $uuid = bin2hex(random_bytes(4)) ;
+        $uuid = bin2hex(random_bytes(6)) ;
         $ref = strtoupper(trim($uuid));
 
         $initPayStack = $this->payStackProxy->initializeTransaction($trans_email, $converted_amount , $ref);
 
         if(!$initPayStack){
-            return back()->with(['error' => 'Network failure. Please try again.']);
+            return back()->with(['error' => 'Network unavailable. Please try again.']);
         }
         if($initPayStack->status){
             $order = Order::create([
@@ -63,6 +64,7 @@ class PaymentController extends Controller
                     'delivery_price' => $item->product->delivery_price->amount,
                     'name'         => $item->product->name,
                     'quantity'     => $item->quantity,
+                    'is_variant'     => $item->product->is_variant,
                 ]);
             }
 
@@ -156,7 +158,18 @@ class PaymentController extends Controller
                     );
                     SEOMeta::setTitle('Successful Transaction | '.config('app.name', ''), false);
 
-                    Mail::to($trans->user_email)->send(new AmazonSes($products,$ref,$trans));
+                    $cart_with_variants = [];
+
+                    foreach (Cart::getItems() as $item){
+                        $cart_with_variants[] = (Object)[
+                            'quantity' => $item->quantity,
+                            'price' => $item->price,
+                            'variants'=> $this->getCartItemVariant($item->id,$item->product_id),
+                            'product'=> $item->product,
+                        ];
+                    }
+
+                    Mail::to($trans->user_email)->send(new AmazonSes($products,$ref,$trans,$cart_with_variants));
                     Cart::destroy();
                     return view('payment.success', compact('trans', 'ref', 'products'));
                 }
@@ -174,6 +187,13 @@ class PaymentController extends Controller
             ['status' => $trans_status->value()]
         );
         return view('payment.error');
+    }
+
+
+    private function getCartItemVariant($cart_item_id,$product_id){
+        return CartItemVariant::where('cart_item_id', $cart_item_id)
+            ->where('product_id',$product_id)
+            ->get();
     }
 
 

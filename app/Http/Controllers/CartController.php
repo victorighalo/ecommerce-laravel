@@ -46,10 +46,10 @@ class CartController extends BaseController
     public function add(Request $request){
 
         try {
-            $product = \App\Product::findBySlug($request->slug);
+            $product = \App\Product::findBySlug($request->slug)->first();
             DB::transaction(function () use ($product,$request) {
                 $cart = Cart::addItem($product, $request->qty);
-                if($this->cartItemInVariant($cart->id, $product->id)){
+                if($this->cartItemIsVariant($cart->id, $product->id)){
                     foreach ($request->variant as $variant) {
                         $product_variants = [
 //                            'option_id' => $variant['option_id'],
@@ -86,7 +86,7 @@ class CartController extends BaseController
         }
     }
 
-    private function cartItemInVariant($cart_item_id,$product_id){
+    private function cartItemIsVariant($cart_item_id,$product_id){
         return CartItemVariant::where('cart_item_id', $cart_item_id)->where('product_id',$product_id)->exists();
     }
 

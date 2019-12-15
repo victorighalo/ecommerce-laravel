@@ -9,20 +9,22 @@ class AmazonSes extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $products;
     public $ref;
     public $trans;
+    public $cart;
 
     /**
      * Create a new message instance.
      *
-     * @return void
+     * @param $ref
+     * @param $trans
+     * @param $cart
      */
-    public function __construct($products, $ref,$trans)
+    public function __construct($ref,$trans, $cart)
     {
-        $this->products = $products;
         $this->ref = $ref;
         $this->trans = $trans;
+        $this->cart = $cart;
     }
     /**
      * Build the message.
@@ -32,7 +34,7 @@ class AmazonSes extends Mailable
     public function build()
     {
         return $this->from('support@bigstanautos.com', env('APP_NAME'))->subject('Transaction Receipt - MandMOnlineStore.com')->view('emails.transaction.success',
-            ['products' => $this->products, 'ref' => $this->ref, 'trans' => $this->trans]
+            ['ref' => $this->ref, 'trans' => $this->trans, 'cart' => $this->cart]
         );
     }
 }
