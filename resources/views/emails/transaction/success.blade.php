@@ -466,28 +466,28 @@
                                                         <tbody>
                                                         @if(isset($cart))
                                                             @foreach($cart as $item)
-                                                            <tr class="purchase_item">
-                                                                <td>
-                                                                    <div>
+                                                            <tr class="purchase_item" style="background: #f7f7f7">
+                                                                <td style="width: 100%">
+                                                                    <div style="padding:10px">
                                                                         <span>Product: </span>
                                                                     <span>{{$item->product->name}}</span>
                                                                     @if($item->product->is_variant)
                                                                     @if(isset($item->variants))
                                                                         @foreach($item->variants as $variant)
-                                                                            <small class="font-weight-bold">{{$variant->option_name}}:</small> <small>{{$variant->option_value_name}}</small>
+                                                                           ( <small class="font-weight-bold">{{$variant->option_name}}:</small> <small>{{$variant->option_value_name}}</small>)
                                                                         @endforeach
                                                                     @endif
                                                                     @endif
                                                                     </div>
-                                                                    <div>
+                                                                    <div style="padding:10px">
                                                                         <span>Quantity: </span>
                                                                         <span>{{$item->quantity}}</span>
                                                                     </div>
-                                                                    <div>
+                                                                    <div style="padding:10px">
                                                                         <span>Amount: </span>
                                                                         <span>&#8358;{{number_format($item->price, 0, '.', ',')}}</span>
                                                                     </div>
-                                                                    <div>
+                                                                    <div style="padding:10px">
                                                                         <span>Total: </span>
                                                                 <span class="f-fallback">&#8358;{{number_format($item->price * $item->quantity, 0, '.', ',')}}</span>
                                                                 </div>
@@ -498,11 +498,9 @@
                                                         </tbody>
 
                                                         <tr>
-                                                            <td width="80%" class="purchase_footer" valign="middle">
-                                                                <p class="f-fallback purchase_total purchase_total--label">Total cost (including shipping)</p>
-                                                            </td>
-                                                            <td width="20%" class="purchase_footer" valign="middle">
-                                                                <p class="f-fallback purchase_total">&#8358;{{number_format($trans->amount, 0, '.', ',')}}</p>
+                                                            <td class="purchase_footer" valign="middle">
+                                                                <p class="f-fallback purchase_total purchase_total--label" style="float: left">Total cost (including shipping)</p>
+                                                                <p class="f-fallback purchase_total" style="float: right">&#8358;{{number_format($trans->amount, 0, '.', ',')}}</p>
                                                             </td>
                                                         </tr>
                                                     </table>
