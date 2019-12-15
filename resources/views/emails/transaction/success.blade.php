@@ -456,8 +456,6 @@
                                         <table class="purchase" width="100%" cellpadding="0" cellspacing="0" role="presentation">
                                             <tr>
                                                 <td>
-                                                    <h3>Date</h3>
-                                                <td>
                                                     <h3 class="align-right">{{date('l jS \\of F Y h:i:s A')}}</h3></td>
                                             </tr>
                                             <tr>
