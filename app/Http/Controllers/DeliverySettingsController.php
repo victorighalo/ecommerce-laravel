@@ -84,14 +84,15 @@ class DeliverySettingsController extends Controller
         foreach (Cart::getItems() as $item){
             $delivery_cost += $item->product->delivery_price->amount * $item->quantity;
         }
-        if($delivery_cost == 0){
-            return null;
-        }
+
         $data = DeliveryCharge::where('state_id', $request->state_id)->where('city_id', $request->city_id);
 
         if($data->exists())
         {
             $delivery_cost += $data->first()->cost;
+        }
+        if($delivery_cost == 0){
+            return null;
         }
         return $delivery_cost;
     }
