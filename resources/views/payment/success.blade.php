@@ -69,10 +69,10 @@
 {{--                                        {{number_format($trans->amount, 0, '.', ',')}}--}}
 {{--                                    </th> --}}
 {{--                                <tr>--}}
-                                    <th>
+                                    <th class="p-2">
                                         Total cost (including shipping)
                                     </th>
-                                    <th>
+                                    <th colspan="3" class="text-center">
                                         &#8358;{{number_format($trans->amount, 0, '.', ',')}}
                                     </th>
                                 </tr>

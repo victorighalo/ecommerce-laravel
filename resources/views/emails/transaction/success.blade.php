@@ -478,7 +478,7 @@
                                                         @if(isset($cart_with_variants))
                                                             @foreach($cart_with_variants as $item)
                                                             <tr>
-                                                                <td width="40%" class="purchase_item">
+                                                                <td class="purchase_item">
                                                                     <span class="f-fallback">{{$item->product->name}}</span>
                                                                     @if($item->product->is_variant)
                                                                     @if(isset($item->variants))
@@ -488,9 +488,9 @@
                                                                     @endif
                                                                     @endif
                                                                 </td>
-                                                                <td class="align-right purchase_item" width="20%">{{$item->quantity}}</td>
-                                                                <td class="align-right purchase_item" width="20%">&#8358;{{number_format($item->price, 0, '.', ',')}}</td>
-                                                                <td class="align-right purchase_item" width="20%"><span class="f-fallback">&#8358;{{number_format($item->price * $item->quantity, 0, '.', ',')}}</span></td>
+                                                                <td class="align-right purchase_item">{{$item->quantity}}</td>
+                                                                <td class="align-right purchase_item">&#8358;{{number_format($item->price, 0, '.', ',')}}</td>
+                                                                <td class="align-right purchase_item"><span class="f-fallback">&#8358;{{number_format($item->price * $item->quantity, 0, '.', ',')}}</span></td>
                                                             </tr>
                                                         @endforeach
                                                         @endif
