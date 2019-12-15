@@ -38,7 +38,7 @@ class PaymentController extends Controller
         $delivery_cost = $this->calculateDelivery($request);
         $trans_email = $request->email;
 //        $trans_email = Auth::guest() ? $request->email : Auth::user()->email;
-        $user_id = Auth::guest() ? Auth::id() : null;
+        $user_id = Auth::guest() ? null : Auth::id();
         $amount = (Cart::total() + $delivery_cost) ;
         $converted_amount = ( (Cart::total() + $delivery_cost) * 100);
         $uuid = bin2hex(random_bytes(6)) ;
@@ -51,7 +51,9 @@ class PaymentController extends Controller
         }
         if($initPayStack->status){
             $order = Order::create([
-                'number' => $ref
+                'number' => $ref,
+                'notes' =>$request->input('additional_info'),
+                'user_id' =>$user_id
             ]);
 
             $cart = Cart::getItems();
