@@ -173,7 +173,7 @@ class PaymentController extends Controller
 
                     Mail::to($trans->user_email)->send(new AmazonSes($ref,$trans,$cart_with_variants));
                     Cart::destroy();
-                    return view('payment.success', compact('trans', 'ref', 'products'));
+                    return view('payment.success', compact('trans', 'ref', 'cart_with_variants'));
                 }
             }
             $trans_status = new TransactionStatus('failed');

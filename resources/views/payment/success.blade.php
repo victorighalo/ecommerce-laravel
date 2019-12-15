@@ -34,14 +34,27 @@
                             <thead>
                             <tr>
                                 <th>Name</th>
+                                <th>Quantity</th>
                                 <th>Price</th>
+                                <th>Total</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($products as $item)
+                            @foreach($cart_with_variants as $item)
                                 <tr>
-                                    <td>{{$item->name}}</td>
+                                    <td>
+                                        <span>{{$item->product->name}}</span>
+                                        @if($item->product->is_variant)
+                                            @if(isset($item->variants))
+                                                @foreach($item->variants as $variant)
+                                                    <small class="font-weight-bold">{{$variant->option_name}}:</small> <small>{{$variant->option_value_name}}</small>
+                                                @endforeach
+                                            @endif
+                                        @endif
+                                    </td>
+                                    <td>{{$item->quantity}}</td>
                                     <td>&#8358;{{number_format($item->price, 0, '.', ',')}}</td>
+                                    <td>&#8358;{{number_format($item->price * $item->quantity, 0, '.', ',')}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
