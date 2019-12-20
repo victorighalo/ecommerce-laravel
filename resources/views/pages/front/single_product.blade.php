@@ -288,7 +288,7 @@
 
             function validateAddToCart(){
                 var status = true;
-                $("#product_variants select").map(function (index, item) {
+                $($("#product_variants select").get().reverse()).map(function (index, item) {
 
                     if($(item).val() == 'null'){
                         status = false;
@@ -299,6 +299,7 @@
                             backgroundColor:"#FE970D"
                         });
                     }
+
                 });
 
                 if (status){
@@ -346,12 +347,9 @@
                     .done(function (data) {
                         $(".processing").addClass('off')
                         $("#add_to_cart").prop('disabled', false)
-                        $(".c-no").html("<i>"+data.cart_count+"</i>")
-                        if(data.cart_count > 1){
-                            $(".cart-msg").html("updated in cart")
-                        }else{
+
                             $(".cart-msg").html("added to cart")
-                        }
+
                         UIkit.modal(modal).show();
 
                     }).fail(function (error) {

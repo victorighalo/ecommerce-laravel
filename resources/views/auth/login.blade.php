@@ -17,6 +17,9 @@
 
                             <!-- Login Register -->
                             <div class="col-sm-7 center-block">
+                                @if(session()->exists('cod_info'))
+                                    <h5 class="text-center">{!! session()->get('cod_info') !!}</h5>
+                                @endif
                                 <h3 class="text-center margin-40">Login</h3>
                                 @if ($errors->has('email'))
                                     <span role="alert">

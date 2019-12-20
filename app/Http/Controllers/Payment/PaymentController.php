@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Http\Proxy\PayStackProxy;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 use Vanilo\Cart\Facades\Cart;
 use App\Http\Controllers\Controller;
@@ -34,17 +35,68 @@ class PaymentController extends Controller
     }
 
     public function initializePayStackTrans(PaymentRequest $request){
-//        dd($request->all());
+        if (Cart::doesNotExist() || Cart::isEmpty()){
+            return Redirect::to('cart');
+        }
         $delivery_cost = $this->calculateDelivery($request);
-        $trans_email = $request->email;
-//        $trans_email = Auth::guest() ? $request->email : Auth::user()->email;
+//        $trans_email = $request->email;
+        $trans_email = Auth::guest() ? $request->email : Auth::user()->email;
         $user_id = Auth::guest() ? null : Auth::id();
         $amount = (Cart::total() + $delivery_cost) ;
         $converted_amount = ( (Cart::total() + $delivery_cost) * 100);
         $uuid = bin2hex(random_bytes(6)) ;
         $ref = strtoupper(trim($uuid));
 
-        $initPayStack = $this->payStackProxy->initializeTransaction($trans_email, $converted_amount , $ref);
+        if($request->has('cash_on_delivery')){
+
+            if( Auth::guest() ){
+                $request->session()->flash('cod_info','An account is required for Cash On Delivery option');
+                return Redirect::to('login');
+            }
+            $order = Order::create([
+                'number' => $ref,
+                'notes' =>$request->input('additional_info'),
+                'user_id' =>$user_id
+            ]);
+
+            $cart = Cart::getItems();
+
+            foreach ($cart as $item){
+                $order->items()->create([
+                    'product_type' => 'App\Product',
+                    'product_id'   => $item->product->id,
+                    'price'        => $item->product->price,
+                    'delivery_price' => $item->product->delivery_price->amount,
+                    'name'         => $item->product->name,
+                    'quantity'     => $item->quantity,
+                    'is_variant'     => $item->product->is_variant,
+                ]);
+            }
+
+            $trans = $this->createTransaction($amount, $trans_email ? $trans_email :"", $user_id,$ref,$order->id, $request, TransactionStatus::PAY_DELIVERY);
+
+            SEOMeta::setTitle('Pending Transaction | '.config('app.name', ''), false);
+
+            $cart_with_variants = [];
+
+            foreach (Cart::getItems() as $item){
+                $cart_with_variants[] = (object)[
+                    'quantity' => $item->quantity,
+                    'price' => $item->price,
+                    'variants'=> $this->getCartItemVariant($item->id,$item->product_id),
+                    'product'=> $item->product
+                ];
+            }
+
+            Mail::to($trans_email)->send(new AmazonSes($ref,$trans,$cart_with_variants));
+            Cart::destroy();
+
+            $cart_with_variants = collect($cart_with_variants);
+            return view('payment.delivery', compact('trans', 'ref', 'cart_with_variants'));
+        }
+
+
+        $initPayStack = $this->payStackProxy->initializeTransaction($trans_email ? $trans_email :"", $converted_amount , $ref);
 
         if(!$initPayStack){
             return back()->with(['error' => 'Network unavailable. Please try again.']);
@@ -70,7 +122,13 @@ class PaymentController extends Controller
                 ]);
             }
 
-            $this->createTransaction($amount, $trans_email, $user_id,$ref,$order->id, $request);
+            $this->createTransaction(
+                $amount,
+                $trans_email ? $trans_email :"",
+                $user_id,
+                $ref,
+                $order->id,
+                $request);
 
             return redirect()->away($initPayStack->data->authorization_url);
         }else{
@@ -78,9 +136,9 @@ class PaymentController extends Controller
         }
     }
 
-    protected function createTransaction($amount, $trans_email,$user_id,$ref,$order_id, Request $request){
+    protected function createTransaction($amount, $trans_email,$user_id,$ref,$order_id, Request $request, $status = TransactionStatus::IN_PROGRESS){
 
-        $status = new TransactionStatus('pending');
+        $status = new TransactionStatus($status);
 
         $trans = new Transactions();
         $trans->firstname = $request->firstname;
@@ -99,7 +157,7 @@ class PaymentController extends Controller
         $trans->user_email = $trans_email;
         $trans->save();
 
-        return $trans->reference;
+        return $trans;
     }
 
     private function calculateDelivery(Request $request){
@@ -145,9 +203,9 @@ class PaymentController extends Controller
                     return view('payment.unsuccessful', compact('message'));
                 }elseif ($verifyTrans->data->status == 'success') {
                     $order = Order::where('number', $ref)->first();
-                    $products = OrderItem::where('order_id', $order->id)
-                        ->join('products', 'order_items.product_id', 'products.id')
-                        ->get();
+//                    $products = OrderItem::where('order_id', $order->id)
+//                        ->join('products', 'order_items.product_id', 'products.id')
+//                        ->get();
                     $trans = Transactions::where('reference', $ref)->first();
                     Order::where('number', $ref)->update(
                         ['status' => OrderStatus::COMPLETED]

@@ -83,8 +83,8 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label>Email Address<span>*</span>
-{{--                                                        <input type="email" name="email" value="{{Auth::guest() ? '' : Auth::user()->email}}" required {{Auth::guest() ? '' : 'disabled'}}>--}}
-                                                        <input type="email" name="email">
+                                                        <input type="email" name="email" value="{{Auth::guest() ? '' : Auth::user()->email}}" required {{Auth::guest() ? '' : 'disabled'}}>
+{{--                                                        <input type="email" name="email">--}}
                                                     </label>
                                                 </div>
                                                 <div class="col-md-6">
@@ -121,26 +121,26 @@
                                     <div class="loader off"></div>
                                     @if (Cart::isNotEmpty())
                                     <div class="pay-meth">
-                                        {{--<ul>--}}
-                                            {{--<li>--}}
-                                                {{--<div class="radio">--}}
-                                                    {{--<input type="radio" name="pay_type" id="radio2" value="option2">--}}
-                                                    {{--<label for="radio2"> CASH ON DELIVERY</label>--}}
-                                                {{--</div>--}}
-                                            {{--</li>--}}
-                                            {{--<li>--}}
-                                                {{--<div class="radio">--}}
-                                                    {{--<input type="radio" name="pay_type" id="radio4" value="option4">--}}
-                                                    {{--<label for="radio4"> DEBIT CART </label>--}}
-                                                {{--</div>--}}
-                                            {{--</li>--}}
-                                            {{--<li>--}}
-                                                {{--<div class="checkbox">--}}
-                                                    {{--<input id="checkbox3-4" class="styled" type="checkbox">--}}
-                                                    {{--<label for="checkbox3-4"> I’VE READ AND ACCEPT THE <span class="color"> TERMS & CONDITIONS </span> </label>--}}
-                                                {{--</div>--}}
-                                            {{--</li>--}}
-                                        {{--</ul>--}}
+                                        <ul>
+                                            <li>
+                                                <div class="checkbox">
+                                                    <input type="checkbox" name="cash_on_delivery" id="checkbox" value="option2">
+                                                    <label for="checkbox"> CASH ON DELIVERY</label>
+                                                </div>
+                                            </li>
+{{--                                            <li>--}}
+{{--                                                <div class="radio">--}}
+{{--                                                    <input type="radio" name="pay_type" id="radio4" value="option4">--}}
+{{--                                                    <label for="radio4"> DEBIT CART </label>--}}
+{{--                                                </div>--}}
+{{--                                            </li>--}}
+                                            <li>
+                                                <div class="checkbox">
+                                                    <input id="checkbox3-4" class="styled" type="checkbox">
+                                                    <label for="checkbox3-4"> I’VE READ AND ACCEPT THE <span class="color"> TERMS & CONDITIONS </span> </label>
+                                                </div>
+                                            </li>
+                                        </ul>
                                         <a href="tel:{{$app_settings->store_phone}}" class="btn btn-small  btn-secondary pull-left margin-top-30"><i class="fa fa-phone"></i> CALL TO ORDER</a>
                                         </div>
                                         <button href="" class="btn  btn-dark pull-right margin-top-30 checkout" type="submit"><i class="fa fa-credit-card"></i> PLACE ORDER</button> </div>

@@ -2,8 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eb2349c8-f2b2-4acb-b3f6-e1ac82b2095e" name="Default" comment="updated webhook logs">
+      <change afterPath="$PROJECT_DIR$/resources/views/emails/transaction/delivery.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/payment/delivery.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/emails/transaction/success.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/emails/transaction/success.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Cart.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Enums/TransactionStatus.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/TransactionStatus.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OfficeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OfficeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Payment/PaymentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Payment/PaymentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Mail/AmazonSes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/AmazonSes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Transactions.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Transactions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/front/checkout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/front/checkout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/front/single_product.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/front/single_product.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -334,7 +347,9 @@
       <workItem from="1575453519329" duration="380000" />
       <workItem from="1575988807066" duration="30000" />
       <workItem from="1576003408945" duration="18152000" />
-      <workItem from="1576423804645" duration="9612000" />
+      <workItem from="1576423804645" duration="10865000" />
+      <workItem from="1576598980627" duration="19000" />
+      <workItem from="1576655406625" duration="12440000" />
     </task>
     <task id="LOCAL-00030" summary="Added webhook support">
       <created>1566650726909</created>

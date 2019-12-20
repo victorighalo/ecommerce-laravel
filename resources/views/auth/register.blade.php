@@ -17,6 +17,7 @@
 
                             <!-- Login Register -->
                             <div class="col-sm-7 center-block">
+
                                 <h3 class="text-center margin-40">Register</h3>
 
                                 <!-- Login -->

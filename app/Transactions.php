@@ -16,11 +16,15 @@ class Transactions extends Model
     ];
 
     public function scopeComplete($query){
-        return $query->where('status','=', 'complete');
+        return $query->orWhere('status','=', 'complete');
+    }
+
+    public function scopeDelivery($query){
+        return $query->orWhere('status','=', 'pay_on_delivery');
     }
 
     public function scopePending($query){
-        return $query->where('status','=', 'pending');
+        return $query->orWhere('status','=', 'pending');
     }
 
     public function state(){

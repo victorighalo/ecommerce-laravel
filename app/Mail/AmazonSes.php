@@ -12,6 +12,7 @@ class AmazonSes extends Mailable
     public $ref;
     public $trans;
     public $cart;
+    public $type;
 
     /**
      * Create a new message instance.
@@ -19,12 +20,14 @@ class AmazonSes extends Mailable
      * @param $ref
      * @param $trans
      * @param $cart
+     * @param string $type
      */
-    public function __construct($ref,$trans, $cart)
+    public function __construct($ref,$trans, $cart, $type = 'non_delivery')
     {
         $this->ref = $ref;
         $this->trans = $trans;
         $this->cart = $cart;
+        $this->type = $type;
     }
     /**
      * Build the message.
@@ -33,11 +36,20 @@ class AmazonSes extends Mailable
      */
     public function build()
     {
-        return $this->from('support@bigstanautos.com', env('APP_NAME'))
-            ->cc(['sales@mandmonlinestore.com'])
-            ->subject('Transaction Receipt - MandMOnlineStore.com')
-            ->view('emails.transaction.success',
-            ['ref' => $this->ref, 'trans' => $this->trans, 'cart' => $this->cart]
-        );
+        if($this->type == 'non_delivery') {
+            return $this->from('support@bigstanautos.com', env('APP_NAME'))
+                ->cc(['sales@mandmonlinestore.com'])
+                ->subject('Transaction Receipt - MandMOnlineStore.com')
+                ->view('emails.transaction.success',
+                    ['ref' => $this->ref, 'trans' => $this->trans, 'cart' => $this->cart]
+                );
+        }else{
+            return $this->from('support@bigstanautos.com', env('APP_NAME'))
+                ->cc(['sales@mandmonlinestore.com'])
+                ->subject('Transaction Receipt - MandMOnlineStore.com')
+                ->view('emails.transaction.delivery',
+                    ['ref' => $this->ref, 'trans' => $this->trans, 'cart' => $this->cart]
+                );
+        }
     }
 }

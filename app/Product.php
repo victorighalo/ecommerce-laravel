@@ -16,6 +16,7 @@ use Vanilo\Category\Models\TaxonProxy;
 use BrianFaust\Commentable\Traits\HasComments;
 use App\ProductVariantOptions;
 
+
 class Product extends BaseProduct implements Buyable
 {
     use
