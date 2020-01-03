@@ -1,4 +1,7 @@
 <?php
+ $title = "M&M Store online shopping made easy in Nigeria";
+ $keywords = "'Polo Tops', 'Men\’s Shirts', 'Female Shirts', 'Jeans', 'Chinos', 'Track Suits', 'Joggers', 'Shorts', 'T-Shirts', 'Mobile Phones Accessories', 'Mobile phone chargers', 'Power Banks'. 'TVs', 'Home Theater'";
+ $description = "Shop online for your fashion items, computer, phone and accessories, household appliances and electronics? Health and Beauty, Baby products and lots more. Quality Guaranteed.";
 
 return [
     'meta'      => [
@@ -6,12 +9,12 @@ return [
          * The default configurations to be used by the meta generator.
          */
         'defaults'       => [
-            'title'        => "It's Over 9000!", // set false to total remove
-            'description'  => 'For those who helped create the Genki Dama', // set false to total remove
+            'title'        => $title, // set false to total remove
+            'description'  =>  $description, // set false to total remove
             'separator'    => ' - ',
-            'keywords'     => [],
+            'keywords'     => [$keywords],
             'canonical'    => false, // Set null for using Url::current(), set false to total remove
-            'robots'       => false, // Set to 'all', 'none' or any combination of index/noindex and follow/nofollow
+            'robots'       => 'all', // Set to 'all', 'none' or any combination of index/noindex and follow/nofollow
         ],
 
         /*
@@ -30,11 +33,11 @@ return [
          * The default configurations to be used by the opengraph generator.
          */
         'defaults' => [
-            'title'       => 'Over 9000 Thousand!', // set false to total remove
-            'description' => 'For those who helped create the Genki Dama', // set false to total remove
+            'title'        => $title, // set false to total remove
+            'description'  =>  env('APP_DESC'), // set false to total remove
             'url'         => false, // Set null for using Url::current(), set false to total remove
             'type'        => false,
-            'site_name'   => false,
+            'site_name'   => env('APP_NAME'),
             'images'      => [],
         ],
     ],

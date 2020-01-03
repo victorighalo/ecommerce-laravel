@@ -16,6 +16,9 @@ use Artesaos\SEOTools\Facades\TwitterCard;
 
 class PagesController extends BaseController
 {
+    private $description = "Shop online for your fashion items, computer, phone and accessories, household appliances and electronics? Health and Beauty, Baby products and lots more. Quality Guaranteed.";
+    private $title = "M&M Store online shopping made easy in Nigeria";
+    private $keywords = "'Polo Tops', 'Men\’s Shirts', 'Female Shirts', 'Jeans', 'Chinos', 'Track Suits', 'Joggers', 'Shorts', 'T-Shirts', 'Mobile Phones Accessories', 'Mobile phone chargers', 'Power Banks'. 'TVs', 'Home Theater'";
     public function __construct()
     {
         $this->middleware('web');
@@ -23,15 +26,15 @@ class PagesController extends BaseController
 
     public function home()
     {
-        SEOMeta::setTitle('Spare parts and Autos for sale in Nigeria | '.config('app.name', ''), false);
-        SEOMeta::setDescription('Buy original, top quality spare parts and Autos from trusted distributors. Place your orders and inquiries today for great value across Nigeria. | '.config('app.name', ''));
-        SEOMeta::setCanonical('https://bigstanautos.com');
-        SEOMeta::addKeyword(['spare parts', 'autos for sale', 'spare parts lagos', 'spare parts nigeria']);
+        SEOMeta::setTitle($this->title . ' | '.config('app.name', ''), false);
+        SEOMeta::setDescription($this->description. ' | '.config('app.name', ''));
+        SEOMeta::setCanonical('https://mandmonlinestore.com');
+        SEOMeta::addKeyword([$this->keywords]);
 
         //Open graph
-        OpenGraph::setTitle('Spare parts and Autos for sale in Nigeria | '.config('app.name', ''));
-        OpenGraph::setDescription('Buy original, top quality spare parts and Autos from trusted distributors. Place your orders and inquiries today for great value across Nigeria. | '.config('app.name', ''));
-        OpenGraph::setUrl('http://bigstanautos.com');
+        OpenGraph::setTitle($this->title . ' | '.config('app.name', ''));
+        OpenGraph::setDescription($this->description .' | '.config('app.name', ''));
+        OpenGraph::setUrl('http://mandmonlinestore.com');
         OpenGraph::addImage(asset('assets/images/big-stan-logo.png'));
 
         $categories = Taxon::all()->take(4);
@@ -53,15 +56,15 @@ class PagesController extends BaseController
             $now = Carbon::now();
             $title = $taxon->name;
 
-            SEOMeta::setTitle($taxon->name . ' category | Spare parts and Autos for sale in Nigeria | '.config('app.name', ''), false);
-            SEOMeta::setDescription('Buy original ' .$taxon->name.', top quality spare parts and Autos from trusted distributors. Place your orders and inquiries today for great value across Nigeria. | '.config('app.name', ''));
-            SEOMeta::setCanonical('https://bigstanautos.com/'.$taxon_slug);
-            SEOMeta::addKeyword([$taxon->name.'spare parts', 'autos for sale', 'spare parts lagos', 'spare parts nigeria']);
+            SEOMeta::setTitle($taxon->name . ' category | ' .$this->title . ' | '.config('app.name', ''), false);
+            SEOMeta::setDescription('Buy original ' .$taxon->name.','.  $this->description .' | '.config('app.name', ''));
+            SEOMeta::setCanonical('https://mandmonlinestore.com/'.$taxon_slug);
+            SEOMeta::addKeyword([$taxon->name. ' '.$this->keywords]);
 
             //Open graph
-            OpenGraph::setTitle($taxon->name .'Spare parts and Autos for sale in Nigeria | '.config('app.name', ''));
-            OpenGraph::setDescription('Buy original ' .$taxon->name.', top quality spare parts and Autos from trusted distributors. Place your orders and inquiries today for great value across Nigeria. | '.config('app.name', ''));
-            OpenGraph::setUrl('http://bigstanautos.com/'.$taxon_slug);
+            OpenGraph::setTitle($taxon->name .'M&M Store online shopping made easy in Nigeria | '.config('app.name', ''));
+            OpenGraph::setDescription('Buy original ' .$taxon->name.','.$this->description .' | '.config('app.name', ''));
+            OpenGraph::setUrl('http://mandmonlinestore.com/'.$taxon_slug);
             OpenGraph::addImage(asset('assets/images/big-stan-logo.png'));
 
             return view('pages.front.products_by_category', compact('products', 'now', 'taxon_slug', 'title', 'categories'));
@@ -80,15 +83,15 @@ class PagesController extends BaseController
         $ratings = $product->ratingPercent();
 
 
-        SEOMeta::setTitle($title . ' | Spare parts and Autos for sale in Nigeria | '.config('app.name', ''), false);
-        SEOMeta::setDescription('Buy original ' .$title.', top quality spare parts and Autos from trusted distributors. Place your orders and inquiries today for great value across Nigeria. | '.config('app.name', ''));
-        SEOMeta::setCanonical('https://bigstanautos.com/'.$taxon_slug);
-        SEOMeta::addKeyword([$title.'spare parts', 'autos for sale', 'spare parts lagos', 'spare parts nigeria']);
+        SEOMeta::setTitle($title . ' | '.$this->title . ' | '.config('app.name', ''), false);
+        SEOMeta::setDescription('Buy original ' .$title.',' .$this->description .' | '.config('app.name', ''));
+        SEOMeta::setCanonical('https://mandmonlinestore.com/'.$taxon_slug);
+        SEOMeta::addKeyword([$title. ' ' . $this->keywords]);
 
         //Open graph
-        OpenGraph::setTitle($title .'Spare parts and Autos for sale in Nigeria | '.config('app.name', ''));
-        OpenGraph::setDescription('Buy original ' .$title.', top quality spare parts and Autos from trusted distributors. Place your orders and inquiries today for great value across Nigeria. | '.config('app.name', ''));
-        OpenGraph::setUrl('http://bigstanautos.com/'.$taxon_slug);
+        OpenGraph::setTitle($title . ' | '. $this->title . ' | '.config('app.name', ''));
+        OpenGraph::setDescription('Buy original ' .$title.','. $this->description .' .| '.config('app.name', ''));
+        OpenGraph::setUrl('http://mandmonlinestore.com/'.$taxon_slug);
         OpenGraph::addImage(asset('assets/images/big-stan-logo.png'));
 
         return view('pages.front.single_product', compact('product', 'tags', 'ratings', 'title'));
@@ -111,15 +114,15 @@ class PagesController extends BaseController
             $now = Carbon::now();
             $title = $brand->name;
 
-            SEOMeta::setTitle($title . ' | Spare parts and Autos for sale in Nigeria | '.config('app.name', ''), false);
-            SEOMeta::setDescription('Buy original ' .$title.', top quality spare parts and Autos from trusted distributors. Place your orders and inquiries today for great value across Nigeria. | '.config('app.name', ''));
-            SEOMeta::setCanonical('https://bigstanautos.com/'.$slug);
-            SEOMeta::addKeyword([$title.'spare parts', 'autos for sale', 'spare parts lagos', 'spare parts nigeria']);
+            SEOMeta::setTitle($title . ' | ' .$this->title . ' | '.config('app.name', ''), false);
+            SEOMeta::setDescription('Buy original ' .$title.',' .$this->description .' | '.config('app.name', ''));
+            SEOMeta::setCanonical('https://mandmonlinestore.com/'.$slug);
+            SEOMeta::addKeyword([$title.' ' . $this->keywords]);
 
             //Open graph
-            OpenGraph::setTitle($title .'Spare parts and Autos for sale in Nigeria | '.config('app.name', ''));
-            OpenGraph::setDescription('Buy original ' .$title.', top quality spare parts and Autos from trusted distributors. Place your orders and inquiries today for great value across Nigeria. | '.config('app.name', ''));
-            OpenGraph::setUrl('http://bigstanautos.com/'.$slug);
+            OpenGraph::setTitle($title. ' | ' .$this->title . ' | '.config('app.name', ''));
+            OpenGraph::setDescription('Buy original ' .$title.','.  $this->description .' | '.config('app.name', ''));
+            OpenGraph::setUrl('http://mandmonlinestore.com/'.$slug);
             OpenGraph::addImage(asset('assets/images/big-stan-logo.png'));
 
             return view('pages.front.products_by_brand', compact('products', 'now', 'taxon_slug', 'title', 'categories'));
