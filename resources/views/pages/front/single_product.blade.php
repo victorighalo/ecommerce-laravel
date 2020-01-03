@@ -154,17 +154,17 @@
                             </ul>
 
                             <!-- INFOMATION -->
-                            <div class="inner-info">
-                                <h5>Share this item with your friends</h5>
-                                <!-- Social Icons -->
-                                <ul class="social_icons">
-                                    <li><a href="#."><i class="icon-social-facebook"></i></a></li>
-                                    <li><a href="#."><i class="icon-social-twitter"></i></a></li>
-                                    <li><a href="#."><i class="icon-social-tumblr"></i></a></li>
-                                    <li><a href="#."><i class="icon-social-youtube"></i></a></li>
-                                    <li><a href="#."><i class="icon-social-dribbble"></i></a></li>
-                                </ul>
-                            </div>
+{{--                            <div class="inner-info">--}}
+{{--                                <h5>Share this item with your friends</h5>--}}
+{{--                                <!-- Social Icons -->--}}
+{{--                                <ul class="social_icons">--}}
+{{--                                    <li><a href="#."><i class="icon-social-facebook"></i></a></li>--}}
+{{--                                    <li><a href="#."><i class="icon-social-twitter"></i></a></li>--}}
+{{--                                    <li><a href="#."><i class="icon-social-tumblr"></i></a></li>--}}
+{{--                                    <li><a href="#."><i class="icon-social-youtube"></i></a></li>--}}
+{{--                                    <li><a href="#."><i class="icon-social-dribbble"></i></a></li>--}}
+{{--                                </ul>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                 </div>

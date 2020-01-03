@@ -83,22 +83,24 @@ class OfficeController extends Controller
 
     public function ordersProducts(Request $request){
         $products = [];
-        $order = OrderItem::where('order_id', $request->input('order_id'))->select('product_id')->first();
+        $orders = OrderItem::where('order_id', $request->input('order_id'))->select('product_id')->get();
 
-        $data = \App\Product::where('id', $order->product_id)->get();
+        foreach ($orders as $order) {
+            $data = \App\Product::where('id', $order->product_id)->get();
 
-        foreach ($data as $product){
-            $products[] = (object)[
-                'price' => $product->price,
-                'name' => $product->name,
-                'delivery_price' => $product->delivery_price ? $product->delivery_price->amount : 0,
-                'delivery_price_location' => $this->calculateDelivery($request->state_id, $request->city_id),
-                'properties' => isset($product->propertyValues) ? $this->getProperties($product->propertyValues) : null,
-                'category' => $product->taxons->first()->name,
-                'description' => $product->meta_description,
-                'overview' => $product->description,
-                'images' => $product->hasPhoto() ? $product->photos : null
-            ];
+            foreach ($data as $product) {
+                $products[] = (object)[
+                    'price' => $product->price,
+                    'name' => $product->name,
+                    'delivery_price' => $product->delivery_price ? $product->delivery_price->amount : 0,
+                    'delivery_price_location' => $this->calculateDelivery($request->state_id, $request->city_id),
+                    'properties' => isset($product->propertyValues) ? $this->getProperties($product->propertyValues) : null,
+                    'category' => $product->taxons->first()->name,
+                    'description' => $product->meta_description,
+                    'overview' => $product->description,
+                    'images' => $product->hasPhoto() ? $product->photos : null
+                ];
+            }
         }
 
         return response()->json(['data' => $products]);

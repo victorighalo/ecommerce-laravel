@@ -6,7 +6,7 @@
         <div class="modal-dialog  modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="products_modal">Order Products</h5>
+                    <h5 class="modal-title" id="products_modal">Ordered Products</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -141,17 +141,17 @@
                     var delivery_price = new Intl.NumberFormat().format(item.delivery_price);
                     var delivery_price_location = new Intl.NumberFormat().format(item.delivery_price_location);
                     var image = mediaUrl + item.images[0].link;
-                        rows += "<div class='col-sm-6' style='background: url("+image+") #f5f5f5; background-repeat: no-repeat; background-position: center center;background-size: cover;'></div>";
-                        rows += "<div class='col-sm-6 padding-20'>"
+                        rows += "<div class='col-sm-12' style='background: url("+image+") #f5f5f5; background-repeat: no-repeat; background-position: center center;background-size: cover;height:300px'></div>";
+                        rows += "<div class='col-sm-12 padding-20'>"
                         rows += "<h2>"+item.name+"</h2>";
-                        rows += "<h5 class='m-1'>Description</h5>";
+                        rows += "<h4 class='m-1'>Description</h4>";
                         rows += "<p class='m-1 font-weight-bold'>"+item.description+"</p>";
-                        rows += "<h5 class='m-1'>Cost</h5>";
+                        rows += "<h4 class='m-1'>Cost</h4>";
                         rows += "<p class='m-1 font-weight-bold'>Price - &#8358;"+price+"</p>";
-                        rows += "<p class='m-1 font-weight-bold'>Delivery - &#8358;"+delivery_price+"</p>";
-                        rows += "<p class='m-1 font-weight-bold'>Delivery location - &#8358;"+delivery_price_location+"</p>";
+                        rows += "<p class='m-1 font-weight-bold'>Delivery(Product) - &#8358;"+delivery_price+"</p>";
+                        rows += "<p class='m-1 font-weight-bold'>Delivery(location) - &#8358;"+delivery_price_location+"</p>";
                         if(item.properties){
-                            rows += "<h5 class='m-1'>Properties</h5>";
+                            rows += "<h4 class='m-1'>Properties</h4>";
                             $.each(item.properties, function (index, item) {
                                 rows += "<p class='m-1 font-weight-bold'>"+item.name+" - "+item.value+"</p>";
                             })
