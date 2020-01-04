@@ -76,7 +76,7 @@ class PaymentController extends Controller
                                 foreach ($cart_variants as $variant) {
                                     $product_variants[] = [
                                         'product_id' => $item->product->id,
-                                        'cart_item_id' => $cart->id,
+                                        'cart_item_id' => $item->id,
                                         'order_id' => $order->id,
                                         'option_id' => $variant['option_id'],
                                         'option_name' => $variant['option_name'],
