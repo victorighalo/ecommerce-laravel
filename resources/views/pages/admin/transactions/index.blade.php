@@ -18,7 +18,6 @@
                                         <th>First Name</th>
                                         <th>Last Name</th>
                                         <th>Email</th>
-
                                         <th>Status</th>
                                     </tr>
                                     </thead>
@@ -32,7 +31,9 @@
                                             <td>{{$item->firstname}}</td>
                                             <td>{{$item->lastname}}</td>
                                             <td>{{$item->user_email}}</td>
-                                            <td>{{$item->status}}</td>
+                                            <td>{{str_replace("_", " ",$item->status)}}</td>
+{{--                                            <td>{{$item->state->state_name}}</td>--}}
+{{--                                            <td>{{$item->city->city_name}}</td>--}}
                                         </tr>
                                     @endforeach
                                     </tbody>

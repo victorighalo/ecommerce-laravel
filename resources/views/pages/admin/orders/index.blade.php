@@ -67,7 +67,7 @@
                                             <td>{{$item->city_name}}</td>
                                             <td>{{$item->phone}}</td>
                                             <td>{{$item->address}}</td>
-                                            <td>{{$item->status}}</td>
+                                            <td>{{str_replace("_", " ",$item->status)}}</td>
                                             <td><button class='btn btn-md btn-link view_products'
                                                         data-order_id="{{$item->order_id}}"
                                                         data-state_id="{{$item->state_id}}"

@@ -28,10 +28,10 @@ class Transactions extends Model
     }
 
     public function state(){
-        return $this->hasOne(State::class, 'state_id');
+        return $this->hasOne(State::class, 'state_id', "state_id");
     }
 
     public function city(){
-        return $this->hasOne(City::class, 'city_id');
+        return $this->hasOne(City::class, 'city_id', 'city_id');
     }
 }
