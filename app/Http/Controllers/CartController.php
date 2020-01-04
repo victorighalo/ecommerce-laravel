@@ -47,7 +47,8 @@ class CartController extends BaseController
     public function add(Request $request){
 
         try {
-            $product = \App\Product::findBySlug($request->slug)->first();
+            $product = \App\Product::findBySlug($request->slug);
+            dd($product);
             DB::transaction(function () use ($product,$request) {
                 $cart = Cart::addItem($product, $request->qty);
                 if($this->cartItemIsVariant($cart->id, $product->id)){
