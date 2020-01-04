@@ -151,10 +151,12 @@
                         rows += "<p class='m-1 font-weight-bold'>Delivery - &#8358;"+delivery_price+"</p>";
                         // rows += "<p class='m-1 font-weight-bold'>Delivery(location) - &#8358;"+delivery_price_location+"</p>";
                         if(item.variants){
+                        if(item.variants.length){
                             rows += "<h4 class='m-1'>Variants</h4>";
                             $.each(item.variants, function (index, item) {
                                 rows += "<p class='m-1 font-weight-bold'>"+item.option_name+" - "+item.option_value_name+"</p>";
                             })
+                        }
                         }
                         rows += "</div>";
                         rows += "</div>";

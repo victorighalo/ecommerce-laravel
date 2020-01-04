@@ -134,12 +134,12 @@
 {{--                                                    <label for="radio4"> DEBIT CART </label>--}}
 {{--                                                </div>--}}
 {{--                                            </li>--}}
-                                            <li>
-                                                <div class="checkbox">
-                                                    <input id="checkbox3-4" class="styled" type="checkbox">
-                                                    <label for="checkbox3-4"> I’VE READ AND ACCEPT THE <span class="color"> TERMS & CONDITIONS </span> </label>
-                                                </div>
-                                            </li>
+{{--                                            <li>--}}
+{{--                                                <div class="checkbox">--}}
+{{--                                                    <input id="checkbox3-4" class="styled" type="checkbox">--}}
+{{--                                                    <label for="checkbox3-4"> I’VE READ AND ACCEPT THE <span class="color"> TERMS & CONDITIONS </span> </label>--}}
+{{--                                                </div>--}}
+{{--                                            </li>--}}
                                         </ul>
                                         <a href="tel:{{$app_settings->store_phone}}" class="btn btn-small  btn-secondary pull-left margin-top-30"><i class="fa fa-phone"></i> CALL TO ORDER</a>
                                         </div>
