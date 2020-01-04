@@ -396,7 +396,7 @@ class ProductsController extends BaseController
             'slug' => 'required',
         ]);
         $user = Auth::guest() ? User::where('firstname', 'guest')->first()->id : Auth::id();
-        $product = \App\Product::findBySlug($request->slug)->first();
+        $product = \App\Product::findBySlug($request->slug);
         $rating = new \willvincent\Rateable\Rating;
         $rating->rating = $request->rating;
         $rating->user_id = $user;

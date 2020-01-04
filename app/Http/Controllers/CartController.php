@@ -48,7 +48,7 @@ class CartController extends BaseController
 
         try {
             $product = \App\Product::findBySlug($request->slug);
-            dd($product);
+
             DB::transaction(function () use ($product,$request) {
                 $cart = Cart::addItem($product, $request->qty);
                 if($this->cartItemIsVariant($cart->id, $product->id)){
