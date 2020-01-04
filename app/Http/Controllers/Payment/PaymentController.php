@@ -67,7 +67,7 @@ class PaymentController extends Controller
 
                         foreach ($cart as $item) {
 
-                            $cart_variants = CartItemVariant::where('cart_item_id', $cart->id)
+                            $cart_variants = CartItemVariant::where('cart_item_id', $item->id)
                                 ->where('product_id',$item->product->id)
                                 ->get();
 
