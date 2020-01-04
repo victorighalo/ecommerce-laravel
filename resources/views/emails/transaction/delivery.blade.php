@@ -439,7 +439,7 @@
                                         </div>
                                         <div style="
                                         background: rgb(65,98,187);
-                                        color: #fff;
+                                        color: #fff !important;
                                         text-align: center;
                                         padding: 1em 2em;"
                                         >

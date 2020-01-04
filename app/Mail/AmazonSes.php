@@ -46,7 +46,7 @@ class AmazonSes extends Mailable
         }else{
             return $this->from('support@bigstanautos.com', env('APP_NAME'))
                 ->cc(['sales@mandmonlinestore.com'])
-                ->subject('Transaction Receipt - MandMOnlineStore.com')
+                ->subject('Transaction Receipt(Cash On Delivery) - MandMOnlineStore.com')
                 ->view('emails.transaction.delivery',
                     ['ref' => $this->ref, 'trans' => $this->trans, 'cart' => $this->cart]
                 );
