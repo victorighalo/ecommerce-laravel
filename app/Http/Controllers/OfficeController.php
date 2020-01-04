@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 
+use App\CartItemVariant;
+use App\OrderItemVariant;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -54,11 +56,14 @@ class OfficeController extends Controller
     }
 
     public function orders(){
-        $data = \App\Transactions::complete()->delivery()->join('order_items', function ($join){
-            $join->on('transactions.order_id', '=', 'order_items.order_id');
-        }
-        )->join('states', 'transactions.state_id', 'states.state_id')
+//        $data = \App\Transactions::complete()->delivery()->pending()->join('order_items', function ($join){
+//            $join->on('transactions.order_id', '=', 'order_items.order_id');
+//        }
+//        )
+        $data = \App\Transactions::
+            join('states', 'transactions.state_id', 'states.state_id')
             ->join('cities', 'transactions.city_id', 'cities.city_id')
+            ->orderBy('created_at', 'DESC')
             ->paginate(20);
        return view('pages.admin.orders.index', compact('data'));
     }
@@ -83,21 +88,23 @@ class OfficeController extends Controller
 
     public function ordersProducts(Request $request){
         $products = [];
-        $orders = OrderItem::where('order_id', $request->input('order_id'))->select('product_id')->get();
+        $orders = OrderItem::where('order_id', $request->input('order_id'))->select('id','product_id','price','name','delivery_price')->get();
 
         foreach ($orders as $order) {
             $data = \App\Product::where('id', $order->product_id)->get();
 
             foreach ($data as $product) {
                 $products[] = (object)[
-                    'price' => $product->price,
-                    'name' => $product->name,
-                    'delivery_price' => $product->delivery_price ? $product->delivery_price->amount : 0,
-                    'delivery_price_location' => $this->calculateDelivery($request->state_id, $request->city_id),
+                    'price' => $order->price,
+                    'pid' => $product->id,
+                    'oid' => $request->input('order_id'),
+                    'name' => $order->name,
+                    'delivery_price' => $order->delivery_price ? $order->delivery_price : 0,
                     'properties' => isset($product->propertyValues) ? $this->getProperties($product->propertyValues) : null,
                     'category' => $product->taxons->first()->name,
                     'description' => $product->meta_description,
                     'overview' => $product->description,
+                    'variants' => $this->getVariants($product->id,$request->input('order_id')),
                     'images' => $product->hasPhoto() ? $product->photos : null
                 ];
             }
@@ -116,6 +123,12 @@ class OfficeController extends Controller
             ];
         }
         return $data;
+    }
+
+    private function getVariants($product_id,$order_id){
+        return OrderItemVariant::where('product_id',$product_id)->where('order_id', $order_id)
+            ->select('option_name', 'option_value_name')
+            ->get()->toArray();
     }
 
     private function calculateDelivery($state_id, $city_id){

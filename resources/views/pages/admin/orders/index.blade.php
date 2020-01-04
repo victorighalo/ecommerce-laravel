@@ -148,12 +148,12 @@
                         rows += "<p class='m-1 font-weight-bold'>"+item.description+"</p>";
                         rows += "<h4 class='m-1'>Cost</h4>";
                         rows += "<p class='m-1 font-weight-bold'>Price - &#8358;"+price+"</p>";
-                        rows += "<p class='m-1 font-weight-bold'>Delivery(Product) - &#8358;"+delivery_price+"</p>";
-                        rows += "<p class='m-1 font-weight-bold'>Delivery(location) - &#8358;"+delivery_price_location+"</p>";
-                        if(item.properties){
-                            rows += "<h4 class='m-1'>Properties</h4>";
-                            $.each(item.properties, function (index, item) {
-                                rows += "<p class='m-1 font-weight-bold'>"+item.name+" - "+item.value+"</p>";
+                        rows += "<p class='m-1 font-weight-bold'>Delivery - &#8358;"+delivery_price+"</p>";
+                        // rows += "<p class='m-1 font-weight-bold'>Delivery(location) - &#8358;"+delivery_price_location+"</p>";
+                        if(item.variants){
+                            rows += "<h4 class='m-1'>Variants</h4>";
+                            $.each(item.variants, function (index, item) {
+                                rows += "<p class='m-1 font-weight-bold'>"+item.option_name+" - "+item.option_value_name+"</p>";
                             })
                         }
                         rows += "</div>";

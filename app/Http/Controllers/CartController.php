@@ -91,7 +91,6 @@ class CartController extends BaseController
         return CartItemVariant::where('cart_item_id', $cart_item_id)->where('product_id',$product_id)->exists();
     }
 
-
     public function update(CartItem $cart_item, Request $request){
         try {
 //            $cart_item = Cart::getItems()->where('id', 7);
@@ -103,7 +102,6 @@ class CartController extends BaseController
             return response()->json($e->getMessage());
         }
     }
-
 
     public function destroy(CartItem $cart_item)
     {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Payment;
 use App\CartItemVariant;
 use App\Http\Requests\PaymentRequest;
 use App\Mail\AmazonSes;
+use App\OrderItemVariant;
 use App\Product;
 use App\Transactions;
 use App\User;
@@ -12,6 +13,7 @@ use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Http\Request;
 use App\Http\Proxy\PayStackProxy;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
@@ -61,17 +63,51 @@ class PaymentController extends Controller
 
             $cart = Cart::getItems();
 
-            foreach ($cart as $item){
-                $order->items()->create([
-                    'product_type' => 'App\Product',
-                    'product_id'   => $item->product->id,
-                    'price'        => $item->product->price,
-                    'delivery_price' => $item->product->delivery_price->amount,
-                    'name'         => $item->product->name,
-                    'quantity'     => $item->quantity,
-                    'is_variant'     => $item->product->is_variant,
-                ]);
-            }
+            DB::transaction(function () use ($order,$cart,$delivery_cost) {
+
+                        foreach ($cart as $item) {
+
+                            $cart_variants = CartItemVariant::where('cart_item_id', $cart->id)
+                                ->where('product_id',$item->product->id)
+                                ->get();
+
+                            if($item->product->is_variant) {
+                                $product_variants = [];
+                                foreach ($cart_variants as $variant) {
+                                    $product_variants[] = [
+                                        'product_id' => $item->product->id,
+                                        'cart_item_id' => $cart->id,
+                                        'order_id' => $order->id,
+                                        'option_id' => $variant['option_id'],
+                                        'option_name' => $variant['option_name'],
+                                        'option_value_id' => $variant['option_value_id'],
+                                        'option_value_name' => $variant['option_value_name']
+                                    ];
+                                }
+                                OrderItemVariant::insert($product_variants);
+                                $order->items()->create([
+                                    'product_type' => 'App\Product',
+                                    'product_id' => $item->product->id,
+                                    'price' => $item->product->price,
+                                    'delivery_price' => $delivery_cost,
+                                    'name' => $item->product->name,
+                                    'quantity' => $item->quantity,
+                                    'is_variant' => $item->product->is_variant,
+                                ]);
+                            }else{
+                                $order->items()->create([
+                                    'product_type' => 'App\Product',
+                                    'product_id' => $item->product->id,
+                                    'price' => $item->product->price,
+                                    'delivery_price' => $delivery_cost,
+                                    'name' => $item->product->name,
+                                    'quantity' => $item->quantity,
+                                    'is_variant' => $item->product->is_variant,
+                                ]);
+                            }
+                        }
+                });
+
 
             $trans = $this->createTransaction($amount, $trans_email ? $trans_email :"", $user_id,$ref,$order->id, $request, TransactionStatus::PAY_DELIVERY);
 
@@ -110,17 +146,50 @@ class PaymentController extends Controller
 
             $cart = Cart::getItems();
 
-            foreach ($cart as $item){
-                $order->items()->create([
-                    'product_type' => 'App\Product',
-                    'product_id'   => $item->product->id,
-                    'price'        => $item->product->price,
-                    'delivery_price' => $item->product->delivery_price->amount,
-                    'name'         => $item->product->name,
-                    'quantity'     => $item->quantity,
-                    'is_variant'     => $item->product->is_variant,
-                ]);
-            }
+            DB::transaction(function () use ($order,$cart,$delivery_cost) {
+
+                foreach ($cart as $item) {
+
+                    $cart_variants = CartItemVariant::where('cart_item_id', $item->id)
+                        ->where('product_id',$item->product->id)
+                        ->get();
+
+                    if($item->product->is_variant) {
+                        $product_variants = [];
+                        foreach ($cart_variants as $variant) {
+                            $product_variants[] = [
+                                'product_id' => $item->product->id,
+                                'cart_item_id' => $item->id,
+                                'order_id' => $order->id,
+                                'option_id' => $variant['option_id'],
+                                'option_name' => $variant['option_name'],
+                                'option_value_id' => $variant['option_value_id'],
+                                'option_value_name' => $variant['option_value_name']
+                            ];
+                        }
+                        OrderItemVariant::insert($product_variants);
+                        $order->items()->create([
+                            'product_type' => 'App\Product',
+                            'product_id' => $item->product->id,
+                            'price' => $item->product->price,
+                            'delivery_price' => $delivery_cost,
+                            'name' => $item->product->name,
+                            'quantity' => $item->quantity,
+                            'is_variant' => $item->product->is_variant,
+                        ]);
+                    }else{
+                        $order->items()->create([
+                            'product_type' => 'App\Product',
+                            'product_id' => $item->product->id,
+                            'price' => $item->product->price,
+                            'delivery_price' => $delivery_cost,
+                            'name' => $item->product->name,
+                            'quantity' => $item->quantity,
+                            'is_variant' => $item->product->is_variant,
+                        ]);
+                    }
+                }
+            });
 
             $this->createTransaction(
                 $amount,
