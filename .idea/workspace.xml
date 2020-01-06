@@ -4,6 +4,7 @@
     <list default="true" id="eb2349c8-f2b2-4acb-b3f6-e1ac82b2095e" name="Default" comment="updated webhook logs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/emails/transaction/delivery.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/emails/transaction/delivery.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/newmain.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/newmain.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -344,7 +345,7 @@
       <workItem from="1577976810030" duration="541000" />
       <workItem from="1578028141140" duration="4574000" />
       <workItem from="1578163828052" duration="7708000" />
-      <workItem from="1578296769560" duration="192000" />
+      <workItem from="1578296769560" duration="306000" />
     </task>
     <task id="LOCAL-00030" summary="Added webhook support">
       <created>1566650726909</created>
