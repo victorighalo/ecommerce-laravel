@@ -37,7 +37,7 @@ class PagesController extends BaseController
         OpenGraph::setUrl('http://mandmonlinestore.com');
         OpenGraph::addImage(asset('assets/images/big-stan-logo.png'));
 
-        $categories = Taxon::all()->take(4);
+        $categories = Taxon::all();
         $brands = Taxonomy::all();
         $sliders = \App\Slider::where('name','Homepage')->exists() && \App\Slider::where('name','Homepage')->first()->status == 1 ? \App\Slider::where('name','Homepage')->first()->photos : false;
 
@@ -59,7 +59,7 @@ class PagesController extends BaseController
             SEOMeta::setTitle($taxon->name . ' category | ' .$this->title . ' | '.config('app.name', ''), false);
             SEOMeta::setDescription('Buy original ' .$taxon->name.','.  $this->description .' | '.config('app.name', ''));
             SEOMeta::setCanonical('https://mandmonlinestore.com/'.$taxon_slug);
-            SEOMeta::addKeyword([$taxon->name. ' '.$this->keywords]);
+            SEOMeta::addKeyword([$taxon->name. ', '.$this->keywords]);
 
             //Open graph
             OpenGraph::setTitle($taxon->name .'M&M Store online shopping made easy in Nigeria | '.config('app.name', ''));
