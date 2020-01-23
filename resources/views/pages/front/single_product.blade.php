@@ -209,7 +209,7 @@
                     <div class="tab-content">
                         <!-- DESCRIPTION -->
                         <div role="tabpanel" class="tab-pane active" id="descr">
-                            {!! $product->description !!}}
+                            {!! $product->description !!}
                         </div>
 
 
