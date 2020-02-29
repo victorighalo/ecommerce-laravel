@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.1.3",
+        "php": "^7.2",
         "ext-gd": "*",
         "algolia/scout-extended": "^1.6",
         "artesaos/seotools": "^0.14.0",
@@ -20,7 +20,7 @@
         "laravel/tinker": "^1.0",
         "league/flysystem-aws-s3-v3": "~1.0",
         "lecturize/laravel-addresses": "^0.1.1",
-        "vanilo/framework": "0.5",
+        "vanilo/framework": "1.0",
         "willvincent/laravel-rateable": "^1.07",
         "yajra/laravel-datatables-oracle": "~8.0"
     },

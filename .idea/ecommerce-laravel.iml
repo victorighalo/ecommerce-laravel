@@ -130,6 +130,15 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/vanilo/product" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/vanilo/properties" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/vanilo/support" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/vanilo_old/cart" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/vanilo_old/category" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/vanilo_old/checkout" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/vanilo_old/contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/vanilo_old/framework" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/vanilo_old/order" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/vanilo_old/product" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/vanilo_old/properties" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/vanilo_old/support" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/webmozart/assert" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/webpatser/laravel-countries" />

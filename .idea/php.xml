@@ -138,9 +138,18 @@
       <path value="$PROJECT_DIR$/vendor/mtdowling/jmespath.php" />
       <path value="$PROJECT_DIR$/vendor/aws/aws-sdk-php" />
       <path value="$PROJECT_DIR$/vendor/artesaos/seotools" />
+      <path value="$PROJECT_DIR$/vendor/vanilo_old/cart" />
+      <path value="$PROJECT_DIR$/vendor/vanilo_old/order" />
+      <path value="$PROJECT_DIR$/vendor/vanilo_old/product" />
+      <path value="$PROJECT_DIR$/vendor/vanilo_old/support" />
+      <path value="$PROJECT_DIR$/vendor/vanilo_old/category" />
+      <path value="$PROJECT_DIR$/vendor/vanilo_old/checkout" />
+      <path value="$PROJECT_DIR$/vendor/vanilo_old/contracts" />
+      <path value="$PROJECT_DIR$/vendor/vanilo_old/framework" />
+      <path value="$PROJECT_DIR$/vendor/vanilo_old/properties" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
   <component name="PhpUnit">
     <phpunit_settings>
       <PhpUnitSettings load_method="CUSTOM_LOADER" custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" />

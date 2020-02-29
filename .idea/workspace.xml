@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eb2349c8-f2b2-4acb-b3f6-e1ac82b2095e" name="Default" comment="updated webhook logs">
+      <change beforePath="$PROJECT_DIR$/.idea/ecommerce-laravel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ecommerce-laravel.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/front/single_product.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/front/single_product.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/products/_create_product.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/products/_create_product.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/products/product_edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/products/product_edit.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -171,28 +176,37 @@
       <path value="$PROJECT_DIR$/vendor/mtdowling/jmespath.php" />
       <path value="$PROJECT_DIR$/vendor/aws/aws-sdk-php" />
       <path value="$PROJECT_DIR$/vendor/artesaos/seotools" />
+      <path value="$PROJECT_DIR$/vendor/vanilo_old/cart" />
+      <path value="$PROJECT_DIR$/vendor/vanilo_old/order" />
+      <path value="$PROJECT_DIR$/vendor/vanilo_old/product" />
+      <path value="$PROJECT_DIR$/vendor/vanilo_old/support" />
+      <path value="$PROJECT_DIR$/vendor/vanilo_old/category" />
+      <path value="$PROJECT_DIR$/vendor/vanilo_old/checkout" />
+      <path value="$PROJECT_DIR$/vendor/vanilo_old/contracts" />
+      <path value="$PROJECT_DIR$/vendor/vanilo_old/framework" />
+      <path value="$PROJECT_DIR$/vendor/vanilo_old/properties" />
     </include_path>
   </component>
   <component name="ProjectId" id="1PVwXQ20eSESyP7FYqX1V7H5pXB" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/vendor" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="yarn" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/Http/Controllers" />
-      <recent name="$PROJECT_DIR$/public/admin/css" />
-      <recent name="$PROJECT_DIR$/public/admin/js" />
-      <recent name="$PROJECT_DIR$/public/assets/images" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/vendor" />
       <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/public/css" />
       <recent name="$PROJECT_DIR$/public/js" />
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Http/Controllers" />
+      <recent name="$PROJECT_DIR$/public/admin/css" />
+      <recent name="$PROJECT_DIR$/public/admin/js" />
       <recent name="$PROJECT_DIR$/public/assets/images" />
     </key>
   </component>
@@ -347,7 +361,13 @@
       <workItem from="1578296769560" duration="3317000" />
       <workItem from="1579247842269" duration="894000" />
       <workItem from="1579268849651" duration="6441000" />
-      <workItem from="1579808684214" duration="715000" />
+      <workItem from="1579808684214" duration="1694000" />
+      <workItem from="1580017840909" duration="2987000" />
+      <workItem from="1580334084715" duration="8000" />
+      <workItem from="1580826470525" duration="3067000" />
+      <workItem from="1581357705439" duration="415000" />
+      <workItem from="1582846156005" duration="134000" />
+      <workItem from="1582890308466" duration="3189000" />
     </task>
     <task id="LOCAL-00030" summary="Added webhook support">
       <created>1566650726909</created>

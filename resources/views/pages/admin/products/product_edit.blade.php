@@ -162,7 +162,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="uipanel row mb-4">
-                                                        <div class="col-sm-6">
+                                                        <div class="col-sm-3">
                                                             <label for="price">{{ __('Price') }} </label>
                                                             <input type="number" name="price" class="form-control"
                                                                    value="{{$product->price}}" required>
@@ -170,7 +170,7 @@
                                                             </span>
                                                         </div>
 
-                                                        <div class="col-sm-6">
+                                                        <div class="col-sm-3">
                                                             <label
                                                                 for="delivery_price">{{ __('Delivery Price') }}</label>
                                                             <input type="number" name="delivery_price"
@@ -178,8 +178,53 @@
                                                                    class="form-control" required>
                                                             <span class="invalid-feedback errorshow" role="alert">
                                                     </span>
-
                                                     </div>
+                                                        <div class="col-sm-3">
+                                                            <label
+                                                                for="delivery_price">{{ __('Stock') }}</label>
+                                                            <input type="number" name="stock"
+                                                                   value="{{$product->stock ? $product->stock : 0}}"
+                                                                   class="form-control" required>
+                                                            <span class="invalid-feedback errorshow" role="alert">
+                                                    </span>
+                                                        </div>
+
+                                                        <div class="col-sm-3">
+                                                            <label for="weight">{{ __('Stock status') }}</label>
+                                                            <select type="number" min="0" value="0" name="stock_status" class="form-control" value="{{$product->stock_status}}" required>
+                                                                <option value="in_stock">In Stock</option>
+                                                                <option value="out_of_stock">Out of Stock</option>
+                                                                <option value="call_to_order">Call to Order</option>
+                                                                <option value="physical_order">Physical Order</option>
+                                                            </select>
+                                                            <span class="invalid-feedback errorshow" role="alert">
+                                                            </span>
+                                                        </div>
+
+                                                        <div class="col-sm-12 mt-3">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <label for="purchase_multiple">{{ __('Sold individually') }}</label>
+                                                                    <input type="checkbox" min="0"
+                                                                           value="{{$product->purchase_multiple}}"
+                                                                           name="purchase_multiple" required>
+                                                                    <span class="invalid-feedback errorshow" role="alert">
+                                                                    </span>
+                                                                </div>
+
+                                                                <div class="col-sm-3">
+                                                                    <label for="weight">{{ __('Weight') }}</label>
+                                                                    <input type="number" min="0" value="{{$product->weight ? $product->weight : 0}}"
+                                                                           name="weight" class="form-control" required>
+                                                                    <span class="invalid-feedback errorshow" role="alert">
+                                                        </span>
+                                                                </div>
+
+                                                        </div>
+                                                        </div>
+
+
+
                                                     </div>
 
 {{--                                                        <div class="col-sm-12">--}}
