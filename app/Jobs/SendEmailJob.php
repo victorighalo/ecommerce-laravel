@@ -33,10 +33,8 @@ class SendEmailJob implements ShouldQueue
      */
     public function handle()
     {
-        dd('wqweqe');
         $when = now()->addMinutes(1);
         $email = new SendPasswordChangeEmail();
-        dd($this->details['email']);
         \Mail::to($this->details['email'])->send(new SendPasswordChangeEmail);
 
     }

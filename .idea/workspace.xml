@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eb2349c8-f2b2-4acb-b3f6-e1ac82b2095e" name="Default" comment="updated webhook logs">
-      <change beforePath="$PROJECT_DIR$/.idea/ecommerce-laravel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ecommerce-laravel.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/products/_create_product.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/products/_create_product.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/products/product_edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/products/product_edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Jobs/SendEmailJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/SendEmailJob.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/index.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -189,6 +187,7 @@
   </component>
   <component name="ProjectId" id="1PVwXQ20eSESyP7FYqX1V7H5pXB" />
   <component name="PropertiesComponent">
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/vendor" />
@@ -367,7 +366,14 @@
       <workItem from="1580826470525" duration="3067000" />
       <workItem from="1581357705439" duration="415000" />
       <workItem from="1582846156005" duration="134000" />
-      <workItem from="1582890308466" duration="3189000" />
+      <workItem from="1582890308466" duration="3275000" />
+      <workItem from="1585933248971" duration="13000" />
+      <workItem from="1586853549204" duration="1817000" />
+      <workItem from="1588073639497" duration="50000" />
+      <workItem from="1588075910245" duration="141000" />
+      <workItem from="1588274766938" duration="1038000" />
+      <workItem from="1588495507045" duration="192000" />
+      <workItem from="1588515284965" duration="2114000" />
     </task>
     <task id="LOCAL-00030" summary="Added webhook support">
       <created>1566650726909</created>

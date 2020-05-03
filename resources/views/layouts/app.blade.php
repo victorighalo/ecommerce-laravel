@@ -35,7 +35,6 @@
                     <ul class="navbar-nav mr-auto">
 
                     </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->

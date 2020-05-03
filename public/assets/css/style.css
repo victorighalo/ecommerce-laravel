@@ -2142,6 +2142,8 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 .papular-block .item-img {
 	margin-bottom: 20px;
 	border-radius: 4px;
+    height: 200px;
+    max-height: 200px;
 }
 .papular-block .overlay .inn {
 	display: inline-block;
@@ -2225,6 +2227,8 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	top: 0px;
 	left: 0px;
 	position: relative;
+    height: 200px;
+    max-height: 200px;
 	-webkit-transition: 0.4s ease-in-out;
 	-moz-transition: 0.4s ease-in-out;
 	-ms-transition: 0.4s ease-in-out;
