@@ -2,9 +2,7 @@
 
 namespace App;
 
-use App\ProductOption;
 use App\Traits\HasPhotoTrait;
-use Illuminate\Support\Str;
 use Vanilo\Contracts\Buyable;
 use Vanilo\Product\Models\Product as BaseProduct;
 use Vanilo\Properties\Traits\HasPropertyValues;
@@ -14,7 +12,6 @@ use willvincent\Rateable\Rateable;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Vanilo\Category\Models\TaxonProxy;
 use BrianFaust\Commentable\Traits\HasComments;
-use App\ProductVariantOptions;
 
 
 class Product extends BaseProduct implements Buyable
