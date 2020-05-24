@@ -2,33 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eb2349c8-f2b2-4acb-b3f6-e1ac82b2095e" name="Default" comment="updated webhook logs">
-      <change afterPath="$PROJECT_DIR$/resources/js/admin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/admin/properties.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/admin/propertiesActions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/ErrorNotification.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/SuccessNotification.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/pages/admin/property/_view_properties_old.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PropertyController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PropertyController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/admin/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/admin/css/custom.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OfficeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OfficeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/admin/css/main/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/admin/css/main/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/admin/js/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/admin/js/admin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/admin/super_agents.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/admin/createPropertyValue.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/ExampleComponent.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/sass/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/property/_create_property.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/property/_create_property.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/property/_create_property_value.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/property/_create_property_value.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/property/_view_properties.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/property/_view_properties.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/property/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/property/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/category.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/category.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/category/_create_category.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/category/_create_category.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/category/_view_categories.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/category/_view_categories.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/products/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/products/list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/transactions/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/transactions/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -430,7 +417,7 @@
       <workItem from="1588515284965" duration="2738000" />
       <workItem from="1589555729135" duration="673000" />
       <workItem from="1589802171661" duration="1442000" />
-      <workItem from="1590327243494" duration="21241000" />
+      <workItem from="1590327243494" duration="25390000" />
     </task>
     <task id="LOCAL-00030" summary="Added webhook support">
       <created>1566650726909</created>

@@ -64,6 +64,7 @@ Route::post('orders/products', 'OfficeController@ordersProducts')->name('order_p
 
 //Transactions
 Route::get('transactions', 'OfficeController@transactions');
+Route::get('transactions/json', 'OfficeController@transactionsJson')->name('transactions_json');
 
 //Products
 Route::get('/products/list', 'ProductsController@index');

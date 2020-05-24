@@ -7,16 +7,14 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">  Create categories
-                                <a class="btn btn-link float-right" data-toggle="collapse" href="#form_collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </a></h4>
+                            <h4 class="card-title"> Product categories
+                            </h4>
                             <div class="" id="form_collapse">
                                 <div class="row">
                                     <div class="col-sm-4 p-4">
                                     @include('pages.admin.category._create_category')
                                     </div>
-                                    <div class="col-sm-8 p-4">
+                                    <div class="col-sm-12 p-4">
                                     @include('pages.admin.category._view_categories')
                                     </div>
                             </div>
@@ -153,11 +151,11 @@
             });
 
             $(".edit_subcategory").on('click', function () {
-                editTaxon($(this).attr('id'), $(this).data('category_id'))
+                editTaxon($(this).attr('id'), $(this).data('category_id'),$(this).text())
             });
 
             $(".edit_category").on('click', function () {
-                editTaxonomy($(this).attr('id'))
+                editTaxonomy($(this).attr('id'),$(this).text())
             });
 
             $(".add_child_category").on('click', function () {
@@ -463,7 +461,7 @@
                 }
             }))
         };
-        function editTaxon (id, category_id) {
+        function editTaxon (id, category_id,defaultValue) {
 
             (new PNotify({
                 title: 'Edit Subcategory',
@@ -472,7 +470,8 @@
                 addclass: 'custom_notification',
                 hide: false,
                 confirm: {
-                    prompt: true
+                    prompt: true,
+                    prompt_default:defaultValue,
                 },
                 buttons: {
                     closer: false,
@@ -549,7 +548,7 @@
             });
 
         }
-        function editTaxonomy (id) {
+        function editTaxonomy (id,defaultValue) {
             (new PNotify({
                 title: 'Edit Category',
                 text: 'You are about a category!',
@@ -557,7 +556,8 @@
                 addclass: 'custom_notification',
                 hide: false,
                 confirm: {
-                    prompt: true
+                    prompt: true,
+                    prompt_default:defaultValue,
                 },
                 buttons: {
                     closer: false,

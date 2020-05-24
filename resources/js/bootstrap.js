@@ -70,7 +70,7 @@ if (token) {
 // require('./dashboard')
 
 window.PNotify = require('./pnotify.custom.min')
-window.DataTable = require('./jquery.dataTables')
+// window.DataTable = require('./jquery.dataTables')
 // window.DataTable = require('./dataTables.bootstrap4')
 
 

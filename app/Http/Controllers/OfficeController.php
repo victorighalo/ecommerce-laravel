@@ -37,13 +37,12 @@ class OfficeController extends Controller
     }
 
     public function dashboard(){
-        $data = \App\Transactions::complete()->delivery()->latest()->take(15)->get();
+        $data = \App\Transactions::complete()->latest()->take(15)->get();
         return view('pages.admin.dashboard.index', compact('data'));
     }
 
     public function transactions(){
-        $data = \App\Transactions::complete()->delivery()->latest()->paginate(20);
-        return view('pages.admin.transactions.index', compact('data'));
+        return view('pages.admin.transactions.index');
     }
 
     public function getStoreStats(){
@@ -82,6 +81,17 @@ class OfficeController extends Controller
         })->addColumn('action', function ($item){
             return "<button class='btn btn-md btn-link view_products' data-cart_id=".$item->cart_id.">Products</button>";
         })
+            ->make(true);
+    }
+
+    public function transactionsJson(){
+        $data = \App\Transactions::complete()->delivery()->latest()->get();
+        return Datatables::of($data)
+            ->editColumn('amount', function ($item){
+                return number_format($item->price, 0,'.', ',');
+            })->addColumn('action', function ($item){
+                return "<button class='btn btn-md btn-link view_products' data-cart_id=".$item->cart_id.">Products</button>";
+            })
             ->make(true);
     }
 

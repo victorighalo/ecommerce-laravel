@@ -8,7 +8,7 @@
                         <div class="card-body">
                             <h5 class="card-title mb-4">Transactions</h5>
                             <div class="table-responsive">
-                                <table class="table table-bordered">
+                                <table class="table table-bordered" id="table">
                                     <thead>
                                     <tr>
                                         <th>Created At</th>
@@ -22,24 +22,9 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($data as $item)
-                                        <tr>
-                                            <td>{{$item->created_at}}</td>
-                                            <td>{{$item->order_id}}</td>
-                                            <td>{{$item->reference}}</td>
-                                            <td>&#8358;{{number_format($item->amount, 0, '.', ',')}} </td>
-                                            <td>{{$item->firstname}}</td>
-                                            <td>{{$item->lastname}}</td>
-                                            <td>{{$item->user_email}}</td>
-                                            <td>{{str_replace("_", " ",$item->status)}}</td>
-{{--                                            <td>{{$item->state->state_name}}</td>--}}
-{{--                                            <td>{{$item->city->city_name}}</td>--}}
-                                        </tr>
-                                    @endforeach
+
                                     </tbody>
-                                    <tfoot>
-                                    {{ $data->links() }}
-                                    </tfoot>
+
                                 </table>
                             </div>
                         </div>
@@ -51,8 +36,35 @@
 @endsection
 
 @push('script')
-    <script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
+    <script>
+        $('#table').DataTable({
+            processing: true,
+            serverSide: true,
+            dom: 'Bfrtip',
+            buttons: [
+                { extend: 'excel', className: 'btn btn-sm btn-primary' }
+            ],
+            ajax: '{!! route('transactions_json') !!}',
+            columns: [
+                {data: 'created_at', name: 'created_at'},
+                {data: 'order_id', name: 'order_id'},
+                {data: 'reference', name: 'reference'},
+                {data: 'amount', name: 'amount'},
+                {data: 'firstname', name: 'firstname'},
+                {data: 'lastname', name: 'lastname'},
+                {data: 'user_email', name: 'user_email'},
+                {data: 'status', name: 'status'},
+                // { data: 'image', name: 'image' },
+                // {data: 'action', name: 'action', orderable: false, searchable: false}
+            ]
+        });
 
     </script>
 @endpush
