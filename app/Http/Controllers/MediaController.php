@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PhotoUploadRequest;
 use App\Media;
 use App\Photo;
 use App\Slider;
@@ -76,11 +75,13 @@ class MediaController extends Controller
                 );
 
 
+//                // Resize to upload smaller size
+//                $image_resize = Image::make($upload_path . '/' . $filename . "." . $ext)
+//                    ->resize(400, 400, function ($constraint) {
+//                        $constraint->aspectRatio();
+//                    });
                 // Resize to upload smaller size
-                $image_resize = Image::make($upload_path . '/' . $filename . "." . $ext)
-                    ->resize(400, 400, function ($constraint) {
-                        $constraint->aspectRatio();
-                    });
+                $image_resize = Image::make($upload_path . '/' . $filename . "." . $ext)->crop(400, 400);
                 $image_resize->save($thumb_upload_path . '/' . $filename . "." . $ext);
 
                 $media = new Media();
