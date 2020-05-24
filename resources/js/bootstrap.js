@@ -38,6 +38,11 @@ let token = document.head.querySelector('meta[name="csrf-token"]');
 //     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 // }
 
+if (token) {
+    window.appToken = token.content;
+} else {
+    console.error('CSRF token not found');
+}
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -63,7 +68,7 @@ let token = document.head.querySelector('meta[name="csrf-token"]');
 // require('./off-canvas')
 // require('./misc')
 // require('./dashboard')
-// require('./maps')
+
 window.PNotify = require('./pnotify.custom.min')
 window.DataTable = require('./jquery.dataTables')
 // window.DataTable = require('./dataTables.bootstrap4')

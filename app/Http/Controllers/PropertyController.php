@@ -81,7 +81,7 @@ class PropertyController extends Controller
         try{
             PropertyValue::where('id', $request->id)
                 ->update([
-                    'title' => $request->value
+                    'value' => $request->value
                 ]);
             return response()->json([
                 'message' => 'Successfully updated property'
@@ -113,9 +113,14 @@ class PropertyController extends Controller
     }
 
     public function destroy($slug){
-        Property::findOneByName($slug)->delete();
-        return response()->json([
-            'message' => 'Successfully deleted Property'
-        ]);
+        if (Property::findBySlug($slug)->exists()){
+            Property::findBySlug($slug)->delete();
+            return response()->json([
+                'message' => 'Successfully deleted Property'
+            ]);
+        }else{
+            return response()->json(['message' => 'Failed to create property. Property not found.'], 400);
+        }
+
     }
 }

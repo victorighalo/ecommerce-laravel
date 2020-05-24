@@ -12,12 +12,13 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
-    <link href="{{ asset('admin/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/css/main/app.css') }}" rel="stylesheet">
     <link href="{{ asset('plugins/bootstrap-tagsinput.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/quill.snow.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/quill.bubble.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/custom.css') }}" rel="stylesheet">
-    <link href="{{ asset('admin/css/uikit.css') }}" rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+{{--    <link href="{{ asset('admin/css/uikit.css') }}" rel="stylesheet">--}}
     @stack('style')
 </head>
 <body>
@@ -39,7 +40,7 @@
 <!-- Scripts -->
 <script src="{{ asset('admin/js/manifest.js') }}"></script>
 <script src="{{ asset('admin/js/vendor.js') }}"></script>
-<script src="{{ asset('admin/js/app.js') }}" ></script>
+<script src="{{ asset('admin/js/admin.js') }}" ></script>
 <script src="{{ asset('admin/js/all.js') }}" ></script>
 <script src="{{ asset('admin/js/quill.min.js') }}" ></script>
 <script src="{{ asset('plugins/jquery.blockUI.js') }}" ></script>

@@ -1,52 +1,4 @@
-/*------------------------------------------------------------------
- [Master Stylesheet]
 
-  Project:	Star Admin Bootstrap Template [Free Version]
-  Version:	2.0
--------------------------------------------------------------------*/
-/*-------------------------------------------------------------------
-  ===== Table of Contents =====
-
-  * Bootstrap functions
-  * Template variables
-  * SCSS Compass Functions
-  * Boostrap Main SCSS
-  * Template mixins
-    + Animation Mixins
-    + Background Mixins
-    + BlockQuote Mixins
-    + Badges Mixins
-    + Buttons Mixins
-    + Cards Mixins
-    + Miscellaneous Mixins
-    + Text Mixins
-  * Core Styles
-    + Reset Styles
-    + Fonts
-    + Functions
-    + Sidebar
-    + Navbar
-    + Typography
-    + Miscellaneous
-    + Footer
-    + Layouts
-    + Utilities
-    + Demo styles
-    + Dashboard
-  * Components
-    + Badges
-    + Buttons
-    + Cards
-    + Checkboxes and Radios
-    + Dropdowns
-    + Forms
-    + Icons
-    + Preview
-    + Tables
-  * Landing screens
-    + Auth
-    + Error
--------------------------------------------------------------------*/
 /*-------------------------------------------------------------------*/
 /* === Import Bootstrap functions and variables === */
 /*-------------------------------------------------------------------*/
@@ -13863,12 +13815,12 @@ input:focus {
     .sidebar .nav .nav-item.active > .nav-link {
       color: #fff; }
 .sidebar .nav .nav-item.active {
-  background: #BA3636;}
+  background: #667eea;}
       .sidebar .nav .nav-item.active > .nav-link .menu-title,
       .sidebar .nav .nav-item.active > .nav-link i {
         color: inherit; }
     .sidebar .nav:not(.sub-menu) > .nav-item:hover:not(.nav-profile) > .nav-link {
-      background: #FFCDCD;
+      background: #7f9cf5;
       color: #fff; }
     .sidebar .nav.sub-menu {
       margin-bottom: 0;
@@ -13944,7 +13896,7 @@ input:focus {
 /* Navbar */
 .navbar {
   font-family: 'Muli', sans-serif;
-  background: linear-gradient(270deg, #e84040, #990000);
+  background: linear-gradient(270deg, #5a67d8, #5a67d8);
   transition: background 0.25s ease;
   -webkit-transition: background 0.25s ease;
   -moz-transition: background 0.25s ease;
@@ -15604,12 +15556,12 @@ select.form-control {
 /*# sourceMappingURL=maps/style.css.map */
 /*//Custom styles*/
 .custom_notification .brighttheme-notice{
-  background: #BA3636 !important;
-  border-color: #BA3636 !important;
+  background: #7f9cf5 !important;
+  border-color: #7f9cf5 !important;
   color: #fff !important;
 }.custom_notification .brighttheme-notice .ui-pnotify-action-button.btn-primary{
-  background: #BA3636 !important;
-  border-color: #BA3636 !important;
+  background: #7f9cf5 !important;
+  border-color: #7f9cf5 !important;
   color: #fff !important;
 }
 .custom_button_color{

@@ -1,5 +1,4 @@
 const mix = require('laravel-mix');
-
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -12,4 +11,8 @@ const mix = require('laravel-mix');
  */
 
 mix.react('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css');
+    .react('resources/js/admin.js', 'public/admin/js')
+    .sass('resources/sass/app.scss', 'public/admin/css/main')
+    .options({
+        processCssUrls: false
+    })

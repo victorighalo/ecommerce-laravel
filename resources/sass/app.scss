@@ -1,6 +1,6 @@
 
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Muli');
+//@import url('https://fonts.googleapis.com/css?family=Muli');
 //@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600");
 
 //@import '~mdi/css/materialdesignicons';
@@ -8,8 +8,10 @@
 @import 'variables';
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
-
+//@import '~bootstrap/scss/bootstrap';
+//@import "../../node_modules/tailwindcss/base";
+//@import "../../node_modules/tailwindcss/components";
+//@import "../../node_modules/tailwindcss/utilities";
 @import './style.css';
 @import './pnotify.custom.min.css';
 @import './datatables.min.css';

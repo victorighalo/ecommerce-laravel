@@ -1,3 +1,6 @@
+<div class="card bg-gray-100">
+    <div class="card-body">
+        <h5 class="card-title mb-4">Create a Product Property</h5>
 <form id="property_form">
     @csrf
     <div class="row form-group">
@@ -24,3 +27,5 @@
         </div>
     </div>
 </form>
+    </div>
+</div>

@@ -216,3 +216,7 @@ padding: 5px;
 .ui-pnotify-title{
     color: #fff;
 }
+.brighttheme .ui-pnotify-action-bar input, .brighttheme .ui-pnotify-action-bar textarea{
+    color: #333;
+    padding: 10px;
+}
