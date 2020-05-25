@@ -27,8 +27,13 @@
                                         <!-- Images -->
                                         <div class="thumb">
                                             @if($product->hasPhoto())
+                                            <a class="i-tittle" href="{{route('getProductDetails', [
+                                            'taxon_slug' => $product->taxons->first()->slug,
+                                            'product_slug' => $product->slug
+                                            ])}}">
                                                 <img class="img-1" src="{{$product->FirstImage}}" alt="{{$product->title()}}">
                                                 <img class="img-2" src="{{$product->FirstImage}}" alt="{{$product->title()}}">
+                                            </a>
                                             @endif
                                             <!-- Overlay  -->
 
