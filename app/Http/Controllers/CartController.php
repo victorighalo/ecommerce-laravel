@@ -78,18 +78,18 @@ class CartController extends BaseController
                     }
 
                 }else {
-                    $product_variants = [];
-                    foreach ($request->variant as $variant) {
-                        $product_variants[] = [
-                            'product_id' => $product->id,
-                            'cart_item_id' => $cart->id,
-                            'option_id' => $variant['option_id'],
-                            'option_name' => $variant['option_name'],
-                            'option_value_id' => $variant['option_value_id'],
-                            'option_value_name' => $variant['option_value_name']
-                        ];
-                    }
-                    CartItemVariant::insert($product_variants);
+//                    $product_variants = [];
+//                    foreach ($request->variant as $variant) {
+//                        $product_variants[] = [
+//                            'product_id' => $product->id,
+//                            'cart_item_id' => $cart->id,
+//                            'option_id' => $variant['option_id'],
+//                            'option_name' => $variant['option_name'],
+//                            'option_value_id' => $variant['option_value_id'],
+//                            'option_value_name' => $variant['option_value_name']
+//                        ];
+//                    }
+//                    CartItemVariant::insert($product_variants);
                 }
 
             });

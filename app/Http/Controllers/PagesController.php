@@ -16,10 +16,7 @@ use Artesaos\SEOTools\Facades\TwitterCard;
 
 class PagesController extends BaseController
 {
-    private $description = "Shop online for your fashion items, computer, phone and accessories, household appliances and electronics? Health and Beauty, Baby products and lots more. Quality Guaranteed.";
-    private $title = "M&M Store online shopping made easy in Nigeria";
-    private $keywords = "'Polo Tops', 'Men\’s Shirts', 'Female Shirts', 'Jeans', 'Chinos', 'Track Suits', 'Joggers', 'Shorts', 'T-Shirts', 'Mobile Phones Accessories', 'Mobile phone chargers', 'Power Banks'. 'TVs', 'Home Theater'";
-    public function __construct()
+     public function __construct()
     {
         $this->middleware('web');
     }
@@ -56,16 +53,16 @@ class PagesController extends BaseController
             $now = Carbon::now();
             $title = $taxon->name;
 
-            SEOMeta::setTitle($taxon->name . ' category | ' .$this->title . ' | '.config('app.name', ''), false);
-            SEOMeta::setDescription('Buy original ' .$taxon->name.','.  $this->description .' | '.config('app.name', ''));
+            SEOMeta::setTitle($taxon->name . ' category | ' .config('app.name', ''), false);
+            SEOMeta::setDescription('Buy original ' .$taxon->name.','.  config('app.description') .' | '.config('app.name', ''));
             SEOMeta::setCanonical(config('app.url').$taxon_slug);
-            SEOMeta::addKeyword([$taxon->name. ', '.$this->keywords]);
+            SEOMeta::addKeyword([$taxon->name. ', '.config('app.keywords')]);
 
             //Open graph
-            OpenGraph::setTitle($taxon->name .'M&M Store online shopping made easy in Nigeria | '.config('app.name', ''));
-            OpenGraph::setDescription('Buy original ' .$taxon->name.','.$this->description .' | '.config('app.name', ''));
-            OpenGraph::setUrl('http://mandmonlinestore.com/'.$taxon_slug);
-            OpenGraph::addImage(asset('assets/images/big-stan-logo.png'));
+            OpenGraph::setTitle($taxon->name .' | '.config('app.name', ''));
+            OpenGraph::setDescription('Buy original ' .$taxon->name.','.config('app.description') .' | '.config('app.name', ''));
+            OpenGraph::setUrl(config('app.url').$taxon_slug);
+            OpenGraph::addImage(config('app.logo'));
 
             return view('pages.front.products_by_category', compact('products', 'now', 'taxon_slug', 'title', 'categories'));
         }else{
@@ -83,16 +80,16 @@ class PagesController extends BaseController
         $ratings = $product->ratingPercent();
 
 
-        SEOMeta::setTitle($title . ' | '.$this->title . ' | '.config('app.name', ''), false);
-        SEOMeta::setDescription('Buy original ' .$title.',' .$this->description .' | '.config('app.name', ''));
-        SEOMeta::setCanonical('https://mandmonlinestore.com/'.$taxon_slug);
-        SEOMeta::addKeyword([$title. ' ' . $this->keywords]);
+        SEOMeta::setTitle($title . ' | '.config('app.name', ''), false);
+        SEOMeta::setDescription('Buy original ' .$title.',' .config('app.description') .' | '.config('app.name', ''));
+        SEOMeta::setCanonical(config('app.url').$taxon_slug);
+        SEOMeta::addKeyword([$title. ' ' . config('app.keywords')]);
 
         //Open graph
-        OpenGraph::setTitle($title . ' | '. $this->title . ' | '.config('app.name', ''));
-        OpenGraph::setDescription('Buy original ' .$title.','. $this->description .' .| '.config('app.name', ''));
-        OpenGraph::setUrl('http://mandmonlinestore.com/'.$taxon_slug);
-        OpenGraph::addImage(asset('assets/images/big-stan-logo.png'));
+        OpenGraph::setTitle($title . ' | '.config('app.name', ''));
+        OpenGraph::setDescription('Buy original ' .$title.','. config('app.description') .' .| '.config('app.name', ''));
+        OpenGraph::setUrl(config('app.url').$taxon_slug);
+        OpenGraph::addImage(config('app.logo'));
 
         return view('pages.front.single_product', compact('product', 'tags', 'ratings', 'title'));
     }
@@ -114,16 +111,16 @@ class PagesController extends BaseController
             $now = Carbon::now();
             $title = $brand->name;
 
-            SEOMeta::setTitle($title . ' | ' .$this->title . ' | '.config('app.name', ''), false);
-            SEOMeta::setDescription('Buy original ' .$title.',' .$this->description .' | '.config('app.name', ''));
-            SEOMeta::setCanonical('https://mandmonlinestore.com/'.$slug);
-            SEOMeta::addKeyword([$title.' ' . $this->keywords]);
+            SEOMeta::setTitle($title . ' | '.config('app.name', ''), false);
+            SEOMeta::setDescription('Buy original ' .$title.',' .config('app.description') .' | '.config('app.name', ''));
+            SEOMeta::setCanonical(config('app.url').$slug);
+            SEOMeta::addKeyword([$title.' ' . config('app.keywords')]);
 
             //Open graph
-            OpenGraph::setTitle($title. ' | ' .$this->title . ' | '.config('app.name', ''));
-            OpenGraph::setDescription('Buy original ' .$title.','.  $this->description .' | '.config('app.name', ''));
-            OpenGraph::setUrl('http://mandmonlinestore.com/'.$slug);
-            OpenGraph::addImage(asset('assets/images/big-stan-logo.png'));
+            OpenGraph::setTitle($title. ' | ' .config('app.name', ''));
+            OpenGraph::setDescription('Buy original ' .$title.','.  config('app.description') .' | '.config('app.name', ''));
+            OpenGraph::setUrl(config('app.url').$slug);
+            OpenGraph::addImage(config('app.logo'));
 
             return view('pages.front.products_by_brand', compact('products', 'now', 'taxon_slug', 'title', 'categories'));
         }else{
