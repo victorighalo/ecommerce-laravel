@@ -1545,7 +1545,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	margin-top: 0px;
 	top: 0px;
 	left: 0px;
-    max-height: 150px;
+    max-height: 150px !important;
 	position: relative;
 	-webkit-transition: 0s ease-in-out;
 	-moz-transition: 0s ease-in-out;
