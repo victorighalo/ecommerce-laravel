@@ -44,7 +44,7 @@
                                             <a class="i-tittle" href="{{route('getProductDetails', [
                                             'taxon_slug' => $product->taxons->first()->slug,
                                             'product_slug' => $product->slug
-                                            ])}}">{{$product->title()}}</a>
+                                            ])}}"> {{substr($product->title(),0,20)}}</a>
                                             <span class="price"><small>&#8358;</small> {{number_format($product->price, '0', '.', ',')}}</span> <a class="deta animated fadeInRight"  href="{{route('getProductDetails', [
                                             'taxon_slug' => $product->taxons->first()->slug,
                                             'product_slug' => $product->slug
@@ -54,9 +54,11 @@
                                             <div class="item-name">   <a class="i-tittle" href="{{route('getProductDetails', [
                                             'taxon_slug' => $product->taxons->first()->slug,
                                             'product_slug' => $product->slug
-                                            ])}}">{{$product->title()}}</a> <span class="price"><small>&#8358;</small> {{number_format($product->price, '0', '.', ',')}}</span>
+                                            ])}}">
+                                                   {{substr($product->title(),0,20)}}
+                                                </a> <span class="price"><small>&#8358;</small> {{number_format($product->price, '0', '.', ',')}}</span>
 
-                                                <p>{{$product->excerpt}}</p>
+                                                <p>{{substr($product->excerpt,0,20)}}</p>
 
                                             </div>
                                         </div>
