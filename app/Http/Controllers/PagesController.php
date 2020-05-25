@@ -26,16 +26,16 @@ class PagesController extends BaseController
 
     public function home()
     {
-        SEOMeta::setTitle($this->title . ' | '.config('app.name', ''), false);
-        SEOMeta::setDescription($this->description. ' | '.config('app.name', ''));
-        SEOMeta::setCanonical('https://mandmonlinestore.com');
-        SEOMeta::addKeyword([$this->keywords]);
+        SEOMeta::setTitle(config('app.name', ''), false);
+        SEOMeta::setDescription(config('app.description'). ' | '.config('app.name', ''));
+        SEOMeta::setCanonical(config('app.url'));
+        SEOMeta::addKeyword(config('app.keywords'));
 
         //Open graph
-        OpenGraph::setTitle($this->title . ' | '.config('app.name', ''));
-        OpenGraph::setDescription($this->description .' | '.config('app.name', ''));
-        OpenGraph::setUrl('http://mandmonlinestore.com');
-        OpenGraph::addImage(asset('assets/images/big-stan-logo.png'));
+        OpenGraph::setTitle(config('app.name', ''));
+        OpenGraph::setDescription(config('app.description') .' | '.config('app.name', ''));
+        OpenGraph::setUrl(config('app.url'));
+        OpenGraph::addImage(config('app.logo'));
 
         $categories = Taxon::all();
         $brands = Taxonomy::all();
@@ -58,7 +58,7 @@ class PagesController extends BaseController
 
             SEOMeta::setTitle($taxon->name . ' category | ' .$this->title . ' | '.config('app.name', ''), false);
             SEOMeta::setDescription('Buy original ' .$taxon->name.','.  $this->description .' | '.config('app.name', ''));
-            SEOMeta::setCanonical('https://mandmonlinestore.com/'.$taxon_slug);
+            SEOMeta::setCanonical(config('app.url').$taxon_slug);
             SEOMeta::addKeyword([$taxon->name. ', '.$this->keywords]);
 
             //Open graph
