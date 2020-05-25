@@ -1,3 +1,10 @@
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+
 <script>
     var table = null;
     $(document).ready(function () {
@@ -177,7 +184,7 @@
                 }
             })
         });
-        
+
         $("#toggle_password").on('click', function () {
             var input = $("form[id='update_user_password']").find("input[name='password']");
             if (input.attr("type") == "password") {
