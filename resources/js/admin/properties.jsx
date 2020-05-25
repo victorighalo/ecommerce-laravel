@@ -88,7 +88,7 @@ const ProductProperties = ()=>{
                             {
                                 item.values ? item.values.length ?
                                     item.values.map( (property_value, property_value_index) =>
-                                    <div className="d-inline font-weight-bold shadow-sm bg-gray-200 p-3 m-2 rounded cursor-pointer" key={property_value_index}>
+                                    <div className="d-inline-block font-weight-bold shadow-sm bg-gray-200 p-3 m-2 rounded cursor-pointer" key={property_value_index}>
                                         <span onClick={()=>editPropertyValue(property_value.id,property_value.value)}>{property_value.value}</span>
                                         {property_value.title.length > 1 ?
                                             <span className='bg-gray-100 p-2 m-2 rounded' onClick={()=>editPropertyTitle(property_value.id,property_value.title)}>{property_value.title}</span> : null

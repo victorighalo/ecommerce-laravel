@@ -46,7 +46,7 @@
                                             @if($subcategory->children)
                                                 <div class="col-12 pb-3">
                                                     @foreach($subcategory->children as $child_category)
-                                                        <div class="d-inline font-weight-bold shadow-sm bg-gray-200 p-2 m-2 rounded">
+                                                        <div class="d-inline-block font-weight-bold shadow-sm bg-gray-200 p-2 m-2 rounded">
                                                             <span class="edit_subcategory pr-2" id="{{$child_category->id}}" data-category_id="{{$category->id}}">{{$child_category->name}}</span>
                                                             <span class="delete_subcategory pr-2" id="{{$child_category->id}}"><i class="fas fa-trash"></i></span>
                                                         </div>

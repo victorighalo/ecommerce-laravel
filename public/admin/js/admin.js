@@ -61608,7 +61608,7 @@ var ProductProperties = function ProductProperties() {
       className: "col-12 pb-1"
     }, item.values ? item.values.length ? item.values.map(function (property_value, property_value_index) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "d-inline font-weight-bold shadow-sm bg-gray-200 p-3 m-2 rounded cursor-pointer",
+        className: "d-inline-block font-weight-bold shadow-sm bg-gray-200 p-3 m-2 rounded cursor-pointer",
         key: property_value_index
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         onClick: function onClick() {
