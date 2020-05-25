@@ -80,7 +80,7 @@
                 <div class="col-md-6">
                     <p>©  2019 - {{date('Y')}} {{$app_settings->store_name}} All right reserved. <a href="">{{$app_settings->store_name}}</a></p>
                 </div>
-                <div class="col-md-6 text-right"> <img src="images/card-icon.png" alt="" > </div>
+{{--                <div class="col-md-6 text-right"> <img src="images/card-icon.png" alt="" > </div>--}}
             </div>
         </div>
     </div>

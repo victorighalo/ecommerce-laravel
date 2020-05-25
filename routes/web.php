@@ -45,6 +45,7 @@ Route::post('/cart/destroy/{cart_item?}', 'CartController@destroy')->name('destr
 
 //Common
 Route::post('/load_cities', 'CommonController@loadCities')->name('load_cities');
+Route::post('/product/request', 'CommonController@productRequest')->name('send_product_request');
 Route::post('/add_address', 'CommonController@addAddress')->name('add_address');
 Route::post('get_delivery_cost', 'DeliverySettingsController@getDeliveryCost')->name('get_delivery_cost');
 

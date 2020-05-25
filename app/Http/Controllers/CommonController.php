@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\ProfileUpdateRequest;
 
+use App\Mail\AmazonSes;
+use App\Mail\ProductRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class CommonController extends Controller
 {
@@ -27,9 +30,6 @@ class CommonController extends Controller
         return view('pages.front.about');
     }
 
-    public function sendEmail(){
-
-    }
 
     public function updateProfile(ProfileUpdateRequest $request){
         $validated = $request->validated();
@@ -42,5 +42,10 @@ class CommonController extends Controller
             'password' => bcrypt(request('password'))
         ]);
         return back()->with('status', 'Password updated');
+    }
+
+    public function productRequest(Request $request){
+        $status = Mail::to($request->input('email'))->send(new ProductRequest($request->input('product'),$request->input('message'),$request->input('email')));
+        return response()->json(['message'=>'Message sent','status'=>$status]);
     }
 }

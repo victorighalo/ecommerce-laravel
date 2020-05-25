@@ -29,6 +29,7 @@
     <link href="{{asset('assets/css/slick.css')}}" rel="stylesheet">
 
     <link href="{{asset('assets/font/flaticon.css')}}" rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 
     <!-- JavaScripts -->
     <script src="{{ asset('assets/js/modernizr.js')}}"></script>
@@ -187,6 +188,46 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+    $("form[name='product_request']").on('submit', function (e) {
+        e.preventDefault();
+        var objectRef = $(this);
+        // $(this).find('button').attr('disabled', true);
+        // $(this).find('input').attr('disabled', true);
+        $(this).find('button').text('Sending...');
+        $.ajax({
+            url:"{!! route('send_product_request') !!}",
+            data:$(this).serializeArray(),
+            method:'POST'
+        })
+            .done(function (res) {
+                objectRef.find('button').attr('disabled', false);
+                objectRef.find('input').attr('disabled', false);
+                objectRef.find('textarea').attr('disabled', false);
+                objectRef.find('button').text('Send');
+                Snackbar.show({
+                    showAction: true,
+                    text: 'Message sent. We will get in touch ASAP.',
+                    actionTextColor: '#ffffff',
+                    backgroundColor:"#68d391",
+                    actionText: 'Close!',
+                    pos: 'top-right'
+                });
+            })
+            .fail(function (err) {
+                objectRef.find('button').attr('disabled', false);
+                objectRef.find('input').attr('disabled', false);
+                objectRef.find('textarea').attr('disabled', false);
+                objectRef.find('button').text('Send');
+                Snackbar.show({
+                    showAction: true,
+                    text: 'Error sending message. Try again.',
+                    actionTextColor: '#ffffff',
+                    backgroundColor:"#FE970D",
+                    actionText: 'Close!',
+                    pos: 'top-right'
+                });
+            })
+    })
 </script>
 @stack('script')
 </html>

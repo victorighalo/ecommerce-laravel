@@ -15,9 +15,9 @@ return [
 
     'name' => env('APP_NAME', 'QuikShop'),
     'description' => env('APP_DESC', ''),
-    'url' => env('APP_URL', ''),
     'keywords' => env('APP_KEYWORDS', ''),
     'logo' => env('APP_LOGO', ''),
+    'mail_sender_address' => env('MAIL_FROM_ADDRESS', ''),
 
     /*
     |--------------------------------------------------------------------------
@@ -75,7 +75,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'UTC+1',
 
     /*
     |--------------------------------------------------------------------------

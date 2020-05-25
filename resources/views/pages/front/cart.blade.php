@@ -165,7 +165,7 @@
                             showAction: true,
                             text: data,
                             actionTextColor: '#ffffff',
-                            backgroundColor:"rgb(65,98,187)",
+                            backgroundColor:"#68d391",
                             actionText: 'Close!',
                             pos: 'top-right'
                         });

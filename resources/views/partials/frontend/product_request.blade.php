@@ -15,11 +15,12 @@
                 <div class="col-lg-6">
                     <h3>Request a product</h3>
                     <span>You cant find what you're looking for? Send us a request and we'll reach out to you.</span>
-                    <form>
-                        <input type="email" placeholder="Enter your email address" required>
-                        <input type="text" placeholder="Product name" required>
+                    <form method="POST" action="{{route('send_product_request')}}" name="product_request">
+                        @csrf
+                        <input type="email" placeholder="Enter your email address" name="email" required value="{{ old('email') }}">
+                        <input type="text" placeholder="Product name" required name="product" value="{{ old('product') }}">
                         <label for="" style="color: #fff; margin-top: 10px;">Description</label>
-                        <textarea required name="message" id="" rows="10" style="width:100%; "></textarea>
+                        <textarea required name="message" id="" rows="10" style="width:100%; padding: 20px" value="{{ old('message') }}"></textarea>
                         <button type="submit" class="btn">Send</button>
                     </form>
                 </div>
