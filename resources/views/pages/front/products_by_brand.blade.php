@@ -100,7 +100,7 @@
                 </div>
             </div>
         </section>
-        @include('partials.frontend._search')
+{{--        @include('partials.frontend._search')--}}
         {{--Product request--}}
         @include('partials.frontend.product_request')
     </div>
