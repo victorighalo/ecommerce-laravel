@@ -7,7 +7,7 @@
 {{--                                        <span class="edit_category pr-2" id="{{$category->id}}"><i class="fas fa-edit"></i></span>--}}
                                         <span class="edit_category_image pr-2" id="{{$category->id}}" ><i class="fas fa-image" aria-hidden="true"></i></span>
                                     </div>
-                                    <img src="{{asset('thumbnail/'.$category->image)}}" alt="" style="width: 80px;">
+                                    <img src="{{asset('thumbnail/'.$category->image)}}" alt="" style="width: 80px;padding: 10px">
                                 </section>
                                 <section>
                                     <div class="row">
