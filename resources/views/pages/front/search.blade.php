@@ -60,7 +60,7 @@
                                             'product_slug' => $product->slug
                                             ])}}">{{$product->title()}}</a> <span class="price"><small>&#8358;</small> {{number_format($product->price, '0', '.', ',')}}</span>
 
-                                                        <p>{{str_replace("\r\n", "", $product->excerpt)}}</p>
+                                                        <p>{{substr($product->excerpt,0,20)}}</p>
 
                                                     </div>
                                                 </div>
