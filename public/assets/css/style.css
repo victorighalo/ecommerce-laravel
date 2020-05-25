@@ -1545,6 +1545,7 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	margin-top: 0px;
 	top: 0px;
 	left: 0px;
+    max-height: 150px;
 	position: relative;
 	-webkit-transition: 0s ease-in-out;
 	-moz-transition: 0s ease-in-out;
@@ -1556,10 +1557,12 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	left: -100%;
 	opacity: 0 !important;
 	position: relative;
+    max-height: 150px;
 }
 .arrival-block .item .img-2 {
 	position: absolute;
 	left: 100%;
+    max-height: 150px;
 }
 .arrival-block .img-ser {
 	position: relative;
