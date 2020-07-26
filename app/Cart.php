@@ -20,7 +20,7 @@ class Cart extends BaseCart implements CartContract
 
 
         try {
-            $item = $this->items()->ofCart($this)->byProduct($product)->first();
+//            $item = $this->items()->ofCart($this)->byProduct($product)->first();
 
             $item = $this->items()->create(
                 array_merge(
@@ -39,7 +39,7 @@ class Cart extends BaseCart implements CartContract
         }
     }
 
-    private function getDefaultCartItemAttributes(Buyable $product, $qty)
+    public function getDefaultCartItemAttributes(Buyable $product, $qty)
     {
         return [
             'product_type' => $product->morphTypeName(),
@@ -49,7 +49,7 @@ class Cart extends BaseCart implements CartContract
         ];
     }
 
-    private function getExtraProductMergeAttributes(Buyable $product)
+    public function getExtraProductMergeAttributes(Buyable $product)
     {
         $result = [];
         $cfg    = config(self::EXTRA_PRODUCT_MERGE_ATTRIBUTES_CONFIG_KEY, []);

@@ -10,8 +10,9 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.react('resources/js/app.js', 'public/js')
-    .react('resources/js/admin.js', 'public/admin/js')
+mix.js('resources/js/app.js', 'public/js')
+    .js('resources/js/admin.js', 'public/admin/js')
+    .react('resources/js/react.components.js', 'public/admin/js/react.components.js')
     .sass('resources/sass/app.scss', 'public/admin/css/main')
     .options({
         processCssUrls: false

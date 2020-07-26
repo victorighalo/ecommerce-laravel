@@ -42,6 +42,7 @@
 <script src="{{ asset('admin/js/manifest.js') }}"></script>
 <script src="{{ asset('admin/js/vendor.js') }}"></script>
 <script src="{{ asset('admin/js/admin.js') }}" ></script>
+<script src="{{ asset('admin/js/react.components.js') }}" ></script>
 <script src="{{ asset('admin/js/all.js') }}" ></script>
 <script src="{{ asset('admin/js/quill.min.js') }}" ></script>
 <script src="{{ asset('plugins/jquery.blockUI.js') }}" ></script>

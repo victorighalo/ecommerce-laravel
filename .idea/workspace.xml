@@ -2,9 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eb2349c8-f2b2-4acb-b3f6-e1ac82b2095e" name="Default" comment="updated webhook logs">
+      <change afterPath="$PROJECT_DIR$/resources/js/react.components.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ecommerce-laravel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ecommerce-laravel.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Cart.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CommonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CommonController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/admin/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/admin/css/custom.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/admin/js/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/admin/js/admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/users/script.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/users/script.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -81,7 +96,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher" />
       <path value="$PROJECT_DIR$/vendor/symfony/routing" />
       <path value="$PROJECT_DIR$/vendor/symfony/finder" />
-      <path value="$PROJECT_DIR$/vendor/symfony/contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/http-kernel" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php72" />
       <path value="$PROJECT_DIR$/vendor/symfony/var-dumper" />
@@ -181,6 +195,23 @@
       <path value="$PROJECT_DIR$/vendor/vanilo_old/contracts" />
       <path value="$PROJECT_DIR$/vendor/vanilo_old/framework" />
       <path value="$PROJECT_DIR$/vendor/vanilo_old/properties" />
+      <path value="$PROJECT_DIR$/vendor/kylekatarnls/update-helper" />
+      <path value="$PROJECT_DIR$/vendor/myclabs/php-enum" />
+      <path value="$PROJECT_DIR$/vendor/nexmo/client-core" />
+      <path value="$PROJECT_DIR$/vendor/phpmailer/phpmailer" />
+      <path value="$PROJECT_DIR$/vendor/facade/ignition-contracts" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/vendor/vanilo/channel" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/vendor/symfony/mime" />
+      <path value="$PROJECT_DIR$/vendor/konekt/laravel-migration-compatibility" />
+      <path value="$PROJECT_DIR$/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/error-handler" />
     </include_path>
   </component>
   <component name="ProjectId" id="1PVwXQ20eSESyP7FYqX1V7H5pXB" />
@@ -262,10 +293,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.watch" />
-        <item itemvalue="npm.dev" />
         <item itemvalue="npm.watch-poll" />
+        <item itemvalue="npm.watch" />
         <item itemvalue="npm.development" />
+        <item itemvalue="npm.dev" />
         <item itemvalue="npm.watch" />
       </list>
     </recent_temporary>
@@ -407,6 +438,9 @@
       <workItem from="1589555729135" duration="673000" />
       <workItem from="1589802171661" duration="1442000" />
       <workItem from="1590327243494" duration="37146000" />
+      <workItem from="1592032277536" duration="149000" />
+      <workItem from="1592494151558" duration="22000" />
+      <workItem from="1595745844056" duration="2275000" />
     </task>
     <task id="LOCAL-00030" summary="Added webhook support">
       <created>1566650726909</created>

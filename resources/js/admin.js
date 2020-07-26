@@ -1,8 +1,8 @@
-window.React = require('react');
-window.ReactDom = require('react-dom');
 require('lodash');
 require('./bootstrap');
-require('./admin/properties')
+require('./jquery.dataTables');
+require('./pnotify.custom.min');
+
 
 
 window.disableItem = function (button, action){
