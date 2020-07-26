@@ -441,8 +441,9 @@
 
             var product_options = {!! $product->variants() !!}
             var product_variants_raw = {!! $variants_raw !!}
+            var product_is_variant = {!! $product->is_variant !!}
 
-            if({!! $product->is_variant !!}){
+            if(product_is_variant){
                 $.each(product_variants_raw, function (index, option) {
                     var variant_props = [];
                     //Get properties
