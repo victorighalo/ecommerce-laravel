@@ -439,9 +439,9 @@
                 //Load product variants
             (function(){
 
-            var product_options = {!! $product->variants() !!}
+            {{--var product_options = {!! $product->variants() !!}--}}
             var product_variants_raw = {!! $variants_raw !!}
-            var product_is_variant = {!! $product->is_variant !!}
+            var product_is_variant = {!! isset($product->is_variant) ? $product->is_variant ? "true" : "false" : "false" !!}
 
             if(product_is_variant){
                 $.each(product_variants_raw, function (index, option) {
