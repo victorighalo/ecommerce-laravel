@@ -246,36 +246,55 @@ class PaymentController extends Controller
     public function successReport(Request $request){
         if($request->has('reference')) {
             $ref = $request->get('reference');
+            //verify with payment gateway
             $verifyTrans = $this->payStackProxy->verifyTransaction($ref);
+
             if ($verifyTrans) {
-                $trans_status_complete = new TransactionStatus('complete');
-                if(Transactions::where('reference', $ref)->where('status', $trans_status_complete->value())->exists()){
-                    $order = Order::where('number', $ref)->first();
-                    $products = OrderItem::where('order_id', $order->id)
-                        ->join('products', 'order_items.product_id', 'products.id')
-                        ->get();
-                    $trans = Transactions::where('reference', $ref)->first();
-                    Order::where('number', $ref)->update(
-                        ['status' => OrderStatus::COMPLETED]
-                    );
+                $cart_products = [];
+                foreach (Cart::getItems() as $item){
+                    if (array_key_exists($item->product_id,$cart_products)){
+                        $cart_products[$item->product_id] = $cart_products[$item->product_id] + $item->quantity;
+                    }else{
+                      $cart_products[$item->product_id] = $item->quantity;
+                    }
 
-                    SEOMeta::setTitle('Successful Transaction | '.config('app.name', ''), false);
-
-                    return view('payment.success', compact('trans', 'ref', 'products'));
                 }
-                if(!$verifyTrans->status){
-                    $message = $verifyTrans->message;
+                dd($cart_products);
+//                $trans_status_complete = new TransactionStatus('complete');
+//                if(Transactions::where('reference', $ref)->where('status', $trans_status_complete->value())->exists()){
+//                    $order = Order::where('number', $ref)->first();
+//                    $products = OrderItem::where('order_id', $order->id)
+//                        ->join('products', 'order_items.product_id', 'products.id')
+//                        ->get();
+//                    $trans = Transactions::where('reference', $ref)->first();
+//                    Order::where('number', $ref)->update(
+//                        ['status' => OrderStatus::COMPLETED]
+//                    );
+//
+//                    SEOMeta::setTitle('Successful Transaction | '.config('app.name', ''), false);
+//
+//                    return view('payment.success', compact('trans', 'ref', 'products'));
+//                }
+                if(!isset($verifyTrans->status) || !isset($verifyTrans->message) ){
+
+                    $message = "Unable to verify payment. Please contact us immediately if you so it can be resolved";
                     $trans_status = new TransactionStatus('failed');
                     Transactions::where('reference', $ref)->update(
                         ['status' => $trans_status->value()]
                     );
                     return view('payment.unsuccessful', compact('message'));
                 }elseif ($verifyTrans->data->status == 'success') {
-                    $order = Order::where('number', $ref)->first();
+
+//                    $order = Order::where('number', $ref)->first();
 //                    $products = OrderItem::where('order_id', $order->id)
 //                        ->join('products', 'order_items.product_id', 'products.id')
 //                        ->get();
                     $trans = Transactions::where('reference', $ref)->first();
+                    if (!$trans){
+                        return view('payment.error');
+                    }
+                    SEOMeta::setTitle('Successful Transaction | '.config('app.name', ''), false);
+
                     Order::where('number', $ref)->update(
                         ['status' => OrderStatus::COMPLETED]
                     );
@@ -285,7 +304,6 @@ class PaymentController extends Controller
                     Transactions::where('reference', $ref)->update(
                         ['status' => $trans_status->value()]
                     );
-                    SEOMeta::setTitle('Successful Transaction | '.config('app.name', ''), false);
 
                     $cart_with_variants = [];
 
@@ -298,20 +316,31 @@ class PaymentController extends Controller
                         ];
                     }
 
-                    Mail::to($trans->user_email)->send(new AmazonSes($ref,$trans,$cart_with_variants));
-                    Cart::destroy();
+//                    Mail::to($trans->user_email)->send(new AmazonSes($ref,$trans,$cart_with_variants));
+//                    Cart::destroy();
 
                     $cart_with_variants = collect($cart_with_variants);
                     return view('payment.success', compact('trans', 'ref', 'cart_with_variants'));
+                }else{
+                    $message = $verifyTrans->data->gateway_response;
+                    $trans_status = new TransactionStatus('failed');
+                    Transactions::where('reference', $ref)->update(
+                        ['status' => $trans_status->value()]
+                    );
+                    return view('payment.unsuccessful', compact('message'));
                 }
             }
-            $trans_status = new TransactionStatus('failed');
 
+
+            //Verification failed with payment gateway
+            $trans_status = new TransactionStatus('incomplete');
             Transactions::where('reference', $ref)->update(
                 ['status' => $trans_status->value()]
             );
             return view('payment.error');
         }
+
+        //Wrong url parameters
         $trans_status = new TransactionStatus('failed');
 
         Transactions::where('reference', $request->get('trxref'))->update(

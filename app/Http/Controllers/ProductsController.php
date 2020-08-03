@@ -276,12 +276,10 @@ class ProductsController extends BaseController
         }
     }
 
-    public function getProductsData()
+    public function getProductsJson()
     {
 
-        $products = \App\Product::all();
-
-        return Datatables::of($products)->editColumn('created_at', function ($data) {
+        return Datatables::of(\App\Product::all())->editColumn('created_at', function ($data) {
             return $data->created_at ? with(new Carbon($data->created_at))->toDayDateTimeString() : '';
         })
             ->addColumn('image', function ($subdata) {

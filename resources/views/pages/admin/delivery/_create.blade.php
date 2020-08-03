@@ -35,7 +35,7 @@
 
                                     <div class="col-sm-4">
                                         <label for="role">Cost</label>
-                                        <input type="number" name="cost" class="form-control">
+                                        <input type="number" name="cost" min="0" class="form-control">
                                         <span class="invalid-feedback errorshow" role="alert">
                                                     </span>
                                     </div>

@@ -19,33 +19,6 @@
     <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
     <script>
-        var toolbarOptions = [
-            ['link', 'image'],
-            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-            ['blockquote', 'code-block'],
-            [{'list': 'ordered'}, {'list': 'bullet'}],
-            [{'script': 'sub'}, {'script': 'super'}],      // superscript/subscript
-            [{'indent': '-1'}, {'indent': '+1'}],          // outdent/indent
-
-            [{'header': [1, 2, 3, 4, 5, 6, false]}],
-
-            [{'color': []}, {'background': []}],          // dropdown with defaults from theme
-            [{'font': []}],
-            [{'align': []}],
-
-            ['clean']
-        ];
-        var options = {
-            placeholder: 'Product overview...',
-            readOnly: false,
-            theme: 'snow',
-            modules: {
-                toolbar: toolbarOptions
-            }
-        };
-        var description_container = $('#editor').get(0);
-        var quill = new Quill(description_container, options);
-
         var bsmodal = $('#images-modal');
         var mediaUrl = "{{asset('')}}/";
         var imageBag = [];
@@ -64,8 +37,9 @@
                 {data: 'state', name: 'state'},
                 {data: 'price', name: 'price'},
                 {data: 'delivery_price', name: 'delivery_price'},
-                {data: 'taxons', name: 'meta_keywords'},
-                {data: 'meta_keywords', name: 'taxons'},
+                {data: 'stock', name: 'stock'},
+                {data: 'taxons', name: 'taxons'},
+                {data: 'meta_keywords', name: 'meta_keywords'},
                 {data: 'created_at', name: 'created_at'},
                 // { data: 'image', name: 'image' },
                 {data: 'action', name: 'action', orderable: false, searchable: false}

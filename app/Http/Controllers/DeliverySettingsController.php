@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\DeliveryCharge;
+use App\Http\Requests\NewDeliveryCostRequest;
+use App\Http\Requests\UpdateDeliveryCostRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
@@ -14,16 +16,16 @@ class DeliverySettingsController extends Controller
         return view('pages.admin.delivery.index', compact('states'));
     }
 
-    public function store(Request $request){
+    public function store(NewDeliveryCostRequest $request){
         try{
             DeliveryCharge::updateOrCreate($request->except('_token'));
-            return response()->json(['message' => 'Cost added']);
+            return response()->json(['message' => 'Cost saved']);
         }catch (\Exception $e){
-            return response()->json(['message' => 'Failed to add cost', 'reason' => $e->getMessage()], 500);
+            return response()->json(['message' => 'Failed to save cost', 'reason' => $e->getMessage()], 500);
         }
     }
 
-    public function update(Request $request){
+    public function update(UpdateDeliveryCostRequest $request){
         try{
             DeliveryCharge::where('id',$request->id)->update(['cost' => $request->value]);
             return response()->json(['message' => 'Cost updated']);

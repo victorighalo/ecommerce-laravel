@@ -9,8 +9,13 @@
     </div>
 @endsection
 
+@push('style')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+@endpush
+
 @push('script')
     <script src="{{asset('plugins/bootstrap-tagsinput.min.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 {{--    <script src="{{asset('js/angular.min.js')}}"></script>--}}
 
     <script>
@@ -103,7 +108,7 @@
         }
 
         $(document).ready(function () {
-
+            $('#taxon_slug').select2();
             $(".add-variant").on('click', function () {
                 var variant_props = [],
                 empty = true;

@@ -16,7 +16,7 @@
                     </div>
                     <div class="col-4 text-center p-4">
                         <p>Sorry! We were unable to complete your transaction.</p>
-                        <p>If you have a complaint. Kindly send us a message <a href="{{url('contact')}}">here</a> and we will respond appropriately</p>
+                        <p>If you were debited without a refund. Kindly send us a message <a href="{{url('contact')}}" style="color: #1d78cb">here</a> and we will respond appropriately</p>
                     </div>
 
                 </div>

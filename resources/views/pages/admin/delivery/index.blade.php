@@ -7,7 +7,7 @@
                 <div class="col-12 grid-margin">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title mb-4">Delivery cost</h5>
+                            <h5 class="card-title mb-4">Delivery cost (State and LGA)</h5>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="table">
                                     <thead>

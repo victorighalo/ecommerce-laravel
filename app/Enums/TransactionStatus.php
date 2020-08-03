@@ -9,6 +9,7 @@ class TransactionStatus extends Enum
     const PENDING     = 'pending';
     const IN_PROGRESS = 'in_progress';
     const COMPLETE    = 'complete';
+    const INCOMPLETE    = 'incomplete';
     const FAILED      = 'failed';
-    const PAY_DELIVERY      = 'pay_on_delivery';
+    const PAY_DELIVERY  = 'pay_on_delivery';
 }
