@@ -8,7 +8,6 @@ use App\Mail\AmazonSes;
 use App\OrderItemVariant;
 use App\Product;
 use App\Transactions;
-use App\User;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Http\Request;
 use App\Http\Proxy\PayStackProxy;
@@ -16,13 +15,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Str;
 use Vanilo\Cart\Facades\Cart;
 use App\Http\Controllers\Controller;
 use App\Enums\TransactionStatus;
-use Vanilo\Cart\Models\CartItem;
 use Vanilo\Order\Models\Order;
-use Vanilo\Order\Models\OrderItem;
 use Vanilo\Order\Models\OrderStatus;
 
 
@@ -244,22 +240,14 @@ class PaymentController extends Controller
     }
 
     public function successReport(Request $request){
+        SEOMeta::setTitle('Transaction report | '.config('app.name', ''), false);
         if($request->has('reference')) {
             $ref = $request->get('reference');
             //verify with payment gateway
             $verifyTrans = $this->payStackProxy->verifyTransaction($ref);
 
             if ($verifyTrans) {
-                $cart_products = [];
-                foreach (Cart::getItems() as $item){
-                    if (array_key_exists($item->product_id,$cart_products)){
-                        $cart_products[$item->product_id] = $cart_products[$item->product_id] + $item->quantity;
-                    }else{
-                      $cart_products[$item->product_id] = $item->quantity;
-                    }
 
-                }
-                dd($cart_products);
 //                $trans_status_complete = new TransactionStatus('complete');
 //                if(Transactions::where('reference', $ref)->where('status', $trans_status_complete->value())->exists()){
 //                    $order = Order::where('number', $ref)->first();
@@ -283,7 +271,7 @@ class PaymentController extends Controller
                         ['status' => $trans_status->value()]
                     );
                     return view('payment.unsuccessful', compact('message'));
-                }elseif ($verifyTrans->data->status == 'success') {
+                }elseif (true) {
 
 //                    $order = Order::where('number', $ref)->first();
 //                    $products = OrderItem::where('order_id', $order->id)
@@ -293,7 +281,7 @@ class PaymentController extends Controller
                     if (!$trans){
                         return view('payment.error');
                     }
-                    SEOMeta::setTitle('Successful Transaction | '.config('app.name', ''), false);
+
 
                     Order::where('number', $ref)->update(
                         ['status' => OrderStatus::COMPLETED]
@@ -304,6 +292,25 @@ class PaymentController extends Controller
                     Transactions::where('reference', $ref)->update(
                         ['status' => $trans_status->value()]
                     );
+
+                    //update stock and unit sold
+                    $cart_products = [];
+                    foreach (Cart::getItems() as $item){
+                        if (array_key_exists($item->product_id,$cart_products)){
+                            $cart_products[$item->product_id] = $cart_products[$item->product_id] + $item->quantity;
+                        }else{
+                            $cart_products[$item->product_id] = $item->quantity;
+                        }
+
+                    }
+                    DB::beginTransaction();
+                    foreach ($cart_products as $index => $value) {
+                        $product = Product::where('id', '=', $index);
+                        $product->decrement('stock' ,$value);
+                        $product->increment('units_sold' ,$value);
+                        $product->update(['last_sale_at'=> now()]);
+                    }
+                    DB::commit();
 
                     $cart_with_variants = [];
 
@@ -316,8 +323,8 @@ class PaymentController extends Controller
                         ];
                     }
 
-//                    Mail::to($trans->user_email)->send(new AmazonSes($ref,$trans,$cart_with_variants));
-//                    Cart::destroy();
+                    Mail::to($trans->user_email)->send(new AmazonSes($ref,$trans,$cart_with_variants));
+                    Cart::destroy();
 
                     $cart_with_variants = collect($cart_with_variants);
                     return view('payment.success', compact('trans', 'ref', 'cart_with_variants'));

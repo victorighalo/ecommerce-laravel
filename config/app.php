@@ -184,7 +184,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         willvincent\Rateable\RateableServiceProvider::class,
         Lecturize\Addresses\AddressesServiceProvider::class,
-        Webpatser\Countries\CountriesServiceProvider::class,
+//        Webpatser\Countries\CountriesServiceProvider::class,
 
     ],
 
@@ -235,6 +235,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Countries' => Webpatser\Countries\CountriesFacade::class,
+        'Cart' => Vanilo\Cart\Facades\Cart::class
 
     ],
 

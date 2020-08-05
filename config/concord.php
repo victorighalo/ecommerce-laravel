@@ -8,6 +8,6 @@ return [
                 'url' => '/admin/product'
             ]
         ],
-        Vanilo\Framework\Providers\ModuleServiceProvider::class
+        Vanilo\Cart\Providers\ModuleServiceProvider::class
     ]
 ];

@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->concord->registerModel(CartContract::class, \App\Cart::class);
 //        $this->app->concord->registerModel(TaxonContract::class, \App\Product::class);
         $this->app->concord->registerModel(TaxonContract::class, \App\Taxon::class);
-
+//
         \Illuminate\Database\Eloquent\Relations\Relation::morphMap([
             'product' => \App\Product::class
         ]);

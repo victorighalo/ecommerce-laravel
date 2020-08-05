@@ -8,7 +8,6 @@ use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Vanilo\Cart\Facades\Cart;
-use Vanilo\Cart\Contracts\CartItem;
 
 class CartController extends BaseController
 {
@@ -104,7 +103,7 @@ class CartController extends BaseController
         return CartItemVariant::where('cart_item_id', $cart_item_id)->where('product_id',$product_id)->exists();
     }
 
-    public function update(CartItem $cart_item, Request $request){
+    public function update($cart_item, Request $request){
         try {
 //            $cart_item = Cart::getItems()->where('id', 7);
 
@@ -116,7 +115,7 @@ class CartController extends BaseController
         }
     }
 
-    public function destroy(CartItem $cart_item)
+    public function destroy($cart_item)
     {
         Cart::removeItem($cart_item);
         return response()->json($cart_item->getBuyable()->getName(). ' has been removed from cart');

@@ -3,6 +3,9 @@
 namespace App;
 
 use App\Traits\HasPhotoTrait;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Vanilo\Category\Contracts\Taxonomy;
 use Vanilo\Contracts\Buyable;
 use Vanilo\Product\Models\Product as BaseProduct;
 use Vanilo\Properties\Traits\HasPropertyValues;
@@ -12,9 +15,9 @@ use willvincent\Rateable\Rateable;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Vanilo\Category\Models\TaxonProxy;
 use BrianFaust\Commentable\Traits\HasComments;
+use Vanilo\Category\Contracts\Taxon;
 
-
-class Product extends BaseProduct implements Buyable
+class Product extends BaseProduct implements Buyable, HasMedia, Taxon
 {
     use
         Rateable,
@@ -22,6 +25,7 @@ class Product extends BaseProduct implements Buyable
         BuyableImageSpatieV7,
         HasComments,
         HasPropertyValues,
+        HasMediaTrait,
         HasPhotoTrait;
 
     public function morphTypeName(): string
@@ -136,5 +140,49 @@ class Product extends BaseProduct implements Buyable
         $product_variant_option->variant_id = $variant_id;
         $product_variant_option->save();
 
+    }
+
+    public function setParent(Taxon $taxon)
+    {
+        // TODO: Implement setParent() method.
+    }
+
+    public function setTaxonomy(Taxonomy $taxonomy)
+    {
+        // TODO: Implement setTaxonomy() method.
+    }
+
+    public function isRootLevel(): bool
+    {
+        // TODO: Implement isRootLevel() method.
+    }
+
+    public function removeParent()
+    {
+        // TODO: Implement removeParent() method.
+    }
+
+    /**
+     * Returns the highest priority taxon from the same level
+     *
+     * @param bool $excludeSelf Whether or not to exclude the taxon itself from the neighbours
+     *
+     * @return Taxon|null
+     */
+    public function lastNeighbour(bool $excludeSelf = false)
+    {
+        // TODO: Implement lastNeighbour() method.
+    }
+
+    /**
+     * Returns the lowest priority taxon from the same level
+     *
+     * @param bool $excludeSelf Whether or not to exclude the taxon itself from the neighbours
+     *
+     * @return Taxon|null
+     */
+    public function firstNeighbour(bool $excludeSelf = false)
+    {
+        // TODO: Implement firstNeighbour() method.
     }
 }

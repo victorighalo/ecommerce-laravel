@@ -35,6 +35,8 @@ class PagesController extends BaseController
         OpenGraph::addImage(config('app.logo'));
 
         $categories = Taxon::all();
+
+        dd(($categories->first()->products->first()->state));
         $brands = Taxonomy::all();
         $sliders = \App\Slider::where('name','Homepage')->exists() && \App\Slider::where('name','Homepage')->first()->status == 1 ? \App\Slider::where('name','Homepage')->first()->photos : false;
 
