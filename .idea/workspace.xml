@@ -2,36 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eb2349c8-f2b2-4acb-b3f6-e1ac82b2095e" name="Default" comment="updated webhook logs">
-      <change beforePath="$PROJECT_DIR$/.idea/ecommerce-laravel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ecommerce-laravel.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PagesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PagesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Payment/PaymentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Payment/PaymentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Product.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/concord.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/concord.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrationsold/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrationsold/2014_10_12_100000_create_password_resets_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_02_19_155207_create_media_uploads_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrationsold/2019_02_19_155207_create_media_uploads_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_03_05_160038_create_comments_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrationsold/2019_03_05_160038_create_comments_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_03_06_110745_create_ratings_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrationsold/2019_03_06_110745_create_ratings_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_03_07_094945_create_delivery_addresses_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrationsold/2019_03_07_094945_create_delivery_addresses_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_03_07_095150_create_pickup_addresses_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrationsold/2019_03_07_095150_create_pickup_addresses_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_03_12_150340_create_app_settings_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrationsold/2019_03_12_150340_create_app_settings_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_03_29_152649_create_customers_orders_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrationsold/2019_03_29_152649_create_customers_orders_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_03_29_152923_create_customers_order_items_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrationsold/2019_03_29_152923_create_customers_order_items_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_04_06_120235_create_transactions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrationsold/2019_04_06_120235_create_transactions_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_04_08_215350_create_delivery_prices_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrationsold/2019_04_08_215350_create_delivery_prices_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_04_15_161441_create_photos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrationsold/2019_04_15_161441_create_photos_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_04_19_164956_create_jobs_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrationsold/2019_04_19_164956_create_jobs_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_04_22_132523_update_media_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrationsold/2019_04_22_132523_update_media_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_06_01_143748_update_taxonomies_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrationsold/2019_06_01_143748_update_taxonomies_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/frontend/home/_products_by_category.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/frontend/home/_products_by_category.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,7 +30,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="bsa-prod" />
+        <entry key="$PROJECT_DIR$" value="mmstore" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -210,6 +185,28 @@
       <path value="$PROJECT_DIR$/vendor/laravelcollective/html" />
       <path value="$PROJECT_DIR$/vendor/facade/ignition-contracts" />
       <path value="$PROJECT_DIR$/vendor/laracasts/flash" />
+      <path value="$PROJECT_DIR$/vendor/php-http/promise" />
+      <path value="$PROJECT_DIR$/vendor/php-http/httplug" />
+      <path value="$PROJECT_DIR$/vendor/php-http/guzzle6-adapter" />
+      <path value="$PROJECT_DIR$/vendor/lcobucci/jwt" />
+      <path value="$PROJECT_DIR$/vendor/laravel/slack-notification-channel" />
+      <path value="$PROJECT_DIR$/vendor/laravel/nexmo-notification-channel" />
+      <path value="$PROJECT_DIR$/vendor/nexmo/client" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-diactoros" />
+      <path value="$PROJECT_DIR$/vendor/vanilo_old/cart" />
+      <path value="$PROJECT_DIR$/vendor/vanilo_old/order" />
+      <path value="$PROJECT_DIR$/vendor/vanilo_old/product" />
+      <path value="$PROJECT_DIR$/vendor/vanilo_old/support" />
+      <path value="$PROJECT_DIR$/vendor/vanilo_old/category" />
+      <path value="$PROJECT_DIR$/vendor/vanilo_old/checkout" />
+      <path value="$PROJECT_DIR$/vendor/vanilo_old/contracts" />
+      <path value="$PROJECT_DIR$/vendor/vanilo_old/framework" />
+      <path value="$PROJECT_DIR$/vendor/vanilo_old/properties" />
+      <path value="$PROJECT_DIR$/vendor/kylekatarnls/update-helper" />
+      <path value="$PROJECT_DIR$/vendor/nexmo/client-core" />
+      <path value="$PROJECT_DIR$/vendor/vanilo/channel" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/vendor/symfony/contracts" />
     </include_path>
   </component>
   <component name="ProjectId" id="1PVwXQ20eSESyP7FYqX1V7H5pXB" />
@@ -222,19 +219,19 @@
     <property name="nodejs_package_manager_path" value="yarn" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/Http/Requests" />
-      <recent name="$PROJECT_DIR$/resources/views/pages/admin/property" />
-      <recent name="$PROJECT_DIR$/resources/js" />
-      <recent name="$PROJECT_DIR$/vendor" />
-      <recent name="$PROJECT_DIR$/public" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/app/Http/Controllers" />
       <recent name="$PROJECT_DIR$/public/admin/css" />
       <recent name="$PROJECT_DIR$/public/admin/js" />
       <recent name="$PROJECT_DIR$/public/assets/images" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Http/Requests" />
+      <recent name="$PROJECT_DIR$/resources/views/pages/admin/property" />
+      <recent name="$PROJECT_DIR$/resources/js" />
+      <recent name="$PROJECT_DIR$/vendor" />
+      <recent name="$PROJECT_DIR$/public" />
     </key>
   </component>
   <component name="RunDashboard">

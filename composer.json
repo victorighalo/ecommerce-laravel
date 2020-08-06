@@ -23,7 +23,7 @@
         "phpmailer/phpmailer": "~6.1",
         "spatie/laravel-medialibrary": "^7.19",
         "spatie/laravel-permission": "2.38.0",
-        "vanilo/framework": "0.5",
+        "vanilo/framework": "^1.2",
         "willvincent/laravel-rateable": "^1.07",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
