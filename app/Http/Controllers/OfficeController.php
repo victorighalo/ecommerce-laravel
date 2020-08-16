@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers;
 
-
-use App\CartItemVariant;
 use App\OrderItemVariant;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Konekt\Acl\Models\Role;
-
 use Vanilo\Order\Models\OrderItem;
 use Yajra\DataTables\DataTables;
 
@@ -37,6 +32,7 @@ class OfficeController extends Controller
     }
 
     public function dashboard(){
+
         $data = \App\Transactions::complete()->latest()->take(15)->get();
         return view('pages.admin.dashboard.index', compact('data'));
     }

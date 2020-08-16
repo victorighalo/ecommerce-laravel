@@ -5,7 +5,7 @@
             <ol class="breadcrumb">
                 <li><a href="{{url('/')}}">Home</a></li>
                 @if(isset($category))
-                    <li>{{ucfirst(strtolower($category->taxonomy->name))}}</li>
+                    <li>{{ucfirst(strtolower($category->parent->name))}}</li>
                     @if($category->parent)
                     <li class="active"><a a href="{{route('get_category_content', ['taxon_slug' => $category->parent->slug])}}" title="{{ucfirst(strtolower($category->parent->name))}}" >{{ucfirst(strtolower($category->parent->name))}}</a></li>
                     @endif

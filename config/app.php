@@ -234,8 +234,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Countries' => Webpatser\Countries\CountriesFacade::class,
-        'Cart' => Vanilo\Cart\Facades\Cart::class
+        'Countries' => Webpatser\Countries\CountriesFacade::class
 
     ],
 

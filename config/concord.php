@@ -2,12 +2,7 @@
 
 return [
     'modules' => [
-        Konekt\AppShell\Providers\ModuleServiceProvider::class => [
-            'ui' => [
-                'name' => 'Vanilo',
-                'url' => '/admin/product'
-            ]
-        ],
-        Vanilo\Cart\Providers\ModuleServiceProvider::class
+        Konekt\AppShell\Providers\ModuleServiceProvider::class,
+        Vanilo\Framework\Providers\ModuleServiceProvider::class
     ]
 ];

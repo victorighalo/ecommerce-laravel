@@ -36,7 +36,7 @@ class PagesController extends BaseController
 
         $categories = Taxon::all();
 
-        dd(($categories->first()->products->first()->isActive()));
+//        dd(($categories->first()->products->first()->isActive()));
         $brands = Taxonomy::all();
         $sliders = \App\Slider::where('name','Homepage')->exists() && \App\Slider::where('name','Homepage')->first()->status == 1 ? \App\Slider::where('name','Homepage')->first()->photos : false;
 

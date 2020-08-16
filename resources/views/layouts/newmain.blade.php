@@ -30,7 +30,7 @@
 
     <link href="{{asset('assets/font/flaticon.css')}}" rel="stylesheet">
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-
+    <link href="{{asset('css/main.css')}}" rel="stylesheet">
     <!-- JavaScripts -->
     <script src="{{ asset('assets/js/modernizr.js')}}"></script>
 
@@ -43,121 +43,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <style>
 
-        .off {
-            display: none;
-        }
-        .on {
-            display: block;
-        }
-
-        /* alerts */
-
-        .alert {
-            border: 0;
-            border-radius: 0;
-            padding: 20px 15px !important;
-            line-height: 20px;
-            font-weight: 300;
-            color: #fff;
-        }
-
-        .alert .alert-icon {
-            display: block;
-            float: left;
-            margin-right: 1.071rem;
-        }
-
-        .alert b {
-            font-weight: 500;
-            font-size: 12px;
-            text-transform: uppercase;
-        }
-
-        .close {
-            float: right;
-            font-size: 1.5rem;
-            color: #000;
-            text-shadow: 0 1px 0 #fff;
-            opacity: .5;
-        }
-        .alert .close {
-            color: #fff;
-            text-shadow: none;
-            opacity: .9;
-        }
-        .alert .close i {
-            font-size: 20px;
-        }
-        .alert .close:hover{
-            opacity: 1;
-            color: #fff;
-        }
-        .alert.alert-info {
-            background-color: #00cae3;
-            color: #fff;
-        }
-
-        .alert.alert-success {
-            background-color: #55b559;
-            color: #fff;
-        }
-
-        .alert.alert-warning {
-            background-color: #ff9e0f;
-            color: #fff;
-        }
-
-        .alert.alert-danger {
-            background-color: #f55145;
-            color: #fff;
-        }
-
-        .alert.alert-primary {
-            background-color: #a72abd;
-            color: #fff;
-        }
-        .arrival-block .tab-content{
-            width: 100%;
-        }
-
-        .brands_container{
-            height:300px;
-            background-position: center center !important;
-            background-repeat: no-repeat !important;
-            background-size: contain !important;
-        }
-        .border-bottom{
-            border-bottom: rgba(11, 11, 11, 0.51) 1px solid;
-        }
-        .loader {
-            height: 4px;
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-            background-color: #ddd;
-        }
-        .loader:before{
-            display: block;
-            position: absolute;
-            content: "";
-            left: -200px;
-            width: 200px;
-            height: 4px;
-            background-color: #2d3a4b;
-            animation: loading 2s linear infinite;
-        }
-
-        @keyframes loading {
-            from {left: -200px; width: 30%;}
-            50% {width: 30%;}
-            70% {width: 70%;}
-            80% { left: 50%;}
-            95% {left: 120%;}
-            to {left: 100%;}
-        }
-    </style>
 
     @stack('style')
 

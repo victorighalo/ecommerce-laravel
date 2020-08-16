@@ -98,25 +98,28 @@
                             </select>
 
                             <span class="price"><small>&#8358;</small> {{number_format($product->price, '0', '.', ',')}}</span>
+                            @if(isset($product->propertyValues))
+                            @if(count($product->propertyValues))
                             <ul class="item-owner">
-                                <li>Category:<span> {{$product->taxons->first()->slug}}</span></li>
-                                <li>Tags:
-                                    @if(isset($tags))
-                                        @foreach($tags as $tag)
-                                            <span class="badge badge-primary text-white">{{$tag}}</span>
-                                        @endforeach
-                                    @endif
-                                </li>
+{{--                                <li>Category:<span> {{$product->taxons->first()->slug}}</span></li>--}}
+{{--                                <li>Tags:--}}
+{{--                                    @if(isset($tags))--}}
+{{--                                        @foreach($tags as $tag)--}}
+{{--                                            <span class="badge badge-primary text-white">{{$tag}}</span>--}}
+{{--                                        @endforeach--}}
+{{--                                    @endif--}}
+{{--                                </li>--}}
                                 <li>
-                                    @if(isset($product->propertyValues))
+
                                         @foreach($product->propertyValues as $propertyValue)
                                             {{ $propertyValue->property->name }}: <span
                                                 class="font-weight-bold text-white"
                                                 style="color: #000 !important;padding-right: 10px;font-size: 14px">{{ ucfirst($propertyValue->value) }}</span>
                                         @endforeach
-                                    @endif
                                 </li>
                             </ul>
+                            @endif
+                            @endif
                             <!-- Item Detail -->
                             <p>{{$product->meta_description}}</p>
 
@@ -162,9 +165,11 @@
 
                                     <!-- ADD TO CART -->
                                     <li class="col-sm-12">
-                                        <button href="" class="btn" data-slug="{{$product->slug}}" id="add_to_cart"><i
+                                        <button class="btn" data-slug="{{$product->slug}}" id="add_to_cart"
+                                                disabled="{{$product->stock > 0 ? '' : 'disabled'}}"
+                                        ><i
                                                 class="fa fa-circle-o-notch fa-spin processing off"
-                                                aria-hidden="true"></i> ADD TO CART
+                                                aria-hidden="true"></i> {{$product->stock > 0 ? 'ADD TO CART' : 'OUT OF STOCK'}}
                                         </button>
                                     </li>
                                 </ul>
@@ -380,14 +385,25 @@
                         UIkit.modal(modal).show();
 
                     }).fail(function (error) {
+
                     $(".processing").addClass('off')
-                    $("#add_to_cart").prop('disabled', false)
-                    Snackbar.show({
-                        showAction: true,
-                        text: 'Cart update failed!.',
-                        actionTextColor: '#ffffff',
-                        backgroundColor: "#FE970D"
-                    });
+                    $("#add_to_cart").prop('disabled', false);
+                    if(error.message){
+                        Snackbar.show({
+                            showAction: true,
+                            text: 'Cart update failed!.',
+                            actionTextColor: '#ffffff',
+                            backgroundColor: "#FE970D"
+                        });
+                    }else{
+                        Snackbar.show({
+                            showAction: true,
+                            text: error.responseJSON.message,
+                            actionTextColor: '#ffffff',
+                            backgroundColor: "#FE970D"
+                        });
+                    }
+
                 });
             });
 

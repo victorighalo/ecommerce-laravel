@@ -48,16 +48,19 @@
                                     >
                                     </a>
 
-                                    <a href="{{route('getProductDetails', [
-                            'taxon_slug' => $item->taxons->first()->slug,
-                            'product_slug' => $item->slug
-                            ])}}">
-                                    <img class="img-2 lazyload" src="{{$item->FirstThumb}}" alt="">
-                                    </a>
+{{--                                    <a href="{{route('getProductDetails', [--}}
+{{--                            'taxon_slug' => $item->taxons->first()->slug,--}}
+{{--                            'product_slug' => $item->slug--}}
+{{--                            ])}}">--}}
+{{--                                    <img class="img-2 lazyload" src="{{$item->FirstThumb}}" alt="">--}}
+{{--                                    </a>--}}
 
                                 </div>
                                 <!-- Item Name -->
                                 <div class="item-name">
+                                    @if($item->stock < 0)
+                                    <span class="out-of-stock--badge">Out Of Stock</span>
+                                    @endif
                                     <a  class="i-tittle"
                                         href="{{route('getProductDetails', [
                                                     'taxon_slug' => $item->taxons->first()->slug,
@@ -80,38 +83,38 @@
                         @else
                             <div class="tab-pane animated fadeInDown" id="{{$category->slug}}" role="tabpanel">
 
-{{--                            @foreach($category->products as $item)--}}
-{{--                                @if($item->hasPhoto())--}}
-{{--                                    <!-- Item -->--}}
-{{--                                        <div class="item">--}}
-{{--                                            <div class="img-ser">--}}
-{{--                                                <img--}}
-{{--                                                        class="img-1 lazyload"--}}
-{{--                                                        src="{{$item->FirstThumb}}"--}}
-{{--                                                        alt="{{$item->title()}}"--}}
-{{--                                                >--}}
+                            @foreach($category->products->take(10) as $item)
+                                @if($item->hasPhoto())
+                                    <!-- Item -->
+                                        <div class="item">
+                                            <div class="img-ser">
+                                                <img
+                                                        class="img-1 lazyload"
+                                                        src="{{$item->FirstThumb}}"
+                                                        alt="{{$item->title()}}"
+                                                >
 {{--                                                <img class="img-2 lazyload" src="{{$item->FirstThumb}}" alt="">--}}
 
-{{--                                            </div>--}}
-{{--                                            <!-- Item Name -->--}}
-{{--                                            <div class="item-name">--}}
-{{--                                                    <a  class="i-tittle"--}}
-{{--                                                        href="{{route('getProductDetails', [--}}
-{{--                                                    'taxon_slug' => $item->taxons->first()->slug,--}}
-{{--                                                    'product_slug' => $item->slug--}}
-{{--                                                    ])}}">--}}
-{{--                                                        {{str_limit(strtoupper($item->title()),20, '...')}}--}}
-{{--                                                    </a>--}}
-{{--                                                <span class="price"><small> &#8358;</small> {{number_format($item->price, '0', '.', ',')}}</span>--}}
-{{--                                                <a  class="deta animated fadeInRight"--}}
-{{--                                                    href="{{route('getProductDetails', [--}}
-{{--                                                    'taxon_slug' => $item->taxons->first()->slug,--}}
-{{--                                                    'product_slug' => $item->slug--}}
-{{--                                                    ])}}">--}}
-{{--                                                    View Detail</a> </div>--}}
-{{--                                        </div>--}}
-{{--                                    @endif--}}
-{{--                                @endforeach--}}
+                                            </div>
+                                            <!-- Item Name -->
+                                            <div class="item-name">
+                                                    <a  class="i-tittle"
+                                                        href="{{route('getProductDetails', [
+                                                    'taxon_slug' => $item->taxons->first()->slug,
+                                                    'product_slug' => $item->slug
+                                                    ])}}">
+                                                        {{str_limit(strtoupper($item->title()),20, '...')}}
+                                                    </a>
+                                                <span class="price"><small> &#8358;</small> {{number_format($item->price, '0', '.', ',')}}</span>
+                                                <a  class="deta animated fadeInRight"
+                                                    href="{{route('getProductDetails', [
+                                                    'taxon_slug' => $item->taxons->first()->slug,
+                                                    'product_slug' => $item->slug
+                                                    ])}}">
+                                                    View Detail</a> </div>
+                                        </div>
+                                    @endif
+                                @endforeach
 
                             </div>
                         @endif

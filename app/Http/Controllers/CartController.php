@@ -59,6 +59,8 @@ class CartController extends BaseController
 
         try {
             $product = \App\Product::findBySlug($request->slug);
+            if ($product->stock < 1)
+                return response()->json(['message' => 'This Product is currently out of stock'],400);
 
             DB::transaction(function () use ($product,$request) {
                 $cart = Cart::addItem($product, $request->qty);
