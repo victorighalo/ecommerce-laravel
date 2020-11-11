@@ -2,24 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eb2349c8-f2b2-4acb-b3f6-e1ac82b2095e" name="Default" comment="updated webhook logs">
-      <change afterPath="$PROJECT_DIR$/resources/sass/main.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/vanilo.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Cart.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OfficeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OfficeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PagesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PagesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/concord.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/concord.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/admin/js/react.components.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/admin/js/react.components.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/newmain.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/newmain.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrationsold/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migsold/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrationsold/2014_10_12_100000_create_password_resets_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migsold/2014_10_12_100000_create_password_resets_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrationsold/2019_02_19_155207_create_media_uploads_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migsold/2019_02_19_155207_create_media_uploads_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrationsold/2019_03_05_160038_create_comments_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migsold/2019_03_05_160038_create_comments_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrationsold/2019_03_06_110745_create_ratings_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migsold/2019_03_06_110745_create_ratings_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrationsold/2019_03_07_094945_create_delivery_addresses_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migsold/2019_03_07_094945_create_delivery_addresses_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrationsold/2019_03_07_095150_create_pickup_addresses_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migsold/2019_03_07_095150_create_pickup_addresses_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrationsold/2019_03_12_150340_create_app_settings_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migsold/2019_03_12_150340_create_app_settings_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrationsold/2019_03_29_152649_create_customers_orders_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migsold/2019_03_29_152649_create_customers_orders_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrationsold/2019_03_29_152923_create_customers_order_items_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migsold/2019_03_29_152923_create_customers_order_items_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrationsold/2019_04_06_120235_create_transactions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migsold/2019_04_06_120235_create_transactions_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrationsold/2019_04_08_215350_create_delivery_prices_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migsold/2019_04_08_215350_create_delivery_prices_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrationsold/2019_04_15_161441_create_photos_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migsold/2019_04_15_161441_create_photos_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrationsold/2019_04_19_164956_create_jobs_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migsold/2019_04_19_164956_create_jobs_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrationsold/2019_04_22_132523_update_media_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migsold/2019_04_22_132523_update_media_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrationsold/2019_06_01_143748_update_taxonomies_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/migsold/2019_06_01_143748_update_taxonomies_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/products/_view_products.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/products/_view_products.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/admin/products/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/admin/products/list.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/pages/front/single_product.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/front/single_product.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/frontend/categories_slider.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/frontend/categories_slider.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/partials/frontend/home/_products_by_category.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/frontend/home/_products_by_category.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/frontend/sub_banner.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/frontend/sub_banner.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,7 +51,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="enso_tables" />
+        <entry key="$PROJECT_DIR$" value="admin-tables" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -302,11 +310,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.watch-poll" />
         <item itemvalue="npm.watch" />
         <item itemvalue="npm.development" />
+        <item itemvalue="npm.watch-poll" />
         <item itemvalue="npm.dev" />
-        <item itemvalue="npm.watch" />
+        <item itemvalue="npm.watch-poll" />
       </list>
     </recent_temporary>
   </component>
@@ -457,7 +465,10 @@
       <workItem from="1596647511439" duration="11662000" />
       <workItem from="1596791810376" duration="1632000" />
       <workItem from="1596808636637" duration="1541000" />
-      <workItem from="1597546784429" duration="2223000" />
+      <workItem from="1597546784429" duration="17555000" />
+      <workItem from="1597830369475" duration="493000" />
+      <workItem from="1599551358494" duration="3219000" />
+      <workItem from="1599559017263" duration="2440000" />
     </task>
     <task id="LOCAL-00030" summary="Added webhook support">
       <created>1566650726909</created>

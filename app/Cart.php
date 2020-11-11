@@ -18,25 +18,37 @@ class Cart extends BaseCart implements CartContract
     public function addItem(Buyable $product, $qty = 1, $params = []): \Vanilo\Cart\Contracts\CartItem
     {
 
-
         try {
-//            $item = $this->items()->ofCart($this)->byProduct($product)->first();
 
-            $item = $this->items()->create(
-                array_merge(
-                    $this->getDefaultCartItemAttributes($product, $qty),
-                    $this->getExtraProductMergeAttributes($product),
-                    $params['attributes'] ?? []
-                )
-            );
+             $item = $this->items()->ofCart($this)->byProduct($product)->first();
 
+            if ($item) {
+                $item->quantity += $qty;
+                $item->save();
+            } else {
+                $item = $this->items()->create(
+                    array_merge(
+                        $this->getDefaultCartItemAttributes($product, $qty),
+                        $this->getExtraProductMergeAttributes($product),
+                        $params['attributes'] ?? []
+                    )
+                );
+            }
 
             $this->load('items');
 
             return $item;
         }catch (\Exception $e){
-
+            dd($e->getMessage());
+            return $e->getMessage();
         }
+    }
+
+    public function findByProduct(Buyable $product){
+        $items = $this->items()->get();
+        $this->load('items');
+
+        return $items;
     }
 
     public function getDefaultCartItemAttributes(Buyable $product, $qty)

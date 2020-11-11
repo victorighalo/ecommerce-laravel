@@ -166,7 +166,7 @@
                                     <!-- ADD TO CART -->
                                     <li class="col-sm-12">
                                         <button class="btn" data-slug="{{$product->slug}}" id="add_to_cart"
-                                                disabled="{{$product->stock > 0 ? '' : 'disabled'}}"
+                                                {{$product->stock > 0 ? '' : 'disabled'}}
                                         ><i
                                                 class="fa fa-circle-o-notch fa-spin processing off"
                                                 aria-hidden="true"></i> {{$product->stock > 0 ? 'ADD TO CART' : 'OUT OF STOCK'}}
@@ -380,7 +380,9 @@
                         $(".processing").addClass('off')
                         $("#add_to_cart").prop('disabled', false)
 
-                        $(".cart-msg").html("added to cart")
+                        $(".cart-msg").html("added to cart");
+                        if($(".c-no").remove())
+                        $(".lnr-cart").prepend("<span class='c-no'>"+data.cart_count+"</span>")
 
                         UIkit.modal(modal).show();
 

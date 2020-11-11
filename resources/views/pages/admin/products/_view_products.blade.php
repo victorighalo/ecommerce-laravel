@@ -13,8 +13,9 @@
                             <th>Price</th>
                             <th>Delivery Price</th>
                             <th>Stock</th>
+                            <th>Has Variants</th>
                             <th>Category</th>
-                            <th>Tags</th>
+{{--                            <th>Tags</th>--}}
                             <th>Date</th>
                             {{--<th>Image</th>--}}
                             <th>Action</th>

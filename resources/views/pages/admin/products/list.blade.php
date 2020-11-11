@@ -38,8 +38,9 @@
                 {data: 'price', name: 'price'},
                 {data: 'delivery_price', name: 'delivery_price'},
                 {data: 'stock', name: 'stock'},
+                {data: 'is_variant', name: 'is_variant'},
                 {data: 'taxons', name: 'taxons'},
-                {data: 'meta_keywords', name: 'meta_keywords'},
+                // {data: 'meta_keywords', name: 'meta_keywords'},
                 {data: 'created_at', name: 'created_at'},
                 // { data: 'image', name: 'image' },
                 {data: 'action', name: 'action', orderable: false, searchable: false}

@@ -307,8 +307,10 @@ class ProductsController extends BaseController
                 }
             })
             ->editColumn('meta_description', function ($subdata) {
-
                 return str_limit($subdata->meta_description, 30);
+            })
+            ->editColumn('is_variant', function ($subdata) {
+                return $subdata->is_variant == 1 ? 'Yes' : 'No';
             })
             ->addColumn('action', function ($subdata) {
                 return '      <td>

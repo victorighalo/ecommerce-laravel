@@ -58,9 +58,7 @@
                                 </div>
                                 <!-- Item Name -->
                                 <div class="item-name">
-                                    @if($item->stock < 0)
-                                    <span class="out-of-stock--badge">Out Of Stock</span>
-                                    @endif
+
                                     <a  class="i-tittle"
                                         href="{{route('getProductDetails', [
                                                     'taxon_slug' => $item->taxons->first()->slug,
@@ -69,12 +67,16 @@
                                         {{str_limit(strtoupper($item->title()),20, '...')}}
                                     </a>
                                     <span class="price"><small> &#8358;</small> {{number_format($item->price, '0', '.', ',')}}</span>
-                                    <a  class="deta animated fadeInRight"
-                                        href="{{route('getProductDetails', [
-                                        'taxon_slug' => $item->taxons->first()->slug,
-                                        'product_slug' => $item->slug
-                            ])}}">
-                            View Detail</a> </div>
+                                    @if($item->stock < 1)
+                                        <span class="out-of-stock--badge">Out Of Stock</span>
+                                    @endif
+{{--                                    <a  class="deta animated fadeInRight"--}}
+{{--                                        href="{{route('getProductDetails', [--}}
+{{--                                        'taxon_slug' => $item->taxons->first()->slug,--}}
+{{--                                        'product_slug' => $item->slug--}}
+{{--                            ])}}">--}}
+{{--                            View Detail</a> --}}
+                                </div>
                             </div>
                             @endif
                             @endforeach

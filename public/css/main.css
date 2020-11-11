@@ -150,3 +150,11 @@
     left: 100%;
   }
 }
+.out-of-stock--badge {
+  background: #ff7c7c;
+  padding: 3px;
+  font-size: 0.6rem;
+  color: #fff;
+  border-radius: 3px;
+  float: right;
+}
